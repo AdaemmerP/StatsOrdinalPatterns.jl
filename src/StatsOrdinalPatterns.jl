@@ -8,7 +8,6 @@ using LinearAlgebra
 using Random
 using Reexport
 using Roots
-using StaticArrays
 using Statistics
 using StatsBase
 import PrecompileTools
