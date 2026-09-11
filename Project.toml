@@ -1,6 +1,6 @@
 name = "StatsOrdinalPatterns"
 uuid = "8611b07d-f603-454a-913b-9db0632d0769"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Philipp Adämmer <adaemmerp@uni-greifswald.de>, Philipp Wittenberg <pwitten@hsu-hh.de>, Christian Weiss <cweiss@hsu-hh.de>"]
 
 [deps]
