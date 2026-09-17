@@ -201,6 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>boot_pval::Float64</code>: bootstrap p-value.</li>
 <li><code>boot_reject::Bool</code>: whether the null hypothesis is rejected at the chosen level.</li>
 <li><code>n_boot::Int</code>: number of bootstrap replications.</li>
+<li><code>boot_dist::Vector{Float64}</code>: the <code>n_boot</code> resampled statistics (bootstrap null distribution), on the same scale as <code>stat</code> and <code>boot_crit</code>. With Makie loaded, <code>plot(res)</code> draws it as a histogram.</li>
 </ul>
 </div>
 </div>

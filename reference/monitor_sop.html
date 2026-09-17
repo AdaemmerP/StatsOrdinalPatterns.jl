@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>acftestresultboot</title>
+<title>monitor_sop</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -167,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-doc" id="toc-sec-doc" class="nav-link active" data-scroll-target="#sec-doc">ACFTestResultBoot</a></li>
+  <li><a href="#sec-doc" id="toc-sec-doc" class="nav-link active" data-scroll-target="#sec-doc">monitor_sop</a></li>
   </ul>
 </nav>
     </div>
@@ -178,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="sec-doc" class="level1">
-<h1>ACFTestResultBoot</h1>
+<h1>monitor_sop</h1>
 <div class="callout callout-style-simple callout-note callout-titled" title="docblock">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -191,17 +191,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ACFTestResultBoot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Result of the bootstrap test based on the classical autocorrelation function <a href="@ref"><code>test_acf_bootstrap</code></a>.</p>
-<p>Fields:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitor_sop</span>(data, lam, cl, d1, d2; chart_choice<span class="op">=</span><span class="fu">TauTilde</span>(), refinement<span class="op">=</span><span class="fu">OrdinaryType</span>(),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  add_noise<span class="op">=</span><span class="cn">false</span>, noise_dist<span class="op">=</span><span class="fu">Uniform</span>(<span class="fl">0</span>, <span class="fl">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Monitor the image sequence <code>data</code> (a 3D array, rows × columns × time) with the EWMA control chart based on spatial ordinal patterns and return a <a href="@ref"><code>ControlChartResult</code></a> with the chart statistics, the control limit and the first alarm.</p>
+<p>The statistics are those of <code>stat_sop(data, lam, d1, d2; ...)</code>. All four monitoring statistics are two sided, so the chart signals when <code>abs(stat) &gt; cl</code>.</p>
 <ul>
-<li><code>stat::Float64</code>: value of the test statistic.</li>
-<li><code>boot_crit::Float64</code>: bootstrap critical value.</li>
-<li><code>boot_pval::Float64</code>: bootstrap p-value.</li>
-<li><code>boot_reject::Bool</code>: whether the null hypothesis is rejected at the chosen level.</li>
-<li><code>n_boot::Int</code>: number of bootstrap replications.</li>
-<li><code>boot_dist::Vector{Float64}</code>: the <code>n_boot</code> resampled statistics (bootstrap null distribution). With Makie loaded, <code>plot(res)</code> draws it as a histogram.</li>
+<li><code>data::Array{&lt;:Real,3}</code>: the image sequence.</li>
+<li><code>lam::Float64</code>: EWMA smoothing parameter.</li>
+<li><code>cl::Float64</code>: control limit, typically obtained from <a href="@ref"><code>cl_sop</code></a>.</li>
+<li><code>d1::Int</code>, <code>d2::Int</code>: row and column delays.</li>
+<li><code>chart_choice</code>: one of <a href="@ref"><code>TauHat</code></a><code>()</code>, <a href="@ref"><code>KappaHat</code></a><code>()</code>, <a href="@ref"><code>TauTilde</code></a><code>()</code>, <a href="@ref"><code>KappaTilde</code></a><code>()</code>.</li>
+<li><code>refinement</code>: <a href="@ref"><code>OrdinaryType</code></a><code>()</code> for the classical SOP classification, or one of <a href="@ref"><code>RotationType</code></a><code>()</code>, <a href="@ref"><code>DirectionType</code></a><code>()</code>, <a href="@ref"><code>DiagonalType</code></a><code>()</code>. Must be the same as in the <code>cl_sop</code> call that produced <code>cl</code>.</li>
+<li><code>add_noise::Bool=false</code>, <code>noise_dist</code>: add noise to break ties, as in <code>stat_sop</code>.</li>
 </ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> <span class="fu">randn</span>(<span class="fl">11</span>, <span class="fl">11</span>, <span class="fl">40</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">monitor_sop</span>(images, <span class="fl">0.1</span>, <span class="fl">0.03</span>, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">TauTilde</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

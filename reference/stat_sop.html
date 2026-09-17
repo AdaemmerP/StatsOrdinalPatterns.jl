@@ -226,7 +226,7 @@ stat_sop(data, 1, 1; chart_choice=TauTilde())</code></pre>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stat_sop</span>(data, lam, d1, d2; chart_choice<span class="op">=</span><span class="fu">TauTilde</span>(), refinement<span class="op">=</span><span class="fu">OrdinaryType</span>(),</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  add_noise<span class="op">=</span><span class="cn">false</span>, noise_dist<span class="op">=</span><span class="fu">Uniform</span>(<span class="fl">0</span>, <span class="fl">1</span>), type_freq_init<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  add_noise<span class="op">=</span><span class="cn">false</span>, noise_dist<span class="op">=</span><span class="fu">Uniform</span>(<span class="fl">0</span>, <span class="fl">1</span>), type_freq_init<span class="op">=</span><span class="cn">nothing</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal patterns (SOPs) for a 3D array of data (image sequence, third dimension = time).</p>
 <ul>
 <li><code>data::Array{Float64,3}</code>: A 3D array of data.</li>
@@ -237,7 +237,7 @@ stat_sop(data, 1, 1; chart_choice=TauTilde())</code></pre>
 <li><code>refinement</code>: <a href="@ref"><code>OrdinaryType</code></a><code>()</code> for the classical SOP classification, or one of <a href="@ref"><code>RotationType</code></a><code>()</code>, <a href="@ref"><code>DirectionType</code></a><code>()</code>, <a href="@ref"><code>DiagonalType</code></a><code>()</code>.</li>
 <li><code>add_noise::Bool</code>: A boolean value to add noise to the data.</li>
 <li><code>noise_dist::UnivariateDistribution</code>: The distribution for the noise.</li>
-<li><code>type_freq_init::Union{Float64,Array{Float64,2}}</code>: The initial type frequencies.</li>
+<li><code>type_freq_init</code>: The initial type frequencies. Defaults to the uniform value <code>1/q</code>, where <code>q</code> is the number of SOP types of the classification (3 or 6).</li>
 </ul>
 </div>
 </div>

@@ -202,6 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>surr_pval::Float64</code>: surrogate p-value.</li>
 <li><code>surr_reject::Bool</code>: whether the null hypothesis is rejected at the chosen level.</li>
 <li><code>n_surrogates::Int</code>: number of surrogate replications.</li>
+<li><code>surr_dist::Vector{Float64}</code>: the <code>n_surrogates</code> statistics of the surrogate ensemble (surrogate null distribution). With Makie loaded, <code>plot(res)</code> draws it as a histogram.</li>
 </ul>
 </div>
 </div>

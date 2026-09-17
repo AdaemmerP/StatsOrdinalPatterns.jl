@@ -500,6 +500,7 @@ window.Quarto = {
   <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a></li>
   <li><a href="#argument-conventions" id="toc-argument-conventions" class="nav-link" data-scroll-target="#argument-conventions">Argument conventions</a></li>
   <li><a href="#result-objects" id="toc-result-objects" class="nav-link" data-scroll-target="#result-objects">Result objects</a></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a></li>
   <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">Distributions</a></li>
   </ul></li>
   </ul>
@@ -590,7 +591,12 @@ window.Quarto = {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>res.asymp_crit    <span class="co"># critical value</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>res.asymp_pval    <span class="co"># p-value</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>res.asymp_reject  <span class="co"># reject decision</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Bootstrap and surrogate tests return the analogous <code>…Boot</code> and <code>…Surrogate</code> structs, whose fields are prefixed <code>boot_</code> and <code>surr_</code> instead of <code>asymp_</code> and which additionally record the number of replications.</p>
+<p>Bootstrap and surrogate tests return the analogous <code>…Boot</code> and <code>…Surrogate</code> structs, whose fields are prefixed <code>boot_</code> and <code>surr_</code> instead of <code>asymp_</code> and which additionally record the number of replications and the resampled statistics themselves (<code>boot_dist</code>, <code>surr_dist</code>).</p>
+<p>Monitoring an observed series or image sequence with a calibrated chart is done by <code>monitor_op</code> and <code>monitor_sop</code>, which return a <code>ControlChartResult</code> with the chart statistics, the control limit and the first alarm.</p>
+</section>
+<section id="plotting" class="level2">
+<h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
+<p>With Makie loaded, <code>plot(res)</code> works for a <code>ControlChartResult</code> and for every bootstrap or surrogate result; see the <a href="../page_files/plotting.html">plotting tutorial</a>. The plotting code is a package extension, so Makie is not a dependency of <code>StatsOrdinalPatterns.jl</code>.</p>
 </section>
 <section id="distributions" class="level2">
 <h2 class="anchored" data-anchor-id="distributions">Distributions</h2>
