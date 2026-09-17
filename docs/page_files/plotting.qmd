@@ -158,8 +158,8 @@ for i in 2:20, j in 2:20
     img[i, j] = 0.4 * (img[i-1, j] + img[i, j-1]) / 2 + randn()
 end
 
-fig = Figure(size=(960, 380))
-plot(fig[1, 1], test_op_bootstrap(x_ar, 2_000; chart_choice=Shannon()); legend=:lt)
+fig = Figure(size=(1100, 380))
+plot(fig[1, 1], test_op_bootstrap(x_ar, 2_000; chart_choice=Shannon()))
 plot(fig[1, 2], test_sop_bootstrap(img, 2_000, 1, 1; chart_choice=Shannon()))
 fig
 ```
@@ -173,13 +173,15 @@ loaded, returns an `OPTestResultSurrogate` that is plotted in the same way.
 control the drawn elements. `plot!` adds the elements to an axis of your own.
 
 ```{julia}
-fig = Figure(size=(800, 500))
-plot(fig[1, 1], res; axis=(title="Persistence chart",), color=:navy, legend=:lb)
+fig = Figure(size=(800, 560))
+plot(fig[1, 1], res; axis=(title="Persistence chart",), color=:navy)
 plot(fig[2, 1], res_boot; axis=(title="Bootstrap null of the same chart",), nbins=60)
 fig
 ```
 
 The keywords of the control chart plot are `color`, `linewidth`, `limit_color`,
 `region_color` and `legend`; those of the null distribution plot are `nbins`, `color`,
-`stat_color`, `crit_color`, `region_color` and `legend`. Pass `legend=false` to omit the
-legend, or a Makie position such as `:lt` to move it.
+`stat_color`, `crit_color`, `region_color` and `legend`. The legend sits to the right of
+the axis by default. Pass `legend=false` to omit it, or a Makie position such as `:lt` to
+place it inside the axis. `plot!` on an axis of your own always places the legend inside,
+since it has no layout to put it next to.

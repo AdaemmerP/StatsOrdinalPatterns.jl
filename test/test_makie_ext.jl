@@ -56,7 +56,9 @@ _plots_of(T, ax) = filter(p -> p isa T, ax.scene.plots)
   ax2 = plot(fig[2, 1], res; axis=(title="custom",), color=:blue)
   @test ax2 isa Makie.Axis
   @test ax2.title[] == "custom"
-  @test count(c -> c isa Makie.Legend, fig.content) == 1   # inside legend of ax2
+  @test count(c -> c isa Makie.Legend, fig.content) == 1   # legend of ax2, outside
+  ax3 = plot(fig[3, 1], res; legend=:lt)
+  @test count(c -> c isa Makie.Legend, fig.content) == 2   # inside legend of ax3
   fig = plot(res; figure=(size=(300, 200),), legend=:lt)
   @test fig.scene.viewport[].widths == [300, 200]
   @test count(c -> c isa Makie.Legend, fig.content) == 1

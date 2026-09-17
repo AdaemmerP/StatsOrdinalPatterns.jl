@@ -54,9 +54,9 @@ end
 
 _fmt(x) = string(round(x, digits=4))
 
-# Legend inside the axis at a Makie position such as `:rt`, or none for `false`. The
-# figure-level `plot` places the legend outside the axis instead (see section 4), where
-# it cannot cover the data.
+# Legend inside the axis at a Makie position such as `:rt`, or none for `false`. This is
+# what `plot!` on a user-supplied axis offers; the `plot` entry points (section 4) place
+# the legend outside the axis by default, where it cannot cover the data.
 function _inside_legend!(ax, legend)
   legend === false && return nothing
   Makie.axislegend(ax; position=legend, framevisible=false)
@@ -182,7 +182,7 @@ const _Plottable = Union{ControlChartResult,_NullResult}
 
 """
     plot(res; figure=(;), axis=(;), legend=:outside, kwargs...)
-    plot(fig[i, j], res; axis=(;), legend=:rt, kwargs...)
+    plot(fig[i, j], res; axis=(;), legend=:outside, kwargs...)
 
 Plot a [`ControlChartResult`](@ref) or a bootstrap / surrogate test result. The first form
 creates a `Figure` with one `Axis` and returns the `Figure`; the second draws into the
@@ -191,24 +191,29 @@ grid position of an existing figure and returns the `Axis`.
 - `figure`: keyword arguments for `Figure`, e.g. `figure=(size=(800, 400),)`.
 - `axis`: keyword arguments for `Axis`, overriding the default labels and title,
   e.g. `axis=(title="my chart",)`.
-- `legend`: `:outside` places the legend next to the axis (only in the first form), a
-  Makie position such as `:rt` or `:lb` places it inside the axis, and `false` omits it.
+- `legend`: `:outside` (the default) places the legend to the right of the axis, where it
+  never covers the data; a Makie position such as `:rt` or `:lb` places it inside the
+  axis, and `false` omits it.
 - `kwargs`: passed on to `plot!(ax, res; kwargs...)`.
 """
 function Makie.plot(r::_Plottable; figure=(;), axis=(;), legend=:outside, kwargs...)
   fig = Makie.Figure(; size=(760, 400), figure...)
-  if legend === :outside
-    ax = Makie.plot(fig[1, 1], r; axis=axis, legend=false, kwargs...)
-    Makie.Legend(fig[1, 2], ax; framevisible=false)
-  else
-    Makie.plot(fig[1, 1], r; axis=axis, legend=legend, kwargs...)
-  end
+  Makie.plot(fig[1, 1], r; axis=axis, legend=legend, kwargs...)
   return fig
 end
 
-function Makie.plot(gp::Makie.GridPosition, r::_Plottable; axis=(;), kwargs...)
-  ax = Makie.Axis(gp; _axis_defaults(r)..., axis...)
-  Makie.plot!(ax, r; kwargs...)
+function Makie.plot(gp::Makie.GridPosition, r::_Plottable; axis=(;), legend=:outside, kwargs...)
+  if legend === :outside
+    # A nested layout at the grid position holds the axis and, to its right, the legend,
+    # so the pair occupies the single cell the caller handed over.
+    layout = Makie.GridLayout(gp)
+    ax = Makie.Axis(layout[1, 1]; _axis_defaults(r)..., axis...)
+    Makie.plot!(ax, r; legend=false, kwargs...)
+    Makie.Legend(layout[1, 2], ax; framevisible=false)
+  else
+    ax = Makie.Axis(gp; _axis_defaults(r)..., axis...)
+    Makie.plot!(ax, r; legend=legend, kwargs...)
+  end
   return ax
 end
 
