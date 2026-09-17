@@ -98,6 +98,11 @@ website:
             - reference/cl_sop.qmd
             - reference/arl_sacf_ic.qmd
             - reference/arl_sacf_oc.qmd
+        - section: "Monitoring observed data"
+          contents:
+            - reference/ControlChartResult.qmd
+            - reference/monitor_op.qmd
+            - reference/monitor_sop.qmd
     - title: "SOPs"
       style: "docked"
       background: light
