@@ -139,6 +139,9 @@ Fields:
 - `boot_pval::Float64`: bootstrap p-value.
 - `boot_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
 - `n_boot::Int`: number of bootstrap replications.
+- `boot_dist::Vector{Float64}`: the `n_boot` resampled statistics (bootstrap null
+  distribution), on the same scale as `stat` and `boot_crit`. With Makie loaded,
+  `plot(res)` draws it as a histogram.
 """
 struct SOPTestResultBoot{C}
   chart::C
@@ -147,6 +150,7 @@ struct SOPTestResultBoot{C}
   boot_pval::Float64
   boot_reject::Bool
   n_boot::Int
+  boot_dist::Vector{Float64}
 end
 
 function Base.show(io::IO, r::SOPTestResultBoot)
@@ -237,5 +241,5 @@ function test_sop_bootstrap(
   b_pval   = _sop_boot_pval(chart_choice, stat, boot_dist)
   b_reject = chart_choice isa Union{TauHat, KappaHat, TauTilde, KappaTilde} ?
                abs(stat) > b_crit : stat > b_crit
-  return SOPTestResultBoot(chart_choice, stat, b_crit, b_pval, b_reject, n_boot)
+  return SOPTestResultBoot(chart_choice, stat, b_crit, b_pval, b_reject, n_boot, boot_dist)
 end

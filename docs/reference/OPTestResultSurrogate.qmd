@@ -22,6 +22,7 @@ Fields:
   * `surr_pval::Float64`: surrogate p-value.
   * `surr_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
   * `n_surrogates::Int`: number of surrogate replications.
+  * `surr_dist::Vector{Float64}`: the `n_surrogates` statistics of the surrogate ensemble (surrogate null distribution). With Makie loaded, `plot(res)` draws it as a histogram.
 
 
 :::

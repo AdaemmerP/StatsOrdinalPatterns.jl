@@ -63,6 +63,8 @@ Fields:
 - `boot_pval::Float64`: bootstrap p-value.
 - `boot_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
 - `n_boot::Int`: number of bootstrap replications.
+- `boot_dist::Vector{Float64}`: the `n_boot` resampled statistics (bootstrap null
+  distribution). With Makie loaded, `plot(res)` draws it as a histogram.
 """
 struct ACFTestResultBoot
   stat::Float64
@@ -70,6 +72,7 @@ struct ACFTestResultBoot
   boot_pval::Float64
   boot_reject::Bool
   n_boot::Int
+  boot_dist::Vector{Float64}
 end
 
 function Base.show(io::IO, r::ACFTestResultBoot)
@@ -122,5 +125,5 @@ function test_acf_bootstrap(
   boot_dist = bootstrap_acf(data, n_boot, h; block_size=block_size)
   b_crit    = _acf_boot_crit(boot_dist, alpha)
   b_pval    = _acf_boot_pval(stat, boot_dist)
-  return ACFTestResultBoot(stat, b_crit, b_pval, abs(stat) > b_crit, n_boot)
+  return ACFTestResultBoot(stat, b_crit, b_pval, abs(stat) > b_crit, n_boot, boot_dist)
 end

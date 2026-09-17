@@ -18,7 +18,9 @@ my_tests = ["test_frequencies.jl",
   "test_acf_test_functions.jl",
   "test_acf_bootstrap_functions.jl",
   "test_op_bp_functions.jl",
-  "test_sop_bp_bootstrap_functions.jl"]
+  "test_sop_bp_bootstrap_functions.jl",
+  "test_monitor_functions.jl",
+  "test_makie_ext.jl"]
 
 println("Running tests:")
 

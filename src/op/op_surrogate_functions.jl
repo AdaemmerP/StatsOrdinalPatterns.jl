@@ -16,6 +16,8 @@ Fields:
 - `surr_pval::Float64`: surrogate p-value.
 - `surr_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
 - `n_surrogates::Int`: number of surrogate replications.
+- `surr_dist::Vector{Float64}`: the `n_surrogates` statistics of the surrogate ensemble
+  (surrogate null distribution). With Makie loaded, `plot(res)` draws it as a histogram.
 """
 struct OPTestResultSurrogate{C,S}
   chart::C
@@ -25,6 +27,7 @@ struct OPTestResultSurrogate{C,S}
   surr_pval::Float64
   surr_reject::Bool
   n_surrogates::Int
+  surr_dist::Vector{Float64}
 end
 
 function Base.show(io::IO, r::OPTestResultSurrogate)

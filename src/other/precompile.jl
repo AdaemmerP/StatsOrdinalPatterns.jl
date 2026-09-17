@@ -47,6 +47,7 @@ PrecompileTools.@setup_workload begin
       test_op_bp(ts, 3; chart_choice=cc)
       arl_op_ic(ic_cont, lam, 1.5, reps; chart_choice=cc, rl_max=rl_max)
       arl_op_oc(ar1, lam, 1.5, reps; chart_choice=cc, rl_max=rl_max)
+      monitor_op(ts, lam, 1.5; chart_choice=cc)
     end
     test_op_bootstrap(ts, n_boot; chart_choice=Shannon())
     test_op_bp_bootstrap(ts, n_boot, 3; chart_choice=Shannon())
@@ -82,6 +83,7 @@ PrecompileTools.@setup_workload begin
       stat_sop_bp(img, 3; chart_choice=cc)
       stat_sop_bp(imgs, lam, 3; chart_choice=cc)
       test_sop(img, 1, 1; chart_choice=cc)
+      monitor_sop(imgs, lam, 0.02, 1, 1; chart_choice=cc)
       arl_sop_ic(ic_spat, lam, 0.02, 1, 1, reps; chart_choice=cc, rl_max=rl_max)
       arl_sop_oc(sar11, lam, 0.02, 1, 1, reps; chart_choice=cc, rl_max=rl_max)
     end

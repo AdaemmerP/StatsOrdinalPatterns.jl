@@ -11,7 +11,7 @@ julia:
 ```{julia}
 #| output: false
 #| message: false
-using StatsOrdinalPatterns, Random, Statistics, DataFrames
+using StatsOrdinalPatterns, Random, Statistics, DataFrames, CairoMakie
 ```
 
 ## Sequential testing with spatial ordinal patterns
@@ -56,6 +56,9 @@ matches a target `L0`. See @adammer2026.
 - **Monitoring observed data**
     - `stat_sop(data, lam, d1, d2; chart_choice, refinement=OrdinaryType())` — for a 3D array
       (rows × columns × time), returns the sequentially computed EWMA chart statistics.
+    - `monitor_sop(data, lam, cl, d1, d2; chart_choice, refinement=OrdinaryType())` —
+      applies the alarm rule to these statistics and returns a `ControlChartResult` with
+      the statistics, the limit and the first alarm. With Makie loaded, `plot` draws it.
 
 ## Alarm rules
 
@@ -152,9 +155,10 @@ contributes $(M - d_1)(N - d_2) = 100$ patterns.
 
 ## Monitoring an observed image sequence
 
-`stat_sop` applied to a 3D array returns the EWMA chart statistics of an observed image
-sequence. The sequence below is spatial white noise up to $t = 20$ and spatially dependent
-afterwards.
+`monitor_sop` applied to a 3D array computes the EWMA chart statistics of an observed
+image sequence (the same ones `stat_sop` returns), applies the two sided alarm rule and
+records the first signal. The sequence below is spatial white noise up to $t = 20$ and
+spatially dependent afterwards.
 
 ```{julia}
 Random.seed!(42)
@@ -166,16 +170,25 @@ for t in (T_change+1):T, i in 2:M, j in 2:N
     images[i, j, t] = φ * (images[i-1, j, t] + images[i, j-1, t]) / 2 + randn()
 end
 
-stats = stat_sop(images, lam, d1, d2; chart_choice=TauTilde())
-alarm = findfirst(s -> abs(s) > cl, stats)
+res = monitor_sop(images, lam, cl, d1, d2; chart_choice=TauTilde())
 ```
 
+Each image contributes one statistic, so `res.alarm` is the index of the first image at
+which the chart signals:
+
 ```{julia}
-(first_alarm=alarm, delay=alarm - T_change, stat_at_alarm=round(stats[alarm], digits=4))
+(first_alarm=res.alarm, delay=res.alarm - T_change,
+ stat_at_alarm=round(res.stats[res.alarm], digits=4))
 ```
 
 The chart passes through the white-noise part without a false alarm and signals shortly
-after the change.
+after the change. With `CairoMakie` loaded, `plot` shows the statistics against the
+control limits, shades the rejection region and marks the first alarm. See the
+[plotting tutorial](plotting.qmd) for the options.
+
+```{julia}
+plot(res)
+```
 
 ## References
 

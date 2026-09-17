@@ -1,0 +1,185 @@
+---
+engine: julia
+julia:
+  exeflags: ["--project=../."]
+---
+
+# Plotting results
+
+## Libraries
+
+```{julia}
+#| output: false
+#| message: false
+using StatsOrdinalPatterns, CairoMakie, Random
+```
+
+## What can be plotted
+
+`StatsOrdinalPatterns.jl` does not depend on a plotting library. Plotting support lives in
+a package extension that is loaded automatically as soon as Makie, or one of its backends
+such as `CairoMakie` or `GLMakie`, is loaded next to the package. The extension adds
+methods to `plot` for two kinds of result objects:
+
+- **Control charts.** `monitor_op` and `monitor_sop` run the EWMA chart over an observed
+  series or image sequence and return a `ControlChartResult`. Its plot shows the chart
+  statistics against the control limit, shades the rejection region and marks the first
+  alarm.
+- **Resampled null distributions.** The results of the bootstrap tests
+  (`test_op_bootstrap`, `test_op_bp_bootstrap`, `test_sop_bootstrap`,
+  `test_sop_bp_bootstrap`, `test_acf_bootstrap`, `test_sacf_bootstrap`,
+  `test_sacf_bp_bootstrap`) and of the surrogate test `test_op_surrogate` store the
+  resampled statistics in their `boot_dist` or `surr_dist` field. Their plot is a
+  histogram of that null distribution with the rejection region, the critical value and
+  the observed statistic.
+
+In both cases `plot(res)` returns a `Figure` with a single axis, `plot!(ax, res)` draws into
+an existing axis, and `plot(fig[i, j], res)` draws into a position of a figure layout.
+
+## Monitoring a time series
+
+The series below is i.i.d. up to $t = 150$ and follows an AR(1) process afterwards. The
+control limit is calibrated to an in-control ARL of 370, as in the
+[sequential tutorial](op_sequential.qmd).
+
+```{julia}
+#| output: false
+ic = ContinuousDGPIC(Normal(0, 1))
+lam, L0 = 0.1, 370.0
+
+cl = cl_op(
+    ic, lam, L0, 0.20;
+    chart_choice=Persistence(),
+    reps_bracket=1_000, reps_final=2_000, bracket_step=0.02, seed=42
+)
+
+Random.seed!(4)
+t_change = 150
+x = randn(400)
+for t in (t_change+1):400
+    x[t] = 0.5 * x[t-1] + randn()
+end
+```
+
+`monitor_op` applies the chart to the series and records the first alarm:
+
+```{julia}
+res = monitor_op(x, lam, cl; chart_choice=Persistence())
+```
+
+```{julia}
+plot(res)
+```
+
+The dashed lines are the control limits, the shaded band is the rejection region and the
+cross marks the first statistic outside the limits. The x axis is the observation index at
+which each statistic becomes available, so the alarm can be read off directly as a time
+point. For the entropy charts the rejection region lies below the limit, and for
+`DistanceToWhiteNoise()` above it. The plot picks up the direction from the result:
+
+```{julia}
+cl_H = cl_op(
+    ic, lam, L0, 1.40;
+    chart_choice=Shannon(),
+    reps_bracket=1_000, reps_final=2_000, bracket_step=0.02, seed=42
+)
+plot(monitor_op(x, lam, cl_H; chart_choice=Shannon()))
+```
+
+## Monitoring an image sequence
+
+The image sequence is spatial white noise up to $t = 20$ and spatially dependent afterwards;
+`monitor_sop` works on the 3D array and the x axis counts images.
+
+```{julia}
+#| output: false
+M, N = 11, 11
+ic_spatial = ICSTS(M, N, Normal(0, 1))
+
+cl_sop_ = cl_sop(
+    ic_spatial, lam, L0, 0.026, 1, 1;
+    chart_choice=TauTilde(),
+    reps_bracket=500, reps_final=2_000, bracket_step=0.002, seed=42
+)
+
+Random.seed!(42)
+T, T_change = 40, 20
+images = randn(M, N, T)
+for t in (T_change+1):T, i in 2:M, j in 2:N
+    images[i, j, t] = 0.4 * (images[i-1, j, t] + images[i, j-1, t]) / 2 + randn()
+end
+```
+
+```{julia}
+res_sop = monitor_sop(images, lam, cl_sop_, 1, 1; chart_choice=TauTilde())
+plot(res_sop)
+```
+
+## Bootstrap null distributions
+
+A bootstrap test resamples the data under the null hypothesis and compares the observed
+statistic with the resampled ones. The plot shows exactly this comparison:
+
+```{julia}
+Random.seed!(42)
+n = 300
+x_ar = zeros(n)
+for t in 2:n
+    x_ar[t] = 0.5 * x_ar[t-1] + randn()
+end
+
+res_boot = test_op_bootstrap(x_ar, 2_000; chart_choice=Persistence())
+plot(res_boot)
+```
+
+The histogram is the bootstrap null distribution, the dashed lines are the bootstrap
+critical values and the solid line is the observed statistic, which here lies far outside
+the null. The subtitle repeats the fields of the result: the statistic, the critical value,
+the p value, which is the fraction of resampled statistics at least as extreme as the
+observed one, and the reject decision.
+
+A block bootstrap keeps the serial dependence of the data in the resamples, so its null
+distribution is wider and the observed statistic is no longer unusual:
+
+```{julia}
+Random.seed!(42)
+plot(test_op_bootstrap(x_ar, 2_000; chart_choice=Persistence(), block_size=20))
+```
+
+The same plot exists for the spatial tests and for the Box-Pierce type tests. For the
+entropy charts the direction of the rejection region is read from the result, so the
+lower tail is shaded for `Shannon()` on a time series and the upper tail for the rescaled
+statistic of `test_sop_bootstrap`:
+
+```{julia}
+Random.seed!(42)
+img = randn(20, 20)
+for i in 2:20, j in 2:20
+    img[i, j] = 0.4 * (img[i-1, j] + img[i, j-1]) / 2 + randn()
+end
+
+fig = Figure(size=(960, 380))
+plot(fig[1, 1], test_op_bootstrap(x_ar, 2_000; chart_choice=Shannon()); legend=:lt)
+plot(fig[1, 2], test_sop_bootstrap(img, 2_000, 1, 1; chart_choice=Shannon()))
+fig
+```
+
+The surrogate test `test_op_surrogate`, available once `TimeseriesSurrogates.jl` is
+loaded, returns an `OPTestResultSurrogate` that is plotted in the same way.
+
+## Customising the figures
+
+`plot` accepts keyword arguments for the figure and the axis, and the remaining keywords
+control the drawn elements. `plot!` adds the elements to an axis of your own.
+
+```{julia}
+fig = Figure(size=(800, 500))
+plot(fig[1, 1], res; axis=(title="Persistence chart",), color=:navy, legend=:lb)
+plot(fig[2, 1], res_boot; axis=(title="Bootstrap null of the same chart",), nbins=60)
+fig
+```
+
+The keywords of the control chart plot are `color`, `linewidth`, `limit_color`,
+`region_color` and `legend`; those of the null distribution plot are `nbins`, `color`,
+`stat_color`, `crit_color`, `region_color` and `legend`. Pass `legend=false` to omit the
+legend, or a Makie position such as `:lt` to move it.

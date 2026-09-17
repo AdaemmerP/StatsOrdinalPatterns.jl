@@ -103,6 +103,8 @@ Fields:
 - `boot_pval::Float64`: bootstrap p-value.
 - `boot_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
 - `n_boot::Int`: number of bootstrap replications.
+- `boot_dist::Vector{Float64}`: the `n_boot` resampled statistics (bootstrap null
+  distribution). With Makie loaded, `plot(res)` draws it as a histogram.
 """
 struct SACFTestResultBoot
   stat::Float64
@@ -110,6 +112,7 @@ struct SACFTestResultBoot
   boot_pval::Float64
   boot_reject::Bool
   n_boot::Int
+  boot_dist::Vector{Float64}
 end
 
 function Base.show(io::IO, r::SACFTestResultBoot)
@@ -134,6 +137,8 @@ Fields:
 - `boot_pval::Float64`: bootstrap p-value.
 - `boot_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
 - `n_boot::Int`: number of bootstrap replications.
+- `boot_dist::Vector{Float64}`: the `n_boot` resampled statistics (bootstrap null
+  distribution). With Makie loaded, `plot(res)` draws it as a histogram.
 """
 struct SACFBPTestResultBoot
   stat::Float64
@@ -141,6 +146,7 @@ struct SACFBPTestResultBoot
   boot_pval::Float64
   boot_reject::Bool
   n_boot::Int
+  boot_dist::Vector{Float64}
 end
 
 function Base.show(io::IO, r::SACFBPTestResultBoot)
@@ -205,7 +211,7 @@ function test_sacf_bootstrap(
   boot_dist = bootstrap_sacf(data, n_boot, d1, d2; block_size=block_size)
   b_crit    = _sacf_boot_crit(boot_dist, alpha)
   b_pval    = _sacf_boot_pval(stat, boot_dist)
-  return SACFTestResultBoot(stat, b_crit, b_pval, abs(stat) > b_crit, n_boot)
+  return SACFTestResultBoot(stat, b_crit, b_pval, abs(stat) > b_crit, n_boot, boot_dist)
 end
 
 """
@@ -235,5 +241,5 @@ function test_sacf_bp_bootstrap(
   boot_dist = bootstrap_sacf_bp(data, n_boot, w; block_size=block_size)
   b_crit    = _sacf_bp_boot_crit(boot_dist, alpha)
   b_pval    = _sacf_bp_boot_pval(stat, boot_dist)
-  return SACFBPTestResultBoot(stat, b_crit, b_pval, stat > b_crit, n_boot)
+  return SACFBPTestResultBoot(stat, b_crit, b_pval, stat > b_crit, n_boot, boot_dist)
 end

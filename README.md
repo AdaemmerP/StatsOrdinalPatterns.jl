@@ -16,6 +16,8 @@ StatsOrdinalPatterns.jl provides (sequential) tests and control charts for time 
 
 For most tests, three variants are available: an asymptotic test, a bootstrap test, and (for OP) a surrogate-data test — see the [documentation](https://adaemmerp.github.io/StatsOrdinalPatterns.jl/) for details and worked examples.
 
+With Makie loaded, control chart results and bootstrap null distributions can be plotted with `plot(res)`; the plotting code is a package extension, so Makie is not a dependency.
+
 ## Installation
 
 Once registered, install the latest release from the General registry:

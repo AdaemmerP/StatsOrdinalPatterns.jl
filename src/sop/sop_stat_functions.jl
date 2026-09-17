@@ -80,7 +80,7 @@ end
 # 2. Method to compute test statistic for multiple pictures
 """
     stat_sop(data, lam, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
-      add_noise=false, noise_dist=Uniform(0, 1), type_freq_init=1/3)
+      add_noise=false, noise_dist=Uniform(0, 1), type_freq_init=nothing)
 
 Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal patterns
 (SOPs) for a 3D array of data (image sequence, third dimension = time).
@@ -95,7 +95,8 @@ Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal p
   [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
 - `add_noise::Bool`: A boolean value to add noise to the data.
 - `noise_dist::UnivariateDistribution`: The distribution for the noise.
-- `type_freq_init::Union{Float64,Array{Float64,2}}`: The initial type frequencies.
+- `type_freq_init`: The initial type frequencies. Defaults to the uniform value `1/q`, where
+  `q` is the number of SOP types of the classification (3 or 6).
 """
 function stat_sop(
   data::Array{T,3},
@@ -106,7 +107,7 @@ function stat_sop(
   refinement::SOPClassification=OrdinaryType(),
   add_noise::Bool=false,
   noise_dist::UnivariateDistribution=Uniform(0, 1),
-  type_freq_init::Union{Float64,Array{Float64,2}}=1 / 3
+  type_freq_init=nothing
 ) where {T<:Real}
 
   # TODO Check input parameters
@@ -115,15 +116,15 @@ function stat_sop(
   # Compute lookup cube
   lookup_array_sop = compute_lookup_array_sop()
 
-  # Pre-allocate
-  # Pre-allocate
+  # Pre-allocate. The EWMA vector has one entry per SOP type: 3 for the classical
+  # classification, 6 for the refined ones. It starts at the uniform in-control value
+  # unless the caller supplies its own start.
   n_size = _n_sop_types(refinement)
   p_hat = zeros(n_size)
   p_ewma = zeros(n_size)
+  p_ewma .= isnothing(type_freq_init) ? 1 / n_size : type_freq_init
 
   sop = zeros(4)
-  p_ewma = zeros(3)
-  p_ewma .= type_freq_init
   stats_all = zeros(size(data, 3))
   sop_freq = zeros(Int, 24) # factorial(4)
   win = zeros(Int, 4)

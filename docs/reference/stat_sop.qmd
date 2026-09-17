@@ -42,7 +42,7 @@ stat_sop(data, 1, 1; chart_choice=TauTilde())
 
 ```julia
 stat_sop(data, lam, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
-  add_noise=false, noise_dist=Uniform(0, 1), type_freq_init=1/3)
+  add_noise=false, noise_dist=Uniform(0, 1), type_freq_init=nothing)
 ```
 Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal patterns (SOPs) for a 3D array of data (image sequence, third dimension = time).
  
@@ -54,7 +54,7 @@ Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal p
   * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
   * `add_noise::Bool`: A boolean value to add noise to the data.
   * `noise_dist::UnivariateDistribution`: The distribution for the noise.
-  * `type_freq_init::Union{Float64,Array{Float64,2}}`: The initial type frequencies.
+  * `type_freq_init`: The initial type frequencies. Defaults to the uniform value `1/q`, where `q` is the number of SOP types of the classification (3 or 6).
 
 
 :::

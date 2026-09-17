@@ -292,6 +292,15 @@ export cl_kappa
 # kappa_procs/kappa_stat_functions.jl
 export stat_kappa
 
+# ---------------------------------------------#
+# Monitoring observed data (control charts)    #
+# ---------------------------------------------#
+
+# other/control_chart.jl (plotted by ext/StatsOrdinalPatternsMakieExt.jl)
+export ControlChartResult,
+  monitor_op,
+  monitor_sop
+
 
 # -----------------------------------------------#
 #  Vendored third-party code (not part of the API)#
@@ -395,6 +404,15 @@ include("kappa_procs/kappa_arl_oc_functions.jl")
 include("kappa_procs/kappa_cl_functions.jl")
 include("kappa_procs/kappa_stat_functions.jl")
 
+# ---------------------------------------------#
+# Monitoring and plot support                  #
+# ---------------------------------------------#
+# After all families: `monitor_*` wrap the sequential `stat_*` functions, and
+# plot_support.jl attaches per-result-type facts (rejection side, null sample) that the
+# Makie extension in ext/StatsOrdinalPatternsMakieExt.jl reads. The extension itself adds
+# methods to `Makie.plot` and `Makie.plot!` and is loaded automatically with Makie.
+include("other/control_chart.jl")
+include("other/plot_support.jl")
 
 # Precompile
 include("other/precompile.jl")

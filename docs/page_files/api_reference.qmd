@@ -71,7 +71,18 @@ res.asymp_reject  # reject decision
 
 Bootstrap and surrogate tests return the analogous `…Boot` and `…Surrogate` structs, whose
 fields are prefixed `boot_` and `surr_` instead of `asymp_` and which additionally record
-the number of replications.
+the number of replications and the resampled statistics themselves (`boot_dist`,
+`surr_dist`).
+
+Monitoring an observed series or image sequence with a calibrated chart is done by
+`monitor_op` and `monitor_sop`, which return a `ControlChartResult` with the chart
+statistics, the control limit and the first alarm.
+
+## Plotting
+
+With Makie loaded, `plot(res)` works for a `ControlChartResult` and for every bootstrap or
+surrogate result; see the [plotting tutorial](plotting.qmd). The plotting code is a
+package extension, so Makie is not a dependency of `StatsOrdinalPatterns.jl`.
 
 ## Distributions
 

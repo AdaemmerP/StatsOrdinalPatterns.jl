@@ -74,6 +74,8 @@ Fields:
 - `boot_pval::Float64`: bootstrap p-value.
 - `boot_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
 - `n_boot::Int`: number of bootstrap replications.
+- `boot_dist::Vector{Float64}`: the `n_boot` resampled statistics (bootstrap null
+  distribution). With Makie loaded, `plot(res)` draws it as a histogram.
 """
 struct OPBPTestResultBoot{C}
   chart::C
@@ -82,6 +84,7 @@ struct OPBPTestResultBoot{C}
   boot_pval::Float64
   boot_reject::Bool
   n_boot::Int
+  boot_dist::Vector{Float64}
 end
 
 function Base.show(io::IO, r::OPBPTestResultBoot)
@@ -147,5 +150,5 @@ function test_op_bp_bootstrap(
   )
   b_crit = _op_bp_boot_crit(boot_dist, alpha)
   b_pval = _op_bp_boot_pval(stat, boot_dist)
-  return OPBPTestResultBoot(chart_choice, stat, b_crit, b_pval, stat > b_crit, n_boot)
+  return OPBPTestResultBoot(chart_choice, stat, b_crit, b_pval, stat > b_crit, n_boot, boot_dist)
 end

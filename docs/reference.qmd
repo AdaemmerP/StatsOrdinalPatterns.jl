@@ -5,182 +5,9 @@ engine: julia
 # Reference
 
 
-[arl_sop_oc(spatial_dgp, lam, cl, d1, d2, reps=10_000; chart_choice=TauTilde(),
-  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_oc.qmd)
+[TEAR1(α::Float64, dist::UnivariateDistribution)](reference/TEAR1.qmd)
 
-> Compute the out-of-control average run length (ARL) of the EWMA chart based on spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
-
----
-
-
-[arl_sacf_oc(sp_dgp::SpatialDGP, lam, cl, d1::Int, d2::Int, reps=10_000)](reference/arl_sacf_oc.qmd)
-
-> Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination and an out-of-control process.
-
----
-
-
-[RefinedType](reference/RefinedType.qmd)
-
-> Abstract supertype for the refined classification schemes of spatial ordinal patterns (SOPs); see Weiß and Kim (2025). Concrete subtypes are [`RotationType`](@ref), [`DirectionType`](@ref), and [`Diag...
-
----
-
-
-[test_gop_bootstrap(
-  data::Vector{Float64}, n_boot::Int,
-  null_dist::DiscreteUnivariateDistribution, lam::Float64;
-  chart_choice, m::Int=3, d::Int=1,
-  block_size::Int=1, reduce=maximum
-)](reference/test_gop_bootstrap.qmd)
-
-> Generate a bootstrap distribution of the GOP statistic.
-
----
-
-
-[arl_sop_ic(sop_dgp, lam, cl, d1, d2, reps=10_000; chart_choice=TauTilde(),
-  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_ic.qmd)
-
-> Compute the in-control average run length (ARL) of the EWMA chart based on spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
-
----
-
-
-[test_sacf(data, d1, d2; alpha=0.05)](reference/test_sacf.qmd)
-
-> Perform the asymptotic two-sided test for spatial dependence at delay `(d1, d2)` based on the spatial autocorrelation function (SACF) and return a [`SACFTestResult`](@ref) with the test statistic, the...
-
----
-
-
-[BinNorm(μ₁, μ₂, σ₁, σ₂)](reference/BinNorm.qmd)
-
-> A binormal (two-component Gaussian mixture) distribution with equal weights: with probability 1/2 a draw comes from `Normal(μ₁, σ₁)` and with probability 1/2 from `Normal(μ₂, σ₂)`.
-
----
-
-
-[bootstrap_sacf(
-  data::Matrix{T}, n_boot::Int, d1::Int, d2::Int;
-  block_size::Int=1
-) where {T<:Real}](reference/bootstrap_sacf.qmd)
-
-> Generate a bootstrap distribution of the SACF statistic for a single spatial image.
-
----
-
-
-[DiscreteDGPIC(dist::UnivariateDistribution)](reference/DiscreteDGPIC.qmd)
-
-> A struct to define a discrete in-control (IC) process. The struct contains one field, namely `dist::UnivariateDistribution`, which is the distribution of the in-control process.
-
----
-
-
-[DiagonalType()](reference/DiagonalType.qmd)
-
-> Refined SOP classification that groups spatial ordinal patterns by their diagonal behavior; see Weiß and Kim (2025).
-
----
-
-
-[TauHat()](reference/TauHat.qmd)
-
-> Chart choice for spatial ordinal patterns (SOPs): the statistic $\hat{\tau} = \hat{p}_1 - 1/3$, based on the relative frequency of the first SOP type.
-
----
-
-
-[test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement, alpha, block_size)](reference/test_sop_bootstrap.qmd)
-
-> Compute a bootstrap hypothesis test for spatial ordinal patterns and return an `SOPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
-
----
-
-
-[KappaHat()](reference/KappaHat.qmd)
-
-> Chart choice for spatial ordinal patterns (SOPs): the statistic $\hat{\kappa} = \hat{p}_2 - \hat{p}_3$, the difference of the relative frequencies of the second and third SOP type.
-
----
-
-
-[fill_p0!(p0, dist_null)](reference/fill_p0!.qmd)
-
-> Fill the vector `p0` (length 13) in-place with the in-control distribution of the generalized ordinal patterns (GOPs) implied by the marginal distribution `dist_null`; see Proposition 2.3 in Weiß and ...
-
----
-
-
-[cl_sop_bootstrap(data::Array{T,3}, lam, L0, cl_init, d1, d2;
-                 reps_final, reps_bracket, bracket_step,
-                 arl_truncation_factor, chart_choice,
-                 verbose, cl_tol, seed) where {T<:Real}](reference/cl_sop_bootstrap.qmd)
-
-> Compute the critical limit `cl` for an EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals `L0`.
-
----
-
-
-[crit_val_sacf_bp(M, N, w; alpha=0.05)](reference/crit_val_sacf_bp.qmd)
-
-> Compute the critical value of the Box-Pierce type test based on the spatial autocorrelation function (SACF); see [`test_sacf_bp`](@ref). Under the null hypothesis, `M * N / 2` times the BP statistic i...
-
----
-
-
-[KappaO1()](reference/KappaO1.qmd)
-
-> Variant 1 of the ordinal κ-chart ([`KappaO`](@ref)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
-
----
-
-
-[rl_gop_ic(lam, cl, lookup_array_gop, p_reps, gop_dgp, gop_dgp_dist, chart_choice,
-  d, ced, ad, rl_max=typemax(Int))](reference/rl_gop_ic.qmd)
-
-> Compute in-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_gop_ic`](@ref).
-
----
-
-
-[rl_sop_ic(lam, cl, lookup_array_sop, reps_range, dist, chart_choice, refinement,
-  m, n, d1, d2, rl_max=typemax(Int))](reference/rl_sop_ic.qmd)
-
-> Compute in-control run lengths of the EWMA chart based on spatial ordinal patterns (SOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_sop_ic`](@ref).
-
----
-
-
-[arl_sop_bp_oc(spatial_dgp, lam, cl, w, reps=1_000; chart_choice=TauTilde(),
-  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_bp_oc.qmd)
-
-> Compute the out-of-control average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
-
----
-
-
-[SOPClassification](reference/SOPClassification.qmd)
-
-> Abstract supertype for the classification schemes of spatial ordinal patterns (SOPs) and the type of every `refinement` argument in the package. The concrete schemes are [`OrdinaryType`](@ref) for the...
-
----
-
-
-[arl_kappa_ic(qual_dgp, lam, cl, reps; chart_choice, rl_max=typemax(Int))](reference/arl_kappa_ic.qmd)
-
-> Compute the in-control average run length (ARL) of the EWMA κ-chart for qualitative processes via simulation. The computation is multithreaded.
-
----
-
-
-[cl_sop_bp_bootstrap(data::Array{T,3}, lam, L0, cl_init, w, reps;
-                    reps_final, reps_bracket, bracket_step,
-                    arl_truncation_factor, chart_choice,
-                    verbose, cl_tol, seed) where {T<:Real}](reference/cl_sop_bp_bootstrap.qmd)
-
-> Compute the critical limit `cl` for a BP-EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals `L0`.
+> A struct to define a TEAR(1) process:
 
 ---
 
@@ -192,165 +19,17 @@ engine: julia
 ---
 
 
-[UpDownScaling()](reference/UpDownScaling.qmd)
+[rl_op_oc(op_dgp, lam, cl, p_reps, op_dgp_dist, chart_choice, d, m, ced, ad,
+  rl_max=typemax(Int))](reference/rl_op_oc.qmd)
 
-> Chart choice for the δ-chart (up-down scaling) by Bandt (2019), Equation (6). For pattern length `m = 3`, the statistic is $\hat{\delta} = \hat{p}_2 + \hat{p}_3 - \hat{p}_4 - \hat{p}_5$.
-
----
-
-
-[bootstrap_op(data, n_boot; chart_choice, m=3, d=1, block_size=1)](reference/bootstrap_op.qmd)
-
-> Compute the bootstrap distribution of the ordinal-pattern chart statistic for the time series `data` and return a vector of `n_boot` bootstrap statistics.
+> Compute out-of-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by [`arl_op_oc`](@ref).
 
 ---
 
 
-[rl_sop_bp_bootstrap(p_array, lam, cl, reps_range, chart_choice,
-  rl_max=typemax(Int))](reference/rl_sop_bp_bootstrap.qmd)
+[OPBPTestResult](reference/OPBPTestResult.qmd)
 
-> Compute run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping, for a chunk of replications. This is the single-threaded worker used ...
-
----
-
-
-[D_Chart()](reference/D_Chart.qmd)
-
-> Chart choice for the D-chart based on generalized ordinal patterns (GOPs). The statistic is the squared Euclidean distance between the estimated GOP distribution and the in-control GOP distribution; s...
-
----
-
-
-[ICSTS(M_rows, N_cols, dist)](reference/ICSTS.qmd)
-
-> A struct to define an independent and identically distributed (IID) in-control spatial process.
-
----
-
-
-[stat_gop(data, null_dist, chart_choice, m=3, d=1)
-stat_gop(data, null_dist, lam, chart_choice, m=3, d=1)](reference/stat_gop.qmd)
-
-> Compute the chart statistic based on generalized ordinal patterns (GOPs) for the discrete-valued time series `data`. GOPs extend ordinal patterns by accounting for ties; see Weiß and Schnurr (2024).
-
----
-
-
-[perm_to_lehm_idx!(P::Vector{<:Integer}) -> Int](reference/perm_to_lehm_idx!.qmd)
-
-> Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version.
-
----
-
-
-[count_uv_op(ts; m::Int=3, d=1)](reference/count_uv_op.qmd)
-
-> Count the number of ordinal patterns in bins for a single time series `ts`.
-
----
-
-
-[OPTestResultSurrogate](reference/OPTestResultSurrogate.qmd)
-
-> Result of the surrogate-data ordinal-pattern test [`test_op_surrogate`](@ref).
-
----
-
-
-[cl_sop_bp(sp_dgp::ICSTS, lam, L0, cl_init, w;
-          reps_final, reps_bracket, bracket_step,
-          arl_truncation_factor, chart_choice, refinement,
-          verbose, cl_tol, seed)](reference/cl_sop_bp.qmd)
-
-> Compute the critical limit `cl` for a BP-EWMA control chart based on spatial ordinal patterns (SOP) such that the in-control ARL equals `L0`.
-
----
-
-
-[test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)](reference/test_op_bootstrap.qmd)
-
-> Compute a bootstrap hypothesis test for ordinal patterns and return an `OPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
-
----
-
-
-[ContinuousDGPIC(dist::UnivariateContinuousDistribution)](reference/ContinuousDGPIC.qmd)
-
-> A struct to define a continuous in-control (IC) process. The struct contains one field, namely `dist::UnivariateContinuousDistribution`, which is the distribution of the in-control process.
-
----
-
-
-[compute_lookup_array_gop()](reference/compute_lookup_array_gop.qmd)
-
-> Compute the `3×3×3` lookup array that maps a competition-ranking vector (see [`competerank!`](@ref)) of length 3 to the index (1–13) of the corresponding generalized ordinal pattern (GOP); see Equatio...
-
----
-
-
-[BAR1(n, ρ, μ, α, β, parpi, dist, add_noise)](reference/BAR1.qmd)
-
-> **B**inomial **A**uto**R**egressive process of order 1.
-
----
-
-
-[BAR1(n, rho, mu, add_noise)](reference/BAR1.qmd)
-
-> Convenience constructor for a `BAR1` process.
-
----
-
-
-[SACFTestResult](reference/SACFTestResult.qmd)
-
-> Result of the asymptotic test based on the spatial autocorrelation function [`test_sacf`](@ref).
-
----
-
-
-[arl_op_ic(op_dgp, lam, cl, reps=10_000; chart_choice, d=1, m=3, ced=false, ad=100,
-  rl_max=typemax(Int))](reference/arl_op_ic.qmd)
-
-> Compute the in-control average run length (ARL) of the EWMA chart based on ordinal patterns via simulation, following Weiß and Testik (2023). The computation is multithreaded.
-
----
-
-
-[BSQMA11(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao)](reference/BSQMA11.qmd)
-
-> A struct to define a bilateral spatial quadratic moving-average (BSQMA(1, 1)) process:
-
----
-
-
-[bootstrap_acf(data, n_boot, h; block_size=1)](reference/bootstrap_acf.qmd)
-
-> Compute the bootstrap distribution of the classical autocorrelation statistic at lag `h` for the time series `data` and return a vector of `n_boot` bootstrap statistics.
-
----
-
-
-[RotationalAsymmetry()](reference/RotationalAsymmetry.qmd)
-
-> Chart choice for the γ-chart (rotational asymmetry) by Bandt (2019), Equation (5). For pattern length `m = 3`, the statistic is $\hat{\gamma} = \hat{p}_3 + \hat{p}_5 - \hat{p}_2 - \hat{p}_4$.
-
----
-
-
-[SOPBPTestResultBoot](reference/SOPBPTestResultBoot.qmd)
-
-> Result of the bootstrap Box-Pierce type test based on spatial ordinal patterns [`test_sop_bp_bootstrap`](@ref).
-
----
-
-
-[bootstrap_sacf_bp(
-  data::Matrix{T}, n_boot::Int, w::Int;
-  block_size::Int=1
-) where {T<:Real}](reference/bootstrap_sacf_bp.qmd)
-
-> Generate a bootstrap distribution of the BP-SACF statistic for a single spatial image.
+> Result of the asymptotic Box-Pierce type ordinal-pattern test [`test_op_bp`](@ref).
 
 ---
 
@@ -365,565 +44,6 @@ stat_gop(data, null_dist, lam, chart_choice, m=3, d=1)](reference/stat_gop.qmd)
 ---
 
 
-[rl_kappa_oc(lam, cl, p_reps, qual_dgp, qual_dgp_dist, qual_null_dist, chart_choice,
-  rl_max=typemax(Int))](reference/rl_kappa_oc.qmd)
-
-> Compute out-of-control run lengths of the EWMA κ-chart for a chunk of replications. This is the single-threaded worker used by [`arl_kappa_oc`](@ref). Methods exist for the chart choices [`KappaN1`](@...
-
----
-
-
-[chart_stat_qual(q, Q, chart_choice)](reference/chart_stat_qual.qmd)
-
-> Compute the κ (Cohen's kappa type) chart statistic for qualitative processes, $(Q - \sum_i q_i^2) / \sum_i q_i (1 - q_i)$.
-
----
-
-
-[init_mat!(dgp, dist_error, mat)](reference/init_mat!.qmd)
-
-> Initialize the data matrix `mat` in-place for a spatial DGP by setting its first row(s) and column(s) to the marginal mean of the process. Methods exist for `SAR11`, `SINAR11` (mean rounded to an inte...
-
----
-
-
-[TEAR1(α::Float64, dist::UnivariateDistribution)](reference/TEAR1.qmd)
-
-> A struct to define a TEAR(1) process:
-
----
-
-
-[chart_stat_gop(p_p0, chart_choice)
-chart_stat_gop(p_p0, G1G, ::G_Chart)](reference/chart_stat_gop.qmd)
-
-> Compute the chart statistic for generalized ordinal patterns (GOPs) from the vector of deviations `p_p0 = p - p0`, where `p` holds the estimated GOP frequencies and `p0` the in-control GOP distributio...
-
----
-
-
-[SQMA11(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SQMA11.qmd)
-
-> A struct to define a Spatial quadratic moving-average (SQMA(1, 1)):
-
----
-
-
-[cl_kappa(dgp, lam, L0, cl_init;
-         reps_final, reps_bracket, bracket_step,
-         arl_truncation_factor, chart_choice,
-         verbose, cl_tol, seed)](reference/cl_kappa.qmd)
-
-> Compute the critical limit `cl` for an EWMA control chart based on kappa-type statistics such that the in-control ARL equals `L0`.
-
----
-
-
-[SAR22(dgp_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SAR22.qmd)
-
-> A struct to define a first-order spatial autoregressive (SAR(1, 1)) process:
-
----
-
-
-[chart_stat_op(p_vec, chart_choice)](reference/chart_stat_op.qmd)
-
-> Compute the (in-control) chart statistic of an ordinal-pattern distribution `p_vec` for the given chart choice.
-
----
-
-
-[add_noise!(vec, dist)](reference/add_noise!.qmd)
-
-> Add standard-uniform noise to each element of `vec` in-place if `dist` is a `DiscreteDistribution`, in order to break ties before computing ordinal patterns. If `dist` is a `ContinuousDistribution`, `...
-
----
-
-
-[AAR1(α::Float64, dist::UnivariateDistribution)](reference/AAR1.qmd)
-
-> A struct to define a AAR(1) (absolute AR) process:
-
----
-
-
-[arl_gop_oc(gop_dgp, null_dist, lam, cl, reps; chart_choice, d=1, ced=false, ad=100,
-  rl_max=typemax(Int))](reference/arl_gop_oc.qmd)
-
-> Compute the out-of-control average run length (ARL) of the EWMA chart based on generalized ordinal patterns (GOPs) via simulation. The computation is multithreaded.
-
----
-
-
-[MA2(α₁::Float64, α₂::Float64, dist::UnivariateDistribution)](reference/MA2.qmd)
-
-> A struct to define an MA(2) process:
-
----
-
-
-[rl_acf_oc(lam, cl, p_reps, acf_dgp, acf_dgp_dist, dist_null, acf_version,
-  rl_max=typemax(Int))](reference/rl_acf_oc.qmd)
-
-> Compute out-of-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by [`arl_acf_oc`](@ref).
-
----
-
-
-[fill_mat_dgp_sop!(dgp, dist_error, dist_ao, mat, mat_ao, ...)](reference/fill_mat_dgp_sop!.qmd)
-
-> Fill the data matrix in-place with one realization of the spatial DGP `dgp` and return a view of the field without the margin. Methods exist for all spatial DGPs (`SAR1`, `SAR11`, `SINAR11`, `SAR22`, ...
-
----
-
-
-[bootstrap_sop(
-  data::Matrix{<:Real}, n_boot::Int, d1::Int, d2::Int;
-  chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1
-)](reference/bootstrap_sop.qmd)
-
-> Generate a bootstrap distribution of the SOP statistic for a single spatial image.
-
----
-
-
-[SAR11(dgp_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SAR11.qmd)
-
-> A struct to define a first-order spatial autoregressive (SAR(1, 1)) process:
-
----
-
-
-[stat_op(data; chart_choice, m=3, d=1, add_noise=false)
-stat_op(data, lam; chart_choice, m=3, d=1, add_noise=false)](reference/stat_op.qmd)
-
-> Compute the ordinal-pattern chart statistic for the time series `data`. The ordinal patterns are indexed via the Lehmer code (see [`perm_to_lehm_idx!`](@ref)).
-
----
-
-
-[test_op_bp(data, w; chart_choice, m=3, alpha=0.05, ljung_box=false)](reference/test_op_bp.qmd)
-
-> Perform the asymptotic Box-Pierce type test for serial dependence based on ordinal patterns, aggregating the chart statistics over the delays `d = 1, …, w`, and return an [`OPBPTestResult`](@ref) with...
-
----
-
-
-[stat_op_bp(data, w; chart_choice, m=3, ljung_box=false)](reference/stat_op_bp.qmd)
-
-> Compute the Box-Pierce (BP) type test statistic for ordinal patterns, which aggregates the chart statistics over the delays `d = 1, …, w`.
-
----
-
-
-[create_index_sop(refinement)](reference/create_index_sop.qmd)
-
-> Create and return the index of the sops for sortperm values. The type frequencies are based on the ranks of the sops, but we use sortperm to compute the order of the elements in the vector.
-
----
-
-
-[count_mv_op(tsx, tsy; m::Int=3, d=1)](reference/count_mv_op.qmd)
-
-> Count the number of ordinal patterns in bins for two time series `tsx` and `tsy`. The output will be used to compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.10...
-
----
-
-
-[test_sacf_bp_bootstrap(data, n_boot, w; alpha, block_size)](reference/test_sacf_bp_bootstrap.qmd)
-
-> Compute a bootstrap hypothesis test for the BP-SACF statistic with window `w` and return a `SACFBPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
-
----
-
-
-[ACFTestResult](reference/ACFTestResult.qmd)
-
-> Result of the asymptotic test based on the classical autocorrelation function [`test_acf`](@ref).
-
----
-
-
-[AR1(α::Float64, dist::UnivariateDistribution)](reference/AR1.qmd)
-
-> A struct to define an AR(1) process:
-
----
-
-
-[arl_acf_ic(lam, cl, acf_dgp, reps; ced=false, ad=100, rl_max=typemax(Int))
-arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typemax(Int))](reference/arl_acf_ic.qmd)
-
-> Compute the in-control average run length (ARL) of the EWMA lag-1 autocorrelation (ACF) chart via simulation. The computation is multithreaded.
-
----
-
-
-[test_sop_bp_bootstrap(data, n_boot, w; chart_choice, refinement, alpha, block_size)](reference/test_sop_bp_bootstrap.qmd)
-
-> Compute a bootstrap Box-Pierce type hypothesis test for spatial ordinal patterns (SOPs), aggregating the squared chart statistics over all delay combinations `(d1, d2) ∈ {1,…,w}²`, and return a `SOPBP...
-
----
-
-
-[KappaN2()](reference/KappaN2.qmd)
-
-> Variant 2 of the nominal κ-chart ([`KappaN`](@ref)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
-
----
-
-
-[DistanceToWhiteNoise()](reference/DistanceToWhiteNoise.qmd)
-
-> Chart choice for the Δ-chart. The statistic measures the squared Euclidean distance of the ordinal-pattern distribution to the uniform distribution obtained under white noise. See Equation (3) in Weiß...
-
----
-
-
-[perm_to_lehm_idx(P::Vector{<:Integer}) -> Int](reference/perm_to_lehm_idx.qmd)
-
-> Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version.
-
----
-
-
-[ZIP <: DiscreteUnivariateDistribution](reference/ZIP.qmd)
-
-> A struct to define a zero-inflated Poisson distribution.
-
----
-
-
-[BinomialCvec{T <: Real}  <: DiscreteUnivariateDistribution](reference/BinomialCvec.qmd)
-
-> A struct to define a binomial distribution, which gets multiplied by a value from vector `c_vec`.
-
----
-
-
-[chart_stat_sop(p_vec, chart_choice)](reference/chart_stat_sop.qmd)
-
-> Compute the chart statistic of a spatial ordinal pattern (SOP) distribution `p_vec` for the given chart choice.
-
----
-
-
-[OPTestResultBoot](reference/OPTestResultBoot.qmd)
-
-> Result of the bootstrap ordinal-pattern test [`test_op_bootstrap`](@ref).
-
----
-
-
-[arl_sop_bp_bootstrap(p_array, lam, cl, w, reps; chart_choice=TauTilde(),
-  rl_max=typemax(Int))](reference/arl_sop_bp_bootstrap.qmd)
-
-> Compute the average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping from pre-computed SOP type frequencies. The computati...
-
----
-
-
-[Persistence()](reference/Persistence.qmd)
-
-> Chart choice for the τ-chart (persistence) by Bandt (2019), Equation (4). For pattern length `m = 3`, the statistic is $\hat{\tau} = \hat{p}_1 + \hat{p}_6 - 1/3$, based on the relative frequencies of ...
-
----
-
-
-[test_acf(data, h; alpha=0.05)](reference/test_acf.qmd)
-
-> Perform the asymptotic two-sided test for serial dependence at lag `h` based on the classical autocorrelation function (ACF) and return an [`ACFTestResult`](@ref) with the test statistic, the asymptot...
-
----
-
-
-[stat_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), add_noise=false,
-  noise_dist=Uniform(0, 1))](reference/stat_sop.qmd)
-
-> Compute the test statistic based on spatial ordinal patterns (SOPs) for a single picture (matrix). Returns the tuple `(stat, p_hat)` with the chart statistic and the vector of relative SOP type freque...
-
----
-
-
-[stat_sop(data, lam, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
-  add_noise=false, noise_dist=Uniform(0, 1), type_freq_init=1/3)](reference/stat_sop.qmd)
-
-> Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal patterns (SOPs) for a 3D array of data (image sequence, third dimension = time).
-
----
-
-
-[arl_kappa_oc(qual_dgp, qual_null_dist, lam, cl, reps; chart_choice,
-  rl_max=typemax(Int))](reference/arl_kappa_oc.qmd)
-
-> Compute the out-of-control average run length (ARL) of the EWMA κ-chart for qualitative processes via simulation. The computation is multithreaded.
-
----
-
-
-[DirectionType()](reference/DirectionType.qmd)
-
-> Refined SOP classification that groups spatial ordinal patterns by direction; see Weiß and Kim (2025).
-
----
-
-
-[PoiBin{T <: Real}  <: DiscreteUnivariateDistribution](reference/PoiBin.qmd)
-
-> A struct to define a Poisson-Binomial distribution.
-
----
-
-
-[test_op_surrogate(data, method, n_surrogates; chart_choice, m=3, d=1, alpha=0.05, rng)](reference/test_op_surrogate.qmd)
-
-> Compute a surrogate-data hypothesis test for ordinal patterns and return an `OPTestResultSurrogate` with the surrogate critical value, p-value, and reject decision.
-
----
-
-
-[SINAR1(α, dist, add_noise, burn_in)](reference/SINAR1.qmd)
-
-> First-Order **S**igned **I**nteger **N**umerated **A**uto**R**egressive Process
-
----
-
-
-[UpDownBalance()](reference/UpDownBalance.qmd)
-
-> Chart choice for the β-chart (up-down balance) by Bandt (2019), Equation (3). For pattern length `m = 3`, the statistic is $\hat{\beta} = \hat{p}_1 - \hat{p}_6$, based on the relative frequencies of t...
-
----
-
-
-[OPTestResult](reference/OPTestResult.qmd)
-
-> Result of the asymptotic ordinal-pattern test [`test_op`](@ref).
-
----
-
-
-[SQMA22(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SQMA22.qmd)
-
-> A struct to define a Spatial quadratic moving-average (SQMA(1, 1)):
-
----
-
-
-[ACFTestResultBoot](reference/ACFTestResultBoot.qmd)
-
-> Result of the bootstrap test based on the classical autocorrelation function [`test_acf_bootstrap`](@ref).
-
----
-
-
-[SINAR11(dgp_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SINAR11.qmd)
-
-> A struct to define a first-order integer spatial autoregressive (SINAR(1, 1)) model:
-
----
-
-
-[arl_sop_bp_ic(spatial_dgp, lam, cl, w, reps=1_000; chart_choice=TauTilde(),
-  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_bp_ic.qmd)
-
-> Compute the in-control average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
-
----
-
-
-[SAR1(dgp_params, M_rows, N_cols, dist, dist_ao, margin)](reference/SAR1.qmd)
-
-> A struct to define a first-order simultaneous autoregressive (SAR(1)) model:
-
----
-
-
-[cl_acf(acf_dgp, lam, L0, cl_init;
-       reps_final, reps_bracket, bracket_step,
-       arl_truncation_factor, acf_version, ced, ad,
-       verbose, cl_tol, seed)](reference/cl_acf.qmd)
-
-> Compute the critical limit `cl` for an EWMA control chart based on the autocorrelation function (ACF) such that the in-control ARL equals `L0`.
-
----
-
-
-[bootstrap_sop_bp(
-  data::Matrix{<:Real}, n_boot::Int, w::Int;
-  chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1
-)](reference/bootstrap_sop_bp.qmd)
-
-> Generate a bootstrap distribution of the BP-SOP statistic for a single spatial image.
-
----
-
-
-[arl_op_oc(op_dgp, lam, cl, reps=10_000; chart_choice, d=1, m=3, ced=false, ad=100,
-  rl_max=typemax(Int))](reference/arl_op_oc.qmd)
-
-> Compute the out-of-control average run length (ARL) of the EWMA chart based on ordinal patterns via simulation, following Weiß and Testik (2023). The computation is multithreaded.
-
----
-
-
-[test_acf_bootstrap(data, n_boot, h; alpha=0.05, block_size=1)](reference/test_acf_bootstrap.qmd)
-
-> Compute a bootstrap hypothesis test for the classical autocorrelation at lag `h` and return an `ACFTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
-
----
-
-
-[KappaTilde()](reference/KappaTilde.qmd)
-
-> Chart choice for spatial ordinal patterns (SOPs): the statistic $\tilde{\kappa} = \tilde{p}_1 - \tilde{p}_2$, the difference of the first and second type frequencies of the refined SOP classification.
-
----
-
-
-[arl_sacf_bp_oc(spatial_dgp::SpatialDGP, lam, cl, w::Int, reps=10_000)](reference/arl_sacf_bp_oc.qmd)
-
-> Compute the out-of-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The function returns the ARL for a given control limit `cl` and a given numb...
-
----
-
-
-[sacf(X_centered, d1::Int, d2::Int)](reference/sacf.qmd)
-
-> 
-
----
-
-
-[crit_val_sacf(M, N; alpha=0.05)](reference/crit_val_sacf.qmd)
-
-> Computes the critical value for the SACF of lag 1. The input parameters are:
-
----
-
-
-[test_sacf_bootstrap(data, n_boot, d1, d2; alpha, block_size)](reference/test_sacf_bootstrap.qmd)
-
-> Compute a bootstrap hypothesis test for the SACF at lag (d1, d2) and return a `SACFTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
-
----
-
-
-[stat_kappa(data, lam, dist_null, chart_choice)](reference/stat_kappa.qmd)
-
-> Compute the sequence of EWMA-smoothed κ chart statistics for the discrete-valued time series `data`; see [`chart_stat_qual`](@ref).
-
----
-
-
-[INAR1(α, dist, add_noise)](reference/INAR1.qmd)
-
-> First-Order **I**nteger **N**umerated **A**uto**R**egressive Process.
-
----
-
-
-[crit_val_sop(M, N, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)](reference/crit_val_sop.qmd)
-
-> Compute the critical value for the asymptotic test based on spatial ordinal patterns (SOPs); see [`test_sop`](@ref).
-
----
-
-
-[SACFBPTestResult](reference/SACFBPTestResult.qmd)
-
-> Result of the asymptotic Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp`](@ref).
-
----
-
-
-[arl_sacf_bp_ic(lam, cl, sp_dgp::ICSP, d1_vec::Vector{Int}, d2_vec::Vector{Int}, reps=10_000)](reference/arl_sacf_bp_ic.qmd)
-
-> Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The input arguments are:
-
----
-
-
-[rl_sacf_bp_ic(](reference/rl_sacf_bp_ic.qmd)
-
-> lam, cl, sp*dgp::ICSP, d1*vec::Vector{Int}, d2*vec::Vector{Int}, p*reps::UnitRange, dist_error::UnivariateDistribution )
-
----
-
-
-[competerank!(rks, x, ix)](reference/competerank!.qmd)
-
-> Compute the competition ranking ("1224" ranking) of the data vector `x` in-place. The implementation is based on `StatsBase.competerank`.
-
----
-
-
-[rl_op_ic(op_dgp, lam, cl, p_reps, op_dgp_dist, chart_choice; d=1, m, ced=false,
-  ad=100, rl_max=typemax(Int))](reference/rl_op_ic.qmd)
-
-> Compute in-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by [`arl_op_ic`](@ref).
-
----
-
-
-[crit_val_op(chart_choice, m, n_patterns; alpha=0.05)](reference/crit_val_op.qmd)
-
-> Compute the asymptotic critical value of the ordinal-pattern test [`test_op`](@ref).
-
----
-
-
-[rl_sacf_ic(
-spatial_dgp::ICSP, lam, cl, d1::Int, d2::Int, p_reps::UnitRange, dist_error::UnivariateDistribution](reference/rl_sacf_ic.qmd)
-
-> )
-
----
-
-
-[arl_acf_oc(lam, cl, acf_dgp, dist_null, reps, acf_version; rl_max=typemax(Int))](reference/arl_acf_oc.qmd)
-
-> Compute the out-of-control average run length (ARL) of the EWMA lag-1 autocorrelation (ACF) chart via simulation. The computation is multithreaded.
-
----
-
-
-[OrdinaryType](reference/OrdinaryType.qmd)
-
-> Classical ("ordinary") classification of spatial ordinal patterns (SOPs) into three types; see Weiß and Kim (2024). It is the default `refinement` of every SOP function.
-
----
-
-
-[MA1(α::Float64, dist::UnivariateDistribution)](reference/MA1.qmd)
-
-> A struct to define an MA(1) process:
-
----
-
-
-[bootstrap_op_bp(data, n_boot, w; chart_choice, m=3, ljung_box=false, block_size=1)](reference/bootstrap_op_bp.qmd)
-
-> Compute the bootstrap distribution of the Box-Pierce type ordinal-pattern statistic for the time series `data` and return a vector of `n_boot` bootstrap statistics.
-
----
-
-
-[rl_gop_oc(lam, cl, lookup_array_gop, p_reps, gop_dgp, gop_dgp_dist, null_dist,
-  chart_choice, d, ced, ad, rl_max=typemax(Int))](reference/rl_gop_oc.qmd)
-
-> Compute out-of-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_gop_oc`](@ref).
-
----
-
-
-[BinomialC{T <: Real}  <: DiscreteUnivariateDistribution](reference/BinomialC.qmd)
-
-> A struct to define a binomial distribution, which gets multiplied by a constant `c`.
-
----
-
-
 [find_effective_support(dist::Distribution; p_low=1e-6, p_high=1-1e-6, max_extra=100)](reference/find_effective_support.qmd)
 
 > Calculates a practical integer range [lb, ub] for distributions with infinite support (like Skellam, Poisson, or NegativeBinomial) where the probability mass outside this range is less than `p_low` an...
@@ -931,197 +51,9 @@ spatial_dgp::ICSP, lam, cl, d1::Int, d2::Int, p_reps::UnitRange, dist_error::Uni
 ---
 
 
-[arl_gop_ic(gop_dgp, lam, cl, reps; chart_choice, d=1, ced=false, ad=100,
-  rl_max=typemax(Int))](reference/arl_gop_ic.qmd)
+[fill_mat_dgp_sop!(dgp, dist_error, dist_ao, mat, mat_ao, ...)](reference/fill_mat_dgp_sop!.qmd)
 
-> Compute the in-control average run length (ARL) of the EWMA chart based on generalized ordinal patterns (GOPs) via simulation. The computation is multithreaded.
-
----
-
-
-[DAR1(α, dist, add_noise)](reference/DAR1.qmd)
-
-> **D**iscrete **A**uto**R**egressive process of order 1.
-
----
-
-
-[build_sar1_matrix(dgp::SAR1)](reference/build_sar1_matrix.qmd)
-
-> Build the inverse system matrix $(B - I)^{-1}$ of the (margin-extended) SAR(1) process `dgp`, where `B` contains the four neighbor coefficients of the process. The matrix is computed once and then reu...
-
----
-
-
-[RotationType()](reference/RotationType.qmd)
-
-> Refined SOP classification that groups spatial ordinal patterns by rotational symmetry; see Weiß and Kim (2025).
-
----
-
-
-[compute_p_array(data::Array{T,3})](reference/compute_p_array.qmd)
-
-> Compute the matrix of p-hat values for a given 3D array of data when the delays are integers. These values are used for bootstrapping.
-
----
-
-
-[rl_sop_bp_ic(spatial_dgp, lam, cl, w, lookup_array_sop, reps_range, dist_error,
-  chart_choice, refinement, rl_max=typemax(Int))](reference/rl_sop_bp_ic.qmd)
-
-> Compute in-control run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs), for a chunk of replications. This is the single-threaded worker used by [`a...
-
----
-
-
-[QAR1(α::Float64, dist::UnivariateDistribution)](reference/QAR1.qmd)
-
-> A struct to define a QAR(1) (quadratic AR) process:
-
----
-
-
-[compute_p_array_bp(data, w; chart_choice, refinement, add_noise=false)](reference/compute_p_array_bp.qmd)
-
-> Compute the array of p-hat values for a given 3D array of data for all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These values are used for bootstrapping to compute critical limits for the BP-...
-
----
-
-
-[KappaN()](reference/KappaN.qmd)
-
-> Chart choice for the κ-chart based on Cohen's kappa for serial dependence in qualitative (nominal) processes.
-
----
-
-
-[KappaN1()](reference/KappaN1.qmd)
-
-> Variant 1 of the nominal κ-chart ([`KappaN`](@ref)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
-
----
-
-
-[KappaO()](reference/KappaO.qmd)
-
-> Chart choice for the κ-chart based on Cohen's kappa for serial dependence in qualitative (ordinal) processes.
-
----
-
-
-[test_sacf_bp(data, w; alpha=0.05)](reference/test_sacf_bp.qmd)
-
-> Perform the asymptotic Box-Pierce type test for spatial dependence based on the spatial autocorrelation function (SACF), aggregating the squared SACF values over all delays up to `w`, and return a [`S...
-
----
-
-
-[stat_acf(data, h)](reference/stat_acf.qmd)
-
-> Compute the classical sample autocorrelation of the time series `data` at lag `h`, using `StatsBase.autocor` (demeaned, normalized by the full-sample variance).
-
----
-
-
-[stat_acf(data, lam, null_dist, acf_version)](reference/stat_acf.qmd)
-
-> Compute the sequence of EWMA-smoothed lag-1 autocorrelation (ACF) chart statistics for the time series `data`.
-
----
-
-
-[cl_gop(gop_dgp, lam, L0, cl_init;
-       reps_final, reps_bracket, bracket_step,
-       arl_truncation_factor, chart_choice, d,
-       verbose, cl_tol, seed)](reference/cl_gop.qmd)
-
-> Compute the critical limit `cl` for an EWMA control chart based on generalized ordinal patterns (GOP) such that the in-control ARL equals `L0`.
-
----
-
-
-[SACFBPTestResultBoot](reference/SACFBPTestResultBoot.qmd)
-
-> Result of the bootstrap Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp_bootstrap`](@ref).
-
----
-
-
-[rl_op_oc(op_dgp, lam, cl, p_reps, op_dgp_dist, chart_choice, d, m, ced, ad,
-  rl_max=typemax(Int))](reference/rl_op_oc.qmd)
-
-> Compute out-of-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by [`arl_op_oc`](@ref).
-
----
-
-
-[test_op_bp_bootstrap(data, n_boot, w; chart_choice, m=3, alpha=0.05,
-  ljung_box=false, block_size=1)](reference/test_op_bp_bootstrap.qmd)
-
-> Compute a bootstrap Box-Pierce type hypothesis test for ordinal patterns and return an `OPBPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
-
----
-
-
-[cl_sacf_bp(sp_dgp::ICSTS, lam, L0, cl_init, w::Int;
-           reps_final, reps_bracket, bracket_step,
-           arl_truncation_factor, verbose, cl_tol, seed)](reference/cl_sacf_bp.qmd)
-
-> Compute the critical limit `cl` for a BP-EWMA control chart based on the spatial autocorrelation function (SACF) such that the in-control ARL equals `L0`.
-
----
-
-
-[rl_kappa_ic(lam, cl, p_reps, qual_dgp, qual_dgp_dist, chart_choice,
-  rl_max=typemax(Int))](reference/rl_kappa_ic.qmd)
-
-> Compute in-control run lengths of the EWMA κ-chart for a chunk of replications. This is the single-threaded worker used by [`arl_kappa_ic`](@ref). Methods exist for the chart choices [`KappaN1`](@ref)...
-
----
-
-
-[stat_sop_bp(data, w; chart_choice=TauTilde(), refinement=OrdinaryType(), add_noise=false,
-  noise_dist=Uniform(0, 1))
-stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), add_noise=false,
-  noise_dist=Uniform(0, 1), stat_ic=0.0, type_freq_init=1/3)](reference/stat_sop_bp.qmd)
-
-> Compute the Box-Pierce (BP) type statistic for spatial ordinal patterns (SOPs), which aggregates the squared chart statistics over all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`.
-
----
-
-
-[compute_lookup_array_sop()](reference/compute_lookup_array_sop.qmd)
-
-> Compute a 4D array to lookup the index of the sops. The original SOPs are based on ranks. Here we use sortperm which computes the order of the elements in the vector.
-
----
-
-
-[dependence_op(tsx, tsy; m::Int=3, d=1)](reference/dependence_op.qmd)
-
-> Compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
-
----
-
-
-[abort_criterium_gop(stat, cl, chart_choice)](reference/abort_criterium_gop.qmd)
-
-> Return `true` if the GOP chart statistic `stat` violates the control limit `cl` (i.e. the chart signals an alarm) for the given chart choice ([`D_Chart`](@ref)`()`, `G_Chart()`, or `Persistence()`). S...
-
----
-
-
-[crit_val_op_bp(w; chart_choice, m=3, alpha=0.05)](reference/crit_val_op_bp.qmd)
-
-> Return the critical value for the Box-Pierce type ordinal-pattern test statistic computed by [`stat_op_bp`](@ref).
-
----
-
-
-[test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, add_noise=false)](reference/test_sop.qmd)
-
-> Perform the asymptotic hypothesis test for spatial dependence based on spatial ordinal patterns (SOPs) and return a [`SOPTestResult`](@ref) with the test statistic, the asymptotic critical value, the ...
+> Fill the data matrix in-place with one realization of the spatial DGP `dgp` and return a view of the field without the margin. Methods exist for all spatial DGPs (`SAR1`, `SAR11`, `SINAR11`, `SAR22`, ...
 
 ---
 
@@ -1140,23 +72,133 @@ stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), ad
 ---
 
 
-[changepoint_op(tsx, tsy; conf_level=0.95, weight=true, bn=log(length(tsx)), m::Int=3, d=1)](reference/changepoint_op.qmd)
+[bootstrap_op(data, n_boot; chart_choice, m=3, d=1, block_size=1)](reference/bootstrap_op.qmd)
 
-> Compute the changepoint in dependence between two time series based on Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
-
----
-
-
-[test_op(ts; chart_choice, m=3, d=1, alpha=0.05)](reference/test_op.qmd)
-
-> Perform the asymptotic hypothesis test for serial dependence based on ordinal patterns and return an [`OPTestResult`](@ref) containing the test statistic, the asymptotic critical value, the p-value, a...
+> Compute the bootstrap distribution of the ordinal-pattern chart statistic for the time series `data` and return a vector of `n_boot` bootstrap statistics.
 
 ---
 
 
-[TauTilde()](reference/TauTilde.qmd)
+[dependence_op(tsx, tsy; m::Int=3, d=1)](reference/dependence_op.qmd)
 
-> Chart choice for spatial ordinal patterns (SOPs): the statistic $\tilde{\tau} = \tilde{p}_3 - 1/3$, based on the third type frequency of the refined SOP classification.
+> Compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
+
+---
+
+
+[test_op_surrogate(data, method, n_surrogates; chart_choice, m=3, d=1, alpha=0.05, rng)](reference/test_op_surrogate.qmd)
+
+> Compute a surrogate-data hypothesis test for ordinal patterns and return an `OPTestResultSurrogate` with the surrogate critical value, p-value, and reject decision.
+
+---
+
+
+[DAR1(α, dist, add_noise)](reference/DAR1.qmd)
+
+> **D**iscrete **A**uto**R**egressive process of order 1.
+
+---
+
+
+[bootstrap_acf(data, n_boot, h; block_size=1)](reference/bootstrap_acf.qmd)
+
+> Compute the bootstrap distribution of the classical autocorrelation statistic at lag `h` for the time series `data` and return a vector of `n_boot` bootstrap statistics.
+
+---
+
+
+[rl_sop_ic(lam, cl, lookup_array_sop, reps_range, dist, chart_choice, refinement,
+  m, n, d1, d2, rl_max=typemax(Int))](reference/rl_sop_ic.qmd)
+
+> Compute in-control run lengths of the EWMA chart based on spatial ordinal patterns (SOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_sop_ic`](@ref).
+
+---
+
+
+[create_index_sop(refinement)](reference/create_index_sop.qmd)
+
+> Create and return the index of the sops for sortperm values. The type frequencies are based on the ranks of the sops, but we use sortperm to compute the order of the elements in the vector.
+
+---
+
+
+[stat_sop_bp(data, w; chart_choice=TauTilde(), refinement=OrdinaryType(), add_noise=false,
+  noise_dist=Uniform(0, 1))
+stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), add_noise=false,
+  noise_dist=Uniform(0, 1), stat_ic=0.0, type_freq_init=1/3)](reference/stat_sop_bp.qmd)
+
+> Compute the Box-Pierce (BP) type statistic for spatial ordinal patterns (SOPs), which aggregates the squared chart statistics over all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`.
+
+---
+
+
+[UpDownBalance()](reference/UpDownBalance.qmd)
+
+> Chart choice for the β-chart (up-down balance) by Bandt (2019), Equation (3). For pattern length `m = 3`, the statistic is $\hat{\beta} = \hat{p}_1 - \hat{p}_6$, based on the relative frequencies of t...
+
+---
+
+
+[crit_val_op(chart_choice, m, n_patterns; alpha=0.05)](reference/crit_val_op.qmd)
+
+> Compute the asymptotic critical value of the ordinal-pattern test [`test_op`](@ref).
+
+---
+
+
+[test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, add_noise=false)](reference/test_sop.qmd)
+
+> Perform the asymptotic hypothesis test for spatial dependence based on spatial ordinal patterns (SOPs) and return a [`SOPTestResult`](@ref) with the test statistic, the asymptotic critical value, the ...
+
+---
+
+
+[KappaHat()](reference/KappaHat.qmd)
+
+> Chart choice for spatial ordinal patterns (SOPs): the statistic $\hat{\kappa} = \hat{p}_2 - \hat{p}_3$, the difference of the relative frequencies of the second and third SOP type.
+
+---
+
+
+[test_op_bp_bootstrap(data, n_boot, w; chart_choice, m=3, alpha=0.05,
+  ljung_box=false, block_size=1)](reference/test_op_bp_bootstrap.qmd)
+
+> Compute a bootstrap Box-Pierce type hypothesis test for ordinal patterns and return an `OPBPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+
+---
+
+
+[OrdinaryType](reference/OrdinaryType.qmd)
+
+> Classical ("ordinary") classification of spatial ordinal patterns (SOPs) into three types; see Weiß and Kim (2024). It is the default `refinement` of every SOP function.
+
+---
+
+
+[ContinuousDGPIC(dist::UnivariateContinuousDistribution)](reference/ContinuousDGPIC.qmd)
+
+> A struct to define a continuous in-control (IC) process. The struct contains one field, namely `dist::UnivariateContinuousDistribution`, which is the distribution of the in-control process.
+
+---
+
+
+[SOPClassification](reference/SOPClassification.qmd)
+
+> Abstract supertype for the classification schemes of spatial ordinal patterns (SOPs) and the type of every `refinement` argument in the package. The concrete schemes are [`OrdinaryType`](@ref) for the...
+
+---
+
+
+[test_sacf(data, d1, d2; alpha=0.05)](reference/test_sacf.qmd)
+
+> Perform the asymptotic two-sided test for spatial dependence at delay `(d1, d2)` based on the spatial autocorrelation function (SACF) and return a [`SACFTestResult`](@ref) with the test statistic, the...
+
+---
+
+
+[init_mat!(dgp, dist_error, mat)](reference/init_mat!.qmd)
+
+> Initialize the data matrix `mat` in-place for a spatial DGP by setting its first row(s) and column(s) to the marginal mean of the process. Methods exist for `SAR11`, `SINAR11` (mean rounded to an inte...
 
 ---
 
@@ -1171,31 +213,23 @@ stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), ad
 ---
 
 
-[OPBPTestResult](reference/OPBPTestResult.qmd)
+[QAR1(α::Float64, dist::UnivariateDistribution)](reference/QAR1.qmd)
 
-> Result of the asymptotic Box-Pierce type ordinal-pattern test [`test_op_bp`](@ref).
-
----
-
-
-[OPBPTestResultBoot](reference/OPBPTestResultBoot.qmd)
-
-> Result of the bootstrap Box-Pierce type ordinal-pattern test [`test_op_bp_bootstrap`](@ref).
+> A struct to define a QAR(1) (quadratic AR) process:
 
 ---
 
 
-[rl_sop_bootstrap(p_mat, lam, cl, reps_range, chart_choice, refinement=OrdinaryType(),
-  rl_max=typemax(Int))](reference/rl_sop_bootstrap.qmd)
+[arl_sacf_bp_oc(spatial_dgp::SpatialDGP, lam, cl, w::Int, reps=10_000)](reference/arl_sacf_bp_oc.qmd)
 
-> Compute run lengths for a given control limit using bootstrapping instead of a theoretical in-control distribution, for a chunk of replications. This is the single-threaded worker used by [`arl_sop_bo...
+> Compute the out-of-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The function returns the ARL for a given control limit `cl` and a given numb...
 
 ---
 
 
-[SQINMA11(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SQINMA11.qmd)
+[KappaTilde()](reference/KappaTilde.qmd)
 
-> A struct to define a Spatial quadratic integer moving-average SQINMA(1, 1):
+> Chart choice for spatial ordinal patterns (SOPs): the statistic $\tilde{\kappa} = \tilde{p}_1 - \tilde{p}_2$, the difference of the first and second type frequencies of the refined SOP classification.
 
 ---
 
@@ -1208,9 +242,119 @@ stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), ad
 ---
 
 
-[SOPTestResult](reference/SOPTestResult.qmd)
+[TauTilde()](reference/TauTilde.qmd)
 
-> Result of the asymptotic test based on spatial ordinal patterns [`test_sop`](@ref).
+> Chart choice for spatial ordinal patterns (SOPs): the statistic $\tilde{\tau} = \tilde{p}_3 - 1/3$, based on the third type frequency of the refined SOP classification.
+
+---
+
+
+[arl_acf_ic(lam, cl, acf_dgp, reps; ced=false, ad=100, rl_max=typemax(Int))
+arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typemax(Int))](reference/arl_acf_ic.qmd)
+
+> Compute the in-control average run length (ARL) of the EWMA lag-1 autocorrelation (ACF) chart via simulation. The computation is multithreaded.
+
+---
+
+
+[RefinedType](reference/RefinedType.qmd)
+
+> Abstract supertype for the refined classification schemes of spatial ordinal patterns (SOPs); see Weiß and Kim (2025). Concrete subtypes are [`RotationType`](@ref), [`DirectionType`](@ref), and [`Diag...
+
+---
+
+
+[stat_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), add_noise=false,
+  noise_dist=Uniform(0, 1))](reference/stat_sop.qmd)
+
+> Compute the test statistic based on spatial ordinal patterns (SOPs) for a single picture (matrix). Returns the tuple `(stat, p_hat)` with the chart statistic and the vector of relative SOP type freque...
+
+---
+
+
+[stat_sop(data, lam, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
+  add_noise=false, noise_dist=Uniform(0, 1), type_freq_init=nothing)](reference/stat_sop.qmd)
+
+> Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal patterns (SOPs) for a 3D array of data (image sequence, third dimension = time).
+
+---
+
+
+[bootstrap_sacf_bp(
+  data::Matrix{T}, n_boot::Int, w::Int;
+  block_size::Int=1
+) where {T<:Real}](reference/bootstrap_sacf_bp.qmd)
+
+> Generate a bootstrap distribution of the BP-SACF statistic for a single spatial image.
+
+---
+
+
+[test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)](reference/test_op_bootstrap.qmd)
+
+> Compute a bootstrap hypothesis test for ordinal patterns and return an `OPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+
+---
+
+
+[bootstrap_sop(
+  data::Matrix{<:Real}, n_boot::Int, d1::Int, d2::Int;
+  chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1
+)](reference/bootstrap_sop.qmd)
+
+> Generate a bootstrap distribution of the SOP statistic for a single spatial image.
+
+---
+
+
+[SQMA11(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SQMA11.qmd)
+
+> A struct to define a Spatial quadratic moving-average (SQMA(1, 1)):
+
+---
+
+
+[compute_p_array_bp(data, w; chart_choice, refinement, add_noise=false)](reference/compute_p_array_bp.qmd)
+
+> Compute the array of p-hat values for a given 3D array of data for all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These values are used for bootstrapping to compute critical limits for the BP-...
+
+---
+
+
+[sop_frequencies!(m, n, d1, d2, lookup_array_sop, data, sop, win, sop_freq)](reference/sop_frequencies!.qmd)
+
+> Count the absolute frequencies of the spatial ordinal patterns (SOPs) of the data matrix `data` in-place.
+
+---
+
+
+[cl_sop_bp(sp_dgp::ICSTS, lam, L0, cl_init, w;
+          reps_final, reps_bracket, bracket_step,
+          arl_truncation_factor, chart_choice, refinement,
+          verbose, cl_tol, seed)](reference/cl_sop_bp.qmd)
+
+> Compute the critical limit `cl` for a BP-EWMA control chart based on spatial ordinal patterns (SOP) such that the in-control ARL equals `L0`.
+
+---
+
+
+[ZIP <: DiscreteUnivariateDistribution](reference/ZIP.qmd)
+
+> A struct to define a zero-inflated Poisson distribution.
+
+---
+
+
+[perm_to_lehm_idx!(P::Vector{<:Integer}) -> Int](reference/perm_to_lehm_idx!.qmd)
+
+> Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version.
+
+---
+
+
+[DistanceToWhiteNoise()](reference/DistanceToWhiteNoise.qmd)
+
+> Chart choice for the Δ-chart. The statistic measures the squared Euclidean distance of the ordinal-pattern distribution to the uniform distribution obtained under white noise. See Equation (3) in Weiß...
 
 ---
 
@@ -1223,25 +367,184 @@ stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), ad
 ---
 
 
-[arl_sacf_ic(lam, cl, spatial_dgp::ICSTS, d1::Int, d2::Int, reps=10_000)](reference/arl_sacf_ic.qmd)
+[changepoint_op(tsx, tsy; conf_level=0.95, weight=true, bn=log(length(tsx)), m::Int=3, d=1)](reference/changepoint_op.qmd)
 
-> Compute the in-control average run length (ARL), using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination. The function returns the ARL for a given control limit `cl` and a g...
-
----
-
-
-[crit_val_acf(n; alpha=0.05)](reference/crit_val_acf.qmd)
-
-> Compute the critical value of the asymptotic test based on the classical autocorrelation function (ACF); see [`test_acf`](@ref). Under the null hypothesis (white noise), `sqrt(n) * ρ̂ₕ` is asymptotica...
+> Compute the changepoint in dependence between two time series based on Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
 
 ---
 
 
-[cl_sacf(sp_dgp::ICSTS, lam, L0, cl_init, d1::Int, d2::Int;
-        reps_final, reps_bracket, bracket_step,
-        arl_truncation_factor, verbose, cl_tol, seed)](reference/cl_sacf.qmd)
+[test_op_bp(data, w; chart_choice, m=3, alpha=0.05, ljung_box=false)](reference/test_op_bp.qmd)
 
-> Compute the critical limit `cl` for an EWMA control chart based on the spatial autocorrelation function (SACF) such that the in-control ARL equals `L0`.
+> Perform the asymptotic Box-Pierce type test for serial dependence based on ordinal patterns, aggregating the chart statistics over the delays `d = 1, …, w`, and return an [`OPBPTestResult`](@ref) with...
+
+---
+
+
+[test_acf(data, h; alpha=0.05)](reference/test_acf.qmd)
+
+> Perform the asymptotic two-sided test for serial dependence at lag `h` based on the classical autocorrelation function (ACF) and return an [`ACFTestResult`](@ref) with the test statistic, the asymptot...
+
+---
+
+
+[BinNorm(μ₁, μ₂, σ₁, σ₂)](reference/BinNorm.qmd)
+
+> A binormal (two-component Gaussian mixture) distribution with equal weights: with probability 1/2 a draw comes from `Normal(μ₁, σ₁)` and with probability 1/2 from `Normal(μ₂, σ₂)`.
+
+---
+
+
+[arl_sop_ic(sop_dgp, lam, cl, d1, d2, reps=10_000; chart_choice=TauTilde(),
+  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_ic.qmd)
+
+> Compute the in-control average run length (ARL) of the EWMA chart based on spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
+
+---
+
+
+[cl_sop_bootstrap(data::Array{T,3}, lam, L0, cl_init, d1, d2;
+                 reps_final, reps_bracket, bracket_step,
+                 arl_truncation_factor, chart_choice,
+                 verbose, cl_tol, seed) where {T<:Real}](reference/cl_sop_bootstrap.qmd)
+
+> Compute the critical limit `cl` for an EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals `L0`.
+
+---
+
+
+[OPTestResultSurrogate](reference/OPTestResultSurrogate.qmd)
+
+> Result of the surrogate-data ordinal-pattern test [`test_op_surrogate`](@ref).
+
+---
+
+
+[test_sop_bp_bootstrap(data, n_boot, w; chart_choice, refinement, alpha, block_size)](reference/test_sop_bp_bootstrap.qmd)
+
+> Compute a bootstrap Box-Pierce type hypothesis test for spatial ordinal patterns (SOPs), aggregating the squared chart statistics over all delay combinations `(d1, d2) ∈ {1,…,w}²`, and return a `SOPBP...
+
+---
+
+
+[SINAR11(dgp_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SINAR11.qmd)
+
+> A struct to define a first-order integer spatial autoregressive (SINAR(1, 1)) model:
+
+---
+
+
+[arl_gop_ic(gop_dgp, lam, cl, reps; chart_choice, d=1, ced=false, ad=100,
+  rl_max=typemax(Int))](reference/arl_gop_ic.qmd)
+
+> Compute the in-control average run length (ARL) of the EWMA chart based on generalized ordinal patterns (GOPs) via simulation. The computation is multithreaded.
+
+---
+
+
+[KappaO2()](reference/KappaO2.qmd)
+
+> Variant 2 of the ordinal κ-chart ([`KappaO`](@ref)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
+
+---
+
+
+[Persistence()](reference/Persistence.qmd)
+
+> Chart choice for the τ-chart (persistence) by Bandt (2019), Equation (4). For pattern length `m = 3`, the statistic is $\hat{\tau} = \hat{p}_1 + \hat{p}_6 - 1/3$, based on the relative frequencies of ...
+
+---
+
+
+[arl_kappa_ic(qual_dgp, lam, cl, reps; chart_choice, rl_max=typemax(Int))](reference/arl_kappa_ic.qmd)
+
+> Compute the in-control average run length (ARL) of the EWMA κ-chart for qualitative processes via simulation. The computation is multithreaded.
+
+---
+
+
+[competerank!(rks, x, ix)](reference/competerank!.qmd)
+
+> Compute the competition ranking ("1224" ranking) of the data vector `x` in-place. The implementation is based on `StatsBase.competerank`.
+
+---
+
+
+[cl_gop(gop_dgp, lam, L0, cl_init;
+       reps_final, reps_bracket, bracket_step,
+       arl_truncation_factor, chart_choice, d,
+       verbose, cl_tol, seed)](reference/cl_gop.qmd)
+
+> Compute the critical limit `cl` for an EWMA control chart based on generalized ordinal patterns (GOP) such that the in-control ARL equals `L0`.
+
+---
+
+
+[arl_gop_oc(gop_dgp, null_dist, lam, cl, reps; chart_choice, d=1, ced=false, ad=100,
+  rl_max=typemax(Int))](reference/arl_gop_oc.qmd)
+
+> Compute the out-of-control average run length (ARL) of the EWMA chart based on generalized ordinal patterns (GOPs) via simulation. The computation is multithreaded.
+
+---
+
+
+[DiscreteDGPIC(dist::UnivariateDistribution)](reference/DiscreteDGPIC.qmd)
+
+> A struct to define a discrete in-control (IC) process. The struct contains one field, namely `dist::UnivariateDistribution`, which is the distribution of the in-control process.
+
+---
+
+
+[OPTestResult](reference/OPTestResult.qmd)
+
+> Result of the asymptotic ordinal-pattern test [`test_op`](@ref).
+
+---
+
+
+[arl_sop_bp_oc(spatial_dgp, lam, cl, w, reps=1_000; chart_choice=TauTilde(),
+  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_bp_oc.qmd)
+
+> Compute the out-of-control average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
+
+---
+
+
+[compute_p_array(data::Array{T,3})](reference/compute_p_array.qmd)
+
+> Compute the matrix of p-hat values for a given 3D array of data when the delays are integers. These values are used for bootstrapping.
+
+---
+
+
+[arl_sop_oc(spatial_dgp, lam, cl, d1, d2, reps=10_000; chart_choice=TauTilde(),
+  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_oc.qmd)
+
+> Compute the out-of-control average run length (ARL) of the EWMA chart based on spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
+
+---
+
+
+[WDAR1(α, W, dist, add_noise)](reference/WDAR1.qmd)
+
+> **W**eighted **D**iscrete **A**uto**R**egressive process of order 1. The WDAR(1) model is a generalization of the DAR(1) process that allows for a weighted combination of multiple past values. The pro...
+
+---
+
+
+[cl_acf(acf_dgp, lam, L0, cl_init;
+       reps_final, reps_bracket, bracket_step,
+       arl_truncation_factor, acf_version, ced, ad,
+       verbose, cl_tol, seed)](reference/cl_acf.qmd)
+
+> Compute the critical limit `cl` for an EWMA control chart based on the autocorrelation function (ACF) such that the in-control ARL equals `L0`.
+
+---
+
+
+[sacf(X_centered, d1::Int, d2::Int)](reference/sacf.qmd)
+
+> 
 
 ---
 
@@ -1260,16 +563,76 @@ stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), ad
 ---
 
 
-[WDAR1(α, W, dist, add_noise)](reference/WDAR1.qmd)
+[test_sacf_bootstrap(data, n_boot, d1, d2; alpha, block_size)](reference/test_sacf_bootstrap.qmd)
 
-> **W**eighted **D**iscrete **A**uto**R**egressive process of order 1. The WDAR(1) model is a generalization of the DAR(1) process that allows for a weighted combination of multiple past values. The pro...
+> Compute a bootstrap hypothesis test for the SACF at lag (d1, d2) and return a `SACFTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
 
 ---
 
 
-[SOPTestResultBoot](reference/SOPTestResultBoot.qmd)
+[arl_sacf_ic(lam, cl, spatial_dgp::ICSTS, d1::Int, d2::Int, reps=10_000)](reference/arl_sacf_ic.qmd)
 
-> Result of the bootstrap test based on spatial ordinal patterns [`test_sop_bootstrap`](@ref).
+> Compute the in-control average run length (ARL), using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination. The function returns the ARL for a given control limit `cl` and a g...
+
+---
+
+
+[INAR1(α, dist, add_noise)](reference/INAR1.qmd)
+
+> First-Order **I**nteger **N**umerated **A**uto**R**egressive Process.
+
+---
+
+
+[SQMA22(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SQMA22.qmd)
+
+> A struct to define a Spatial quadratic moving-average (SQMA(1, 1)):
+
+---
+
+
+[arl_kappa_oc(qual_dgp, qual_null_dist, lam, cl, reps; chart_choice,
+  rl_max=typemax(Int))](reference/arl_kappa_oc.qmd)
+
+> Compute the out-of-control average run length (ARL) of the EWMA κ-chart for qualitative processes via simulation. The computation is multithreaded.
+
+---
+
+
+[ICSTS(M_rows, N_cols, dist)](reference/ICSTS.qmd)
+
+> A struct to define an independent and identically distributed (IID) in-control spatial process.
+
+---
+
+
+[cl_sacf(sp_dgp::ICSTS, lam, L0, cl_init, d1::Int, d2::Int;
+        reps_final, reps_bracket, bracket_step,
+        arl_truncation_factor, verbose, cl_tol, seed)](reference/cl_sacf.qmd)
+
+> Compute the critical limit `cl` for an EWMA control chart based on the spatial autocorrelation function (SACF) such that the in-control ARL equals `L0`.
+
+---
+
+
+[D_Chart()](reference/D_Chart.qmd)
+
+> Chart choice for the D-chart based on generalized ordinal patterns (GOPs). The statistic is the squared Euclidean distance between the estimated GOP distribution and the in-control GOP distribution; s...
+
+---
+
+
+[SAR11(dgp_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SAR11.qmd)
+
+> A struct to define a first-order spatial autoregressive (SAR(1, 1)) process:
+
+---
+
+
+[arl_sop_bp_bootstrap(p_array, lam, cl, w, reps; chart_choice=TauTilde(),
+  rl_max=typemax(Int))](reference/arl_sop_bp_bootstrap.qmd)
+
+> Compute the average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping from pre-computed SOP type frequencies. The computati...
 
 ---
 
@@ -1281,16 +644,675 @@ stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), ad
 ---
 
 
-[sop_frequencies!(m, n, d1, d2, lookup_array_sop, data, sop, win, sop_freq)](reference/sop_frequencies!.qmd)
+[ACFTestResultBoot](reference/ACFTestResultBoot.qmd)
 
-> Count the absolute frequencies of the spatial ordinal patterns (SOPs) of the data matrix `data` in-place.
+> Result of the bootstrap test based on the classical autocorrelation function [`test_acf_bootstrap`](@ref).
 
 ---
 
 
-[KappaO2()](reference/KappaO2.qmd)
+[RotationType()](reference/RotationType.qmd)
 
-> Variant 2 of the ordinal κ-chart ([`KappaO`](@ref)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
+> Refined SOP classification that groups spatial ordinal patterns by rotational symmetry; see Weiß and Kim (2025).
+
+---
+
+
+[cl_sacf_bp(sp_dgp::ICSTS, lam, L0, cl_init, w::Int;
+           reps_final, reps_bracket, bracket_step,
+           arl_truncation_factor, verbose, cl_tol, seed)](reference/cl_sacf_bp.qmd)
+
+> Compute the critical limit `cl` for a BP-EWMA control chart based on the spatial autocorrelation function (SACF) such that the in-control ARL equals `L0`.
+
+---
+
+
+[BinomialC{T <: Real}  <: DiscreteUnivariateDistribution](reference/BinomialC.qmd)
+
+> A struct to define a binomial distribution, which gets multiplied by a constant `c`.
+
+---
+
+
+[test_sacf_bp(data, w; alpha=0.05)](reference/test_sacf_bp.qmd)
+
+> Perform the asymptotic Box-Pierce type test for spatial dependence based on the spatial autocorrelation function (SACF), aggregating the squared SACF values over all delays up to `w`, and return a [`S...
+
+---
+
+
+[crit_val_sacf_bp(M, N, w; alpha=0.05)](reference/crit_val_sacf_bp.qmd)
+
+> Compute the critical value of the Box-Pierce type test based on the spatial autocorrelation function (SACF); see [`test_sacf_bp`](@ref). Under the null hypothesis, `M * N / 2` times the BP statistic i...
+
+---
+
+
+[rl_sacf_bp_ic(](reference/rl_sacf_bp_ic.qmd)
+
+> lam, cl, sp*dgp::ICSP, d1*vec::Vector{Int}, d2*vec::Vector{Int}, p*reps::UnitRange, dist_error::UnivariateDistribution )
+
+---
+
+
+[SAR1(dgp_params, M_rows, N_cols, dist, dist_ao, margin)](reference/SAR1.qmd)
+
+> A struct to define a first-order simultaneous autoregressive (SAR(1)) model:
+
+---
+
+
+[chart_stat_op(p_vec, chart_choice)](reference/chart_stat_op.qmd)
+
+> Compute the (in-control) chart statistic of an ordinal-pattern distribution `p_vec` for the given chart choice.
+
+---
+
+
+[arl_sacf_oc(sp_dgp::SpatialDGP, lam, cl, d1::Int, d2::Int, reps=10_000)](reference/arl_sacf_oc.qmd)
+
+> Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination and an out-of-control process.
+
+---
+
+
+[chart_stat_gop(p_p0, chart_choice)
+chart_stat_gop(p_p0, G1G, ::G_Chart)](reference/chart_stat_gop.qmd)
+
+> Compute the chart statistic for generalized ordinal patterns (GOPs) from the vector of deviations `p_p0 = p - p0`, where `p` holds the estimated GOP frequencies and `p0` the in-control GOP distributio...
+
+---
+
+
+[fill_p0!(p0, dist_null)](reference/fill_p0!.qmd)
+
+> Fill the vector `p0` (length 13) in-place with the in-control distribution of the generalized ordinal patterns (GOPs) implied by the marginal distribution `dist_null`; see Proposition 2.3 in Weiß and ...
+
+---
+
+
+[BSQMA11(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao)](reference/BSQMA11.qmd)
+
+> A struct to define a bilateral spatial quadratic moving-average (BSQMA(1, 1)) process:
+
+---
+
+
+[rl_op_ic(op_dgp, lam, cl, p_reps, op_dgp_dist, chart_choice; d=1, m, ced=false,
+  ad=100, rl_max=typemax(Int))](reference/rl_op_ic.qmd)
+
+> Compute in-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by [`arl_op_ic`](@ref).
+
+---
+
+
+[compute_lookup_array_sop()](reference/compute_lookup_array_sop.qmd)
+
+> Compute a 4D array to lookup the index of the sops. The original SOPs are based on ranks. Here we use sortperm which computes the order of the elements in the vector.
+
+---
+
+
+[test_op(ts; chart_choice, m=3, d=1, alpha=0.05)](reference/test_op.qmd)
+
+> Perform the asymptotic hypothesis test for serial dependence based on ordinal patterns and return an [`OPTestResult`](@ref) containing the test statistic, the asymptotic critical value, the p-value, a...
+
+---
+
+
+[DiagonalType()](reference/DiagonalType.qmd)
+
+> Refined SOP classification that groups spatial ordinal patterns by their diagonal behavior; see Weiß and Kim (2025).
+
+---
+
+
+[MA1(α::Float64, dist::UnivariateDistribution)](reference/MA1.qmd)
+
+> A struct to define an MA(1) process:
+
+---
+
+
+[stat_acf(data, h)](reference/stat_acf.qmd)
+
+> Compute the classical sample autocorrelation of the time series `data` at lag `h`, using `StatsBase.autocor` (demeaned, normalized by the full-sample variance).
+
+---
+
+
+[stat_acf(data, lam, null_dist, acf_version)](reference/stat_acf.qmd)
+
+> Compute the sequence of EWMA-smoothed lag-1 autocorrelation (ACF) chart statistics for the time series `data`.
+
+---
+
+
+[PoiBin{T <: Real}  <: DiscreteUnivariateDistribution](reference/PoiBin.qmd)
+
+> A struct to define a Poisson-Binomial distribution.
+
+---
+
+
+[test_gop_bootstrap(
+  data::Vector{Float64}, n_boot::Int,
+  null_dist::DiscreteUnivariateDistribution, lam::Float64;
+  chart_choice, m::Int=3, d::Int=1,
+  block_size::Int=1, reduce=maximum
+)](reference/test_gop_bootstrap.qmd)
+
+> Generate a bootstrap distribution of the GOP statistic.
+
+---
+
+
+[stat_op_bp(data, w; chart_choice, m=3, ljung_box=false)](reference/stat_op_bp.qmd)
+
+> Compute the Box-Pierce (BP) type test statistic for ordinal patterns, which aggregates the chart statistics over the delays `d = 1, …, w`.
+
+---
+
+
+[KappaO()](reference/KappaO.qmd)
+
+> Chart choice for the κ-chart based on Cohen's kappa for serial dependence in qualitative (ordinal) processes.
+
+---
+
+
+[perm_to_lehm_idx(P::Vector{<:Integer}) -> Int](reference/perm_to_lehm_idx.qmd)
+
+> Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version.
+
+---
+
+
+[TauHat()](reference/TauHat.qmd)
+
+> Chart choice for spatial ordinal patterns (SOPs): the statistic $\hat{\tau} = \hat{p}_1 - 1/3$, based on the relative frequency of the first SOP type.
+
+---
+
+
+[test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement, alpha, block_size)](reference/test_sop_bootstrap.qmd)
+
+> Compute a bootstrap hypothesis test for spatial ordinal patterns and return an `SOPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+
+---
+
+
+[SACFTestResult](reference/SACFTestResult.qmd)
+
+> Result of the asymptotic test based on the spatial autocorrelation function [`test_sacf`](@ref).
+
+---
+
+
+[crit_val_op_bp(w; chart_choice, m=3, alpha=0.05)](reference/crit_val_op_bp.qmd)
+
+> Return the critical value for the Box-Pierce type ordinal-pattern test statistic computed by [`stat_op_bp`](@ref).
+
+---
+
+
+[count_uv_op(ts; m::Int=3, d=1)](reference/count_uv_op.qmd)
+
+> Count the number of ordinal patterns in bins for a single time series `ts`.
+
+---
+
+
+[SACFBPTestResult](reference/SACFBPTestResult.qmd)
+
+> Result of the asymptotic Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp`](@ref).
+
+---
+
+
+[arl_sacf_bp_ic(lam, cl, sp_dgp::ICSP, d1_vec::Vector{Int}, d2_vec::Vector{Int}, reps=10_000)](reference/arl_sacf_bp_ic.qmd)
+
+> Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The input arguments are:
+
+---
+
+
+[KappaN()](reference/KappaN.qmd)
+
+> Chart choice for the κ-chart based on Cohen's kappa for serial dependence in qualitative (nominal) processes.
+
+---
+
+
+[rl_kappa_ic(lam, cl, p_reps, qual_dgp, qual_dgp_dist, chart_choice,
+  rl_max=typemax(Int))](reference/rl_kappa_ic.qmd)
+
+> Compute in-control run lengths of the EWMA κ-chart for a chunk of replications. This is the single-threaded worker used by [`arl_kappa_ic`](@ref). Methods exist for the chart choices [`KappaN1`](@ref)...
+
+---
+
+
+[BAR1(n, ρ, μ, α, β, parpi, dist, add_noise)](reference/BAR1.qmd)
+
+> **B**inomial **A**uto**R**egressive process of order 1.
+
+---
+
+
+[BAR1(n, rho, mu, add_noise)](reference/BAR1.qmd)
+
+> Convenience constructor for a `BAR1` process.
+
+---
+
+
+[stat_op(data; chart_choice, m=3, d=1, add_noise=false)
+stat_op(data, lam; chart_choice, m=3, d=1, add_noise=false)](reference/stat_op.qmd)
+
+> Compute the ordinal-pattern chart statistic for the time series `data`. The ordinal patterns are indexed via the Lehmer code (see [`perm_to_lehm_idx!`](@ref)).
+
+---
+
+
+[monitor_sop(data, lam, cl, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
+  add_noise=false, noise_dist=Uniform(0, 1))](reference/monitor_sop.qmd)
+
+> Monitor the image sequence `data` (a 3D array, rows × columns × time) with the EWMA control chart based on spatial ordinal patterns and return a [`ControlChartResult`](@ref) with the chart statistics,...
+
+---
+
+
+[AAR1(α::Float64, dist::UnivariateDistribution)](reference/AAR1.qmd)
+
+> A struct to define a AAR(1) (absolute AR) process:
+
+---
+
+
+[rl_sop_bootstrap(p_mat, lam, cl, reps_range, chart_choice, refinement=OrdinaryType(),
+  rl_max=typemax(Int))](reference/rl_sop_bootstrap.qmd)
+
+> Compute run lengths for a given control limit using bootstrapping instead of a theoretical in-control distribution, for a chunk of replications. This is the single-threaded worker used by [`arl_sop_bo...
+
+---
+
+
+[cl_sop_bp_bootstrap(data::Array{T,3}, lam, L0, cl_init, w, reps;
+                    reps_final, reps_bracket, bracket_step,
+                    arl_truncation_factor, chart_choice,
+                    verbose, cl_tol, seed) where {T<:Real}](reference/cl_sop_bp_bootstrap.qmd)
+
+> Compute the critical limit `cl` for a BP-EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals `L0`.
+
+---
+
+
+[MA2(α₁::Float64, α₂::Float64, dist::UnivariateDistribution)](reference/MA2.qmd)
+
+> A struct to define an MA(2) process:
+
+---
+
+
+[SAR22(dgp_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SAR22.qmd)
+
+> A struct to define a first-order spatial autoregressive (SAR(1, 1)) process:
+
+---
+
+
+[SOPTestResult](reference/SOPTestResult.qmd)
+
+> Result of the asymptotic test based on spatial ordinal patterns [`test_sop`](@ref).
+
+---
+
+
+[compute_lookup_array_gop()](reference/compute_lookup_array_gop.qmd)
+
+> Compute the `3×3×3` lookup array that maps a competition-ranking vector (see [`competerank!`](@ref)) of length 3 to the index (1–13) of the corresponding generalized ordinal pattern (GOP); see Equatio...
+
+---
+
+
+[crit_val_sop(M, N, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)](reference/crit_val_sop.qmd)
+
+> Compute the critical value for the asymptotic test based on spatial ordinal patterns (SOPs); see [`test_sop`](@ref).
+
+---
+
+
+[ControlChartResult](reference/ControlChartResult.qmd)
+
+> Result of monitoring an observed series or image sequence with an EWMA control chart; returned by [`monitor_op`](@ref) and [`monitor_sop`](@ref).
+
+---
+
+
+[RotationalAsymmetry()](reference/RotationalAsymmetry.qmd)
+
+> Chart choice for the γ-chart (rotational asymmetry) by Bandt (2019), Equation (5). For pattern length `m = 3`, the statistic is $\hat{\gamma} = \hat{p}_3 + \hat{p}_5 - \hat{p}_2 - \hat{p}_4$.
+
+---
+
+
+[rl_kappa_oc(lam, cl, p_reps, qual_dgp, qual_dgp_dist, qual_null_dist, chart_choice,
+  rl_max=typemax(Int))](reference/rl_kappa_oc.qmd)
+
+> Compute out-of-control run lengths of the EWMA κ-chart for a chunk of replications. This is the single-threaded worker used by [`arl_kappa_oc`](@ref). Methods exist for the chart choices [`KappaN1`](@...
+
+---
+
+
+[AR1(α::Float64, dist::UnivariateDistribution)](reference/AR1.qmd)
+
+> A struct to define an AR(1) process:
+
+---
+
+
+[KappaN2()](reference/KappaN2.qmd)
+
+> Variant 2 of the nominal κ-chart ([`KappaN`](@ref)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
+
+---
+
+
+[chart_stat_qual(q, Q, chart_choice)](reference/chart_stat_qual.qmd)
+
+> Compute the κ (Cohen's kappa type) chart statistic for qualitative processes, $(Q - \sum_i q_i^2) / \sum_i q_i (1 - q_i)$.
+
+---
+
+
+[arl_op_oc(op_dgp, lam, cl, reps=10_000; chart_choice, d=1, m=3, ced=false, ad=100,
+  rl_max=typemax(Int))](reference/arl_op_oc.qmd)
+
+> Compute the out-of-control average run length (ARL) of the EWMA chart based on ordinal patterns via simulation, following Weiß and Testik (2023). The computation is multithreaded.
+
+---
+
+
+[DirectionType()](reference/DirectionType.qmd)
+
+> Refined SOP classification that groups spatial ordinal patterns by direction; see Weiß and Kim (2025).
+
+---
+
+
+[chart_stat_sop(p_vec, chart_choice)](reference/chart_stat_sop.qmd)
+
+> Compute the chart statistic of a spatial ordinal pattern (SOP) distribution `p_vec` for the given chart choice.
+
+---
+
+
+[ACFTestResult](reference/ACFTestResult.qmd)
+
+> Result of the asymptotic test based on the classical autocorrelation function [`test_acf`](@ref).
+
+---
+
+
+[KappaN1()](reference/KappaN1.qmd)
+
+> Variant 1 of the nominal κ-chart ([`KappaN`](@ref)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
+
+---
+
+
+[SACFBPTestResultBoot](reference/SACFBPTestResultBoot.qmd)
+
+> Result of the bootstrap Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp_bootstrap`](@ref).
+
+---
+
+
+[bootstrap_sop_bp(
+  data::Matrix{<:Real}, n_boot::Int, w::Int;
+  chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1
+)](reference/bootstrap_sop_bp.qmd)
+
+> Generate a bootstrap distribution of the BP-SOP statistic for a single spatial image.
+
+---
+
+
+[cl_kappa(dgp, lam, L0, cl_init;
+         reps_final, reps_bracket, bracket_step,
+         arl_truncation_factor, chart_choice,
+         verbose, cl_tol, seed)](reference/cl_kappa.qmd)
+
+> Compute the critical limit `cl` for an EWMA control chart based on kappa-type statistics such that the in-control ARL equals `L0`.
+
+---
+
+
+[rl_sop_bp_ic(spatial_dgp, lam, cl, w, lookup_array_sop, reps_range, dist_error,
+  chart_choice, refinement, rl_max=typemax(Int))](reference/rl_sop_bp_ic.qmd)
+
+> Compute in-control run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs), for a chunk of replications. This is the single-threaded worker used by [`a...
+
+---
+
+
+[UpDownScaling()](reference/UpDownScaling.qmd)
+
+> Chart choice for the δ-chart (up-down scaling) by Bandt (2019), Equation (6). For pattern length `m = 3`, the statistic is $\hat{\delta} = \hat{p}_2 + \hat{p}_3 - \hat{p}_4 - \hat{p}_5$.
+
+---
+
+
+[arl_op_ic(op_dgp, lam, cl, reps=10_000; chart_choice, d=1, m=3, ced=false, ad=100,
+  rl_max=typemax(Int))](reference/arl_op_ic.qmd)
+
+> Compute the in-control average run length (ARL) of the EWMA chart based on ordinal patterns via simulation, following Weiß and Testik (2023). The computation is multithreaded.
+
+---
+
+
+[test_acf_bootstrap(data, n_boot, h; alpha=0.05, block_size=1)](reference/test_acf_bootstrap.qmd)
+
+> Compute a bootstrap hypothesis test for the classical autocorrelation at lag `h` and return an `ACFTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+
+---
+
+
+[build_sar1_matrix(dgp::SAR1)](reference/build_sar1_matrix.qmd)
+
+> Build the inverse system matrix $(B - I)^{-1}$ of the (margin-extended) SAR(1) process `dgp`, where `B` contains the four neighbor coefficients of the process. The matrix is computed once and then reu...
+
+---
+
+
+[add_noise!(vec, dist)](reference/add_noise!.qmd)
+
+> Add standard-uniform noise to each element of `vec` in-place if `dist` is a `DiscreteDistribution`, in order to break ties before computing ordinal patterns. If `dist` is a `ContinuousDistribution`, `...
+
+---
+
+
+[arl_acf_oc(lam, cl, acf_dgp, dist_null, reps, acf_version; rl_max=typemax(Int))](reference/arl_acf_oc.qmd)
+
+> Compute the out-of-control average run length (ARL) of the EWMA lag-1 autocorrelation (ACF) chart via simulation. The computation is multithreaded.
+
+---
+
+
+[stat_gop(data, null_dist, chart_choice, m=3, d=1)
+stat_gop(data, null_dist, lam, chart_choice, m=3, d=1)](reference/stat_gop.qmd)
+
+> Compute the chart statistic based on generalized ordinal patterns (GOPs) for the discrete-valued time series `data`. GOPs extend ordinal patterns by accounting for ties; see Weiß and Schnurr (2024).
+
+---
+
+
+[SOPTestResultBoot](reference/SOPTestResultBoot.qmd)
+
+> Result of the bootstrap test based on spatial ordinal patterns [`test_sop_bootstrap`](@ref).
+
+---
+
+
+[rl_gop_ic(lam, cl, lookup_array_gop, p_reps, gop_dgp, gop_dgp_dist, chart_choice,
+  d, ced, ad, rl_max=typemax(Int))](reference/rl_gop_ic.qmd)
+
+> Compute in-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_gop_ic`](@ref).
+
+---
+
+
+[abort_criterium_gop(stat, cl, chart_choice)](reference/abort_criterium_gop.qmd)
+
+> Return `true` if the GOP chart statistic `stat` violates the control limit `cl` (i.e. the chart signals an alarm) for the given chart choice ([`D_Chart`](@ref)`()`, `G_Chart()`, or `Persistence()`). S...
+
+---
+
+
+[rl_sop_bp_bootstrap(p_array, lam, cl, reps_range, chart_choice,
+  rl_max=typemax(Int))](reference/rl_sop_bp_bootstrap.qmd)
+
+> Compute run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping, for a chunk of replications. This is the single-threaded worker used ...
+
+---
+
+
+[bootstrap_sacf(
+  data::Matrix{T}, n_boot::Int, d1::Int, d2::Int;
+  block_size::Int=1
+) where {T<:Real}](reference/bootstrap_sacf.qmd)
+
+> Generate a bootstrap distribution of the SACF statistic for a single spatial image.
+
+---
+
+
+[SOPBPTestResultBoot](reference/SOPBPTestResultBoot.qmd)
+
+> Result of the bootstrap Box-Pierce type test based on spatial ordinal patterns [`test_sop_bp_bootstrap`](@ref).
+
+---
+
+
+[KappaO1()](reference/KappaO1.qmd)
+
+> Variant 1 of the ordinal κ-chart ([`KappaO`](@ref)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
+
+---
+
+
+[stat_kappa(data, lam, dist_null, chart_choice)](reference/stat_kappa.qmd)
+
+> Compute the sequence of EWMA-smoothed κ chart statistics for the discrete-valued time series `data`; see [`chart_stat_qual`](@ref).
+
+---
+
+
+[count_mv_op(tsx, tsy; m::Int=3, d=1)](reference/count_mv_op.qmd)
+
+> Count the number of ordinal patterns in bins for two time series `tsx` and `tsy`. The output will be used to compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.10...
+
+---
+
+
+[crit_val_acf(n; alpha=0.05)](reference/crit_val_acf.qmd)
+
+> Compute the critical value of the asymptotic test based on the classical autocorrelation function (ACF); see [`test_acf`](@ref). Under the null hypothesis (white noise), `sqrt(n) * ρ̂ₕ` is asymptotica...
+
+---
+
+
+[SINAR1(α, dist, add_noise, burn_in)](reference/SINAR1.qmd)
+
+> First-Order **S**igned **I**nteger **N**umerated **A**uto**R**egressive Process
+
+---
+
+
+[monitor_op(data, lam, cl; chart_choice, m=3, d=1, add_noise=false)](reference/monitor_op.qmd)
+
+> Monitor the time series `data` with the EWMA control chart based on ordinal patterns and return a [`ControlChartResult`](@ref) with the chart statistics, the control limit and the first alarm.
+
+---
+
+
+[bootstrap_op_bp(data, n_boot, w; chart_choice, m=3, ljung_box=false, block_size=1)](reference/bootstrap_op_bp.qmd)
+
+> Compute the bootstrap distribution of the Box-Pierce type ordinal-pattern statistic for the time series `data` and return a vector of `n_boot` bootstrap statistics.
+
+---
+
+
+[OPBPTestResultBoot](reference/OPBPTestResultBoot.qmd)
+
+> Result of the bootstrap Box-Pierce type ordinal-pattern test [`test_op_bp_bootstrap`](@ref).
+
+---
+
+
+[SQINMA11(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao, prerun)](reference/SQINMA11.qmd)
+
+> A struct to define a Spatial quadratic integer moving-average SQINMA(1, 1):
+
+---
+
+
+[rl_acf_oc(lam, cl, p_reps, acf_dgp, acf_dgp_dist, dist_null, acf_version,
+  rl_max=typemax(Int))](reference/rl_acf_oc.qmd)
+
+> Compute out-of-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by [`arl_acf_oc`](@ref).
+
+---
+
+
+[rl_gop_oc(lam, cl, lookup_array_gop, p_reps, gop_dgp, gop_dgp_dist, null_dist,
+  chart_choice, d, ced, ad, rl_max=typemax(Int))](reference/rl_gop_oc.qmd)
+
+> Compute out-of-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_gop_oc`](@ref).
+
+---
+
+
+[crit_val_sacf(M, N; alpha=0.05)](reference/crit_val_sacf.qmd)
+
+> Computes the critical value for the SACF of lag 1. The input parameters are:
+
+---
+
+
+[test_sacf_bp_bootstrap(data, n_boot, w; alpha, block_size)](reference/test_sacf_bp_bootstrap.qmd)
+
+> Compute a bootstrap hypothesis test for the BP-SACF statistic with window `w` and return a `SACFBPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+
+---
+
+
+[OPTestResultBoot](reference/OPTestResultBoot.qmd)
+
+> Result of the bootstrap ordinal-pattern test [`test_op_bootstrap`](@ref).
+
+---
+
+
+[BinomialCvec{T <: Real}  <: DiscreteUnivariateDistribution](reference/BinomialCvec.qmd)
+
+> A struct to define a binomial distribution, which gets multiplied by a value from vector `c_vec`.
+
+---
+
+
+[arl_sop_bp_ic(spatial_dgp, lam, cl, w, reps=1_000; chart_choice=TauTilde(),
+  refinement=OrdinaryType(), rl_max=typemax(Int))](reference/arl_sop_bp_ic.qmd)
+
+> Compute the in-control average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.
+
+---
+
+
+[rl_sacf_ic(
+spatial_dgp::ICSP, lam, cl, d1::Int, d2::Int, p_reps::UnitRange, dist_error::UnivariateDistribution](reference/rl_sacf_ic.qmd)
+
+> )
 
 ---
 

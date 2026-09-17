@@ -1,0 +1,32 @@
+---
+engine: markdown
+---
+
+# ControlChartResult {#sec-doc}
+
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}
+
+
+```julia
+ControlChartResult
+```
+Result of monitoring an observed series or image sequence with an EWMA control chart; returned by [`monitor_op`](@ref) and [`monitor_sop`](@ref).
+ 
+Fields:
+ 
+  * `family::Symbol`: `:op` for a time series monitored with ordinal patterns, `:sop` for an image sequence monitored with spatial ordinal patterns.
+  * `chart`: the chart choice the statistics were computed for.
+  * `lam::Float64`: EWMA smoothing parameter.
+  * `cl::Float64`: control limit.
+  * `stats::Vector{Float64}`: the sequentially computed EWMA chart statistics.
+  * `time::UnitRange{Int}`: for each entry of `stats`, the index of the observation at which it becomes available. For ordinal patterns this is the last observation of the pattern window, so `time` starts at `(m - 1) * d + 1`; for image sequences it is the image index.
+  * `alarm::Union{Int,Nothing}`: position in `stats` of the first signal, or `nothing` if the chart never signals. The corresponding observation index is `time[alarm]`.
+  * `tail::Symbol`: side of the rejection region, `:lower` (signal when `stats[t] < cl`), `:upper` (`stats[t] > cl`) or `:two_sided` (`abs(stats[t]) > cl`).
+With Makie loaded, `plot(res)` draws the statistics against the control limit(s) with the rejection region shaded and the first alarm marked; see the plotting tutorial in the docs.
+ 
+
+
+:::
+
+

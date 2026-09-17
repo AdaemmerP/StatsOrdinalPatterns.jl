@@ -11,7 +11,7 @@ julia:
 ```{julia}
 #| output: false
 #| message: false
-using StatsOrdinalPatterns, Random, Statistics, DataFrames
+using StatsOrdinalPatterns, Random, Statistics, DataFrames, CairoMakie
 ```
 
 ## Sequential testing with ordinal patterns
@@ -56,6 +56,9 @@ dependence is detected. See @weiss2023.
 - **Monitoring observed data**
     - `stat_op(data, lam; chart_choice, m=3, d=1)` — returns `(stats, p_rel)`, where
       `stats` holds the sequentially computed EWMA chart statistics of the series.
+    - `monitor_op(data, lam, cl; chart_choice, m=3, d=1)` — applies the alarm rule of the
+      chart to these statistics and returns a `ControlChartResult` with the statistics,
+      the limit and the first alarm. With Makie loaded, `plot` draws it.
 
 ## Alarm rules
 
@@ -200,9 +203,10 @@ process does not induce, so its chart stays at roughly the in-control level.
 
 ## Monitoring an observed series
 
-`stat_op(data, lam; ...)` returns the EWMA chart statistics of an observed series. Applying
-the alarm rule of the chosen chart gives the position of the first signal — here the series
-switches from i.i.d. to AR(1) at $t = 150$.
+`monitor_op(data, lam, cl; ...)` computes the EWMA chart statistics of an observed series
+(the same ones `stat_op(data, lam; ...)` returns), applies the alarm rule of the chosen
+chart and records the first signal. Here the series switches from i.i.d. to AR(1) at
+$t = 150$.
 
 ```{julia}
 Random.seed!(4)
@@ -212,19 +216,30 @@ for t in (t_change+1):400
     x[t] = 0.5 * x[t-1] + randn()
 end
 
-stats, p_rel = stat_op(x, lam; chart_choice=Persistence(), m=m, d=d)
-alarm = findfirst(s -> abs(s) > cl, stats)
+res = monitor_op(x, lam, cl; chart_choice=Persistence(), m=m, d=d)
 ```
 
+The statistic at position $i$ of `res.stats` is computed from the pattern covering the
+observations $i, \ldots, i + (m-1)d$, so it becomes available at the last of them. This
+observation index is stored in `res.time`, and `res.alarm` is the position of the first
+signal in `res.stats`:
+
 ```{julia}
-(first_alarm=alarm, delay=alarm - t_change, stat_at_alarm=round(stats[alarm], digits=4))
+(first_alarm=res.time[res.alarm], delay=res.time[res.alarm] - t_change,
+ stat_at_alarm=round(res.stats[res.alarm], digits=4))
 ```
 
 Here the chart passes the i.i.d. part without a false alarm and signals shortly after the
 change. A different series may well signal earlier: with `L0 = 370`, a false alarm occurs
-on average once every 370 in-control observations. Note also that `stats` is indexed by
-ordinal patterns, not by observations — the pattern at index $t$ covers the observations
-$t, \ldots, t + (m-1)d$.
+on average once every 370 in-control observations.
+
+With `CairoMakie` loaded, `plot` shows the statistics against the control limits, shades
+the rejection region and marks the first alarm. See the [plotting tutorial](plotting.qmd)
+for the options.
+
+```{julia}
+plot(res)
+```
 
 ## References
 

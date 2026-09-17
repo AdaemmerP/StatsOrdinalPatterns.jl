@@ -20,6 +20,14 @@ function abort_criterium_op(stat, cl, ::Union{UpDownBalance,Persistence,Rotation
 
 end
 
+# Side of the rejection region of an OP chart, as a symbol: `:lower` (signal when the
+# statistic falls below the limit), `:upper` (above) or `:two_sided` (absolute value
+# above). This is the same rule as `abort_criterium_op` and `reject`, in a form the
+# plotting code can read off without evaluating it.
+_tail_op(::Union{Shannon,ShannonExtropy}) = :lower
+_tail_op(::DistanceToWhiteNoise) = :upper
+_tail_op(::Union{UpDownBalance,Persistence,RotationalAsymmetry,UpDownScaling}) = :two_sided
+
 """
     add_noise!(vec, dist)
 

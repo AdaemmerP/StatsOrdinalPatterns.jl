@@ -106,6 +106,7 @@ website:
         - page_files/sop.qmd
         - page_files/sop_tutorial.qmd
         - page_files/sop_sequential.qmd
+        - page_files/plotting.qmd
         - section: "Replications"
           contents:
             - text: "Weiß and Kim (2024)"
@@ -120,6 +121,7 @@ website:
         - page_files/op.qmd
         - page_files/op_tutorial.qmd
         - page_files/op_sequential.qmd
+        - page_files/plotting.qmd
         - section: "Replications"
           contents:
             - text: "Weiß (2022)"

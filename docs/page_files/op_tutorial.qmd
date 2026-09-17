@@ -11,7 +11,7 @@ julia:
 ```{julia}
 #| output: false
 #| message: false
-using StatsOrdinalPatterns, Random, Statistics, DataFrames
+using StatsOrdinalPatterns, Random, Statistics, DataFrames, CairoMakie
 ```
 
 ## Hypothesis Testing with Ordinal Patterns
@@ -151,11 +151,20 @@ asymptotic theory.
 
 ```{julia}
 Random.seed!(42)
-test_op_bootstrap(data_ar1, 2_000; chart_choice=Persistence(), m=m, d=d)
+res_boot = test_op_bootstrap(data_ar1, 2_000; chart_choice=Persistence(), m=m, d=d)
 ```
 
 The bootstrap critical value agrees closely with the asymptotic one shown above. The table
 below confirms this across all seven statistics.
+
+The result keeps the resampled statistics in `res_boot.boot_dist`, and with `CairoMakie`
+loaded `plot` draws them as the bootstrap null distribution, with the rejection region
+shaded, the critical values dashed and the observed statistic as a solid line. See the
+[plotting tutorial](plotting.qmd) for the options.
+
+```{julia}
+plot(res_boot)
+```
 
 ## Full comparison: asymptotic vs. bootstrap
 

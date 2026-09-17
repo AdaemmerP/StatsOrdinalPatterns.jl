@@ -21,6 +21,9 @@ Fields:
   * `boot_pval::Float64`: bootstrap p-value.
   * `boot_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
   * `n_boot::Int`: number of bootstrap replications.
+  * `boot_dist::Vector{Float64}`: the `n_boot` resampled statistics, i.e. the bootstrap null distribution the critical value and the p-value were computed from.
+With Makie loaded, `plot(res)` draws a histogram of `boot_dist` with the rejection region, the critical value and the observed statistic; see the plotting tutorial in the docs.
+ 
 
 
 :::

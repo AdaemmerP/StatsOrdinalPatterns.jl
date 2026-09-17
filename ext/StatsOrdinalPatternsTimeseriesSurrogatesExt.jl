@@ -45,7 +45,7 @@ function StatsOrdinalPatterns.test_op_surrogate(
   s_crit    = _op_boot_crit(chart_choice, surr_dist, alpha)
   s_pval    = _op_boot_pval(chart_choice, stat, surr_dist)
   s_reject  = reject(chart_choice, stat, s_crit)
-  return OPTestResultSurrogate(chart_choice, method, stat, s_crit, s_pval, s_reject, n_surrogates)
+  return OPTestResultSurrogate(chart_choice, method, stat, s_crit, s_pval, s_reject, n_surrogates, surr_dist)
 end
 
 end

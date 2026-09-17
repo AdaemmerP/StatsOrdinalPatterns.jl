@@ -22,3 +22,7 @@ QuartoDocBuilder = "164f4f01-dadb-4e86-a767-9a3bba57cbbb"
 SlurmClusterManager = "c82cd089-7bf7-41d7-976b-6b5d413cbe0a"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 StatsOrdinalPatterns = "8611b07d-f603-454a-913b-9db0632d0769"
+
+[sources]
+QuartoDocBuilder = {rev = "main", url = "https://github.com/vituri/QuartoDocBuilder.jl"}
+StatsOrdinalPatterns = {path = "/home/adaemmerp/Dropbox/Greifswald/Forschung/Mit_PWitten_CWeiss/StatsOrdinalPatterns/"}

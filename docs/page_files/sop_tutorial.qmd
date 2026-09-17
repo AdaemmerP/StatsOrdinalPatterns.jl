@@ -11,7 +11,7 @@ julia:
 ```{julia}
 #| output: false
 #| message: false
-using StatsOrdinalPatterns, Random, Statistics, DataFrames
+using StatsOrdinalPatterns, Random, Statistics, DataFrames, CairoMakie
 ```
 
 ## Hypothesis Testing with Spatial Ordinal Patterns
@@ -141,10 +141,19 @@ observed image and computes the bootstrap critical value and p-value in the corr
 
 ```{julia}
 Random.seed!(42)
-test_sop_bootstrap(data_sar, 2_000, d1, d2; chart_choice=TauTilde())
+res_boot = test_sop_bootstrap(data_sar, 2_000, d1, d2; chart_choice=TauTilde())
 ```
 
 The bootstrap critical value agrees closely with the asymptotic one shown above.
+
+With `CairoMakie` loaded, `plot` shows the resampled statistics stored in
+`res_boot.boot_dist` as a histogram, together with the two sided rejection region, the
+critical values and the observed statistic. See the [plotting tutorial](plotting.qmd) for
+the options.
+
+```{julia}
+plot(res_boot)
+```
 
 ## Full comparison: asymptotic vs. bootstrap
 
