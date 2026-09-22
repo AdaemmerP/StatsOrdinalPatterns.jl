@@ -1,0 +1,232 @@
+---
+engine: julia
+julia:
+  exeflags: ["--project=../.", "--threads=auto"]
+nocite: |
+  @adammer2026b
+  @weiss2022
+---
+
+# Replication: Adämmer and Weiß (2026)
+
+This page reproduces **Table B.3** in the appendix of @adammer2026b. The table reports
+simulated rejection rates of the seven Box-Ljung type ordinal pattern (BL-OP) tests with
+$m = 3$ at level $\alpha = 0.05$, together with the classical Box-Ljung test on the sample
+autocorrelations (BL-ACF), for maximal delays $w = 1, \ldots, 5$ and growing sample size
+$T$.
+
+## Libraries
+
+```{julia}
+#| output: false
+#| message: false
+using StatsOrdinalPatterns, Random, Statistics, Printf, DataFrames
+import StatsOrdinalPatterns: init_dgp_op!
+```
+
+## Statistics of the paper and their types in the package
+
+A BL-OP statistic aggregates one ordinal pattern statistic over the delays
+$d = 1, \ldots, w$, weighting delay $d$ by its number of patterns $n_d = T - (m-1)d$.
+`stat_op_bp(data, w; chart_choice, m, ljung_box=true)` computes it, and
+`crit_val_op_bp(w; chart_choice, m)` returns the critical value. All tests reject for large
+values.
+
+| Table B.3 column | `chart_choice` | Summand for delay $d$ |
+|:-----------------|:---------------|:----------------------|
+| $\widehat{H}_{\text{BL}}$ | `Shannon()` | $\tfrac{2}{6}\, n_d \big(\ln 6 - \widehat{H}^{(d)}\big)$ |
+| $\widehat{H}^{\text{ex}}_{\text{BL}}$ | `ShannonExtropy()` | $\tfrac{10}{6}\, n_d \big(5 \ln \tfrac{6}{5} - \widehat{H}_{\text{ex}}^{(d)}\big)$ |
+| $\widehat{\Delta}^2_{\text{BL}}$ | `DistanceToWhiteNoise()` | $n_d\, \widehat{\Delta}^{2\,(d)}$ |
+| $\widehat{\beta}_{\text{BL}}$ | `UpDownBalance()` | $n_d\, \big(\hat{\beta}^{(d)}\big)^2$ |
+| $\widehat{\tau}_{\text{BL}}$ | `Persistence()` | $n_d\, \big(\hat{\tau}^{(d)}\big)^2$ |
+| $\widehat{\gamma}_{\text{BL}}$ | `RotationalAsymmetry()` | $n_d\, \big(\hat{\gamma}^{(d)}\big)^2$ |
+| $\widehat{\delta}_{\text{BL}}$ | `UpDownScaling()` | $n_d\, \big(\hat{\delta}^{(d)}\big)^2$ |
+| $\widehat{\rho}_{\text{BL}}$ | `stat_acf` | $T(T+2)\, \hat{\rho}(d)^2 / (T - d)$ |
+
+The critical value of $\widehat{\beta}_{\text{BL}}$ is a scaled $\chi^2(w)$ quantile. The
+other six BL-OP statistics are correlated across delays, so `crit_val_op_bp` uses values
+tabulated at $\alpha = 0.05$ for $w \le 5$. The BL-ACF statistic is compared with the
+$\chi^2(w)$ quantile.
+
+## Setup
+
+The DGP is the Gaussian AR(1) process $X_t = 0.5\, X_{t-1} + \epsilon_t$ with
+$\epsilon_t \sim \text{i.i.d. } N(0,1)$. The package type `AR1` describes it, and
+`init_dgp_op!` fills a vector with a series started from the stationary distribution.
+
+```{julia}
+#| output: false
+dgp = AR1(0.5, Normal(0, 1))
+m = 3                                       # pattern length
+level = 0.05                                # nominal significance level
+ws = 1:5                                    # maximal delays of Table B.3
+Ts = (100, 250, 500, 1000)                  # sample sizes of Table B.3
+reps = 10_000                               # Monte Carlo replications
+
+simulate!(x) = init_dgp_op!(dgp, x, dgp.dist, 1)
+
+charts = [
+    ("H", Shannon()),
+    ("Hex", ShannonExtropy()),
+    ("Δ²", DistanceToWhiteNoise()),
+    ("β", UpDownBalance()),
+    ("τ", Persistence()),
+    ("γ", RotationalAsymmetry()),
+    ("δ", UpDownScaling()),
+]
+```
+
+## A single test
+
+```{julia}
+Random.seed!(1)
+x = simulate!(zeros(500))
+test_op_bp(x, 3; chart_choice=Persistence(), m=m, ljung_box=true)
+```
+
+## Running the power study
+
+A loop over `test_op_bp` would count the patterns of every delay again for each chart and
+each $w$. Two observations avoid this:
+
+* The BL-OP statistic for $w$ is the one for $w - 1$ plus the summand of delay $w$. One
+  pass over $d = 1, \ldots, 5$ therefore yields the statistics for all five values of $w$.
+* All seven summands of delay $d$ are functions of the same pattern frequencies
+  $\hat{\mathbf{p}}^{(d)}$. `stat_op` returns them, and `chart_stat_op` maps them to each
+  statistic.
+
+The critical values do not depend on the data, so they are taken once per $T$. Every
+replication draws one series and tests it for all charts and all $w$.
+
+```{julia}
+#| output: false
+# summand of delay d, as in the table above, without the weight n_d
+bl_term(::Shannon, s) = (log(6) - s) / 3
+bl_term(::ShannonExtropy, s) = 5 / 3 * (5 * log(6 / 5) - s)
+bl_term(::DistanceToWhiteNoise, s) = s
+bl_term(_, s) = s^2
+
+function power(T, reps)
+    crits = [crit_val_op_bp(w; chart_choice=cc, m=m) for (_, cc) in charts, w in ws]
+    crits_acf = [quantile(Chisq(w), 1 - level) for w in ws]
+
+    tasks = map(Iterators.partition(1:reps, cld(reps, Threads.nthreads()))) do idx
+        Threads.@spawn begin
+            x = Vector{Float64}(undef, T)
+            bl = zeros(length(charts))
+            hits = zeros(Int, length(charts) + 1, length(ws))
+            for _ in idx
+                simulate!(x)
+                fill!(bl, 0.0)
+                q = 0.0
+                for d in ws
+                    n = T - (m - 1) * d
+                    p̂ = stat_op(x; chart_choice=Shannon(), m=m, d=d)[2]
+                    for (j, (_, cc)) in enumerate(charts)
+                        bl[j] += n * bl_term(cc, chart_stat_op(p̂, cc))
+                        hits[j, d] += bl[j] > crits[j, d]
+                    end
+                    q += T * (T + 2) * stat_acf(x, d)^2 / (T - d)
+                    hits[end, d] += q > crits_acf[d]
+                end
+            end
+            hits
+        end
+    end
+    return sum(fetch.(tasks)) ./ reps
+end
+```
+
+The shortcut has to give the same statistic as `stat_op_bp`, not merely a similar one:
+
+```{julia}
+let T = 400, x = simulate!(zeros(T))
+    ok = all(
+        begin
+            s = sum((T - (m - 1) * d) *
+                    bl_term(cc, chart_stat_op(stat_op(x; chart_choice=cc, m=m, d=d)[2], cc))
+                    for d in 1:w)
+            s ≈ stat_op_bp(x, w; chart_choice=cc, m=m, ljung_box=true)
+        end for (_, cc) in charts, w in ws
+    )
+    (shortcut_matches_stat_op_bp=ok,)
+end
+```
+
+::: {.callout-note}
+With `reps = 10_000` the whole table takes about a second on a multi core machine, and the
+standard error of a rejection rate is at most $\sqrt{0.25 / 10^4} = 0.005$.
+:::
+
+## Table B.3: AR(1) with $\alpha_1 = 0.5$
+
+```{julia}
+#| output: false
+Random.seed!(2026)
+res = Dict(T => power(T, reps) for T in Ts)
+names = vcat([n for (n, _) in charts], "ACF")
+```
+
+```{julia}
+#| echo: false
+tab = DataFrame(w=Int[], T=Int[])
+for nm in names
+    tab[!, nm] = Float64[]
+end
+for w in ws, T in Ts
+    push!(tab, vcat(w, T, round.(res[T][:, w], digits=3)))
+end
+tab
+```
+
+### Comparison with the published rates
+
+```{julia}
+#| code-fold: true
+#| code-summary: "Published rates and comparison table"
+# published values, ordered (H, Hex, Δ², β, τ, γ, δ, ACF)
+published = Dict(
+    (1, 100) => (0.258, 0.274, 0.264, 0.054, 0.557, 0.044, 0.046, 0.997),
+    (1, 250) => (0.619, 0.636, 0.632, 0.063, 0.883, 0.048, 0.037, 1.000),
+    (1, 500) => (0.928, 0.933, 0.932, 0.057, 0.992, 0.050, 0.041, 1.000),
+    (1, 1000) => (0.999, 0.999, 0.999, 0.062, 1.000, 0.046, 0.041, 1.000),
+    (2, 100) => (0.209, 0.227, 0.220, 0.068, 0.528, 0.047, 0.040, 0.994),
+    (2, 250) => (0.558, 0.584, 0.578, 0.063, 0.902, 0.048, 0.041, 1.000),
+    (2, 500) => (0.918, 0.927, 0.925, 0.062, 0.996, 0.049, 0.040, 1.000),
+    (2, 1000) => (1.000, 1.000, 1.000, 0.062, 1.000, 0.049, 0.041, 1.000),
+    (3, 100) => (0.203, 0.220, 0.212, 0.074, 0.491, 0.051, 0.042, 0.989),
+    (3, 250) => (0.516, 0.544, 0.537, 0.069, 0.882, 0.052, 0.042, 1.000),
+    (3, 500) => (0.895, 0.906, 0.904, 0.066, 0.996, 0.051, 0.042, 1.000),
+    (3, 1000) => (0.999, 0.999, 0.999, 0.064, 1.000, 0.051, 0.042, 1.000),
+    (4, 100) => (0.191, 0.204, 0.198, 0.081, 0.463, 0.055, 0.047, 0.985),
+    (4, 250) => (0.451, 0.479, 0.472, 0.072, 0.859, 0.054, 0.045, 1.000),
+    (4, 500) => (0.847, 0.863, 0.860, 0.070, 0.994, 0.052, 0.047, 1.000),
+    (4, 1000) => (0.998, 0.998, 0.998, 0.070, 1.000, 0.052, 0.045, 1.000),
+    (5, 100) => (0.201, 0.211, 0.204, 0.091, 0.445, 0.060, 0.052, 0.980),
+    (5, 250) => (0.432, 0.458, 0.451, 0.077, 0.841, 0.054, 0.050, 1.000),
+    (5, 500) => (0.818, 0.837, 0.833, 0.075, 0.991, 0.052, 0.051, 1.000),
+    (5, 1000) => (0.996, 0.997, 0.997, 0.074, 1.000, 0.054, 0.051, 1.000),
+)
+
+cmp = DataFrame(w=Int[], T=Int[], statistic=String[], paper=Float64[],
+    replicated=Float64[], dev=Float64[])
+for w in ws, T in Ts, (j, nm) in enumerate(names)
+    r = round(res[T][j, w], digits=3)
+    push!(cmp, (w, T, nm, published[(w, T)][j], r, round(r - published[(w, T)][j], digits=3)))
+end
+cmp
+```
+
+```{julia}
+#| echo: false
+@printf("largest absolute deviation: %.3f\n", maximum(abs, cmp.dev))
+@printf("mean absolute deviation:    %.3f\n", mean(abs, cmp.dev))
+@printf("Monte Carlo standard error: at most %.3f\n", sqrt(0.25 / reps))
+```
+
+All 160 entries are reproduced within two Monte Carlo standard errors.
+
+## References
+
+::: {#refs}
+:::

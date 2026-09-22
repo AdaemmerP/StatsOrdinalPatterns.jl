@@ -133,6 +133,8 @@ website:
               href: page_files/op_replication_weiss_2022.qmd
             - text: "Weiß and Testik (2023)"
               href: page_files/op_replication_weiss_testik_2023.qmd
+            - text: "Adämmer and Weiß (2026)"
+              href: page_files/op_replication_adammer_weiss_2026.qmd
         #- page_files/op_dependence.qmd
         #- page_files/op_changepoint.qmd
         #- page_files/op_replication.qmd
