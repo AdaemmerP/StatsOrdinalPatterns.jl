@@ -192,8 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_acf_bootstrap</span>(data, n_boot, h; alpha<span class="op">=</span><span class="fl">0.05</span>, block_size<span class="op">=</span><span class="fl">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute a bootstrap hypothesis test for the classical autocorrelation at lag <code>h</code> and return an <code>ACFTestResultBoot</code> with the bootstrap critical value, p-value, and reject decision.</p>
-<p>Unlike <code>test_acf()</code>, this does not rely on the asymptotic N(0, 1/n) distribution and is therefore more reliable for short time series or non-Gaussian data.</p>
+<p>Compute a bootstrap hypothesis test for the classical autocorrelation at lag <code>h</code> and return an <a href="../reference/ACFTestResultBoot.html"><code>ACFTestResultBoot</code></a> with the bootstrap critical value, p-value, and reject decision.</p>
+<p>Unlike <a href="../reference/test_acf.html"><code>test_acf()</code></a>, this does not rely on the asymptotic N(0, 1/n) distribution and is therefore more reliable for short time series or non-Gaussian data.</p>
 <ul>
 <li><code>data</code>: the time series.</li>
 <li><code>n_boot</code>: number of bootstrap replications.</li>

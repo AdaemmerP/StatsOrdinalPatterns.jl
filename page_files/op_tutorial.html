@@ -346,8 +346,8 @@ window.Quarto = {
 <li><a href="../reference/RotationalAsymmetry.html"><code>RotationalAsymmetry()</code></a></li>
 <li><a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a></li>
 <li><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></li>
-<li><code>Shannon(base=exp(1))</code></li>
-<li><code>ShannonExtropy(base=exp(1))</code>.</li>
+<li><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a></li>
+<li><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy(base=exp(1))</code></a>.</li>
 </ul></li>
 <li><code>m</code>: pattern length (window size)</li>
 <li><code>d</code>: delay between observations within a window.</li>
@@ -376,7 +376,7 @@ window.Quarto = {
 <ul>
 <li>Returns an <a href="../reference/OPTestResultBoot.html"><code>OPTestResultBoot</code></a> struct with the observed statistic, bootstrap critical value, bootstrap p-value, and reject decision.</li>
 <li>Handles the correct bootstrap direction (two-sided, upper-tail, lower-tail) automatically.</li>
-<li><code>alpha</code>: significance level. <code>block_size</code>: as in <code>bootstrap_op()</code>.</li>
+<li><code>alpha</code>: significance level. <code>block_size</code>: as in <a href="../reference/bootstrap_op.html"><code>bootstrap_op()</code></a>.</li>
 <li>Works for any <code>m</code> — the only inference option when <code>m &gt; 3</code>.</li>
 </ul></li>
 </ul></li>
@@ -406,49 +406,49 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Persistence (<span class="math inline">\(\hat{\tau}\)</span>)</td>
-<td style="text-align: left;"><code>Persistence()</code></td>
+<td style="text-align: left;"><a href="../reference/Persistence.html"><code>Persistence()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\tau} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\tau}\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UpDownBalance (<span class="math inline">\(\hat{\beta}\)</span>)</td>
-<td style="text-align: left;"><code>UpDownBalance()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownBalance.html"><code>UpDownBalance()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\beta} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\beta}\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">RotationalAsymmetry (<span class="math inline">\(\hat{\gamma}\)</span>)</td>
-<td style="text-align: left;"><code>RotationalAsymmetry()</code></td>
+<td style="text-align: left;"><a href="../reference/RotationalAsymmetry.html"><code>RotationalAsymmetry()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\gamma} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\gamma}\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UpDownScaling (<span class="math inline">\(\hat{\delta}\)</span>)</td>
-<td style="text-align: left;"><code>UpDownScaling()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\delta} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\delta}\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DistanceToWhiteNoise (<span class="math inline">\(\hat{\Delta}\)</span>)</td>
-<td style="text-align: left;"><code>DistanceToWhiteNoise()</code></td>
+<td style="text-align: left;"><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\Delta} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\Delta} &gt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Shannon entropy (<span class="math inline">\(\hat{H}\)</span>)</td>
-<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} = \log(m!)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} &lt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Shannon extropy (<span class="math inline">\(\hat{H}_\text{ex}\)</span>)</td>
-<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy(base=exp(1))</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} = 5\log(6/5)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} &lt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
@@ -457,7 +457,7 @@ window.Quarto = {
 </table>
 </div>
 <ul>
-<li>The first four statistics use a <strong>two-sided</strong> test. <code>DistanceToWhiteNoise</code> is always non-negative — <strong>upper-tail</strong>.</li>
+<li>The first four statistics use a <strong>two-sided</strong> test. <a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise</code></a> is always non-negative — <strong>upper-tail</strong>.</li>
 <li>The entropy statistics decrease under non-uniformity — <strong>lower-tail</strong>.</li>
 <li>The test direction determines how bootstrap p-values are computed (see below).</li>
 <li>The asymptotic critical values and their limiting distributions are derived in <span class="citation" data-cites="weiss2022">Weiß (<a href="#ref-weiss2022" role="doc-biblioref">2022</a>)</span>.</li>
@@ -465,7 +465,7 @@ window.Quarto = {
 </section>
 <section id="sec-log-base" class="level2">
 <h2 class="anchored" data-anchor-id="sec-log-base">Logarithm base</h2>
-<p><code>Shannon</code> and <code>ShannonExtropy</code> come from <a href="https://github.com/JuliaDynamics/ComplexityMeasures.jl">ComplexityMeasures.jl</a>, where both use base 2 by default. The papers behind this package use the natural logarithm, and all asymptotic results are derived for it. Write <code>Shannon(base=exp(1))</code> to obtain the values reported in the papers. The Unicode form <code>Shannon(base=ℯ)</code>, typed as <code>\euler</code> followed by Tab, is equivalent.</p>
+<p><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy</code></a> come from <a href="https://github.com/JuliaDynamics/ComplexityMeasures.jl">ComplexityMeasures.jl</a>, where both use base 2 by default. The papers behind this package use the natural logarithm, and all asymptotic results are derived for it. Write <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a> to obtain the values reported in the papers. The Unicode form <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=ℯ)</code></a>, typed as <code>\euler</code> followed by Tab, is equivalent.</p>
 <p>Any base larger than 1 is allowed. An entropy in base <span class="math inline">\(b\)</span> equals the entropy under the natural logarithm divided by <span class="math inline">\(\ln b\)</span>. The package applies this conversion as follows.</p>
 <table class="caption-top table">
 <thead>
@@ -476,11 +476,11 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Statistic of <code>stat_op</code>, <a href="../reference/stat_sop.html"><code>stat_sop</code></a> and <code>test_op</code></td>
+<td style="text-align: left;">Statistic of <a href="../reference/stat_op.html"><code>stat_op</code></a>, <a href="../reference/stat_sop.html"><code>stat_sop</code></a> and <a href="../reference/test_op.html"><code>test_op</code></a></td>
 <td style="text-align: left;">divided by <span class="math inline">\(\ln b\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Critical value of <code>test_op</code> and <a href="../reference/crit_val_op.html"><code>crit_val_op</code></a></td>
+<td style="text-align: left;">Critical value of <a href="../reference/test_op.html"><code>test_op</code></a> and <a href="../reference/crit_val_op.html"><code>crit_val_op</code></a></td>
 <td style="text-align: left;">divided by <span class="math inline">\(\ln b\)</span></td>
 </tr>
 <tr class="odd">
@@ -639,7 +639,7 @@ window.Quarto = {
 </section>
 <section id="bootstrap-testing-test_op_bootstrap" class="level2">
 <h2 class="anchored" data-anchor-id="bootstrap-testing-test_op_bootstrap">Bootstrap testing: <code>test_op_bootstrap()</code></h2>
-<p><code>test_op_bootstrap()</code> generates the empirical null distribution via <code>bootstrap_op()</code>, then computes the bootstrap critical value and p-value in the correct direction for the chosen statistic. It works for any <code>m</code> — including <code>m &gt; 3</code> where <code>test_op()</code> has no asymptotic theory.</p>
+<p><a href="../reference/test_op_bootstrap.html"><code>test_op_bootstrap()</code></a> generates the empirical null distribution via <a href="../reference/bootstrap_op.html"><code>bootstrap_op()</code></a>, then computes the bootstrap critical value and p-value in the correct direction for the chosen statistic. It works for any <code>m</code> — including <code>m &gt; 3</code> where <a href="../reference/test_op.html"><code>test_op()</code></a> has no asymptotic theory.</p>
 <div id="22" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">42</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>res_boot <span class="op">=</span> <span class="fu">test_op_bootstrap</span>(data_ar1, <span class="fl">2_000</span>; chart_choice<span class="op">=</span><span class="fu">Persistence</span>(), m<span class="op">=</span>m, d<span class="op">=</span>d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -802,7 +802,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Across all seven statistics the analytical and bootstrap critical values are close, and the bootstrap p-values are consistent with the <code>reject</code> column — confirming that <code>bootstrap_op()</code> is a reliable alternative whenever the limiting distribution is complex or the sample size is small.</p>
+<p>Across all seven statistics the analytical and bootstrap critical values are close, and the bootstrap p-values are consistent with the <code>reject</code> column — confirming that <a href="../reference/bootstrap_op.html"><code>bootstrap_op()</code></a> is a reliable alternative whenever the limiting distribution is complex or the sample size is small.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

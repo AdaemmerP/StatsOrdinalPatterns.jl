@@ -397,7 +397,7 @@ window.Quarto = {
 </tbody>
 </table>
 </div>
-<p>Setting <code>refinement</code> to <a href="../reference/RotationType.html"><code>RotationType()</code></a>, <a href="../reference/DirectionType.html"><code>DirectionType()</code></a>, or <a href="../reference/DiagonalType.html"><code>DiagonalType()</code></a> replaces the three classical SOP types by the corresponding six refined types. The <code>refinement</code> argument must be identical in <code>cl_sop</code>, <code>arl_sop_ic</code>, and <code>arl_sop_oc</code> — otherwise the critical limit does not belong to the monitored statistic.</p>
+<p>Setting <code>refinement</code> to <a href="../reference/RotationType.html"><code>RotationType()</code></a>, <a href="../reference/DirectionType.html"><code>DirectionType()</code></a>, or <a href="../reference/DiagonalType.html"><code>DiagonalType()</code></a> replaces the three classical SOP types by the corresponding six refined types. The <code>refinement</code> argument must be identical in <a href="../reference/cl_sop.html"><code>cl_sop</code></a>, <a href="../reference/arl_sop_ic.html"><code>arl_sop_ic</code></a>, and <a href="../reference/arl_sop_oc.html"><code>arl_sop_oc</code></a> — otherwise the critical limit does not belong to the monitored statistic.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -553,7 +553,7 @@ Trace:
 </section>
 <section id="monitoring-an-observed-image-sequence" class="level2">
 <h2 class="anchored" data-anchor-id="monitoring-an-observed-image-sequence">Monitoring an observed image sequence</h2>
-<p><code>monitor_sop</code> applied to a 3D array computes the EWMA chart statistics of an observed image sequence (the same ones <code>stat_sop</code> returns), applies the two sided alarm rule and records the first signal. The sequence below is spatial white noise up to <span class="math inline">\(t = 20\)</span> and spatially dependent afterwards.</p>
+<p><a href="../reference/monitor_sop.html"><code>monitor_sop</code></a> applied to a 3D array computes the EWMA chart statistics of an observed image sequence (the same ones <a href="../reference/stat_sop.html"><code>stat_sop</code></a> returns), applies the two sided alarm rule and records the first signal. The sequence below is spatial white noise up to <span class="math inline">\(t = 20\)</span> and spatially dependent afterwards.</p>
 <div id="14" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">42</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>T, T_change <span class="op">=</span> <span class="fl">40</span>, <span class="fl">20</span></span>

@@ -319,12 +319,6 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="statistics-of-the-paper-and-their-types-in-the-package">Statistics of the paper and their types in the package</h2>
 <p>Each column of Table B.8 corresponds to one <code>chart_choice</code> of <a href="../reference/test_sop.html"><code>test_sop</code></a>, which returns the statistic, the asymptotic critical value, the <span class="math inline">\(p\)</span> value and the reject decision. The benchmark column is <a href="../reference/test_sacf.html"><code>test_sacf</code></a>.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 21%">
-<col style="width: 30%">
-<col style="width: 20%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Table B.8 column</th>
@@ -336,31 +330,31 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{\tau}\)</span></td>
-<td style="text-align: left;"><code>test_sop(data, 1, 1; chart_choice=TauHat())</code></td>
+<td style="text-align: left;"><a href="../reference/test_sop.html"><code>test_sop(data, 1, 1; chart_choice=TauHat())</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\tau}\rvert &gt; c\)</span></td>
 <td style="text-align: left;"><code>tau_hat</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\hat{\kappa}\)</span></td>
-<td style="text-align: left;"><code>test_sop(data, 1, 1; chart_choice=KappaHat())</code></td>
+<td style="text-align: left;"><a href="../reference/test_sop.html"><code>test_sop(data, 1, 1; chart_choice=KappaHat())</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\kappa}\rvert &gt; c\)</span></td>
 <td style="text-align: left;"><code>kappa_hat</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\tilde{\tau}\)</span></td>
-<td style="text-align: left;"><code>test_sop(data, 1, 1; chart_choice=TauTilde())</code></td>
+<td style="text-align: left;"><a href="../reference/test_sop.html"><code>test_sop(data, 1, 1; chart_choice=TauTilde())</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\tilde{\tau}\rvert &gt; c\)</span></td>
 <td style="text-align: left;"><code>tau_tilde</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\tilde{\kappa}\)</span></td>
-<td style="text-align: left;"><code>test_sop(data, 1, 1; chart_choice=KappaTilde())</code></td>
+<td style="text-align: left;"><a href="../reference/test_sop.html"><code>test_sop(data, 1, 1; chart_choice=KappaTilde())</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\tilde{\kappa}\rvert &gt; c\)</span></td>
 <td style="text-align: left;"><code>kappa_tilde</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{\rho}(\mathbf{1})\)</span></td>
-<td style="text-align: left;"><code>test_sacf(data, 1, 1)</code></td>
+<td style="text-align: left;"><a href="../reference/test_sacf.html"><code>test_sacf(data, 1, 1)</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\rho}\rvert &gt; c\)</span></td>
 <td style="text-align: left;"><code>rho_1</code></td>
 </tr>
@@ -449,7 +443,7 @@ window.Quarto = {
 </section>
 <section id="running-the-power-study" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-power-study">Running the power study</h2>
-<p><code>crit_val_sop</code> and <a href="../reference/crit_val_sacf.html"><code>crit_val_sacf</code></a> return the critical values alone. They depend on the field size and the level, not on the data, so they are computed once per row of the table. <code>test_sop</code> additionally computes the <span class="math inline">\(p\)</span> value, which a power study does not use. Each replication then costs one pass over the field: <code>stat_sop</code> counts the SOP frequencies once, and the four statistics are read off the resulting <span class="math inline">\(\hat{\mathbf{p}}\)</span> with <a href="../reference/chart_stat_sop.html"><code>chart_stat_sop</code></a>.</p>
+<p><a href="../reference/crit_val_sop.html"><code>crit_val_sop</code></a> and <a href="../reference/crit_val_sacf.html"><code>crit_val_sacf</code></a> return the critical values alone. They depend on the field size and the level, not on the data, so they are computed once per row of the table. <a href="../reference/test_sop.html"><code>test_sop</code></a> additionally computes the <span class="math inline">\(p\)</span> value, which a power study does not use. Each replication then costs one pass over the field: <a href="../reference/stat_sop.html"><code>stat_sop</code></a> counts the SOP frequencies once, and the four statistics are read off the resulting <span class="math inline">\(\hat{\mathbf{p}}\)</span> with <a href="../reference/chart_stat_sop.html"><code>chart_stat_sop</code></a>.</p>
 <div id="10" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Rejection rates of the five tests for one field size</summary>
@@ -478,7 +472,7 @@ window.Quarto = {
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>The shortcut has to give the same statistic and the same decision as <code>test_sop</code> and <code>test_sacf</code>, not merely a similar one:</p>
+<p>The shortcut has to give the same statistic and the same decision as <a href="../reference/test_sop.html"><code>test_sop</code></a> and <a href="../reference/test_sacf.html"><code>test_sacf</code></a>, not merely a similar one:</p>
 <div id="12" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Check against test_sop and test_sacf</summary>

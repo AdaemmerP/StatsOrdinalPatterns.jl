@@ -191,19 +191,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_sacf_ic</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spatial_dgp<span class="op">::</span><span class="dt">ICSP</span>, lam, cl, d1<span class="op">::</span><span class="dt">Int</span>, d2<span class="op">::</span><span class="dt">Int</span>, p_reps<span class="op">::</span><span class="dt">UnitRange</span>, dist_error<span class="op">::</span><span class="dt">UnivariateDistribution</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>)</p>
-<p>Compute the in-control run length using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination. The function returns the run length for a given control limit <code>cl</code>.</p>
-<p>The input arguments are:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_sacf_ic</span>(sp_dgp, lam, cl, d1, d2, p_reps, dist_error, rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Simulate in-control run lengths of the EWMA chart based on the spatial autocorrelation function (SACF) at lag <code>(d1, d2)</code>. Internal helper of <a href="../reference/arl_sacf_ic.html"><code>arl_sacf_ic</code></a>.</p>
 <ul>
-<li><code>spatial_dgp::ICSP</code>: The in-control spatial data generating process (DGP) to use for the SACF function.</li>
-<li><code>lam</code>: The smoothing parameter for the exponentially weighted moving average (EWMA) control chart.</li>
-<li><code>cl</code>: The control limit for the EWMA control chart.</li>
-<li><code>d1::Int</code>: The first (row) delay for the spatial process.</li>
-<li><code>d2::Int</code>: The second (column) delay for the spatial process.</li>
-<li><code>p_reps::UnitRange</code>: The number of repetitions to compute the run length.</li>
-<li><code>dist_error::UnivariateDistribution</code>: The distribution to use for the error term.</li>
+<li><code>sp_dgp::ICSTS</code>: in-control spatial data generating process.</li>
+<li><code>lam</code>: smoothing parameter of the EWMA statistic.</li>
+<li><code>cl</code>: control limit of the chart.</li>
+<li><code>d1::Int</code>: row delay.</li>
+<li><code>d2::Int</code>: column delay.</li>
+<li><code>p_reps::UnitRange</code>: replications handled by this call. <a href="../reference/arl_sacf_ic.html"><code>arl_sacf_ic</code></a> splits its replications into ranges like this and processes them in parallel.</li>
+<li><code>dist_error::UnivariateDistribution</code>: distribution of the error term of the process.</li>
+<li><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns the vector of run lengths, one per replication in <code>p_reps</code>.</li>
 </ul>
 </div>
 </div>

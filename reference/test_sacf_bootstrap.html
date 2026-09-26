@@ -192,8 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sacf_bootstrap</span>(data, n_boot, d1, d2; alpha, block_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute a bootstrap hypothesis test for the SACF at lag (d1, d2) and return a <code>SACFTestResultBoot</code> with the bootstrap critical value, p-value, and reject decision.</p>
-<p>Unlike <code>test_sacf()</code>, this does not rely on the asymptotic N(0, 1/MN) distribution and is therefore more reliable for small images.</p>
+<p>Compute a bootstrap hypothesis test for the SACF at lag (d1, d2) and return a <a href="../reference/SACFTestResultBoot.html"><code>SACFTestResultBoot</code></a> with the bootstrap critical value, p-value, and reject decision.</p>
+<p>Unlike <a href="../reference/test_sacf.html"><code>test_sacf()</code></a>, this does not rely on the asymptotic N(0, 1/MN) distribution and is therefore more reliable for small images.</p>
 <ul>
 <li><code>data</code>: the 2D image (M × N matrix).</li>
 <li><code>n_boot</code>: number of bootstrap replications.</li>

@@ -342,29 +342,29 @@ window.Quarto = {
 <section id="key-functions" class="level2">
 <h2 class="anchored" data-anchor-id="key-functions">Key functions</h2>
 <ul>
-<li><p><strong><code>stat_sop(data, d1, d2; chart_choice, refinement=OrdinaryType())</code></strong></p>
+<li><p><strong><a href="../reference/stat_sop.html"><code>stat_sop(data, d1, d2; chart_choice, refinement=OrdinaryType())</code></a></strong></p>
 <ul>
 <li>Returns <code>[test_statistic, pattern_frequencies]</code>.</li>
 <li><code>data</code>: the 2D image (<code>Matrix</code>). <code>d1</code>: row delay. <code>d2</code>: column delay.</li>
-<li><code>chart_choice</code>: one of <a href="../reference/TauTilde.html"><code>TauTilde()</code></a>, <a href="../reference/TauHat.html"><code>TauHat()</code></a>, <a href="../reference/KappaTilde.html"><code>KappaTilde()</code></a>, <a href="../reference/KappaHat.html"><code>KappaHat()</code></a>, <a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a>, <code>Shannon(base=exp(1))</code>, <code>ShannonExtropy(base=exp(1))</code>.</li>
+<li><code>chart_choice</code>: one of <a href="../reference/TauTilde.html"><code>TauTilde()</code></a>, <a href="../reference/TauHat.html"><code>TauHat()</code></a>, <a href="../reference/KappaTilde.html"><code>KappaTilde()</code></a>, <a href="../reference/KappaHat.html"><code>KappaHat()</code></a>, <a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a>, <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a>, <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy(base=exp(1))</code></a>.</li>
 <li><code>refinement</code>: <a href="../reference/OrdinaryType.html"><code>OrdinaryType()</code></a> for classical types, or <a href="../reference/RotationType.html"><code>RotationType()</code></a>, <a href="../reference/DirectionType.html"><code>DirectionType()</code></a>, <a href="../reference/DiagonalType.html"><code>DiagonalType()</code></a>.</li>
 </ul></li>
-<li><p><strong><code>test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)</code></strong></p>
+<li><p><strong><a href="../reference/test_sop.html"><code>test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)</code></a></strong></p>
 <ul>
 <li>Returns an <a href="../reference/SOPTestResult.html"><code>SOPTestResult</code></a> with the test statistic, critical value, p-value, and reject decision.</li>
 <li>Critical value, p-value, and rejection direction are chosen automatically from <code>chart_choice</code>.</li>
 <li><code>alpha</code>: significance level.</li>
 </ul></li>
-<li><p><strong><code>bootstrap_sop(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), block_size=1)</code></strong></p>
+<li><p><strong><a href="../reference/bootstrap_sop.html"><code>bootstrap_sop(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), block_size=1)</code></a></strong></p>
 <ul>
 <li>Returns a length-<code>n_boot</code> vector of resampled statistics under <span class="math inline">\(H_0\)</span>.</li>
 <li><code>block_size &gt; 1</code>: 2D block bootstrap that preserves spatial structure.</li>
 </ul></li>
-<li><p><strong><code>test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, block_size=1)</code></strong></p>
+<li><p><strong><a href="../reference/test_sop_bootstrap.html"><code>test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, block_size=1)</code></a></strong></p>
 <ul>
 <li>Returns an <a href="../reference/SOPTestResultBoot.html"><code>SOPTestResultBoot</code></a> struct with the bootstrap critical value, p-value, and reject decision.</li>
 <li>For Tau/Kappa charts: two-sided bootstrap using the raw statistic.</li>
-<li>For entropy charts: the bootstrap null distribution is built on the same standardised scale used internally by <code>test_sop</code>, so the bootstrap and asymptotic critical values are directly comparable.</li>
+<li>For entropy charts: the bootstrap null distribution is built on the same standardised scale used internally by <a href="../reference/test_sop.html"><code>test_sop</code></a>, so the bootstrap and asymptotic critical values are directly comparable.</li>
 </ul></li>
 </ul>
 </section>
@@ -392,49 +392,49 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{\tau}\)</span> (TauTilde)</td>
-<td style="text-align: left;"><code>TauTilde()</code></td>
+<td style="text-align: left;"><a href="../reference/TauTilde.html"><code>TauTilde()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\tau} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\tau}\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\hat{\tau}_1\)</span> (TauHat)</td>
-<td style="text-align: left;"><code>TauHat()</code></td>
+<td style="text-align: left;"><a href="../reference/TauHat.html"><code>TauHat()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\tau}_1 = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\tau}_1\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{\kappa}\)</span> (KappaTilde)</td>
-<td style="text-align: left;"><code>KappaTilde()</code></td>
+<td style="text-align: left;"><a href="../reference/KappaTilde.html"><code>KappaTilde()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\kappa} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\kappa}\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\hat{\kappa}_1\)</span> (KappaHat)</td>
-<td style="text-align: left;"><code>KappaHat()</code></td>
+<td style="text-align: left;"><a href="../reference/KappaHat.html"><code>KappaHat()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\kappa}_1 = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\kappa}_1\rvert &gt; c\)</span></td>
 <td style="text-align: center;">Normal</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DistanceToWhiteNoise (<span class="math inline">\(\hat{\Delta}\)</span>)</td>
-<td style="text-align: left;"><code>DistanceToWhiteNoise()</code></td>
+<td style="text-align: left;"><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\Delta} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\Delta} &gt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Shannon entropy (<span class="math inline">\(\hat{H}\)</span>)</td>
-<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} = \log(3)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} &gt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Shannon extropy (<span class="math inline">\(\hat{H}_\text{ex}\)</span>)</td>
-<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy(base=exp(1))</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} = \cdots\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} &gt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
@@ -444,9 +444,9 @@ window.Quarto = {
 </div>
 <ul>
 <li>The four Tau/Kappa statistics use a <strong>two-sided</strong> test (signed deviation from zero).</li>
-<li>The three entropy statistics undergo an internal standardisation that converts them to <strong>upper-tail</strong> tests — both <code>test_sop</code> and <code>test_sop_bootstrap</code> apply this standardisation consistently, so their critical values sit on the same scale and can be compared directly.</li>
+<li>The three entropy statistics undergo an internal standardisation that converts them to <strong>upper-tail</strong> tests — both <a href="../reference/test_sop.html"><code>test_sop</code></a> and <a href="../reference/test_sop_bootstrap.html"><code>test_sop_bootstrap</code></a> apply this standardisation consistently, so their critical values sit on the same scale and can be compared directly.</li>
 <li>The asymptotic critical values and limiting distributions are derived in <span class="citation" data-cites="weiss2022">Weiß (<a href="#ref-weiss2022" role="doc-biblioref">2022</a>)</span>.</li>
-<li><code>Shannon</code> and <code>ShannonExtropy</code> use base 2 by default, while the papers use the natural logarithm. The rescaled statistic, the p-value and the test decision do not depend on the base. See <a href="../page_files/op_tutorial.html#sec-log-base">Logarithm base</a> for details.</li>
+<li><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy</code></a> use base 2 by default, while the papers use the natural logarithm. The rescaled statistic, the p-value and the test decision do not depend on the base. See <a href="../page_files/op_tutorial.html#sec-log-base">Logarithm base</a> for details.</li>
 </ul>
 </section>
 <section id="setup" class="level2">
@@ -579,7 +579,7 @@ window.Quarto = {
 </section>
 <section id="bootstrap-testing-test_sop_bootstrap" class="level2">
 <h2 class="anchored" data-anchor-id="bootstrap-testing-test_sop_bootstrap">Bootstrap testing: <code>test_sop_bootstrap()</code></h2>
-<p><code>test_sop_bootstrap()</code> generates the empirical null distribution via 2D resampling of the observed image and computes the bootstrap critical value and p-value in the correct direction.</p>
+<p><a href="../reference/test_sop_bootstrap.html"><code>test_sop_bootstrap()</code></a> generates the empirical null distribution via 2D resampling of the observed image and computes the bootstrap critical value and p-value in the correct direction.</p>
 <div id="20" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">42</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>res_boot <span class="op">=</span> <span class="fu">test_sop_bootstrap</span>(data_sar, <span class="fl">2_000</span>, d1, d2; chart_choice<span class="op">=</span><span class="fu">TauTilde</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

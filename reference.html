@@ -393,9 +393,9 @@ window.Quarto = {
 <p>A struct to define a zero-inflated Poisson distribution.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/perm_to_lehm_idx!.html">perm_to_lehm_idx!(P::Vector{&lt;:Integer}) -&gt; Int</a></p>
+<p><a href="./reference/perm_to_lehm_idx!.html">perm_to_lehm_idx!(P::Vector{&lt;:Integer}, used::Vector{&lt;:Integer}) -&gt; Int</a></p>
 <blockquote class="blockquote">
-<p>Converts a permutation vector <code>P</code> into its 0-based lexicographical index. This is the in-place version.</p>
+<p>Version of <a href="@ref"><code>perm_to_lehm_idx</code></a> without allocations: convert a permutation <code>P</code> of <code>1:n</code> into its 1-based lexicographic index, using the preallocated work vector <code>used</code>.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/DistanceToWhiteNoise.html">DistanceToWhiteNoise()</a></p>
@@ -618,9 +618,9 @@ window.Quarto = {
 <p>Compute the critical value of the Box-Pierce type test based on the spatial autocorrelation function (SACF); see <a href="@ref"><code>test_sacf_bp</code></a>. Under the null hypothesis, <code>M * N / 2</code> times the BP statistic i…</p>
 </blockquote>
 <hr>
-<p><a href="./reference/rl_sacf_bp_ic.html">rl_sacf_bp_ic(</a></p>
+<p><a href="./reference/rl_sacf_bp_ic.html">rl_sacf_bp_ic(sp_dgp, lam, cl, w, p_reps, dist_error, rl_max=typemax(Int))</a></p>
 <blockquote class="blockquote">
-<p>lam, cl, sp<em>dgp::ICSP, d1</em>vec::Vector{Int}, d2<em>vec::Vector{Int}, p</em>reps::UnitRange, dist_error::UnivariateDistribution )</p>
+<p>Simulate in-control run lengths of the EWMA chart based on the Box-Pierce type SACF statistic <a href="@ref"><code>stat_sacf_bp</code></a>. Internal helper of <a href="@ref"><code>arl_sacf_bp_ic</code></a>.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/SAR1.html">SAR1(dgp_params, M_rows, N_cols, dist, dist_ao, margin)</a></p>
@@ -710,7 +710,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/perm_to_lehm_idx.html">perm_to_lehm_idx(P::Vector{&lt;:Integer}) -&gt; Int</a></p>
 <blockquote class="blockquote">
-<p>Converts a permutation vector <code>P</code> into its 0-based lexicographical index. This is the in-place version.</p>
+<p>Convert a permutation <code>P</code> of <code>1:n</code> into its 1-based lexicographic index, computed with the Lehmer code. The <code>n!</code> permutations are numbered <code>1, …, n!</code> in lexicographic order. The ordinal patterns in th…</p>
 </blockquote>
 <hr>
 <p><a href="./reference/TauHat.html">TauHat()</a></p>
@@ -1038,9 +1038,9 @@ window.Quarto = {
 <p>Compute the in-control average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/rl_sacf_ic.html">rl_sacf_ic( spatial_dgp::ICSP, lam, cl, d1::Int, d2::Int, p_reps::UnitRange, dist_error::UnivariateDistribution</a></p>
+<p><a href="./reference/rl_sacf_ic.html">rl_sacf_ic(sp_dgp, lam, cl, d1, d2, p_reps, dist_error, rl_max=typemax(Int))</a></p>
 <blockquote class="blockquote">
-<p>)</p>
+<p>Simulate in-control run lengths of the EWMA chart based on the spatial autocorrelation function (SACF) at lag <code>(d1, d2)</code>. Internal helper of <a href="@ref"><code>arl_sacf_ic</code></a>.</p>
 </blockquote>
 <hr>
 

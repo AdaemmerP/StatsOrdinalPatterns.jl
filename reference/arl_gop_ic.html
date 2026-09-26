@@ -524,11 +524,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compute the in-control average run length (ARL) of the EWMA chart based on generalized ordinal patterns (GOPs) via simulation. The computation is multithreaded.</p>
 <ul>
-<li><code>gop_dgp</code>: in-control DGP (e.g.&nbsp;<code>DiscreteDGPIC</code>).</li>
+<li><code>gop_dgp</code>: in-control DGP (e.g.&nbsp;<a href="../reference/DiscreteDGPIC.html"><code>DiscreteDGPIC</code></a>).</li>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the chart.</li>
 <li><code>reps::Int</code>: number of replications.</li>
-<li><code>chart_choice</code>: <a href="../reference/D_Chart.html"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
+<li><code>chart_choice</code>: <a href="../reference/D_Chart.html"><code>D_Chart</code></a><code>()</code> or <a href="../reference/Persistence.html"><code>Persistence()</code></a>.</li>
 <li><code>d=1</code>: delay between observations of a pattern.</li>
 <li><code>ced::Bool=false</code>: use conditional expected delay initialization.</li>
 <li><code>ad::Int=100</code>: number of in-control iterations for <code>ced</code>.</li>

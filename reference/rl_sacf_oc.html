@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Compute the out-of-control run length using the spatial autocorrelation function (SACF). The function returns the run length for a given control limit <code>cl</code> and a given number of repetitions <code>reps</code>.</p>
 <p>The input arguments are:</p>
 <ul>
-<li><p><code>spatial_dgp::SpatialDGP</code>: The spatial data generating process (DGP) to use for the SACF function. This can be one of the following: <code>SAR1</code>, <code>SAR11</code>, <code>SAR22</code>, <code>SINAR11</code>, <code>SQMA11</code>, <code>SQINMA11</code>, or <code>BSQMA11</code>.</p></li>
+<li><p><code>spatial_dgp::SpatialDGP</code>: The spatial data generating process (DGP) to use for the SACF function. This can be one of the following: <a href="../reference/SAR1.html"><code>SAR1</code></a>, <a href="../reference/SAR11.html"><code>SAR11</code></a>, <a href="../reference/SAR22.html"><code>SAR22</code></a>, <a href="../reference/SINAR11.html"><code>SINAR11</code></a>, <a href="../reference/SQMA11.html"><code>SQMA11</code></a>, <a href="../reference/SQINMA11.html"><code>SQINMA11</code></a>, or <a href="../reference/BSQMA11.html"><code>BSQMA11</code></a>.</p></li>
 <li><p><code>lam</code>: The smoothing parameter for the exponentially weighted moving average (EWMA) control chart.</p></li>
 <li><p><code>cl</code>: The control limit for the EWMA control chart.</p></li>
 <li><p><code>d1::Int</code>: The first (row) delay for the spatial process.</p></li>

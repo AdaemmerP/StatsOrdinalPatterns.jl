@@ -337,13 +337,13 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(H(\hat{\mathbf{p}}^{(d)})\)</span></td>
-<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{H} &lt; c\)</span></td>
 <td style="text-align: left;">generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(H_{\text{ex}}(\hat{\mathbf{p}}^{(d)})\)</span></td>
-<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy(base=exp(1))</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{H}_{\text{ex}} &lt; c\)</span></td>
 <td style="text-align: left;">generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
@@ -388,7 +388,7 @@ window.Quarto = {
 <p>Here <span class="math inline">\(n = T - (m-1)d\)</span> is the number of patterns in a series of length <span class="math inline">\(T\)</span>. The critical value <span class="math inline">\(c\)</span> of each row is available on its own through <a href="../reference/crit_val_op.html"><code>crit_val_op(chart_choice, m, n)</code></a> and <a href="../reference/crit_val_acf.html"><code>crit_val_acf(T)</code></a>. Two conventions matter for the match:</p>
 <ul>
 <li>The package indexes patterns by their Lehmer code (see <a href="../reference/perm_to_lehm_idx.html"><code>perm_to_lehm_idx</code></a>). For <span class="math inline">\(m = 3\)</span> this is the lexicographic numbering <span class="math inline">\(\hat p_1, \ldots, \hat p_6\)</span> of the paper, so <span class="math inline">\(\hat\beta\)</span>, <span class="math inline">\(\hat\tau\)</span>, <span class="math inline">\(\hat\gamma\)</span> and <span class="math inline">\(\hat\delta\)</span> pick the same components.</li>
-<li><code>UpDownBalance()</code> and <code>UpDownScaling()</code> return <span class="math inline">\(-\hat\beta\)</span> and <span class="math inline">\(-\hat\delta\)</span>. All four Bandt statistics are tested two sided, so the rejection rates are unaffected.</li>
+<li><a href="../reference/UpDownBalance.html"><code>UpDownBalance()</code></a> and <a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a> return <span class="math inline">\(-\hat\beta\)</span> and <span class="math inline">\(-\hat\delta\)</span>. All four Bandt statistics are tested two sided, so the rejection rates are unaffected.</li>
 </ul>
 </section>
 <section id="setup" class="level2">
@@ -454,7 +454,7 @@ window.Quarto = {
 </section>
 <section id="running-the-power-study" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-power-study">Running the power study</h2>
-<p><code>crit_val_op</code> returns the critical value alone. It depends on the chart, on <span class="math inline">\(m\)</span> and on the number of patterns <span class="math inline">\(n\)</span>, but not on the data, so for a fixed <span class="math inline">\(T\)</span> it is the same in all replications. <code>test_op</code> additionally computes the <span class="math inline">\(p\)</span> value, which does depend on the data and which for the three omnibus statistics means evaluating a generalized <span class="math inline">\(\chi^2\)</span> distribution numerically. A power study only needs the decision, so the critical values are taken once per sample size and each replication then costs one pass over the series. That is about 300 times faster than a plain loop over <code>test_op</code>.</p>
+<p><a href="../reference/crit_val_op.html"><code>crit_val_op</code></a> returns the critical value alone. It depends on the chart, on <span class="math inline">\(m\)</span> and on the number of patterns <span class="math inline">\(n\)</span>, but not on the data, so for a fixed <span class="math inline">\(T\)</span> it is the same in all replications. <a href="../reference/test_op.html"><code>test_op</code></a> additionally computes the <span class="math inline">\(p\)</span> value, which does depend on the data and which for the three omnibus statistics means evaluating a generalized <span class="math inline">\(\chi^2\)</span> distribution numerically. A power study only needs the decision, so the critical values are taken once per sample size and each replication then costs one pass over the series. That is about 300 times faster than a plain loop over <a href="../reference/test_op.html"><code>test_op</code></a>.</p>
 <div id="10" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rejection rules of the table above</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rejects</span>(<span class="op">::</span><span class="dt">Union{Shannon,ShannonExtropy}</span>, stat, crit) <span class="op">=</span> stat <span class="op">&lt;</span> crit</span>
@@ -484,7 +484,7 @@ window.Quarto = {
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sum</span>(<span class="fu">fetch</span>.(tasks)) <span class="op">./</span> reps</span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The shortcut has to give the same statistic and the same decision as <code>test_op</code> and <code>test_acf</code>, not merely a similar one:</p>
+<p>The shortcut has to give the same statistic and the same decision as <a href="../reference/test_op.html"><code>test_op</code></a> and <a href="../reference/test_acf.html"><code>test_acf</code></a>, not merely a similar one:</p>
 <div id="12" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x <span class="op">=</span> <span class="fu">sim_ar1!</span>(<span class="fu">zeros</span>(<span class="fl">400</span>), α), n <span class="op">=</span> <span class="fl">400</span> <span class="op">-</span> (m <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> d</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    p̂ <span class="op">=</span> <span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), m<span class="op">=</span>m, d<span class="op">=</span>d)[<span class="fl">2</span>]</span>

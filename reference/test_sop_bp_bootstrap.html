@@ -192,14 +192,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sop_bp_bootstrap</span>(data, n_boot, w; chart_choice, refinement, alpha, block_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute a bootstrap Box-Pierce type hypothesis test for spatial ordinal patterns (SOPs), aggregating the squared chart statistics over all delay combinations <code>(d1, d2) ∈ {1,…,w}²</code>, and return a <code>SOPBPTestResultBoot</code> with the bootstrap critical value, p-value, and reject decision.</p>
+<p>Compute a bootstrap Box-Pierce type hypothesis test for spatial ordinal patterns (SOPs), aggregating the squared chart statistics over all delay combinations <code>(d1, d2) ∈ {1,…,w}²</code>, and return a <a href="../reference/SOPBPTestResultBoot.html"><code>SOPBPTestResultBoot</code></a> with the bootstrap critical value, p-value, and reject decision.</p>
 <p>No asymptotic theory is available for the BP-SOP statistic, so — unlike the single-delay <a href="../reference/test_sop.html"><code>test_sop</code></a> — this bootstrap test is the only classical test provided for it.</p>
 <ul>
 <li><code>data</code>: the 2D image (M × N matrix).</li>
 <li><code>n_boot</code>: number of bootstrap replications.</li>
 <li><code>w</code>: window size; all <code>(d1, d2) ∈ {1,…,w}²</code> are included in the BP sum.</li>
 <li><code>chart_choice</code>: one of <a href="../reference/TauHat.html"><code>TauHat</code></a><code>()</code>, <a href="../reference/KappaHat.html"><code>KappaHat</code></a><code>()</code>, <a href="../reference/TauTilde.html"><code>TauTilde</code></a><code>()</code>, <a href="../reference/KappaTilde.html"><code>KappaTilde</code></a><code>()</code>.</li>
-<li><code>refinement</code>: <a href="../reference/OrdinaryType.html"><code>OrdinaryType</code></a><code>()</code> for the classical SOP classification, or a <code>RefinedType</code> instance.</li>
+<li><code>refinement</code>: <a href="../reference/OrdinaryType.html"><code>OrdinaryType</code></a><code>()</code> for the classical SOP classification, or a <a href="../reference/RefinedType.html"><code>RefinedType</code></a> instance.</li>
 <li><code>alpha</code>: significance level (default <code>0.05</code>).</li>
 <li><code>block_size</code>: set <code>&gt; 1</code> for a 2D block bootstrap that preserves spatial dependencies.</li>
 </ul>

@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arl_kappa_ic</span>(qual_dgp, lam, cl, reps; chart_choice, rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compute the in-control average run length (ARL) of the EWMA κ-chart for qualitative processes via simulation. The computation is multithreaded.</p>
 <ul>
-<li><code>qual_dgp</code>: in-control DGP (e.g.&nbsp;<code>DiscreteDGPIC</code>).</li>
+<li><code>qual_dgp</code>: in-control DGP (e.g.&nbsp;<a href="../reference/DiscreteDGPIC.html"><code>DiscreteDGPIC</code></a>).</li>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the chart.</li>
 <li><code>reps::Int</code>: number of replications.</li>

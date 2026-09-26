@@ -192,9 +192,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">init_mat!</span>(dgp, dist_error, mat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Initialize the data matrix <code>mat</code> in-place for a spatial DGP by setting its first row(s) and column(s) to the marginal mean of the process. Methods exist for <code>SAR11</code>, <code>SINAR11</code> (mean rounded to an integer), and <code>SAR22</code> (first two rows/columns).</p>
+<p>Initialize the data matrix <code>mat</code> in-place for a spatial DGP by setting its first row(s) and column(s) to the marginal mean of the process. Methods exist for <a href="../reference/SAR11.html"><code>SAR11</code></a>, <a href="../reference/SINAR11.html"><code>SINAR11</code></a> (mean rounded to an integer), and <a href="../reference/SAR22.html"><code>SAR22</code></a> (first two rows/columns).</p>
 <ul>
-<li><code>dgp</code>: spatial DGP (<code>SAR11</code>, <code>SINAR11</code>, or <code>SAR22</code>).</li>
+<li><code>dgp</code>: spatial DGP (<a href="../reference/SAR11.html"><code>SAR11</code></a>, <a href="../reference/SINAR11.html"><code>SINAR11</code></a>, or <a href="../reference/SAR22.html"><code>SAR22</code></a>).</li>
 <li><code>dist_error</code>: innovation (error) distribution of the process.</li>
 <li><code>mat</code>: data matrix to initialize.</li>
 </ul>

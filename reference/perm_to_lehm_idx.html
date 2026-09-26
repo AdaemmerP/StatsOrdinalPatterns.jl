@@ -192,19 +192,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">perm_to_lehm_idx</span>(P<span class="op">::</span><span class="dt">Vector{&lt;:Integer}</span>) <span class="op">-&gt;</span> <span class="dt">Int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Converts a permutation vector <code>P</code> into its 0-based lexicographical index. This is the in-place version.</p>
+<p>Convert a permutation <code>P</code> of <code>1:n</code> into its 1-based lexicographic index, computed with the Lehmer code. The <code>n!</code> permutations are numbered <code>1, …, n!</code> in lexicographic order. The ordinal patterns in this package are indexed this way.</p>
+<p>This version allocates a work vector on every call. Inside loops, use <a href="../reference/perm_to_lehm_idx!.html"><code>perm_to_lehm_idx!</code></a>, which reuses a preallocated one.</p>
 <section id="arguments" class="level3">
 <h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
 <ul>
-<li><code>P</code>: A permutation vector (e.g., [3, 1, 2]).</li>
-<li><code>used</code>: A vector to track used elements (should be initialized to zeros of length equal to the maximum element in <code>P</code>).</li>
+<li><code>P</code>: a permutation of <code>1:n</code>, for example the result of <code>sortperm</code>.</li>
 </ul>
 </section>
 <section id="returns" class="level3">
 <h3 class="anchored" data-anchor-id="returns">Returns</h3>
 <ul>
-<li>The 0-based index of the permutation.</li>
+<li>The index of <code>P</code>, an integer in <code>1:factorial(n)</code>.</li>
 </ul>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>StatsOrdinalPatterns.<span class="fu">perm_to_lehm_idx</span>([<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>])  <span class="co"># 1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>StatsOrdinalPatterns.<span class="fu">perm_to_lehm_idx</span>([<span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">2</span>])  <span class="co"># 2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>StatsOrdinalPatterns.<span class="fu">perm_to_lehm_idx</span>([<span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>])  <span class="co"># 6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>

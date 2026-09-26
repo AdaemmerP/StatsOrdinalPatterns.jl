@@ -366,13 +366,13 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\widehat{H}\)</span></td>
-<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a></td>
 <td style="text-align: left;">rescaled <span class="math inline">\(\widehat{H} &gt; c\)</span></td>
 <td style="text-align: left;"><code>H</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\widehat{H}_{ex}\)</span></td>
-<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy(base=exp(1))</code></a></td>
 <td style="text-align: left;">rescaled <span class="math inline">\(\widehat{H}_{ex} &gt; c\)</span></td>
 <td style="text-align: left;"><code>H_ex</code></td>
 </tr>
@@ -384,7 +384,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p><span class="math inline">\(\tilde{\tau}\)</span> appears in the ordinary group only; the refined classifications have asymptotic theory for the entropy type charts. The rescaling of the entropy statistics and the generalized <span class="math inline">\(\chi^2\)</span> critical value are what <code>test_sop</code> applies internally, and <a href="../reference/crit_val_sop.html"><code>crit_val_sop</code></a> returns the critical value for a given scheme, level and field size.</p>
+<p><span class="math inline">\(\tilde{\tau}\)</span> appears in the ordinary group only; the refined classifications have asymptotic theory for the entropy type charts. The rescaling of the entropy statistics and the generalized <span class="math inline">\(\chi^2\)</span> critical value are what <a href="../reference/test_sop.html"><code>test_sop</code></a> applies internally, and <a href="../reference/crit_val_sop.html"><code>crit_val_sop</code></a> returns the critical value for a given scheme, level and field size.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -454,7 +454,7 @@ window.Quarto = {
 </section>
 <section id="running-the-power-study" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-power-study">Running the power study</h2>
-<p><code>crit_val_sop</code> returns the critical value alone, which depends on the field size, the level and the classification scheme, not on the data, so it is computed once per row of the table. <code>test_sop</code> additionally computes the <span class="math inline">\(p\)</span> value, which for the entropy charts means evaluating a generalized <span class="math inline">\(\chi^2\)</span> distribution numerically and which a power study does not use. Each replication then costs one <a href="../reference/stat_sop.html"><code>stat_sop</code></a> pass per classification scheme, and the charts of that scheme are read off the resulting <span class="math inline">\(\hat{\mathbf{p}}\)</span> with <a href="../reference/chart_stat_sop.html"><code>chart_stat_sop</code></a>.</p>
+<p><a href="../reference/crit_val_sop.html"><code>crit_val_sop</code></a> returns the critical value alone, which depends on the field size, the level and the classification scheme, not on the data, so it is computed once per row of the table. <a href="../reference/test_sop.html"><code>test_sop</code></a> additionally computes the <span class="math inline">\(p\)</span> value, which for the entropy charts means evaluating a generalized <span class="math inline">\(\chi^2\)</span> distribution numerically and which a power study does not use. Each replication then costs one <a href="../reference/stat_sop.html"><code>stat_sop</code></a> pass per classification scheme, and the charts of that scheme are read off the resulting <span class="math inline">\(\hat{\mathbf{p}}\)</span> with <a href="../reference/chart_stat_sop.html"><code>chart_stat_sop</code></a>.</p>
 <div id="8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Rejection rates of the 13 tests for one field size</summary>
@@ -491,7 +491,7 @@ window.Quarto = {
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>The shortcut has to give the same decision as <code>test_sop</code> in all 13 columns, not merely a similar one:</p>
+<p>The shortcut has to give the same decision as <a href="../reference/test_sop.html"><code>test_sop</code></a> in all 13 columns, not merely a similar one:</p>
 <div id="10" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Check against test_sop</summary>

@@ -408,20 +408,20 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Shannon entropy (<span class="math inline">\(\hat{H}\)</span>)</td>
-<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon(base=exp(1))</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} = \log(m!)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} &lt; cl\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Shannon extropy (<span class="math inline">\(\hat{H}_\text{ex}\)</span>)</td>
-<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
+<td style="text-align: left;"><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy(base=exp(1))</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} = 5\log(6/5)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} &lt; cl\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><code>cl_op</code> handles the direction internally: for the two entropy charts the ARL <em>decreases</em> in <code>cl</code>, for all others it increases.</p>
+<p><a href="../reference/cl_op.html"><code>cl_op</code></a> handles the direction internally: for the two entropy charts the ARL <em>decreases</em> in <code>cl</code>, for all others it increases.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -599,7 +599,7 @@ Trace:
 </div>
 </div>
 </div>
-<p>The count process <code>INAR1(α, dist, add_noise)</code> uses <code>add_noise=true</code>, which breaks ties by adding uniform noise — otherwise equal values would make the ordinal pattern ambiguous.</p>
+<p>The count process <a href="../reference/INAR1.html"><code>INAR1(α, dist, add_noise)</code></a> uses <code>add_noise=true</code>, which breaks ties by adding uniform noise — otherwise equal values would make the ordinal pattern ambiguous.</p>
 </section>
 <section id="comparing-charts" class="level2">
 <h2 class="anchored" data-anchor-id="comparing-charts">Comparing charts</h2>
@@ -699,7 +699,7 @@ Trace:
 </section>
 <section id="monitoring-an-observed-series" class="level2">
 <h2 class="anchored" data-anchor-id="monitoring-an-observed-series">Monitoring an observed series</h2>
-<p><code>monitor_op(data, lam, cl; ...)</code> computes the EWMA chart statistics of an observed series (the same ones <code>stat_op(data, lam; ...)</code> returns), applies the alarm rule of the chosen chart and records the first signal. Here the series switches from i.i.d. to AR(1) at <span class="math inline">\(t = 150\)</span>.</p>
+<p><a href="../reference/monitor_op.html"><code>monitor_op(data, lam, cl; ...)</code></a> computes the EWMA chart statistics of an observed series (the same ones <a href="../reference/stat_op.html"><code>stat_op(data, lam; ...)</code></a> returns), applies the alarm rule of the chosen chart and records the first signal. Here the series switches from i.i.d. to AR(1) at <span class="math inline">\(t = 150\)</span>.</p>
 <div id="18" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">4</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>t_change <span class="op">=</span> <span class="fl">150</span></span>
