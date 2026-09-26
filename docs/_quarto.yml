@@ -118,6 +118,8 @@ website:
               href: page_files/sop_replication_weiss_kim_2024.qmd
             - text: "Weiß and Kim (2025)"
               href: page_files/sop_replication_weiss_kim_2025.qmd
+            - text: "Weiß and Adämmer (2026)"
+              href: page_files/sop_replication_weiss_adammer_2026.qmd
         # - page_files/sop_replication.qmd
     - title: "OPs"
       style: "docked"

@@ -1,0 +1,451 @@
+---
+engine: julia
+julia:
+  exeflags: ["--project=../.", "--threads=auto"]
+nocite: |
+  @weiss2026
+---
+
+# Replication: Weiß and Adämmer (2026)
+
+This page reproduces **Table IX** of @weiss2026. The table reports simulated rejection
+rates of the asymptotic ordinal pattern tests at level $\alpha = 0.05$ for 3D random
+fields that are turned into a time series along a Hilbert curve, together with the
+spatial autocorrelation at lag $\mathbf{1}$ as a benchmark, for the SQMA(1,1,1) process
+and growing field size. The table compares two Hilbert curves, "gilbert" and the curve
+of @rong2021.
+
+## Libraries
+
+```{julia}
+#| output: false
+#| message: false
+using StatsOrdinalPatterns, Random, Statistics, Printf, DataFrames, Distributions, CSV
+```
+
+## Statistics of the paper and their types in the package
+
+The field is read along a Hilbert curve, and the ordinal pattern tests of the package
+are applied to the resulting series with pattern length $m = 3$ and delay $d$. For each
+curve, the two columns of Table IX correspond to one `chart_choice` of [`test_op`](../reference/test_op.qmd) each. The benchmark
+$\hat{\rho}(\mathbf{1})$ is the spatial autocorrelation of the field at lag $(1, 1, 1)$.
+The package has no 3D version of [`stat_sacf`](../reference/stat_sacf.qmd), so it is defined below.
+
+| Table IX column | Package call | Rejects $H_0$ when | Label below |
+|:----------------|:-------------|:-------------------|:------------|
+| $\widehat{H}$ | [`test_op(x; chart_choice=Shannon(base=exp(1)), d=d)`](../reference/test_op.qmd) | $\widehat{H} < c$ | `H_gilbert`, `H_rong` |
+| $\hat{\tau}$ | [`test_op(x; chart_choice=Persistence(), d=d)`](../reference/test_op.qmd) | $\lvert\hat{\tau}\rvert > c$ | `tau_gilbert`, `tau_rong` |
+| $\hat{\rho}(\mathbf{1})$ | `sacf3d(X)` defined below | $\lvert\hat{\rho}\rvert > z_{0.975} / \sqrt{T}$ | `rho_1` |
+
+Here $T$ is the number of points of the field. $\hat{\rho}(\mathbf{1})$ does not depend
+on the curve, so the table reports it once per block.
+
+## The gilbert curve
+
+The paper uses the generalized Hilbert curve "gilbert" of Jakub Červený, which fills
+cuboids of arbitrary size. Its source code is available at
+<https://github.com/jakubcerveny/gilbert>. The function below is a line by line Julia
+port of
+[`gilbert3d.py`](https://github.com/jakubcerveny/gilbert/blob/master/gilbert3d.py)
+from that repository. It returns the visited grid points as 0 based coordinates
+$(x, y, z)$ in curve order. For all four field sizes of the table it visits the same
+points in the same order as the Python original.
+
+```{julia}
+#| output: false
+#| code-fold: true
+#| code-summary: "Julia port of gilbert3d"
+# Port of gilbert3d.py from https://github.com/jakubcerveny/gilbert
+# SPDX-License-Identifier: BSD-2-Clause
+# Copyright (c) 2018 Jakub Červený
+function gilbert3d(width, height, depth)
+    out = NTuple{3,Int}[]
+    if width >= height && width >= depth
+        _gilbert3d!(out, 0, 0, 0, width, 0, 0, 0, height, 0, 0, 0, depth)
+    elseif height >= width && height >= depth
+        _gilbert3d!(out, 0, 0, 0, 0, height, 0, width, 0, 0, 0, 0, depth)
+    else
+        _gilbert3d!(out, 0, 0, 0, 0, 0, depth, width, 0, 0, 0, height, 0)
+    end
+    return out
+end
+
+function _gilbert3d!(out, x, y, z, ax, ay, az, bx, by, bz, cx, cy, cz)
+    w = abs(ax + ay + az)
+    h = abs(bx + by + bz)
+    d = abs(cx + cy + cz)
+    dax, day, daz = sign(ax), sign(ay), sign(az)   # unit major direction
+    dbx, dby, dbz = sign(bx), sign(by), sign(bz)   # unit ortho direction
+    dcx, dcy, dcz = sign(cx), sign(cy), sign(cz)   # unit ortho direction
+
+    # trivial row and column fills
+    if h == 1 && d == 1
+        for _ in 1:w
+            push!(out, (x, y, z)); x += dax; y += day; z += daz
+        end
+        return out
+    end
+    if w == 1 && d == 1
+        for _ in 1:h
+            push!(out, (x, y, z)); x += dbx; y += dby; z += dbz
+        end
+        return out
+    end
+    if w == 1 && h == 1
+        for _ in 1:d
+            push!(out, (x, y, z)); x += dcx; y += dcy; z += dcz
+        end
+        return out
+    end
+
+    # Python's // rounds down, so use fld (div would round towards zero)
+    ax2, ay2, az2 = fld(ax, 2), fld(ay, 2), fld(az, 2)
+    bx2, by2, bz2 = fld(bx, 2), fld(by, 2), fld(bz, 2)
+    cx2, cy2, cz2 = fld(cx, 2), fld(cy, 2), fld(cz, 2)
+    w2 = abs(ax2 + ay2 + az2)
+    h2 = abs(bx2 + by2 + bz2)
+    d2 = abs(cx2 + cy2 + cz2)
+
+    # prefer even steps
+    if isodd(w2) && w > 2
+        ax2, ay2, az2 = ax2 + dax, ay2 + day, az2 + daz
+    end
+    if isodd(h2) && h > 2
+        bx2, by2, bz2 = bx2 + dbx, by2 + dby, bz2 + dbz
+    end
+    if isodd(d2) && d > 2
+        cx2, cy2, cz2 = cx2 + dcx, cy2 + dcy, cz2 + dcz
+    end
+
+    if 2w > 3h && 2w > 3d
+        # wide case, split in w only
+        _gilbert3d!(out, x, y, z, ax2, ay2, az2, bx, by, bz, cx, cy, cz)
+        _gilbert3d!(out, x + ax2, y + ay2, z + az2,
+            ax - ax2, ay - ay2, az - az2, bx, by, bz, cx, cy, cz)
+    elseif 3h > 4d
+        # do not split in d
+        _gilbert3d!(out, x, y, z, bx2, by2, bz2, cx, cy, cz, ax2, ay2, az2)
+        _gilbert3d!(out, x + bx2, y + by2, z + bz2,
+            ax, ay, az, bx - bx2, by - by2, bz - bz2, cx, cy, cz)
+        _gilbert3d!(out,
+            x + (ax - dax) + (bx2 - dbx), y + (ay - day) + (by2 - dby), z + (az - daz) + (bz2 - dbz),
+            -bx2, -by2, -bz2, cx, cy, cz, -(ax - ax2), -(ay - ay2), -(az - az2))
+    elseif 3d > 4h
+        # do not split in h
+        _gilbert3d!(out, x, y, z, cx2, cy2, cz2, ax2, ay2, az2, bx, by, bz)
+        _gilbert3d!(out, x + cx2, y + cy2, z + cz2,
+            ax, ay, az, bx, by, bz, cx - cx2, cy - cy2, cz - cz2)
+        _gilbert3d!(out,
+            x + (ax - dax) + (cx2 - dcx), y + (ay - day) + (cy2 - dcy), z + (az - daz) + (cz2 - dcz),
+            -cx2, -cy2, -cz2, -(ax - ax2), -(ay - ay2), -(az - az2), bx, by, bz)
+    else
+        # regular case, split in all w, h, d
+        _gilbert3d!(out, x, y, z, bx2, by2, bz2, cx2, cy2, cz2, ax2, ay2, az2)
+        _gilbert3d!(out, x + bx2, y + by2, z + bz2,
+            cx, cy, cz, ax2, ay2, az2, bx - bx2, by - by2, bz - bz2)
+        _gilbert3d!(out,
+            x + (bx2 - dbx) + (cx - dcx), y + (by2 - dby) + (cy - dcy), z + (bz2 - dbz) + (cz - dcz),
+            ax, ay, az, -bx2, -by2, -bz2, -(cx - cx2), -(cy - cy2), -(cz - cz2))
+        _gilbert3d!(out,
+            x + (ax - dax) + bx2 + (cx - dcx), y + (ay - day) + by2 + (cy - dcy), z + (az - daz) + bz2 + (cz - dcz),
+            -cx, -cy, -cz, -(ax - ax2), -(ay - ay2), -(az - az2), bx - bx2, by - by2, bz - bz2)
+        _gilbert3d!(out,
+            x + (ax - dax) + (bx2 - dbx), y + (ay - day) + (by2 - dby), z + (az - daz) + (bz2 - dbz),
+            -bx2, -by2, -bz2, cx2, cy2, cz2, -(ax - ax2), -(ay - ay2), -(az - az2))
+    end
+    return out
+end
+
+# Indices of an array of size `dims` in the order of the curve
+hilbert_indices(dims) = [CartesianIndex(x + 1, y + 1, z + 1) for (x, y, z) in gilbert3d(dims...)]
+```
+
+## The curve of Rong et al.
+
+The second curve is the modified Hilbert curve for rectangles and cuboids of
+@rong2021. Its indices were computed in R for the paper.
+`rong_indices_3d.csv` in this folder holds them as plain text: one row per grid point
+in curve order, with the field size $(M, N, O)$ and the 1 based coordinates
+$(t_1, t_2, t_3)$. The indices exist for the four field sizes of the table.
+
+```{julia}
+#| output: false
+#| code-fold: true
+#| code-summary: "Read the Rong indices"
+rong = CSV.read("rong_indices_3d.csv", DataFrame)
+rong_indices = Dict(
+    (g.M[1], g.N[1], g.O[1]) => CartesianIndex.(g.t1, g.t2, g.t3)
+    for g in groupby(rong, [:M, :N, :O])
+)
+curves = [
+    ("gilbert", hilbert_indices),
+    ("rong", dims -> rong_indices[dims]),
+]
+```
+
+Both curves visit every point of the field exactly once. The column `long_steps` counts
+the steps between consecutive points that do not go to a neighbour in the grid, and
+`max_step` is the largest step length, measured as $\lvert \Delta t_1 \rvert +
+\lvert \Delta t_2 \rvert + \lvert \Delta t_3 \rvert$. The gilbert curve has such steps
+for the two fields with an odd side length of 11; its source file recommends even sizes
+in 3D.
+
+```{julia}
+#| code-fold: true
+#| code-summary: "Check the curves"
+DataFrame(
+    [(curve=name, field=string(dims), points=length(idx), all_distinct=allunique(idx),
+      covers_field=length(idx) == prod(dims),
+      long_steps=count(>(1), steps), max_step=maximum(steps))
+     for (name, indices) in curves
+     for dims in ((8, 8, 8), (11, 11, 8), (11, 16, 8), (16, 16, 8))
+     for idx in (indices(dims),)
+     for steps in ([sum(abs, Tuple(idx[k+1] - idx[k])) for k in 1:length(idx)-1],)]
+)
+```
+
+## Setup
+
+The unilateral SQMA(1,1,1) process of Equation (10) in the paper is
+
+$$
+\begin{aligned}
+X_{t_1,t_2,t_3} ={}& \beta_1 \varepsilon_{t_1-1,t_2,t_3}^{q_1} + \beta_2 \varepsilon_{t_1,t_2-1,t_3}^{q_2}
+  + \beta_3 \varepsilon_{t_1,t_2,t_3-1}^{q_3} + \beta_4 \varepsilon_{t_1-1,t_2-1,t_3}^{q_4} \\
+  &+ \beta_5 \varepsilon_{t_1-1,t_2,t_3-1}^{q_5} + \beta_6 \varepsilon_{t_1,t_2-1,t_3-1}^{q_6}
+  + \beta_7 \varepsilon_{t_1-1,t_2-1,t_3-1}^{q_7} + \varepsilon_{t_1,t_2,t_3},
+\end{aligned}
+$$
+
+with $\beta_1 = \cdots = \beta_7 = 0.8$ and i.i.d. standard normal errors. DGP "3D-1.1"
+uses the exponents $(q_1, \ldots, q_7) = (2, \ldots, 2)$ and DGP "3D-1.2" uses
+$(2, 2, 2, 1, 1, 1, 2)$. The package has no 3D process, so `sqma111!` below simulates
+it.
+
+The sizes $(n_1, n_2, n_3)$ in the table correspond to fields of size
+$(n_1 + 1) \times (n_2 + 1) \times (n_3 + 1)$, the convention of the SOP tables. Each
+Hilbert curve runs through the whole field, so the series has
+$T = (n_1 + 1)(n_2 + 1)(n_3 + 1)$ observations and $T - 2d$ ordinal patterns.
+
+```{julia}
+#| output: false
+#| code-fold: true
+#| code-summary: "Parameters of Table IX, the SQMA(1,1,1) process and the 3D SACF"
+β = ntuple(_ -> 0.8, 7)                          # dependence parameters of Table IX
+level = 0.05                                     # nominal significance level
+sizes = ((7, 7, 7), (10, 10, 7), (10, 15, 7), (15, 15, 7))   # (n1, n2, n3) of the table
+delays = 1:4                                     # delays d of the ordinal patterns
+reps = 10_000                                    # Monte Carlo replications
+
+models = [
+    ("3D-1.1", (2, 2, 2, 2, 2, 2, 2)),
+    ("3D-1.2", (2, 2, 2, 1, 1, 1, 2)),
+]
+
+charts = [
+    ("H", Shannon(base=exp(1))),
+    ("tau", Persistence()),
+]
+
+# One field of the SQMA(1,1,1) process. `ε` has one extra layer in front of every
+# dimension, which holds the lagged errors of the first row, column and slice of `X`.
+function sqma111!(X, ε, q)
+    randn!(ε)
+    for t3 in axes(X, 3), t2 in axes(X, 2), t1 in axes(X, 1)
+        a, b, c = t1 + 1, t2 + 1, t3 + 1
+        X[t1, t2, t3] = β[1] * ε[a-1, b, c]^q[1] + β[2] * ε[a, b-1, c]^q[2] +
+                        β[3] * ε[a, b, c-1]^q[3] + β[4] * ε[a-1, b-1, c]^q[4] +
+                        β[5] * ε[a-1, b, c-1]^q[5] + β[6] * ε[a, b-1, c-1]^q[6] +
+                        β[7] * ε[a-1, b-1, c-1]^q[7] + ε[a, b, c]
+    end
+    return X
+end
+
+# Spatial autocorrelation of a 3D field at lag (1, 1, 1), the 3D analogue of the
+# package's `sacf`: the lagged cross products of the centered field over the overlap,
+# divided by the sum of squares.
+function sacf3d(X)
+    μ = mean(X)
+    num = 0.0
+    for t3 in 2:size(X, 3), t2 in 2:size(X, 2), t1 in 2:size(X, 1)
+        num += (X[t1, t2, t3] - μ) * (X[t1-1, t2-1, t3-1] - μ)
+    end
+    return num / sum(x -> (x - μ)^2, X)
+end
+```
+
+## A single test
+
+```{julia}
+#| code-fold: true
+#| code-summary: "One field of DGP 3D-1.1 and one ordinal pattern test along the curve"
+Random.seed!(1)
+dims = (7, 7, 7) .+ 1
+X = sqma111!(zeros(dims), zeros(dims .+ 1), (2, 2, 2, 2, 2, 2, 2))
+x = X[hilbert_indices(dims)]                     # the field as a series along the curve
+test_op(x; chart_choice=Persistence(), m=3, d=1, alpha=level)
+```
+
+## Running the power study
+
+[`crit_val_op`](../reference/crit_val_op.qmd) returns the critical values alone. They depend on the number of
+patterns and the level, not on the data, so they are computed once per field size and
+delay. [`test_op`](../reference/test_op.qmd) additionally computes the $p$ value, which a power study does not
+use. Each replication therefore reads the field along both curves, counts the pattern
+frequencies once per curve and delay with [`stat_op`](../reference/stat_op.qmd), and reads both statistics off
+the resulting $\hat{\mathbf{p}}$ with [`chart_stat_op`](../reference/chart_stat_op.qmd). Both curves see the same field.
+
+```{julia}
+#| output: false
+#| code-fold: true
+#| code-summary: "Rejection rates of all tests for one field size"
+function power(n, q, reps; level=0.05)
+    dims = n .+ 1
+    idxs = [indices(dims) for (_, indices) in curves]
+    T = prod(dims)
+    crits = [crit_val_op(cc, 3, T - 2d; alpha=level) for d in delays, (_, cc) in charts]
+    crit_rho = quantile(Normal(), 1 - level / 2) / sqrt(T)
+
+    tasks = map(Iterators.partition(1:reps, cld(reps, Threads.nthreads()))) do chunk
+        Threads.@spawn begin
+            X, ε, x = zeros(dims), zeros(dims .+ 1), zeros(T)   # one set of buffers per task
+            hits = zeros(Int, length(delays), length(charts), length(curves))
+            hits_rho = 0
+            for _ in chunk
+                sqma111!(X, ε, q)
+                for (k, idx) in enumerate(idxs)
+                    x .= view(X, idx)
+                    for (i, d) in enumerate(delays)
+                        p̂ = stat_op(x; chart_choice=Persistence(), m=3, d=d)[2]
+                        hits[i, 1, k] += chart_stat_op(p̂, charts[1][2]) < crits[i, 1]       # H: lower tail
+                        hits[i, 2, k] += abs(chart_stat_op(p̂, charts[2][2])) > crits[i, 2]  # tau: two sided
+                    end
+                end
+                hits_rho += abs(sacf3d(X)) > crit_rho
+            end
+            (hits, hits_rho)
+        end
+    end
+    results = fetch.(tasks)
+    return (ops=sum(first.(results)) ./ reps, rho=sum(last.(results)) / reps)
+end
+```
+
+The shortcut has to give the same statistic and the same decision as [`test_op`](../reference/test_op.qmd), not
+merely a similar one:
+
+```{julia}
+#| code-fold: true
+#| code-summary: "Check against test_op"
+let dims = (10, 15, 7) .+ 1
+    X = sqma111!(zeros(dims), zeros(dims .+ 1), (2, 2, 2, 1, 1, 1, 2))
+    x = X[hilbert_indices(dims)]
+    T = length(x)
+    ok = all(
+        begin
+            r = test_op(x; chart_choice=cc, m=3, d=d, alpha=level)
+            s = chart_stat_op(stat_op(x; chart_choice=cc, m=3, d=d)[2], cc)
+            crit = crit_val_op(cc, 3, T - 2d; alpha=level)
+            rejects = cc isa Persistence ? abs(s) > crit : s < crit
+            s ≈ r.stat && crit ≈ r.asymp_crit && rejects == r.asymp_reject
+        end for d in delays, (_, cc) in charts
+    )
+    (shortcut_matches_test_op=ok,)
+end
+```
+
+::: {.callout-note}
+With `reps = 10_000` the page runs in a few seconds and the standard error of a rejection
+rate is at most $\sqrt{0.25 / 10^4} = 0.005$.
+:::
+
+## Table IX: SQMA(1,1,1), "gilbert" and "Rong" curves
+
+```{julia}
+#| output: false
+#| code-fold: true
+#| code-summary: "Run the study for every model and field size"
+res = Dict((name, n) => power(n, q, reps; level=level) for (name, q) in models for n in sizes)
+```
+
+```{julia}
+#| echo: false
+tab = DataFrame(
+    model=[name for (name, _) in models for n in sizes for d in delays],
+    n1_n2_n3=[string(n) for _ in models for n in sizes for d in delays],
+    rho_1=[round(res[(name, n)].rho, digits=3) for (name, _) in models for n in sizes for d in delays],
+    d=[d for _ in models for _ in sizes for d in delays],
+)
+for (k, (curve, _)) in enumerate(curves), (j, (nm, _)) in enumerate(charts)
+    tab[!, "$(nm)_$(curve)"] = [round(res[(name, n)].ops[i, j, k], digits=3)
+                               for (name, _) in models for n in sizes for (i, _) in enumerate(delays)]
+end
+tab
+```
+
+### Comparison with the published rates
+
+```{julia}
+#| echo: false
+#| output: false
+# published values: rho_1, then the columns (H, tau) of "gilbert" and of "Rong"
+# for d = 1, 2, 3, 4
+published = Dict(
+    ("3D-1.1", (7, 7, 7)) => (0.099,
+        [0.595 0.879; 0.059 0.093; 0.156 0.325; 0.144 0.298],
+        [0.666 0.915; 0.056 0.077; 0.138 0.285; 0.148 0.304]),
+    ("3D-1.1", (10, 10, 7)) => (0.120,
+        [0.899 0.989; 0.074 0.138; 0.211 0.433; 0.184 0.388],
+        [1.000 1.000; 0.054 0.091; 0.059 0.097; 0.061 0.095]),
+    ("3D-1.1", (10, 15, 7)) => (0.132,
+        [0.982 0.999; 0.069 0.125; 0.342 0.625; 0.316 0.592],
+        [0.992 1.000; 0.059 0.092; 0.340 0.616; 0.294 0.562]),
+    ("3D-1.1", (15, 15, 7)) => (0.142,
+        [0.999 1.000; 0.075 0.142; 0.554 0.825; 0.488 0.770],
+        [1.000 1.000; 0.055 0.075; 0.465 0.745; 0.495 0.774]),
+    ("3D-1.2", (7, 7, 7)) => (0.056,
+        [0.318 0.574; 0.064 0.104; 0.092 0.177; 0.228 0.478],
+        [0.276 0.513; 0.055 0.074; 0.100 0.201; 0.229 0.478]),
+    ("3D-1.2", (10, 10, 7)) => (0.070,
+        [0.477 0.750; 0.088 0.180; 0.090 0.182; 0.292 0.576],
+        [0.077 0.106; 0.056 0.068; 0.073 0.132; 0.054 0.070]),
+    ("3D-1.2", (10, 15, 7)) => (0.077,
+        [0.716 0.910; 0.085 0.172; 0.159 0.332; 0.554 0.833],
+        [0.669 0.882; 0.061 0.097; 0.182 0.376; 0.522 0.810]),
+    ("3D-1.2", (15, 15, 7)) => (0.084,
+        [0.889 0.979; 0.093 0.193; 0.220 0.443; 0.803 0.961],
+        [0.825 0.958; 0.056 0.075; 0.264 0.515; 0.807 0.961]),
+)
+
+cmp = DataFrame(model=String[], n1_n2_n3=String[], curve=String[], d=Union{Int,Missing}[],
+    statistic=String[], paper=Float64[], replicated=Float64[], dev=Float64[])
+for (name, _) in models, n in sizes
+    rho_pub, ops_pub... = published[(name, n)]
+    r = res[(name, n)]
+    push!(cmp, (name, string(n), "", missing, "rho_1", rho_pub, round(r.rho, digits=3),
+        round(r.rho - rho_pub, digits=3)))
+    for (k, (curve, _)) in enumerate(curves), (i, d) in enumerate(delays), (j, (nm, _)) in enumerate(charts)
+        rep, pub = r.ops[i, j, k], ops_pub[k][i, j]
+        push!(cmp, (name, string(n), curve, d, nm, pub, round(rep, digits=3), round(rep - pub, digits=3)))
+    end
+end
+```
+
+```{julia}
+#| echo: false
+@printf("largest absolute deviation: %.3f\n", maximum(abs, cmp.dev))
+@printf("mean absolute deviation:    %.3f\n", mean(abs, cmp.dev))
+@printf("Monte Carlo standard error: at most %.3f\n", sqrt(0.25 / reps))
+```
+
+The five largest deviations across all 136 entries:
+
+```{julia}
+#| echo: false
+first(sort(cmp, :dev, by=abs, rev=true), 5)
+```
+
+## References
+
+::: {#refs}
+:::
