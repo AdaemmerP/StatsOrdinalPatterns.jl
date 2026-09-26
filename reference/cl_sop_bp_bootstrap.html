@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cl_sop_bp_bootstrap</span>(data<span class="op">::</span><span class="dt">Array{T,3}</span>, lam, L0, cl_init, w, reps;</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                    reps_final, reps_bracket, bracket_step,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                    arl_truncation_factor, chart_choice,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                    arl_truncation_factor, chart_choice, refinement,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                    verbose, cl_tol, seed) <span class="kw">where</span> {T<span class="op">&lt;:</span><span class="dt">Real</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compute the critical limit <code>cl</code> for a BP-EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals <code>L0</code>.</p>
 <p>Relative type frequencies are pre-computed once from <code>data</code> before the search, so all ARL evaluations reuse the same empirical distribution.</p>

@@ -193,16 +193,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_gop_oc</span>(lam, cl, lookup_array_gop, p_reps, gop_dgp, gop_dgp_dist, null_dist,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  chart_choice, d, ced, ad, rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute out-of-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by <a href="@ref"><code>arl_gop_oc</code></a>.</p>
+<p>Compute out-of-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by <a href="../reference/arl_gop_oc.html"><code>arl_gop_oc</code></a>.</p>
 <ul>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the chart.</li>
-<li><code>lookup_array_gop</code>: lookup array from <a href="@ref"><code>compute_lookup_array_gop</code></a>.</li>
+<li><code>lookup_array_gop</code>: lookup array from <a href="../reference/compute_lookup_array_gop.html"><code>compute_lookup_array_gop</code></a>.</li>
 <li><code>p_reps</code>: range of replication indices to process.</li>
 <li><code>gop_dgp</code>: out-of-control DGP.</li>
 <li><code>gop_dgp_dist</code>: marginal distribution of <code>gop_dgp</code>.</li>
 <li><code>null_dist</code>: in-control (null) distribution used to compute the in-control GOP distribution.</li>
-<li><code>chart_choice</code>: <a href="@ref"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
+<li><code>chart_choice</code>: <a href="../reference/D_Chart.html"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
 <li><code>d::Int</code>: delay between observations of a pattern.</li>
 <li><code>ced::Bool</code>: use conditional expected delay initialization.</li>
 <li><code>ad::Int</code>: number of in-control iterations for <code>ced</code>.</li>

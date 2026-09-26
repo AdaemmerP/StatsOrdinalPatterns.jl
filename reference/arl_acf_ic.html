@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>cl::Float64</code>: control limit of the ACF chart.</li>
 <li><code>acf_dgp</code>: in-control DGP (e.g.&nbsp;<code>ContinuousDGPIC</code>).</li>
 <li><code>reps::Int</code>: number of replications.</li>
-<li><code>acf_version::Int</code>: version of the ACF statistic (see <a href="@ref"><code>stat_acf</code></a>); the method without this argument uses version 1.</li>
+<li><code>acf_version::Int</code>: version of the ACF statistic (see <a href="../reference/stat_acf.html"><code>stat_acf</code></a>); the method without this argument uses version 1.</li>
 <li><code>ced::Bool=false</code>: use conditional expected delay initialization.</li>
 <li><code>ad::Int=100</code>: number of in-control iterations for <code>ced</code>.</li>
 <li><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns the tuple <code>(ARL, standard error)</code>.</li>

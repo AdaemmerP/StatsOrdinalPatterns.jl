@@ -336,23 +336,23 @@ window.Quarto = {
 <ul>
 <li><strong>Critical limit</strong>
 <ul>
-<li><code>cl_op(op_dgp, lam, L0, cl_init; chart_choice, m=3, d=1, reps_bracket, reps_final, bracket_step, seed)</code>
+<li><a href="../reference/cl_op.html"><code>cl_op(op_dgp, lam, L0, cl_init; chart_choice, m=3, d=1, reps_bracket, reps_final, bracket_step, seed)</code></a>
 <ul>
 <li>Returns the <code>cl</code> for which the in-control ARL equals <code>L0</code>.</li>
-<li><code>op_dgp</code>: in-control process, <code>ContinuousDGPIC(dist)</code> or <code>DiscreteDGPIC(dist, add_noise)</code>.</li>
+<li><code>op_dgp</code>: in-control process, <a href="../reference/ContinuousDGPIC.html"><code>ContinuousDGPIC(dist)</code></a> or <a href="../reference/DiscreteDGPIC.html"><code>DiscreteDGPIC(dist, add_noise)</code></a>.</li>
 <li><code>cl_init</code>: rough starting value; the search first brackets the root with <code>reps_bracket</code> replications in steps of <code>bracket_step</code>, then refines it with <code>reps_final</code> replications.</li>
 <li><code>seed</code>: fix an integer for reproducible results.</li>
 </ul></li>
 </ul></li>
 <li><strong>Chart performance</strong>
 <ul>
-<li><code>arl_op_ic(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)</code> — in-control ARL, returns <code>(ARL, standard error)</code>.</li>
-<li><code>arl_op_oc(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)</code> — out-of-control ARL for a dependent process: <code>AR1</code>, <code>MA1</code>, <code>MA2</code>, <code>TEAR1</code>, <code>AAR1</code>, <code>QAR1</code> for continuous data, <code>INAR1</code>, <code>DAR1</code>, <code>BAR1</code>, … for counts.</li>
+<li><a href="../reference/arl_op_ic.html"><code>arl_op_ic(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)</code></a> — in-control ARL, returns <code>(ARL, standard error)</code>.</li>
+<li><a href="../reference/arl_op_oc.html"><code>arl_op_oc(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)</code></a> — out-of-control ARL for a dependent process: <a href="../reference/AR1.html"><code>AR1</code></a>, <a href="../reference/MA1.html"><code>MA1</code></a>, <a href="../reference/MA2.html"><code>MA2</code></a>, <a href="../reference/TEAR1.html"><code>TEAR1</code></a>, <a href="../reference/AAR1.html"><code>AAR1</code></a>, <a href="../reference/QAR1.html"><code>QAR1</code></a> for continuous data, <a href="../reference/INAR1.html"><code>INAR1</code></a>, <a href="../reference/DAR1.html"><code>DAR1</code></a>, <a href="../reference/BAR1.html"><code>BAR1</code></a>, … for counts.</li>
 </ul></li>
 <li><strong>Monitoring observed data</strong>
 <ul>
-<li><code>stat_op(data, lam; chart_choice, m=3, d=1)</code> — returns <code>(stats, p_rel)</code>, where <code>stats</code> holds the sequentially computed EWMA chart statistics of the series.</li>
-<li><code>monitor_op(data, lam, cl; chart_choice, m=3, d=1)</code> — applies the alarm rule of the chart to these statistics and returns a <code>ControlChartResult</code> with the statistics, the limit and the first alarm. With Makie loaded, <code>plot</code> draws it.</li>
+<li><a href="../reference/stat_op.html"><code>stat_op(data, lam; chart_choice, m=3, d=1)</code></a> — returns <code>(stats, p_rel)</code>, where <code>stats</code> holds the sequentially computed EWMA chart statistics of the series.</li>
+<li><a href="../reference/monitor_op.html"><code>monitor_op(data, lam, cl; chart_choice, m=3, d=1)</code></a> — applies the alarm rule of the chart to these statistics and returns a <a href="../reference/ControlChartResult.html"><code>ControlChartResult</code></a> with the statistics, the limit and the first alarm. With Makie loaded, <code>plot</code> draws it.</li>
 </ul></li>
 </ul>
 </section>
@@ -378,31 +378,31 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Persistence (<span class="math inline">\(\hat{\tau}\)</span>)</td>
-<td style="text-align: left;"><code>Persistence()</code></td>
+<td style="text-align: left;"><a href="../reference/Persistence.html"><code>Persistence()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\tau} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\tau}\rvert &gt; cl\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UpDownBalance (<span class="math inline">\(\hat{\beta}\)</span>)</td>
-<td style="text-align: left;"><code>UpDownBalance()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownBalance.html"><code>UpDownBalance()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\beta} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\beta}\rvert &gt; cl\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">RotationalAsymmetry (<span class="math inline">\(\hat{\gamma}\)</span>)</td>
-<td style="text-align: left;"><code>RotationalAsymmetry()</code></td>
+<td style="text-align: left;"><a href="../reference/RotationalAsymmetry.html"><code>RotationalAsymmetry()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\gamma} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\gamma}\rvert &gt; cl\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UpDownScaling (<span class="math inline">\(\hat{\delta}\)</span>)</td>
-<td style="text-align: left;"><code>UpDownScaling()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\delta} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lvert\hat{\delta}\rvert &gt; cl\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DistanceToWhiteNoise (<span class="math inline">\(\hat{\Delta}\)</span>)</td>
-<td style="text-align: left;"><code>DistanceToWhiteNoise()</code></td>
+<td style="text-align: left;"><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\Delta} = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{\Delta} &gt; cl\)</span></td>
 </tr>

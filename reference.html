@@ -208,14 +208,9 @@ window.Quarto = {
 <p>Fill the data matrix in-place with one realization of the spatial DGP <code>dgp</code> and return a view of the field without the margin. Methods exist for all spatial DGPs (<code>SAR1</code>, <code>SAR11</code>, <code>SINAR11</code>, <code>SAR22</code>, …</p>
 </blockquote>
 <hr>
-<p><a href="./reference/stat_sacf_bp.html">stat_sacf_bp(</a></p>
+<p><a href="./reference/stat_sacf_bp.html">stat_sacf_bp(data, w) stat_sacf_bp(data, lam, w)</a></p>
 <blockquote class="blockquote">
-<p>data::Union{SubArray,Matrix{&lt;:Real}}, d1<em>vec::Vector{Int}, d2</em>vec::Vector{Int} )</p>
-</blockquote>
-<hr>
-<p><a href="./reference/stat_sacf_bp.html">stat_sacf_bp(lam, data::Array{T,3}, d1_vec::Vector{Int}, d2_vec::Vector{Int}) where {T&lt;:Real}</a></p>
-<blockquote class="blockquote">
-<p>Compute the EWMA-BP-spatial autocorrelation function (EWMA-BP-SACF) for multiple images.</p>
+<p>Compute the Box-Pierce (BP) type statistic of the spatial autocorrelation function (SACF), which aggregates the squared autocorrelations over all lags up to <code>w</code>.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/bootstrap_op.html">bootstrap_op(data, n_boot; chart_choice, m=3, d=1, block_size=1)</a></p>
@@ -318,9 +313,9 @@ window.Quarto = {
 <p>A struct to define a QAR(1) (quadratic AR) process:</p>
 </blockquote>
 <hr>
-<p><a href="./reference/arl_sacf_bp_oc.html">arl_sacf_bp_oc(spatial_dgp::SpatialDGP, lam, cl, w::Int, reps=10_000)</a></p>
+<p><a href="./reference/arl_sacf_bp_oc.html">arl_sacf_bp_oc(sp_dgp, lam, cl, w, reps=10_000; rl_max=typemax(Int))</a></p>
 <blockquote class="blockquote">
-<p>Compute the out-of-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The function returns the ARL for a given control limit <code>cl</code> and a given numb…</p>
+<p>Compute the out-of-control average run length (ARL) of the EWMA chart based on the Box-Pierce type SACF statistic <a href="@ref"><code>stat_sacf_bp</code></a> via simulation. The computation is multithreaded.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/KappaTilde.html">KappaTilde()</a></p>
@@ -360,7 +355,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/bootstrap_sacf_bp.html">bootstrap_sacf_bp( data::Matrix{T}, n_boot::Int, w::Int; block_size::Int=1 ) where {T&lt;:Real}</a></p>
 <blockquote class="blockquote">
-<p>Generate a bootstrap distribution of the BP-SACF statistic for a single spatial image.</p>
+<p>Generate a bootstrap distribution of the BP-SACF statistic for a single spatial image. Returns the vector of the <code>n_boot</code> resampled statistics.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/test_op_bootstrap.html">test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)</a></p>
@@ -370,7 +365,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/bootstrap_sop.html">bootstrap_sop( data::Matrix{&lt;:Real}, n_boot::Int, d1::Int, d2::Int; chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1 )</a></p>
 <blockquote class="blockquote">
-<p>Generate a bootstrap distribution of the SOP statistic for a single spatial image.</p>
+<p>Generate a bootstrap distribution of the SOP statistic for a single spatial image. Returns the vector of the <code>n_boot</code> resampled statistics.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/SQMA11.html">SQMA11(dgp_params, eps_params, M_rows, N_cols, dist, dist_ao, prerun)</a></p>
@@ -380,7 +375,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/compute_p_array_bp.html">compute_p_array_bp(data, w; chart_choice, refinement, add_noise=false)</a></p>
 <blockquote class="blockquote">
-<p>Compute the array of p-hat values for a given 3D array of data for all delay combinations <code>(d1, d2) ∈ {1,…,w} × {1,…,w}</code>. These values are used for bootstrapping to compute critical limits for the BP-…</p>
+<p>Compute the relative SOP type frequencies of every image in an image sequence for all delay combinations <code>(d1, d2) ∈ {1,…,w} × {1,…,w}</code>. These frequencies are the input of the bootstrap functions for …</p>
 </blockquote>
 <hr>
 <p><a href="./reference/sop_frequencies!.html">sop_frequencies!(m, n, d1, d2, lookup_array_sop, data, sop, win, sop_freq)</a></p>
@@ -438,7 +433,7 @@ window.Quarto = {
 <p>Compute the in-control average run length (ARL) of the EWMA chart based on spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/cl_sop_bootstrap.html">cl_sop_bootstrap(data::Array{T,3}, lam, L0, cl_init, d1, d2; reps_final, reps_bracket, bracket_step, arl_truncation_factor, chart_choice, verbose, cl_tol, seed) where {T&lt;:Real}</a></p>
+<p><a href="./reference/cl_sop_bootstrap.html">cl_sop_bootstrap(data::Array{T,3}, lam, L0, cl_init, d1, d2; reps_final, reps_bracket, bracket_step, arl_truncation_factor, chart_choice, refinement, verbose, cl_tol, seed) where {T&lt;:Real}</a></p>
 <blockquote class="blockquote">
 <p>Compute the critical limit <code>cl</code> for an EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals <code>L0</code>.</p>
 </blockquote>
@@ -508,9 +503,9 @@ window.Quarto = {
 <p>Compute the out-of-control average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) via simulation. The computation is multithreaded.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/compute_p_array.html">compute_p_array(data::Array{T,3})</a></p>
+<p><a href="./reference/compute_p_array.html">compute_p_array(data, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(), add_noise=false)</a></p>
 <blockquote class="blockquote">
-<p>Compute the matrix of p-hat values for a given 3D array of data when the delays are integers. These values are used for bootstrapping.</p>
+<p>Compute the relative SOP type frequencies of every image in an image sequence at lag <code>(d1, d2)</code>. These frequencies are the input of the bootstrap functions <a href="@ref"><code>arl_sop_bootstrap</code></a> and [`cl_sop_boo…</p>
 </blockquote>
 <hr>
 <p><a href="./reference/arl_sop_oc.html">arl_sop_oc(spatial_dgp, lam, cl, d1, d2, reps=10_000; chart_choice=TauTilde(), refinement=OrdinaryType(), rl_max=typemax(Int))</a></p>
@@ -530,17 +525,12 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/sacf.html">sacf(X_centered, d1::Int, d2::Int)</a></p>
 <blockquote class="blockquote">
-
+<p>Compute the spatial autocorrelation of a centered data matrix at lag <code>(d1, d2)</code>. Negative lags are allowed. Returns the autocorrelation as a <code>Float64</code>, or <code>1.0</code> if all entries of <code>X_centered</code> are equa…</p>
 </blockquote>
 <hr>
-<p><a href="./reference/stat_sacf.html">stat_sacf(data::Union{SubArray,Matrix{&lt;:Real}}, d1::Int, d2::Int)</a></p>
+<p><a href="./reference/stat_sacf.html">stat_sacf(data, d1, d2) stat_sacf(data, lam, d1, d2)</a></p>
 <blockquote class="blockquote">
-<p>Compute the spatial autocorrelation for a delay combination (d1, d2) for a single picture.</p>
-</blockquote>
-<hr>
-<p><a href="./reference/stat_sacf.html">stat_sacf(lam, data::Array{T,3}, d1::Int, d2::Int) where {T&lt;:Real}</a></p>
-<blockquote class="blockquote">
-<p>Compute the spatial autocorrelation function (SACF) for a delay combination (d1, d2) for multiple images.</p>
+<p>Compute the spatial autocorrelation function (SACF) statistic at lag <code>(d1, d2)</code>.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/test_sacf_bootstrap.html">test_sacf_bootstrap(data, n_boot, d1, d2; alpha, block_size)</a></p>
@@ -548,9 +538,9 @@ window.Quarto = {
 <p>Compute a bootstrap hypothesis test for the SACF at lag (d1, d2) and return a <code>SACFTestResultBoot</code> with the bootstrap critical value, p-value, and reject decision.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/arl_sacf_ic.html">arl_sacf_ic(lam, cl, spatial_dgp::ICSTS, d1::Int, d2::Int, reps=10_000)</a></p>
+<p><a href="./reference/arl_sacf_ic.html">arl_sacf_ic(sp_dgp, lam, cl, d1, d2, reps=10_000; rl_max=typemax(Int))</a></p>
 <blockquote class="blockquote">
-<p>Compute the in-control average run length (ARL), using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination. The function returns the ARL for a given control limit <code>cl</code> and a g…</p>
+<p>Compute the in-control average run length (ARL) of the EWMA chart based on the spatial autocorrelation function (SACF) at lag <code>(d1, d2)</code> via simulation. The computation is multithreaded.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/INAR1.html">INAR1(α, dist, add_noise)</a></p>
@@ -643,9 +633,9 @@ window.Quarto = {
 <p>Compute the (in-control) chart statistic of an ordinal-pattern distribution <code>p_vec</code> for the given chart choice.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/arl_sacf_oc.html">arl_sacf_oc(sp_dgp::SpatialDGP, lam, cl, d1::Int, d2::Int, reps=10_000)</a></p>
+<p><a href="./reference/arl_sacf_oc.html">arl_sacf_oc(sp_dgp, lam, cl, d1, d2, reps=10_000; rl_max=typemax(Int))</a></p>
 <blockquote class="blockquote">
-<p>Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination and an out-of-control process.</p>
+<p>Compute the out-of-control average run length (ARL) of the EWMA chart based on the spatial autocorrelation function (SACF) at lag <code>(d1, d2)</code> via simulation. The computation is multithreaded.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/chart_stat_gop.html">chart_stat_gop(p_p0, chart_choice) chart_stat_gop(p_p0, G1G, ::G_Chart)</a></p>
@@ -705,7 +695,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/test_gop_bootstrap.html">test_gop_bootstrap( data::Vector{Float64}, n_boot::Int, null_dist::DiscreteUnivariateDistribution, lam::Float64; chart_choice, m::Int=3, d::Int=1, block_size::Int=1, reduce=maximum )</a></p>
 <blockquote class="blockquote">
-<p>Generate a bootstrap distribution of the GOP statistic.</p>
+<p>Generate a bootstrap distribution of the GOP statistic. Each resampled series is monitored with the EWMA chart, and its sequence of chart statistics is summarized by <code>reduce</code>. Returns the vector of th…</p>
 </blockquote>
 <hr>
 <p><a href="./reference/stat_op_bp.html">stat_op_bp(data, w; chart_choice, m=3, ljung_box=false)</a></p>
@@ -728,9 +718,9 @@ window.Quarto = {
 <p>Chart choice for spatial ordinal patterns (SOPs): the statistic <span class="math inline">\(\hat{\tau} = \hat{p}_1 - 1/3\)</span>, based on the relative frequency of the first SOP type.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/test_sop_bootstrap.html">test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement, alpha, block_size)</a></p>
+<p><a href="./reference/test_sop_bootstrap.html">test_sop_bootstrap(data, n_boot, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(), alpha=0.05, block_size=1)</a></p>
 <blockquote class="blockquote">
-<p>Compute a bootstrap hypothesis test for spatial ordinal patterns and return an <code>SOPTestResultBoot</code> with the bootstrap critical value, p-value, and reject decision.</p>
+<p>Compute a bootstrap hypothesis test for spatial ordinal patterns and return an <a href="@ref"><code>SOPTestResultBoot</code></a> with the bootstrap critical value, p-value, and reject decision.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/SACFTestResult.html">SACFTestResult</a></p>
@@ -745,7 +735,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/count_uv_op.html">count_uv_op(ts; m::Int=3, d=1)</a></p>
 <blockquote class="blockquote">
-<p>Count the number of ordinal patterns in bins for a single time series <code>ts</code>.</p>
+<p>Count the ordinal patterns of a single time series <code>ts</code>, indexed by their Lehmer code.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/SACFBPTestResult.html">SACFBPTestResult</a></p>
@@ -753,9 +743,9 @@ window.Quarto = {
 <p>Result of the asymptotic Box-Pierce type test based on the spatial autocorrelation function <a href="@ref"><code>test_sacf_bp</code></a>.</p>
 </blockquote>
 <hr>
-<p><a href="./reference/arl_sacf_bp_ic.html">arl_sacf_bp_ic(lam, cl, sp_dgp::ICSP, d1_vec::Vector{Int}, d2_vec::Vector{Int}, reps=10_000)</a></p>
+<p><a href="./reference/arl_sacf_bp_ic.html">arl_sacf_bp_ic(sp_dgp, lam, cl, w, reps=10_000; rl_max=typemax(Int))</a></p>
 <blockquote class="blockquote">
-<p>Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The input arguments are:</p>
+<p>Compute the in-control average run length (ARL) of the EWMA chart based on the Box-Pierce type SACF statistic <a href="@ref"><code>stat_sacf_bp</code></a> via simulation. The computation is multithreaded.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/KappaN.html">KappaN()</a></p>
@@ -798,7 +788,7 @@ window.Quarto = {
 <p>Compute run lengths for a given control limit using bootstrapping instead of a theoretical in-control distribution, for a chunk of replications. This is the single-threaded worker used by [`arl_sop_bo…</p>
 </blockquote>
 <hr>
-<p><a href="./reference/cl_sop_bp_bootstrap.html">cl_sop_bp_bootstrap(data::Array{T,3}, lam, L0, cl_init, w, reps; reps_final, reps_bracket, bracket_step, arl_truncation_factor, chart_choice, verbose, cl_tol, seed) where {T&lt;:Real}</a></p>
+<p><a href="./reference/cl_sop_bp_bootstrap.html">cl_sop_bp_bootstrap(data::Array{T,3}, lam, L0, cl_init, w, reps; reps_final, reps_bracket, bracket_step, arl_truncation_factor, chart_choice, refinement, verbose, cl_tol, seed) where {T&lt;:Real}</a></p>
 <blockquote class="blockquote">
 <p>Compute the critical limit <code>cl</code> for a BP-EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals <code>L0</code>.</p>
 </blockquote>
@@ -890,7 +880,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/bootstrap_sop_bp.html">bootstrap_sop_bp( data::Matrix{&lt;:Real}, n_boot::Int, w::Int; chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1 )</a></p>
 <blockquote class="blockquote">
-<p>Generate a bootstrap distribution of the BP-SOP statistic for a single spatial image.</p>
+<p>Generate a bootstrap distribution of the BP-SOP statistic for a single spatial image. Returns the vector of the <code>n_boot</code> resampled statistics.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/cl_kappa.html">cl_kappa(dgp, lam, L0, cl_init; reps_final, reps_bracket, bracket_step, arl_truncation_factor, chart_choice, verbose, cl_tol, seed)</a></p>
@@ -960,7 +950,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/bootstrap_sacf.html">bootstrap_sacf( data::Matrix{T}, n_boot::Int, d1::Int, d2::Int; block_size::Int=1 ) where {T&lt;:Real}</a></p>
 <blockquote class="blockquote">
-<p>Generate a bootstrap distribution of the SACF statistic for a single spatial image.</p>
+<p>Generate a bootstrap distribution of the SACF statistic for a single spatial image. Returns the vector of the <code>n_boot</code> resampled statistics.</p>
 </blockquote>
 <hr>
 <p><a href="./reference/SOPBPTestResultBoot.html">SOPBPTestResultBoot</a></p>
@@ -1025,7 +1015,7 @@ window.Quarto = {
 <hr>
 <p><a href="./reference/crit_val_sacf.html">crit_val_sacf(M, N; alpha=0.05)</a></p>
 <blockquote class="blockquote">
-<p>Computes the critical value for the SACF of lag 1. The input parameters are:</p>
+<p>Return the asymptotic two sided critical value of the SACF statistic <a href="@ref"><code>stat_sacf</code></a> for an <code>M × N</code> image. The null hypothesis of no spatial dependence is rejected when the absolute value of the s…</p>
 </blockquote>
 <hr>
 <p><a href="./reference/test_sacf_bp_bootstrap.html">test_sacf_bp_bootstrap(data, n_boot, w; alpha, block_size)</a></p>

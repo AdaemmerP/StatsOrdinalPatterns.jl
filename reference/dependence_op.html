@@ -193,6 +193,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dependence_op</span>(tsx, tsy; m<span class="op">::</span><span class="dt">Int</span>=<span class="fl">3</span>, d<span class="op">=</span><span class="fl">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <a href="doi:10.1080/01621459.2016.1164706" class="uri">doi:10.1080/01621459.2016.1164706</a>.</p>
+<p>Returns the tuple <code>(dependence, pattern_seq_tsx, pattern_seq_tsy)</code>, where <code>dependence</code> is the standardized ordinal pattern dependence in <code>[-1, 1]</code> and the other two entries are the sequences of pattern indices of both series.</p>
+<ul>
+<li><code>tsx</code>: first time series.</li>
+<li><code>tsy</code>: second time series, of the same length as <code>tsx</code>.</li>
+<li><code>m::Int=3</code>: length of the ordinal patterns (2, 3 or 4).</li>
+<li><code>d::Int=1</code>: time delay.</li>
+</ul>
 </div>
 </div>
 </div>

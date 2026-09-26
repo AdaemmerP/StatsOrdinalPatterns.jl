@@ -192,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crit_val_sacf_bp</span>(M, N, w; alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute the critical value of the Box-Pierce type test based on the spatial autocorrelation function (SACF); see <a href="@ref"><code>test_sacf_bp</code></a>. Under the null hypothesis, <code>M * N / 2</code> times the BP statistic is asymptotically <code>Chisq(K)</code> distributed with <code>K = 2w(w + 1)</code> degrees of freedom.</p>
+<p>Compute the critical value of the Box-Pierce type test based on the spatial autocorrelation function (SACF); see <a href="../reference/test_sacf_bp.html"><code>test_sacf_bp</code></a>. Under the null hypothesis, <code>M * N / 2</code> times the BP statistic is asymptotically <code>Chisq(K)</code> distributed with <code>K = 2w(w + 1)</code> degrees of freedom.</p>
 <ul>
 <li><code>M</code>, <code>N</code>: dimensions of the data matrix.</li>
 <li><code>w::Int</code>: window size; delays up to <code>w</code> in each direction are used.</li>

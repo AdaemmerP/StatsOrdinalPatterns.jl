@@ -192,7 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count_uv_op</span>(ts; m<span class="op">::</span><span class="dt">Int</span>=<span class="fl">3</span>, d<span class="op">=</span><span class="fl">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Count the number of ordinal patterns in bins for a single time series <code>ts</code>.</p>
+<p>Count the ordinal patterns of a single time series <code>ts</code>, indexed by their Lehmer code.</p>
+<p>Returns the tuple <code>([p_rel], p_count)</code>, where <code>p_count</code> is the vector of the <code>m!</code> pattern counts and <code>p_rel = p_count / n_patterns</code> the vector of relative frequencies, wrapped in a one element vector.</p>
 <ul>
 <li><code>ts::Vector{Float64}</code>: Time series for which the ordinal patterns are counted.</li>
 <li><code>m::Int=3</code>: Length of the ordinal patterns. Default is 3. Minimum is 2, maximum is 4.</li>

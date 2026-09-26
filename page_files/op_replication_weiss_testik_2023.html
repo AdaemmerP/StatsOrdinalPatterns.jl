@@ -332,12 +332,6 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="statistics-of-the-paper-and-their-types-in-the-package">Statistics of the paper and their types in the package</h2>
 <p>The paper monitors six statistics of the EWMA-smoothed pattern distribution <span class="math inline">\(\hat{\mathbf{p}}_t\)</span> (Equation (5) of <span class="citation" data-cites="weiss2023">Weiß and Testik (<a href="#ref-weiss2023" role="doc-biblioref">2023</a>)</span>): the three omnibus measures of Equation (3) and the three directed measures of <span class="citation" data-cites="bandt2019">Bandt (<a href="#ref-bandt2019" role="doc-biblioref">2019</a>)</span> given in Equation (4). Each of them is selected in the package through the <code>chart_choice</code> keyword:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 23%">
-<col style="width: 34%">
-<col style="width: 26%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Paper</th>
@@ -362,25 +356,25 @@ window.Quarto = {
 <tr class="odd">
 <td style="text-align: left;">Eq. (3)</td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{\Delta}^{(d)}\)</span>, distance to white noise</td>
-<td style="text-align: left;"><code>DistanceToWhiteNoise()</code></td>
+<td style="text-align: left;"><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{\Delta} &gt; cl\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Eq. (4)</td>
 <td style="text-align: left;"><span class="math inline">\(\hat{\beta}^{(d)}\)</span>, up-down balance</td>
-<td style="text-align: left;"><code>UpDownBalance()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownBalance.html"><code>UpDownBalance()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\beta}\rvert &gt; cl\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Eq. (4)</td>
 <td style="text-align: left;"><span class="math inline">\(\hat{\tau}^{(d)}\)</span>, persistence</td>
-<td style="text-align: left;"><code>Persistence()</code></td>
+<td style="text-align: left;"><a href="../reference/Persistence.html"><code>Persistence()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\tau}\rvert &gt; cl\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Eq. (4)</td>
 <td style="text-align: left;"><span class="math inline">\(\hat{\delta}^{(d)}\)</span>, up-down scaling</td>
-<td style="text-align: left;"><code>UpDownScaling()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\delta}\rvert &gt; cl\)</span></td>
 </tr>
 </tbody>
@@ -421,7 +415,7 @@ Note
 </section>
 <section id="table-1-in-control-designs" class="level2">
 <h2 class="anchored" data-anchor-id="table-1-in-control-designs">Table 1: in-control designs</h2>
-<p><code>cl_op</code> searches for the critical limit at which the in-control ARL equals <code>L0</code>: it first brackets the root with a coarse Monte Carlo estimate and then refines the bracket with the ITP algorithm. Only a rough starting value is needed — the ones below are deliberately round numbers that differ from the published limits.</p>
+<p><a href="../reference/cl_op.html"><code>cl_op</code></a> searches for the critical limit at which the in-control ARL equals <code>L0</code>: it first brackets the root with a coarse Monte Carlo estimate and then refines the bracket with the ITP algorithm. Only a rough starting value is needed — the ones below are deliberately round numbers that differ from the published limits.</p>
 <div id="6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (λ, chart) =&gt; (starting value, step size of the bracket search)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="fu">Dict</span>(</span>
@@ -443,7 +437,7 @@ Note
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lam <span class="kw">in</span> lams <span class="cf">for</span> (name, chart) <span class="kw">in</span> charts</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The limits are then verified by an independent run of <code>arl_op_ic</code>.</p>
+<p>The limits are then verified by an independent run of <a href="../reference/arl_op_ic.html"><code>arl_op_ic</code></a>.</p>
 <div id="8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arls <span class="op">=</span> <span class="fu">Dict</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    (lam, name) <span class="op">=&gt;</span> <span class="fu">arl_op_ic</span>(ic, lam, cls[(lam, name)], reps; chart_choice<span class="op">=</span>chart, m<span class="op">=</span>m, d<span class="op">=</span>d)</span>
@@ -793,7 +787,7 @@ in-control ARLs: min 362.5, max 377.0 (target 370)</code></pre>
 </section>
 <section id="table-2-out-of-control-performance-under-dgp-1" class="level2">
 <h2 class="anchored" data-anchor-id="table-2-out-of-control-performance-under-dgp-1">Table 2: out-of-control performance under DGP 1</h2>
-<p>DGP 1 of the paper is the Gaussian AR(1) process <span class="math inline">\(X_t = \alpha X_{t-1} + \epsilon_t\)</span> with <span class="math inline">\(\epsilon_t \sim \text{i.i.d. } N(0,1)\)</span> and <span class="math inline">\(\alpha \in \{\pm 0.2, \pm 0.4, \pm 0.6, \pm 0.8\}\)</span>. It is constructed by <code>AR1(α, Normal(0, 1))</code> and started from its stationary distribution.</p>
+<p>DGP 1 of the paper is the Gaussian AR(1) process <span class="math inline">\(X_t = \alpha X_{t-1} + \epsilon_t\)</span> with <span class="math inline">\(\epsilon_t \sim \text{i.i.d. } N(0,1)\)</span> and <span class="math inline">\(\alpha \in \{\pm 0.2, \pm 0.4, \pm 0.6, \pm 0.8\}\)</span>. It is constructed by <a href="../reference/AR1.html"><code>AR1(α, Normal(0, 1))</code></a> and started from its stationary distribution.</p>
 <p>Table 2 reports the four charts that react to this alternative — <span class="math inline">\(H\)</span>, <span class="math inline">\(H_{\text{ex}}\)</span>, <span class="math inline">\(\Delta\)</span> and <span class="math inline">\(\tau\)</span>. The paper omits the <span class="math inline">\(\beta\)</span>- and <span class="math inline">\(\delta\)</span>-charts here because both measure asymmetries that a Gaussian AR(1) process does not create.</p>
 <p>The charts keep the designs computed above, so this section also propagates any error in the critical limits.</p>
 <div id="16" class="cell" data-execution_count="1">

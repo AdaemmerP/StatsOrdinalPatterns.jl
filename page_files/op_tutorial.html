@@ -336,16 +336,16 @@ window.Quarto = {
 <ul>
 <li><strong>Computing the statistic</strong>
 <ul>
-<li><code>stat_op(data; chart_choice, m=3, d=1)</code> — computes the chosen test statistic from the observed pattern frequencies.
+<li><a href="../reference/stat_op.html"><code>stat_op(data; chart_choice, m=3, d=1)</code></a> — computes the chosen test statistic from the observed pattern frequencies.
 <ul>
 <li>Returns <code>[test_statistic, pattern_frequencies]</code>.</li>
 <li><code>chart_choice</code>: one of
 <ul>
-<li><code>Persistence()</code></li>
-<li><code>UpDownBalance()</code></li>
-<li><code>RotationalAsymmetry()</code></li>
-<li><code>UpDownScaling()</code></li>
-<li><code>DistanceToWhiteNoise()</code></li>
+<li><a href="../reference/Persistence.html"><code>Persistence()</code></a></li>
+<li><a href="../reference/UpDownBalance.html"><code>UpDownBalance()</code></a></li>
+<li><a href="../reference/RotationalAsymmetry.html"><code>RotationalAsymmetry()</code></a></li>
+<li><a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a></li>
+<li><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></li>
 <li><code>Shannon(base=exp(1))</code></li>
 <li><code>ShannonExtropy(base=exp(1))</code>.</li>
 </ul></li>
@@ -355,9 +355,9 @@ window.Quarto = {
 </ul></li>
 <li><strong>Asymptotic inference</strong>
 <ul>
-<li><code>test_op(data; chart_choice, m=3, d=1, alpha=0.05)</code>
+<li><a href="../reference/test_op.html"><code>test_op(data; chart_choice, m=3, d=1, alpha=0.05)</code></a>
 <ul>
-<li>Returns an <code>OPTestResult</code> with the test statistic, critical value, p-value, and reject decision.</li>
+<li>Returns an <a href="../reference/OPTestResult.html"><code>OPTestResult</code></a> with the test statistic, critical value, p-value, and reject decision.</li>
 <li>Critical value, p-value, and rejection direction are chosen automatically from <code>chart_choice</code>.</li>
 <li><code>alpha</code>: significance level.</li>
 <li>Relies on asymptotic limiting distributions; currently supports <code>m = 2</code> and <code>m = 3</code> only.</li>
@@ -365,16 +365,16 @@ window.Quarto = {
 </ul></li>
 <li><strong>Bootstrap inference</strong>
 <ul>
-<li><code>bootstrap_op(data, n_boot; chart_choice, m=3, d=1, block_size=1)</code>
+<li><a href="../reference/bootstrap_op.html"><code>bootstrap_op(data, n_boot; chart_choice, m=3, d=1, block_size=1)</code></a>
 <ul>
 <li>Returns a length-<code>n_boot</code> vector of resampled statistics under <span class="math inline">\(H_0\)</span>.</li>
 <li><code>n_boot</code>: number of bootstrap replications.</li>
 <li><code>block_size = 1</code>: standard i.i.d. bootstrap. <code>block_size &gt; 1</code>: block bootstrap that preserves local serial structure.</li>
 <li>Works for any <code>m</code>.</li>
 </ul></li>
-<li><code>test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)</code>
+<li><a href="../reference/test_op_bootstrap.html"><code>test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)</code></a>
 <ul>
-<li>Returns an <code>OPTestResultBoot</code> struct with the observed statistic, bootstrap critical value, bootstrap p-value, and reject decision.</li>
+<li>Returns an <a href="../reference/OPTestResultBoot.html"><code>OPTestResultBoot</code></a> struct with the observed statistic, bootstrap critical value, bootstrap p-value, and reject decision.</li>
 <li>Handles the correct bootstrap direction (two-sided, upper-tail, lower-tail) automatically.</li>
 <li><code>alpha</code>: significance level. <code>block_size</code>: as in <code>bootstrap_op()</code>.</li>
 <li>Works for any <code>m</code> — the only inference option when <code>m &gt; 3</code>.</li>
@@ -468,10 +468,6 @@ window.Quarto = {
 <p><code>Shannon</code> and <code>ShannonExtropy</code> come from <a href="https://github.com/JuliaDynamics/ComplexityMeasures.jl">ComplexityMeasures.jl</a>, where both use base 2 by default. The papers behind this package use the natural logarithm, and all asymptotic results are derived for it. Write <code>Shannon(base=exp(1))</code> to obtain the values reported in the papers. The Unicode form <code>Shannon(base=ℯ)</code>, typed as <code>\euler</code> followed by Tab, is equivalent.</p>
 <p>Any base larger than 1 is allowed. An entropy in base <span class="math inline">\(b\)</span> equals the entropy under the natural logarithm divided by <span class="math inline">\(\ln b\)</span>. The package applies this conversion as follows.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 60%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Quantity</th>
@@ -480,11 +476,11 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Statistic of <code>stat_op</code>, <code>stat_sop</code> and <code>test_op</code></td>
+<td style="text-align: left;">Statistic of <code>stat_op</code>, <a href="../reference/stat_sop.html"><code>stat_sop</code></a> and <code>test_op</code></td>
 <td style="text-align: left;">divided by <span class="math inline">\(\ln b\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Critical value of <code>test_op</code> and <code>crit_val_op</code></td>
+<td style="text-align: left;">Critical value of <code>test_op</code> and <a href="../reference/crit_val_op.html"><code>crit_val_op</code></a></td>
 <td style="text-align: left;">divided by <span class="math inline">\(\ln b\)</span></td>
 </tr>
 <tr class="odd">

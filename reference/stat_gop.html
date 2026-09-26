@@ -526,9 +526,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The first method computes the statistic once for the whole series and returns a scalar. The second method additionally applies EWMA smoothing with parameter <code>lam</code> and returns the vector of sequentially computed chart statistics.</p>
 <ul>
 <li><code>data</code>: discrete-valued time series.</li>
-<li><code>null_dist::DiscreteUnivariateDistribution</code>: in-control (null) distribution, used to compute the in-control GOP distribution via <a href="@ref"><code>fill_p0!</code></a>.</li>
+<li><code>null_dist::DiscreteUnivariateDistribution</code>: in-control (null) distribution, used to compute the in-control GOP distribution via <a href="../reference/fill_p0!.html"><code>fill_p0!</code></a>.</li>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
-<li><code>chart_choice</code>: <a href="@ref"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
+<li><code>chart_choice</code>: <a href="../reference/D_Chart.html"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
 <li><code>m::Int=3</code>: length of the ordinal patterns (currently only <code>3</code> is supported).</li>
 <li><code>d=1</code>: delay between observations of a pattern.</li>
 </ul>

@@ -195,12 +195,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compute the average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping from pre-computed SOP type frequencies. The computation is multithreaded.</p>
 <ul>
-<li><code>p_array::Array{Float64, 3}</code>: 3-dimensional array with the relative SOP type frequencies for each delay combination. The first dimension is the picture, the second the pattern group (s₁, s₂, s₃), and the third the d₁-d₂ combination. This array is used for resampling; it can be computed with <a href="@ref"><code>compute_p_array_bp</code></a>.</li>
+<li><code>p_array::Array{Float64, 3}</code>: 3-dimensional array with the relative SOP type frequencies for each delay combination. The first dimension is the picture, the second the pattern group (s₁, s₂, s₃), and the third the d₁-d₂ combination. This array is used for resampling; it can be computed with <a href="../reference/compute_p_array_bp.html"><code>compute_p_array_bp</code></a>.</li>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the chart.</li>
 <li><code>w::Int</code>: window size of the BP statistic.</li>
 <li><code>reps::Int</code>: number of replications.</li>
-<li><code>chart_choice</code>: one of <a href="@ref"><code>TauHat</code></a><code>()</code>, <a href="@ref"><code>KappaHat</code></a><code>()</code>, <a href="@ref"><code>TauTilde</code></a><code>()</code>, <a href="@ref"><code>KappaTilde</code></a><code>()</code>.</li>
+<li><code>chart_choice</code>: one of <a href="../reference/TauHat.html"><code>TauHat</code></a><code>()</code>, <a href="../reference/KappaHat.html"><code>KappaHat</code></a><code>()</code>, <a href="../reference/TauTilde.html"><code>TauTilde</code></a><code>()</code>, <a href="../reference/KappaTilde.html"><code>KappaTilde</code></a><code>()</code>.</li>
 <li><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns the tuple <code>(ARL, standard error)</code>.</li>
 </ul>
 </div>

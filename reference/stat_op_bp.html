@@ -196,9 +196,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>data</code>: the time series.</li>
 <li><code>w::Int</code>: maximal delay; the individual statistics for delays <code>1:w</code> are aggregated.</li>
-<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>.</li>
+<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>. For <code>Shannon</code> and <code>ShannonExtropy</code>, the logarithm base must be larger than 1. The statistic does not depend on it.</li>
 <li><code>m::Int=3</code>: length of the ordinal patterns.</li>
-<li><code>ljung_box::Bool=false</code>: if <code>true</code>, use Ljung-Box (BL) weights (delay-specific numbers of patterns) instead of the constant Box-Pierce weight. Returns the aggregated test statistic. Critical values are provided by <a href="@ref"><code>crit_val_op_bp</code></a>.</li>
+<li><code>ljung_box::Bool=false</code>: if <code>true</code>, use Ljung-Box (BL) weights (delay-specific numbers of patterns) instead of the constant Box-Pierce weight. Returns the aggregated test statistic. Critical values are provided by <a href="../reference/crit_val_op_bp.html"><code>crit_val_op_bp</code></a>.</li>
 </ul>
 </div>
 </div>

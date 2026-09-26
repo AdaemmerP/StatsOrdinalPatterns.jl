@@ -193,13 +193,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_sop_bp_bootstrap</span>(p_array, lam, cl, reps_range, chart_choice,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping, for a chunk of replications. This is the single-threaded worker used by <a href="@ref"><code>arl_sop_bp_bootstrap</code></a>.</p>
+<p>Compute run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping, for a chunk of replications. This is the single-threaded worker used by <a href="../reference/arl_sop_bp_bootstrap.html"><code>arl_sop_bp_bootstrap</code></a>.</p>
 <ul>
-<li><code>p_array::Array{Float64,3}</code>: 3-dimensional array with the relative SOP type frequencies for each delay combination (see <a href="@ref"><code>arl_sop_bp_bootstrap</code></a>).</li>
+<li><code>p_array::Array{Float64,3}</code>: 3-dimensional array with the relative SOP type frequencies for each delay combination (see <a href="../reference/arl_sop_bp_bootstrap.html"><code>arl_sop_bp_bootstrap</code></a>).</li>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the chart.</li>
 <li><code>reps_range::UnitRange{Int}</code>: range of replication indices to process.</li>
-<li><code>chart_choice</code>: one of <a href="@ref"><code>TauHat</code></a><code>()</code>, <a href="@ref"><code>KappaHat</code></a><code>()</code>, <a href="@ref"><code>TauTilde</code></a><code>()</code>, <a href="@ref"><code>KappaTilde</code></a><code>()</code>.</li>
+<li><code>chart_choice</code>: one of <a href="../reference/TauHat.html"><code>TauHat</code></a><code>()</code>, <a href="../reference/KappaHat.html"><code>KappaHat</code></a><code>()</code>, <a href="../reference/TauTilde.html"><code>TauTilde</code></a><code>()</code>, <a href="../reference/KappaTilde.html"><code>KappaTilde</code></a><code>()</code>.</li>
 <li><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns a vector of run lengths.</li>
 </ul>
 </div>

@@ -320,7 +320,7 @@ window.Quarto = {
 </section>
 <section id="statistics-of-the-paper-and-their-types-in-the-package" class="level2">
 <h2 class="anchored" data-anchor-id="statistics-of-the-paper-and-their-types-in-the-package">Statistics of the paper and their types in the package</h2>
-<p>The four column groups of Table 8 are the <code>refinement</code> argument of <code>test_sop</code>:</p>
+<p>The four column groups of Table 8 are the <code>refinement</code> argument of <a href="../reference/test_sop.html"><code>test_sop</code></a>:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -331,30 +331,24 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Ordinary types</td>
-<td style="text-align: left;"><code>OrdinaryType()</code></td>
+<td style="text-align: left;"><a href="../reference/OrdinaryType.html"><code>OrdinaryType()</code></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Rotation types</td>
-<td style="text-align: left;"><code>RotationType()</code></td>
+<td style="text-align: left;"><a href="../reference/RotationType.html"><code>RotationType()</code></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Direction types</td>
-<td style="text-align: left;"><code>DirectionType()</code></td>
+<td style="text-align: left;"><a href="../reference/DirectionType.html"><code>DirectionType()</code></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Diagonal types</td>
-<td style="text-align: left;"><code>DiagonalType()</code></td>
+<td style="text-align: left;"><a href="../reference/DiagonalType.html"><code>DiagonalType()</code></a></td>
 </tr>
 </tbody>
 </table>
 <p>The columns within a group are its <code>chart_choice</code>:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 30%">
-<col style="width: 20%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Table 8 column</th>
@@ -366,7 +360,7 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\tilde{\tau}\)</span></td>
-<td style="text-align: left;"><code>TauTilde()</code></td>
+<td style="text-align: left;"><a href="../reference/TauTilde.html"><code>TauTilde()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\tilde{\tau}\rvert &gt; c\)</span></td>
 <td style="text-align: left;"><code>tau_tilde</code></td>
 </tr>
@@ -384,17 +378,17 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\widehat{\Delta}\)</span></td>
-<td style="text-align: left;"><code>DistanceToWhiteNoise()</code></td>
+<td style="text-align: left;"><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{\Delta} &gt; c\)</span></td>
 <td style="text-align: left;"><code>Delta</code></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math inline">\(\tilde{\tau}\)</span> appears in the ordinary group only; the refined classifications have asymptotic theory for the entropy type charts. The rescaling of the entropy statistics and the generalized <span class="math inline">\(\chi^2\)</span> critical value are what <code>test_sop</code> applies internally, and <code>crit_val_sop</code> returns the critical value for a given scheme, level and field size.</p>
+<p><span class="math inline">\(\tilde{\tau}\)</span> appears in the ordinary group only; the refined classifications have asymptotic theory for the entropy type charts. The rescaling of the entropy statistics and the generalized <span class="math inline">\(\chi^2\)</span> critical value are what <code>test_sop</code> applies internally, and <a href="../reference/crit_val_sop.html"><code>crit_val_sop</code></a> returns the critical value for a given scheme, level and field size.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>DGP 4 is the <code>SQMA11</code> type of the package: <code>dgp_params</code> are the <span class="math inline">\(\beta_j\)</span>, <code>eps_params</code> are the exponents <span class="math inline">\((a, b, c)\)</span> of the three error terms, written “<span class="math inline">\(1^a\,2^b\,3^c\)</span>” in the paper, and <code>M_rows</code>, <code>N_cols</code> are the dimensions of the field. <code>m</code> and <code>n</code> in the table are the dimensions of the SOP matrix, so the field is <span class="math inline">\((m+1) \times (n+1)\)</span>.</p>
+<p>DGP 4 is the <a href="../reference/SQMA11.html"><code>SQMA11</code></a> type of the package: <code>dgp_params</code> are the <span class="math inline">\(\beta_j\)</span>, <code>eps_params</code> are the exponents <span class="math inline">\((a, b, c)\)</span> of the three error terms, written “<span class="math inline">\(1^a\,2^b\,3^c\)</span>” in the paper, and <code>M_rows</code>, <code>N_cols</code> are the dimensions of the field. <code>m</code> and <code>n</code> in the table are the dimensions of the SOP matrix, so the field is <span class="math inline">\((m+1) \times (n+1)\)</span>.</p>
 <div id="4" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Parameters of Table 8 and one field of DGP 4</summary>
@@ -460,7 +454,7 @@ window.Quarto = {
 </section>
 <section id="running-the-power-study" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-power-study">Running the power study</h2>
-<p><code>crit_val_sop</code> returns the critical value alone, which depends on the field size, the level and the classification scheme, not on the data, so it is computed once per row of the table. <code>test_sop</code> additionally computes the <span class="math inline">\(p\)</span> value, which for the entropy charts means evaluating a generalized <span class="math inline">\(\chi^2\)</span> distribution numerically and which a power study does not use. Each replication then costs one <code>stat_sop</code> pass per classification scheme, and the charts of that scheme are read off the resulting <span class="math inline">\(\hat{\mathbf{p}}\)</span> with <code>chart_stat_sop</code>.</p>
+<p><code>crit_val_sop</code> returns the critical value alone, which depends on the field size, the level and the classification scheme, not on the data, so it is computed once per row of the table. <code>test_sop</code> additionally computes the <span class="math inline">\(p\)</span> value, which for the entropy charts means evaluating a generalized <span class="math inline">\(\chi^2\)</span> distribution numerically and which a power study does not use. Each replication then costs one <a href="../reference/stat_sop.html"><code>stat_sop</code></a> pass per classification scheme, and the charts of that scheme are read off the resulting <span class="math inline">\(\hat{\mathbf{p}}\)</span> with <a href="../reference/chart_stat_sop.html"><code>chart_stat_sop</code></a>.</p>
 <div id="8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Rejection rates of the 13 tests for one field size</summary>

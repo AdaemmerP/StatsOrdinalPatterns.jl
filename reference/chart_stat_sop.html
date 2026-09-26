@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Compute the chart statistic of a spatial ordinal pattern (SOP) distribution <code>p_vec</code> for the given chart choice.</p>
 <ul>
 <li><code>p_vec</code>: vector of (relative) SOP type frequencies.</li>
-<li><code>chart_choice</code>: one of <a href="@ref"><code>TauHat</code></a><code>()</code>, <a href="@ref"><code>KappaHat</code></a><code>()</code>, <a href="@ref"><code>TauTilde</code></a><code>()</code>, <a href="@ref"><code>KappaTilde</code></a><code>()</code>, <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>. Returns the value of the chart statistic.</li>
+<li><code>chart_choice</code>: one of <a href="../reference/TauHat.html"><code>TauHat</code></a><code>()</code>, <a href="../reference/KappaHat.html"><code>KappaHat</code></a><code>()</code>, <a href="../reference/TauTilde.html"><code>TauTilde</code></a><code>()</code>, <a href="../reference/KappaTilde.html"><code>KappaTilde</code></a><code>()</code>, <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>. For <code>Shannon</code> and <code>ShannonExtropy</code>, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use <code>Shannon(base=exp(1))</code> for the natural logarithm used in the papers. Returns the value of the chart statistic.</li>
 </ul>
 </div>
 </div>

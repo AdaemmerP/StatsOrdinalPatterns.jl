@@ -520,16 +520,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arl_sacf_oc</span>(sp_dgp<span class="op">::</span><span class="dt">SpatialDGP</span>, lam, cl, d1<span class="op">::</span><span class="dt">Int</span>, d2<span class="op">::</span><span class="dt">Int</span>, reps<span class="op">=</span><span class="fl">10_000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination and an out-of-control process.</p>
-<p>The input arguments are:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arl_sacf_oc</span>(sp_dgp, lam, cl, d1, d2, reps<span class="op">=</span><span class="fl">10_000</span>; rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Compute the out-of-control average run length (ARL) of the EWMA chart based on the spatial autocorrelation function (SACF) at lag <code>(d1, d2)</code> via simulation. The computation is multithreaded.</p>
 <ul>
-<li><p><code>lam</code>: The smoothing parameter for the exponentially weighted moving average (EWMA) control chart.</p></li>
-<li><p><code>cl</code>: The control limit for the EWMA control chart.</p></li>
-<li><p><code>sp_dgp</code>: The spatial data generating process (DGP) to use for the SACF function. This can be one of the following: <code>SAR1</code>, <code>SAR11</code>, <code>SAR22</code>, <code>SINAR11</code>, <code>SQMA11</code>, <code>SQINMA11</code>, or <code>BSQMA11</code>.</p></li>
-<li><p><code>d1::Int</code>: The first (row) delay for the spatial process.</p></li>
-<li><p><code>d2::Int</code>: The second (column) delay for the spatial process.</p></li>
-<li><p><code>reps</code>: The number of repetitions to compute the ARL.</p></li>
+<li><code>sp_dgp::SpatialDGP</code>: out-of-control spatial data generating process, one of <code>SAR1</code>, <code>SAR11</code>, <code>SAR22</code>, <code>SINAR11</code>, <code>SQMA11</code>, <code>SQINMA11</code> or <code>BSQMA11</code>.</li>
+<li><code>lam</code>: smoothing parameter of the EWMA statistic.</li>
+<li><code>cl</code>: control limit of the chart, typically obtained from <a href="../reference/cl_sacf.html"><code>cl_sacf</code></a>.</li>
+<li><code>d1::Int</code>: row delay.</li>
+<li><code>d2::Int</code>: column delay.</li>
+<li><code>reps=10_000</code>: number of replications.</li>
+<li><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns the tuple <code>(ARL, standard error)</code>.</li>
 </ul>
 </div>
 </div>

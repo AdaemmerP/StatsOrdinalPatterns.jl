@@ -192,10 +192,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crit_val_op_bp</span>(w; chart_choice, m<span class="op">=</span><span class="fl">3</span>, alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return the critical value for the Box-Pierce type ordinal-pattern test statistic computed by <a href="@ref"><code>stat_op_bp</code></a>.</p>
+<p>Return the critical value for the Box-Pierce type ordinal-pattern test statistic computed by <a href="../reference/stat_op_bp.html"><code>stat_op_bp</code></a>.</p>
 <ul>
 <li><code>w::Int</code>: maximal delay used in the test statistic (supported values depend on the chart).</li>
-<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>.</li>
+<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>. The critical value does not depend on the logarithm base of <code>Shannon</code> and <code>ShannonExtropy</code>.</li>
 <li><code>m::Int=3</code>: length of the ordinal patterns (<code>2</code> or <code>3</code>, depending on the chart).</li>
 <li><code>alpha=0.05</code>: significance level. For the Shannon-, extropy- and Δ-charts with <code>m = 3</code>, tabulated values for <code>alpha = 0.05</code> are used.</li>
 </ul>

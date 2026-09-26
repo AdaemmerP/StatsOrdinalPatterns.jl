@@ -526,13 +526,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  chart_choice, m<span class="op">::</span><span class="dt">Int</span>=<span class="fl">3</span>, d<span class="op">::</span><span class="dt">Int</span>=<span class="fl">1</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  block_size<span class="op">::</span><span class="dt">Int</span>=<span class="fl">1</span>, reduce<span class="op">=</span>maximum</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Generate a bootstrap distribution of the GOP statistic.</p>
+<p>Generate a bootstrap distribution of the GOP statistic. Each resampled series is monitored with the EWMA chart, and its sequence of chart statistics is summarized by <code>reduce</code>. Returns the vector of the <code>n_boot</code> resampled summaries.</p>
 <ul>
 <li><code>data</code>: The in-control time series.</li>
 <li><code>n_boot</code>: Number of bootstrap replications.</li>
 <li><code>null_dist</code>: The null (in-control) discrete distribution.</li>
 <li><code>lam</code>: EWMA smoothing parameter.</li>
+<li><code>chart_choice</code>: <a href="../reference/D_Chart.html"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
+<li><code>m::Int=3</code>: length of the ordinal patterns.</li>
+<li><code>d::Int=1</code>: delay between observations of a pattern.</li>
 <li><code>block_size</code>: Set &gt; 1 to use block bootstrap and preserve time-series dependencies.</li>
+<li><code>reduce=maximum</code>: function that maps the vector of EWMA chart statistics of one resampled series to a single number.</li>
 </ul>
 </div>
 </div>

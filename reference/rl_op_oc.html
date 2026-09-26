@@ -193,14 +193,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_op_oc</span>(op_dgp, lam, cl, p_reps, op_dgp_dist, chart_choice, d, m, ced, ad,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute out-of-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by <a href="@ref"><code>arl_op_oc</code></a>.</p>
+<p>Compute out-of-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by <a href="../reference/arl_op_oc.html"><code>arl_op_oc</code></a>.</p>
 <ul>
 <li><code>op_dgp</code>: out-of-control DGP (e.g.&nbsp;<code>AR1</code>, <code>MA1</code>, <code>MA2</code>, <code>TEAR1</code>, <code>QAR1</code>).</li>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the chart.</li>
 <li><code>p_reps</code>: range of replication indices to process.</li>
 <li><code>op_dgp_dist::UnivariateDistribution</code>: distribution of the DGP.</li>
-<li><code>chart_choice</code>: chart choice (see <a href="@ref"><code>chart_stat_op</code></a>).</li>
+<li><code>chart_choice</code>: chart choice (see <a href="../reference/chart_stat_op.html"><code>chart_stat_op</code></a>).</li>
 <li><code>d::Int</code>: delay between observations of a pattern.</li>
 <li><code>m::Int</code>: length of the ordinal patterns.</li>
 <li><code>ced::Bool</code>: use conditional expected delay initialization.</li>

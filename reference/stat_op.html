@@ -193,13 +193,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stat_op</span>(data; chart_choice, m<span class="op">=</span><span class="fl">3</span>, d<span class="op">=</span><span class="fl">1</span>, add_noise<span class="op">=</span><span class="cn">false</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stat_op</span>(data, lam; chart_choice, m<span class="op">=</span><span class="fl">3</span>, d<span class="op">=</span><span class="fl">1</span>, add_noise<span class="op">=</span><span class="cn">false</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute the ordinal-pattern chart statistic for the time series <code>data</code>. The ordinal patterns are indexed via the Lehmer code (see <a href="@ref"><code>perm_to_lehm_idx!</code></a>).</p>
+<p>Compute the ordinal-pattern chart statistic for the time series <code>data</code>. The ordinal patterns are indexed via the Lehmer code (see <a href="../reference/perm_to_lehm_idx!.html"><code>perm_to_lehm_idx!</code></a>).</p>
 <p>The first method computes the statistic once for the whole series and returns the vector <code>[stat, p_rel]</code>, where <code>stat</code> is the chart statistic and <code>p_rel</code> the vector of relative ordinal-pattern frequencies.</p>
 <p>The second method additionally applies EWMA smoothing with parameter <code>lam</code> (Equation (5) in Weiß and Testik (2023)) and returns the tuple <code>(stats_all, p_rel)</code>, where <code>stats_all</code> contains the sequentially computed EWMA chart statistics.</p>
 <ul>
 <li><code>data</code>: time series (vector).</li>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
-<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>.</li>
+<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>. For <code>Shannon</code> and <code>ShannonExtropy</code>, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use <code>Shannon(base=exp(1))</code> for the natural logarithm used in the papers.</li>
 <li><code>m::Int=3</code>: length of the ordinal patterns.</li>
 <li><code>d::Int=1</code>: delay between observations of a pattern.</li>
 <li><code>add_noise::Bool=false</code>: add uniform noise to <code>data</code> to break ties (recommended for discrete-valued series).</li>

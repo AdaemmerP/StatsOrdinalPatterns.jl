@@ -191,8 +191,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compute_p_array</span>(data<span class="op">::</span><span class="dt">Array{T,3}</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute the matrix of p-hat values for a given 3D array of data when the delays are integers. These values are used for bootstrapping.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compute_p_array</span>(data, d1, d2; chart_choice<span class="op">=</span><span class="fu">TauTilde</span>(), refinement<span class="op">=</span><span class="fu">OrdinaryType</span>(),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  add_noise<span class="op">=</span><span class="cn">false</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Compute the relative SOP type frequencies of every image in an image sequence at lag <code>(d1, d2)</code>. These frequencies are the input of the bootstrap functions <a href="../reference/arl_sop_bootstrap.html"><code>arl_sop_bootstrap</code></a> and <a href="../reference/cl_sop_bootstrap.html"><code>cl_sop_bootstrap</code></a>.</p>
+<p>Returns a matrix with one row per image and one column per SOP type (3 for <a href="../reference/OrdinaryType.html"><code>OrdinaryType</code></a>, 6 for a refined classification).</p>
+<ul>
+<li><code>data::Array{T,3}</code>: image sequence (third dimension = time).</li>
+<li><code>d1::Int</code>: row delay.</li>
+<li><code>d2::Int</code>: column delay.</li>
+<li><code>chart_choice=TauTilde()</code>: chart the frequencies are computed for. It determines how the SOP types are grouped; see <a href="../reference/stat_sop.html"><code>stat_sop</code></a> for the available charts.</li>
+<li><code>refinement=OrdinaryType()</code>: <a href="../reference/OrdinaryType.html"><code>OrdinaryType</code></a><code>()</code> or one of <a href="../reference/RotationType.html"><code>RotationType</code></a><code>()</code>, <a href="../reference/DirectionType.html"><code>DirectionType</code></a><code>()</code>, <a href="../reference/DiagonalType.html"><code>DiagonalType</code></a><code>()</code>.</li>
+<li><code>add_noise=false</code>: add uniform noise to the data to break ties.</li>
+</ul>
 </div>
 </div>
 </div>

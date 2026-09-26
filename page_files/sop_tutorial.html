@@ -326,16 +326,16 @@ window.Quarto = {
 <ul>
 <li><strong>Computing the statistic</strong>
 <ul>
-<li><code>stat_sop()</code> — computes the chosen test statistic from the observed pattern frequencies.</li>
+<li><a href="../reference/stat_sop.html"><code>stat_sop()</code></a> — computes the chosen test statistic from the observed pattern frequencies.</li>
 </ul></li>
 <li><strong>Asymptotic inference</strong>
 <ul>
-<li><code>test_sop()</code> — compares the statistic to an analytical critical value. Supports all image sizes.</li>
+<li><a href="../reference/test_sop.html"><code>test_sop()</code></a> — compares the statistic to an analytical critical value. Supports all image sizes.</li>
 </ul></li>
 <li><strong>Bootstrap inference</strong>
 <ul>
-<li><code>bootstrap_sop()</code> — generates the empirical null distribution by 2D resampling.</li>
-<li><code>test_sop_bootstrap()</code> — combines statistic computation and bootstrap inference in one call.</li>
+<li><a href="../reference/bootstrap_sop.html"><code>bootstrap_sop()</code></a> — generates the empirical null distribution by 2D resampling.</li>
+<li><a href="../reference/test_sop_bootstrap.html"><code>test_sop_bootstrap()</code></a> — combines statistic computation and bootstrap inference in one call.</li>
 </ul></li>
 </ul>
 </section>
@@ -346,12 +346,12 @@ window.Quarto = {
 <ul>
 <li>Returns <code>[test_statistic, pattern_frequencies]</code>.</li>
 <li><code>data</code>: the 2D image (<code>Matrix</code>). <code>d1</code>: row delay. <code>d2</code>: column delay.</li>
-<li><code>chart_choice</code>: one of <code>TauTilde()</code>, <code>TauHat()</code>, <code>KappaTilde()</code>, <code>KappaHat()</code>, <code>DistanceToWhiteNoise()</code>, <code>Shannon(base=exp(1))</code>, <code>ShannonExtropy(base=exp(1))</code>.</li>
-<li><code>refinement</code>: <code>OrdinaryType()</code> for classical types, or <code>RotationType()</code>, <code>DirectionType()</code>, <code>DiagonalType()</code>.</li>
+<li><code>chart_choice</code>: one of <a href="../reference/TauTilde.html"><code>TauTilde()</code></a>, <a href="../reference/TauHat.html"><code>TauHat()</code></a>, <a href="../reference/KappaTilde.html"><code>KappaTilde()</code></a>, <a href="../reference/KappaHat.html"><code>KappaHat()</code></a>, <a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a>, <code>Shannon(base=exp(1))</code>, <code>ShannonExtropy(base=exp(1))</code>.</li>
+<li><code>refinement</code>: <a href="../reference/OrdinaryType.html"><code>OrdinaryType()</code></a> for classical types, or <a href="../reference/RotationType.html"><code>RotationType()</code></a>, <a href="../reference/DirectionType.html"><code>DirectionType()</code></a>, <a href="../reference/DiagonalType.html"><code>DiagonalType()</code></a>.</li>
 </ul></li>
 <li><p><strong><code>test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)</code></strong></p>
 <ul>
-<li>Returns an <code>SOPTestResult</code> with the test statistic, critical value, p-value, and reject decision.</li>
+<li>Returns an <a href="../reference/SOPTestResult.html"><code>SOPTestResult</code></a> with the test statistic, critical value, p-value, and reject decision.</li>
 <li>Critical value, p-value, and rejection direction are chosen automatically from <code>chart_choice</code>.</li>
 <li><code>alpha</code>: significance level.</li>
 </ul></li>
@@ -362,7 +362,7 @@ window.Quarto = {
 </ul></li>
 <li><p><strong><code>test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, block_size=1)</code></strong></p>
 <ul>
-<li>Returns an <code>SOPTestResultBoot</code> struct with the bootstrap critical value, p-value, and reject decision.</li>
+<li>Returns an <a href="../reference/SOPTestResultBoot.html"><code>SOPTestResultBoot</code></a> struct with the bootstrap critical value, p-value, and reject decision.</li>
 <li>For Tau/Kappa charts: two-sided bootstrap using the raw statistic.</li>
 <li>For entropy charts: the bootstrap null distribution is built on the same standardised scale used internally by <code>test_sop</code>, so the bootstrap and asymptotic critical values are directly comparable.</li>
 </ul></li>

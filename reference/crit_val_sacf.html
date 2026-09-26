@@ -192,11 +192,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crit_val_sacf</span>(M, N; alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Computes the critical value for the SACF of lag 1. The input parameters are:</p>
+<p>Return the asymptotic two sided critical value of the SACF statistic <a href="../reference/stat_sacf.html"><code>stat_sacf</code></a> for an <code>M × N</code> image. The null hypothesis of no spatial dependence is rejected when the absolute value of the statistic exceeds it.</p>
 <ul>
-<li><code>M::Int64</code>: The number of rows in the data matrix.</li>
-<li><code>N::Int64</code>: The number of columns in the data matrix.</li>
-<li><code>alpha=0.05</code>: The significance level.</li>
+<li><code>M::Int</code>: number of rows of the data matrix.</li>
+<li><code>N::Int</code>: number of columns of the data matrix.</li>
+<li><code>alpha=0.05</code>: significance level.</li>
 </ul>
 <section id="examples" class="level3">
 <h3 class="anchored" data-anchor-id="examples">Examples</h3>

@@ -324,11 +324,6 @@ window.Quarto = {
 <section id="statistics-of-the-paper-and-their-types-in-the-package" class="level2">
 <h2 class="anchored" data-anchor-id="statistics-of-the-paper-and-their-types-in-the-package">Statistics of the paper and their types in the package</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 31%">
-<col style="width: 28%">
-<col style="width: 40%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Table B.20 column</th>
@@ -349,41 +344,41 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\widehat{\Delta}^2_{\text{BL}}\)</span></td>
-<td style="text-align: left;"><code>DistanceToWhiteNoise()</code></td>
+<td style="text-align: left;"><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(n_d\, \widehat{\Delta}^{2\,(d)}\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\widehat{\beta}_{\text{BL}}\)</span></td>
-<td style="text-align: left;"><code>UpDownBalance()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownBalance.html"><code>UpDownBalance()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(n_d\, \big(\hat{\beta}^{(d)}\big)^2\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\widehat{\tau}_{\text{BL}}\)</span></td>
-<td style="text-align: left;"><code>Persistence()</code></td>
+<td style="text-align: left;"><a href="../reference/Persistence.html"><code>Persistence()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(n_d\, \big(\hat{\tau}^{(d)}\big)^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\widehat{\gamma}_{\text{BL}}\)</span></td>
-<td style="text-align: left;"><code>RotationalAsymmetry()</code></td>
+<td style="text-align: left;"><a href="../reference/RotationalAsymmetry.html"><code>RotationalAsymmetry()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(n_d\, \big(\hat{\gamma}^{(d)}\big)^2\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\widehat{\delta}_{\text{BL}}\)</span></td>
-<td style="text-align: left;"><code>UpDownScaling()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(n_d\, \big(\hat{\delta}^{(d)}\big)^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\widehat{\rho}_{\text{BL}}\)</span></td>
-<td style="text-align: left;"><code>stat_acf</code></td>
+<td style="text-align: left;"><a href="../reference/stat_acf.html"><code>stat_acf</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(T(T+2)\, \hat{\rho}(d)^2 / (T - d)\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Here <span class="math inline">\(n_d = T - (m-1)d\)</span>. <code>stat_op_bp(data, w; chart_choice, m, ljung_box=true)</code> sums the summands over <span class="math inline">\(d = 1, \ldots, w\)</span>, and <code>crit_val_op_bp(w; chart_choice, m)</code> returns the critical value. The BL-ACF statistic is compared with the <span class="math inline">\(\chi^2(w)\)</span> quantile.</p>
+<p>Here <span class="math inline">\(n_d = T - (m-1)d\)</span>. <a href="../reference/stat_op_bp.html"><code>stat_op_bp(data, w; chart_choice, m, ljung_box=true)</code></a> sums the summands over <span class="math inline">\(d = 1, \ldots, w\)</span>, and <a href="../reference/crit_val_op_bp.html"><code>crit_val_op_bp(w; chart_choice, m)</code></a> returns the critical value. The BL-ACF statistic is compared with the <span class="math inline">\(\chi^2(w)\)</span> quantile.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>The DGP is <span class="math inline">\(Y_t = X_t + O_t\)</span> with <span class="math inline">\(X_t = 0.5\, X_{t-2} + \epsilon_t\)</span>, <span class="math inline">\(\epsilon_t \sim \text{i.i.d. } N(0,1)\)</span>, and additive outliers <span class="math inline">\(O_t \sim \text{i.i.d. } 10 \cdot \text{Bernoulli}(0.1)\)</span>. As <span class="math inline">\(\alpha_1 = 0\)</span>, the values at odd and at even times are two independent <code>AR1(0.5, Normal(0, 1))</code> processes, which <code>init_dgp_op!</code> fills in place.</p>
+<p>The DGP is <span class="math inline">\(Y_t = X_t + O_t\)</span> with <span class="math inline">\(X_t = 0.5\, X_{t-2} + \epsilon_t\)</span>, <span class="math inline">\(\epsilon_t \sim \text{i.i.d. } N(0,1)\)</span>, and additive outliers <span class="math inline">\(O_t \sim \text{i.i.d. } 10 \cdot \text{Bernoulli}(0.1)\)</span>. As <span class="math inline">\(\alpha_1 = 0\)</span>, the values at odd and at even times are two independent <a href="../reference/AR1.html"><code>AR1(0.5, Normal(0, 1))</code></a> processes, which <code>init_dgp_op!</code> fills in place.</p>
 <div id="4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dgp <span class="op">=</span> <span class="fu">AR1</span>(<span class="fl">0.5</span>, <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dist_ao <span class="op">=</span> <span class="fl">10</span> <span class="op">*</span> <span class="fu">Bernoulli</span>(<span class="fl">0.1</span>)               <span class="co"># additive outliers</span></span>
@@ -435,7 +430,7 @@ window.Quarto = {
 </section>
 <section id="running-the-power-study" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-power-study">Running the power study</h2>
-<p>The BL-OP statistic for <span class="math inline">\(w\)</span> is the one for <span class="math inline">\(w - 1\)</span> plus the summand of delay <span class="math inline">\(w\)</span>, and all summands of delay <span class="math inline">\(d\)</span> are functions of the pattern frequencies returned by <code>stat_op</code>. One pass over <span class="math inline">\(d = 1, \ldots, 5\)</span> therefore yields all charts and all <span class="math inline">\(w\)</span>.</p>
+<p>The BL-OP statistic for <span class="math inline">\(w\)</span> is the one for <span class="math inline">\(w - 1\)</span> plus the summand of delay <span class="math inline">\(w\)</span>, and all summands of delay <span class="math inline">\(d\)</span> are functions of the pattern frequencies returned by <a href="../reference/stat_op.html"><code>stat_op</code></a>. One pass over <span class="math inline">\(d = 1, \ldots, 5\)</span> therefore yields all charts and all <span class="math inline">\(w\)</span>.</p>
 <div id="8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summand of delay d, as in the table above, without the weight n_d</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bl_term</span>(<span class="op">::</span><span class="dt">Shannon</span>, s) <span class="op">=</span> (<span class="fu">log</span>(<span class="fl">6</span>) <span class="op">-</span> s) <span class="op">/</span> <span class="fl">3</span></span>

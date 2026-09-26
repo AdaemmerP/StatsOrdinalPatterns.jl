@@ -521,13 +521,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitor_op</span>(data, lam, cl; chart_choice, m<span class="op">=</span><span class="fl">3</span>, d<span class="op">=</span><span class="fl">1</span>, add_noise<span class="op">=</span><span class="cn">false</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Monitor the time series <code>data</code> with the EWMA control chart based on ordinal patterns and return a <a href="@ref"><code>ControlChartResult</code></a> with the chart statistics, the control limit and the first alarm.</p>
+<p>Monitor the time series <code>data</code> with the EWMA control chart based on ordinal patterns and return a <a href="../reference/ControlChartResult.html"><code>ControlChartResult</code></a> with the chart statistics, the control limit and the first alarm.</p>
 <p>The statistics are those of <code>stat_op(data, lam; ...)</code>, and the alarm rule is the one of the chart: the chart signals when the statistic falls below <code>cl</code> for <code>Shannon()</code> and <code>ShannonExtropy()</code>, exceeds <code>cl</code> for <code>DistanceToWhiteNoise()</code>, and exceeds <code>cl</code> in absolute value for the four statistics of Bandt (2019).</p>
 <ul>
 <li><code>data</code>: the time series.</li>
 <li><code>lam::Float64</code>: EWMA smoothing parameter.</li>
-<li><code>cl::Float64</code>: control limit, typically obtained from <a href="@ref"><code>cl_op</code></a>.</li>
-<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>.</li>
+<li><code>cl::Float64</code>: control limit, typically obtained from <a href="../reference/cl_op.html"><code>cl_op</code></a>.</li>
+<li><code>chart_choice</code>: one of <code>Shannon()</code>, <code>ShannonExtropy()</code>, <code>DistanceToWhiteNoise()</code>, <code>UpDownBalance()</code>, <code>Persistence()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>. For <code>Shannon</code> and <code>ShannonExtropy</code>, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use <code>Shannon(base=exp(1))</code> for the natural logarithm used in the papers. The control limit <code>cl</code> must be given in the same base.</li>
 <li><code>m::Int=3</code>: length of the ordinal patterns.</li>
 <li><code>d::Int=1</code>: delay between observations of a pattern.</li>
 <li><code>add_noise::Bool=false</code>: add uniform noise to <code>data</code> to break ties.</li>

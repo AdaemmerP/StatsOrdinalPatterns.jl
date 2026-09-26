@@ -522,10 +522,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chart_stat_gop</span>(p_p0, chart_choice)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chart_stat_gop</span>(p_p0, G1G, <span class="op">::</span><span class="dt">G_Chart</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute the chart statistic for generalized ordinal patterns (GOPs) from the vector of deviations <code>p_p0 = p - p0</code>, where <code>p</code> holds the estimated GOP frequencies and <code>p0</code> the in-control GOP distribution (see <a href="@ref"><code>fill_p0!</code></a>).</p>
+<p>Compute the chart statistic for generalized ordinal patterns (GOPs) from the vector of deviations <code>p_p0 = p - p0</code>, where <code>p</code> holds the estimated GOP frequencies and <code>p0</code> the in-control GOP distribution (see <a href="../reference/fill_p0!.html"><code>fill_p0!</code></a>).</p>
 <ul>
 <li><code>p_p0</code>: vector of length 13 with the deviations of the estimated GOP frequencies from the in-control distribution.</li>
-<li><code>chart_choice</code>: <a href="@ref"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
+<li><code>chart_choice</code>: <a href="../reference/D_Chart.html"><code>D_Chart</code></a><code>()</code> or <code>Persistence()</code>.</li>
 <li><code>G1G</code>: weighting matrix <code>G'G</code> used by the G-chart method. Returns the value of the chart statistic.</li>
 </ul>
 </div>

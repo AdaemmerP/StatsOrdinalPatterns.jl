@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_acf_oc</span>(lam, cl, p_reps, acf_dgp, acf_dgp_dist, dist_null, acf_version,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute out-of-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by <a href="@ref"><code>arl_acf_oc</code></a>.</p>
+<p>Compute out-of-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by <a href="../reference/arl_acf_oc.html"><code>arl_acf_oc</code></a>.</p>
 <ul>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the ACF chart.</li>
@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>acf_dgp</code>: out-of-control DGP (e.g.&nbsp;<code>AR1</code>, <code>TEAR1</code>).</li>
 <li><code>acf_dgp_dist</code>: innovation distribution of <code>acf_dgp</code>.</li>
 <li><code>dist_null</code>: in-control (null) distribution used to center and scale the statistic.</li>
-<li><code>acf_version::Int</code>: version of the ACF statistic (see <a href="@ref"><code>stat_acf</code></a>).</li>
+<li><code>acf_version::Int</code>: version of the ACF statistic (see <a href="../reference/stat_acf.html"><code>stat_acf</code></a>).</li>
 <li><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns a vector of run lengths.</li>
 </ul>
 </div>

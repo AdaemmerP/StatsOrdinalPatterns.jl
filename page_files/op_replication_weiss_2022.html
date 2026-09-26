@@ -324,14 +324,8 @@ window.Quarto = {
 </section>
 <section id="statistics-of-the-paper-and-their-types-in-the-package" class="level2">
 <h2 class="anchored" data-anchor-id="statistics-of-the-paper-and-their-types-in-the-package">Statistics of the paper and their types in the package</h2>
-<p>Each column of Table IV corresponds to one <code>chart_choice</code> of <code>test_op</code>, which returns the statistic, the asymptotic critical value, the <span class="math inline">\(p\)</span> value and the reject decision.</p>
+<p>Each column of Table IV corresponds to one <code>chart_choice</code> of <a href="../reference/test_op.html"><code>test_op</code></a>, which returns the statistic, the asymptotic critical value, the <span class="math inline">\(p\)</span> value and the reject decision.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 22%">
-<col style="width: 27%">
-<col style="width: 26%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Table IV column</th>
@@ -355,43 +349,43 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\Delta^2(\hat{\mathbf{p}}^{(d)})\)</span></td>
-<td style="text-align: left;"><code>DistanceToWhiteNoise()</code></td>
+<td style="text-align: left;"><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{\Delta} &gt; c\)</span></td>
 <td style="text-align: left;">generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\hat{\beta}^{(d)}\)</span></td>
-<td style="text-align: left;"><code>UpDownBalance()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownBalance.html"><code>UpDownBalance()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\beta}\rvert &gt; c\)</span></td>
 <td style="text-align: left;">normal, <span class="math inline">\(\sigma^2 = \tfrac{1}{3n}\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{\tau}^{(d)}\)</span></td>
-<td style="text-align: left;"><code>Persistence()</code></td>
+<td style="text-align: left;"><a href="../reference/Persistence.html"><code>Persistence()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\tau}\rvert &gt; c\)</span></td>
 <td style="text-align: left;">normal, <span class="math inline">\(\sigma^2 = \tfrac{8}{45n}\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\hat{\gamma}^{(d)}\)</span></td>
-<td style="text-align: left;"><code>RotationalAsymmetry()</code></td>
+<td style="text-align: left;"><a href="../reference/RotationalAsymmetry.html"><code>RotationalAsymmetry()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\gamma}\rvert &gt; c\)</span></td>
 <td style="text-align: left;">normal, <span class="math inline">\(\sigma^2 = \tfrac{2}{5n}\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{\delta}^{(d)}\)</span></td>
-<td style="text-align: left;"><code>UpDownScaling()</code></td>
+<td style="text-align: left;"><a href="../reference/UpDownScaling.html"><code>UpDownScaling()</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\delta}\rvert &gt; c\)</span></td>
 <td style="text-align: left;">normal, <span class="math inline">\(\sigma^2 = \tfrac{2}{3n}\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ACF at lag <span class="math inline">\(d\)</span></td>
-<td style="text-align: left;"><code>test_acf</code></td>
+<td style="text-align: left;"><a href="../reference/test_acf.html"><code>test_acf</code></a></td>
 <td style="text-align: left;"><span class="math inline">\(\lvert\hat{\rho}(d)\rvert &gt; c\)</span></td>
 <td style="text-align: left;">normal, <span class="math inline">\(\sigma^2 = \tfrac{1}{T}\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Here <span class="math inline">\(n = T - (m-1)d\)</span> is the number of patterns in a series of length <span class="math inline">\(T\)</span>. The critical value <span class="math inline">\(c\)</span> of each row is available on its own through <code>crit_val_op(chart_choice, m, n)</code> and <code>crit_val_acf(T)</code>. Two conventions matter for the match:</p>
+<p>Here <span class="math inline">\(n = T - (m-1)d\)</span> is the number of patterns in a series of length <span class="math inline">\(T\)</span>. The critical value <span class="math inline">\(c\)</span> of each row is available on its own through <a href="../reference/crit_val_op.html"><code>crit_val_op(chart_choice, m, n)</code></a> and <a href="../reference/crit_val_acf.html"><code>crit_val_acf(T)</code></a>. Two conventions matter for the match:</p>
 <ul>
 <li>The package indexes patterns by their Lehmer code (see <a href="../reference/perm_to_lehm_idx.html"><code>perm_to_lehm_idx</code></a>). For <span class="math inline">\(m = 3\)</span> this is the lexicographic numbering <span class="math inline">\(\hat p_1, \ldots, \hat p_6\)</span> of the paper, so <span class="math inline">\(\hat\beta\)</span>, <span class="math inline">\(\hat\tau\)</span>, <span class="math inline">\(\hat\gamma\)</span> and <span class="math inline">\(\hat\delta\)</span> pick the same components.</li>
 <li><code>UpDownBalance()</code> and <code>UpDownScaling()</code> return <span class="math inline">\(-\hat\beta\)</span> and <span class="math inline">\(-\hat\delta\)</span>. All four Bandt statistics are tested two sided, so the rejection rates are unaffected.</li>

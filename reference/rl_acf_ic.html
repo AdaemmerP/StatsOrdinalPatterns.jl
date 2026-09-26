@@ -193,14 +193,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_acf_ic</span>(lam, cl, p_reps, acf_dgp, acf_dgp_dist, acf_version; ced<span class="op">=</span><span class="cn">false</span>, ad<span class="op">=</span><span class="fl">100</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute in-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by <a href="@ref"><code>arl_acf_ic</code></a>.</p>
+<p>Compute in-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by <a href="../reference/arl_acf_ic.html"><code>arl_acf_ic</code></a>.</p>
 <ul>
 <li><code>lam::Float64</code>: smoothing parameter of the EWMA statistic.</li>
 <li><code>cl::Float64</code>: control limit of the ACF chart.</li>
 <li><code>p_reps</code>: range of replication indices to process.</li>
 <li><code>acf_dgp</code>: in-control DGP.</li>
 <li><code>acf_dgp_dist</code>: innovation distribution of <code>acf_dgp</code>.</li>
-<li><code>acf_version::Int</code>: version of the ACF statistic (see <a href="@ref"><code>stat_acf</code></a>).</li>
+<li><code>acf_version::Int</code>: version of the ACF statistic (see <a href="../reference/stat_acf.html"><code>stat_acf</code></a>).</li>
 <li><code>ced::Bool=false</code>: use conditional expected delay initialization.</li>
 <li><code>ad::Int=100</code>: number of in-control iterations for <code>ced</code>.</li>
 <li><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns a vector of run lengths.</li>

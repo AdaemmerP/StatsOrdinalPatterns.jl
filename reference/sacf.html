@@ -192,10 +192,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sacf</span>(X_centered, d1<span class="op">::</span><span class="dt">Int</span>, d2<span class="op">::</span><span class="dt">Int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Compute the spatial autocorrelation of a centered data matrix at lag <code>(d1, d2)</code>. Negative lags are allowed. Returns the autocorrelation as a <code>Float64</code>, or <code>1.0</code> if all entries of <code>X_centered</code> are equal.</p>
 <ul>
-<li><code>X_centered</code>: The centered (de-meaned) data matrix.</li>
-<li><code>d1::Int</code>: The first (row) delay for the spatial process.</li>
-<li><code>d2::Int</code>: The second (column) delay for the spatial process.</li>
+<li><code>X_centered</code>: the centered (de-meaned) data matrix.</li>
+<li><code>d1::Int</code>: row lag.</li>
+<li><code>d2::Int</code>: column lag. Use <a href="../reference/stat_sacf.html"><code>stat_sacf</code></a> to compute the statistic directly from uncentered data.</li>
 </ul>
 </div>
 </div>

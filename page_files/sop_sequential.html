@@ -330,7 +330,7 @@ window.Quarto = {
 <ul>
 <li><strong>Critical limit</strong>
 <ul>
-<li><code>cl_sop(sop_dgp, lam, L0, cl_init, d1, d2; chart_choice, refinement=OrdinaryType(), reps_bracket, reps_final, bracket_step, seed)</code>
+<li><a href="../reference/cl_sop.html"><code>cl_sop(sop_dgp, lam, L0, cl_init, d1, d2; chart_choice, refinement=OrdinaryType(), reps_bracket, reps_final, bracket_step, seed)</code></a>
 <ul>
 <li>Returns the <code>cl</code> for which the in-control ARL equals <code>L0</code>.</li>
 <li><code>sop_dgp::ICSTS(M_rows, N_cols, dist)</code>: in-control spatial process (spatial white noise of the given image size).</li>
@@ -340,13 +340,13 @@ window.Quarto = {
 </ul></li>
 <li><strong>Chart performance</strong>
 <ul>
-<li><code>arl_sop_ic(sop_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())</code> — in-control ARL, returns <code>(ARL, standard error)</code>.</li>
-<li><code>arl_sop_oc(spatial_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())</code> — out-of-control ARL for a spatially dependent process (<code>SAR11</code>, <code>SAR1</code>, <code>SQMA11</code>, <code>SINAR11</code>, <code>SQINMA11</code>, <code>BSQMA11</code>).</li>
+<li><a href="../reference/arl_sop_ic.html"><code>arl_sop_ic(sop_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())</code></a> — in-control ARL, returns <code>(ARL, standard error)</code>.</li>
+<li><a href="../reference/arl_sop_oc.html"><code>arl_sop_oc(spatial_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())</code></a> — out-of-control ARL for a spatially dependent process (<a href="../reference/SAR11.html"><code>SAR11</code></a>, <a href="../reference/SAR1.html"><code>SAR1</code></a>, <a href="../reference/SQMA11.html"><code>SQMA11</code></a>, <a href="../reference/SINAR11.html"><code>SINAR11</code></a>, <a href="../reference/SQINMA11.html"><code>SQINMA11</code></a>, <a href="../reference/BSQMA11.html"><code>BSQMA11</code></a>).</li>
 </ul></li>
 <li><strong>Monitoring observed data</strong>
 <ul>
-<li><code>stat_sop(data, lam, d1, d2; chart_choice, refinement=OrdinaryType())</code> — for a 3D array (rows × columns × time), returns the sequentially computed EWMA chart statistics.</li>
-<li><code>monitor_sop(data, lam, cl, d1, d2; chart_choice, refinement=OrdinaryType())</code> — applies the alarm rule to these statistics and returns a <code>ControlChartResult</code> with the statistics, the limit and the first alarm. With Makie loaded, <code>plot</code> draws it.</li>
+<li><a href="../reference/stat_sop.html"><code>stat_sop(data, lam, d1, d2; chart_choice, refinement=OrdinaryType())</code></a> — for a 3D array (rows × columns × time), returns the sequentially computed EWMA chart statistics.</li>
+<li><a href="../reference/monitor_sop.html"><code>monitor_sop(data, lam, cl, d1, d2; chart_choice, refinement=OrdinaryType())</code></a> — applies the alarm rule to these statistics and returns a <a href="../reference/ControlChartResult.html"><code>ControlChartResult</code></a> with the statistics, the limit and the first alarm. With Makie loaded, <code>plot</code> draws it.</li>
 </ul></li>
 </ul>
 </section>
@@ -372,32 +372,32 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\hat{\tau}\)</span></td>
-<td style="text-align: left;"><code>TauHat()</code></td>
+<td style="text-align: left;"><a href="../reference/TauHat.html"><code>TauHat()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{p}_1 - 1/3\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\hat{\kappa}\)</span></td>
-<td style="text-align: left;"><code>KappaHat()</code></td>
+<td style="text-align: left;"><a href="../reference/KappaHat.html"><code>KappaHat()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{p}_2 - \hat{p}_3\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\tilde{\tau}\)</span></td>
-<td style="text-align: left;"><code>TauTilde()</code></td>
+<td style="text-align: left;"><a href="../reference/TauTilde.html"><code>TauTilde()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\tilde{p}_3 - 1/3\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\tilde{\kappa}\)</span></td>
-<td style="text-align: left;"><code>KappaTilde()</code></td>
+<td style="text-align: left;"><a href="../reference/KappaTilde.html"><code>KappaTilde()</code></a></td>
 <td style="text-align: center;"><span class="math inline">\(\tilde{p}_1 - \tilde{p}_2\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Setting <code>refinement</code> to <code>RotationType()</code>, <code>DirectionType()</code>, or <code>DiagonalType()</code> replaces the three classical SOP types by the corresponding six refined types. The <code>refinement</code> argument must be identical in <code>cl_sop</code>, <code>arl_sop_ic</code>, and <code>arl_sop_oc</code> — otherwise the critical limit does not belong to the monitored statistic.</p>
+<p>Setting <code>refinement</code> to <a href="../reference/RotationType.html"><code>RotationType()</code></a>, <a href="../reference/DirectionType.html"><code>DirectionType()</code></a>, or <a href="../reference/DiagonalType.html"><code>DiagonalType()</code></a> replaces the three classical SOP types by the corresponding six refined types. The <code>refinement</code> argument must be identical in <code>cl_sop</code>, <code>arl_sop_ic</code>, and <code>arl_sop_oc</code> — otherwise the critical limit does not belong to the monitored statistic.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>

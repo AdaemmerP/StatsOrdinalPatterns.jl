@@ -193,14 +193,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rl_sop_bootstrap</span>(p_mat, lam, cl, reps_range, chart_choice, refinement<span class="op">=</span><span class="fu">OrdinaryType</span>(),</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rl_max<span class="op">=</span><span class="fu">typemax</span>(<span class="dt">Int</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute run lengths for a given control limit using bootstrapping instead of a theoretical in-control distribution, for a chunk of replications. This is the single-threaded worker used by <a href="@ref"><code>arl_sop_bootstrap</code></a>.</p>
+<p>Compute run lengths for a given control limit using bootstrapping instead of a theoretical in-control distribution, for a chunk of replications. This is the single-threaded worker used by <a href="../reference/arl_sop_bootstrap.html"><code>arl_sop_bootstrap</code></a>.</p>
 <ul>
 <li><p><code>p_mat::Array{Float64,2}</code>: A matrix with the values of the relative frequencies of each d1-d2 (delay) combination. This matrix will be used for re-sampling.</p></li>
 <li><p><code>lam::Float64</code>: A scalar value for lambda for the EWMA chart.</p></li>
 <li><p><code>cl::Float64</code>: A scalar value for the control limit.</p></li>
 <li><p><code>reps_range::UnitRange{Int}</code>: A range of integers for the number of repetitions. This has to be a range to be compatible with <code>arl_sop_bootstrap()</code> which uses threading.</p></li>
-<li><p><code>chart_choice</code>: one of <a href="@ref"><code>TauHat</code></a><code>()</code>, <a href="@ref"><code>KappaHat</code></a><code>()</code>, <a href="@ref"><code>TauTilde</code></a><code>()</code>, <a href="@ref"><code>KappaTilde</code></a><code>()</code>.</p></li>
-<li><p><code>refinement</code>: <a href="@ref"><code>OrdinaryType</code></a><code>()</code> for the classical SOP classification, or one of <a href="@ref"><code>RotationType</code></a><code>()</code>, <a href="@ref"><code>DirectionType</code></a><code>()</code>, <a href="@ref"><code>DiagonalType</code></a><code>()</code>.</p></li>
+<li><p><code>chart_choice</code>: one of <a href="../reference/TauHat.html"><code>TauHat</code></a><code>()</code>, <a href="../reference/KappaHat.html"><code>KappaHat</code></a><code>()</code>, <a href="../reference/TauTilde.html"><code>TauTilde</code></a><code>()</code>, <a href="../reference/KappaTilde.html"><code>KappaTilde</code></a><code>()</code>.</p></li>
+<li><p><code>refinement</code>: <a href="../reference/OrdinaryType.html"><code>OrdinaryType</code></a><code>()</code> for the classical SOP classification, or one of <a href="../reference/RotationType.html"><code>RotationType</code></a><code>()</code>, <a href="../reference/DirectionType.html"><code>DirectionType</code></a><code>()</code>, <a href="../reference/DiagonalType.html"><code>DiagonalType</code></a><code>()</code>.</p></li>
 <li><p><code>rl_max::Int=typemax(Int)</code>: maximal run length after which a replication is stopped. Returns a vector of run lengths.</p></li>
 </ul>
 </div>

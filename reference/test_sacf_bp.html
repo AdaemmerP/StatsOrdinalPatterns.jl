@@ -192,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sacf_bp</span>(data, w; alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Perform the asymptotic Box-Pierce type test for spatial dependence based on the spatial autocorrelation function (SACF), aggregating the squared SACF values over all delays up to <code>w</code>, and return a <a href="@ref"><code>SACFBPTestResult</code></a> with the test statistic, the asymptotic critical value, the p-value, and the reject decision.</p>
+<p>Perform the asymptotic Box-Pierce type test for spatial dependence based on the spatial autocorrelation function (SACF), aggregating the squared SACF values over all delays up to <code>w</code>, and return a <a href="../reference/SACFBPTestResult.html"><code>SACFBPTestResult</code></a> with the test statistic, the asymptotic critical value, the p-value, and the reject decision.</p>
 <ul>
 <li><code>data::Matrix{&lt;:Real}</code>: data matrix (spatial field).</li>
 <li><code>w::Int</code>: window size; delays up to <code>w</code> in each direction are used.</li>

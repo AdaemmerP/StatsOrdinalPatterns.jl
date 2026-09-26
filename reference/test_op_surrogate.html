@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>data</code>: the time series.</li>
 <li><code>method</code>: a surrogate method from TimeseriesSurrogates.jl, e.g.&nbsp;<code>RandomFourier()</code>, <code>AAFT()</code>, <code>IAAFT()</code>, <code>RandomShuffle()</code>.</li>
 <li><code>n_surrogates</code>: number of surrogate replications.</li>
-<li><code>chart_choice</code>: one of <code>Persistence()</code>, <code>UpDownBalance()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>, <code>DistanceToWhiteNoise()</code>, <code>Shannon()</code>, <code>ShannonExtropy()</code>.</li>
+<li><code>chart_choice</code>: one of <code>Persistence()</code>, <code>UpDownBalance()</code>, <code>RotationalAsymmetry()</code>, <code>UpDownScaling()</code>, <code>DistanceToWhiteNoise()</code>, <code>Shannon()</code>, <code>ShannonExtropy()</code>. For <code>Shannon</code> and <code>ShannonExtropy</code>, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use <code>Shannon(base=exp(1))</code> for the natural logarithm used in the papers. Statistic and critical value are both in that base, so the test decision and the p-value do not depend on it.</li>
 <li><code>m=3</code>: length of the ordinal patterns.</li>
 <li><code>d=1</code>: delay between observations of a pattern.</li>
 <li><code>alpha</code>: significance level (default <code>0.05</code>).</li>
