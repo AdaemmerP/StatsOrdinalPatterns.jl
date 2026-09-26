@@ -372,13 +372,13 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\widehat{H}\)</span></td>
-<td style="text-align: left;"><code>Shannon()</code></td>
+<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
 <td style="text-align: left;">rescaled <span class="math inline">\(\widehat{H} &gt; c\)</span></td>
 <td style="text-align: left;"><code>H</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\widehat{H}_{ex}\)</span></td>
-<td style="text-align: left;"><code>ShannonExtropy()</code></td>
+<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
 <td style="text-align: left;">rescaled <span class="math inline">\(\widehat{H}_{ex} &gt; c\)</span></td>
 <td style="text-align: left;"><code>H_ex</code></td>
 </tr>
@@ -410,7 +410,7 @@ window.Quarto = {
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"DGP4-4"</span>, <span class="st">"1² 2¹ 3¹"</span>, (<span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>)),</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>entropies <span class="op">=</span> [(<span class="st">"H"</span>, <span class="fu">Shannon</span>()), (<span class="st">"H_ex"</span>, <span class="fu">ShannonExtropy</span>()), (<span class="st">"Delta"</span>, <span class="fu">DistanceToWhiteNoise</span>())]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>entropies <span class="op">=</span> [(<span class="st">"H"</span>, <span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>))), (<span class="st">"H_ex"</span>, <span class="fu">ShannonExtropy</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>))), (<span class="st">"Delta"</span>, <span class="fu">DistanceToWhiteNoise</span>())]</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>schemes <span class="op">=</span> [</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"ord"</span>, <span class="fu">OrdinaryType</span>(), <span class="fu">vcat</span>([(<span class="st">"tau_tilde"</span>, <span class="fu">TauTilde</span>())], entropies)),</span>
@@ -442,12 +442,12 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">1</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dgp <span class="op">=</span> <span class="fu">sqma11</span>((<span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>), <span class="fl">10</span>, <span class="fl">10</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="fu">collect</span>(<span class="fu">draw_field!</span>(dgp, <span class="fu">buffers</span>(dgp)<span class="op">...</span>))   <span class="co"># copy out of the buffer</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sop</span>(Y, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">ShannonExtropy</span>(), refinement<span class="op">=</span><span class="fu">DiagonalType</span>(), alpha<span class="op">=</span>level)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sop</span>(Y, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">ShannonExtropy</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), refinement<span class="op">=</span><span class="fu">DiagonalType</span>(), alpha<span class="op">=</span>level)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
 <pre>SOPTestResult
-  Chart:            <span class="ansi-yellow-fg ansi-bold">ShannonExtropy</span><span class="ansi-yellow-fg ansi-bold">(</span>base = 2<span class="ansi-yellow-fg ansi-bold">)</span>
+  Chart:            <span class="ansi-yellow-fg ansi-bold">ShannonExtropy</span><span class="ansi-yellow-fg ansi-bold">(</span>base = 2.718281828459045<span class="ansi-yellow-fg ansi-bold">)</span>
   Statistic:        0.0169
   ─────────────────────────────
   Asymptotic test
@@ -483,7 +483,7 @@ window.Quarto = {
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                Y <span class="op">=</span> <span class="fu">draw_field!</span>(dgp, bufs<span class="op">...</span>)</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                k <span class="op">=</span> <span class="fl">0</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> (_, ref, cs) <span class="kw">in</span> schemes</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                    p̂ <span class="op">=</span> <span class="fu">stat_sop</span>(Y, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(), refinement<span class="op">=</span>ref)[<span class="fl">2</span>]</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                    p̂ <span class="op">=</span> <span class="fu">stat_sop</span>(Y, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), refinement<span class="op">=</span>ref)[<span class="fl">2</span>]</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> (_, cc) <span class="kw">in</span> cs</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                        k <span class="op">+=</span> <span class="fl">1</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                        hits[k] <span class="op">+=</span> <span class="fu">rejects</span>(cc, p̂, crits[k])</span>
@@ -505,7 +505,7 @@ window.Quarto = {
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> <span class="fu">collect</span>(<span class="fu">draw_field!</span>(dgp, <span class="fu">buffers</span>(dgp)<span class="op">...</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="cn">true</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (_, ref, cs) <span class="kw">in</span> schemes</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        p̂ <span class="op">=</span> <span class="fu">stat_sop</span>(Y, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(), refinement<span class="op">=</span>ref)[<span class="fl">2</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        p̂ <span class="op">=</span> <span class="fu">stat_sop</span>(Y, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), refinement<span class="op">=</span>ref)[<span class="fl">2</span>]</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (_, cc) <span class="kw">in</span> cs</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> <span class="fu">test_sop</span>(Y, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span>cc, refinement<span class="op">=</span>ref, alpha<span class="op">=</span>level)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            c <span class="op">=</span> <span class="fu">crit_val_sop</span>(M, N, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span>cc, refinement<span class="op">=</span>ref, alpha<span class="op">=</span>level)</span>

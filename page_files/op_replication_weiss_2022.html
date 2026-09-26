@@ -343,13 +343,13 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(H(\hat{\mathbf{p}}^{(d)})\)</span></td>
-<td style="text-align: left;"><code>Shannon()</code></td>
+<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{H} &lt; c\)</span></td>
 <td style="text-align: left;">generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(H_{\text{ex}}(\hat{\mathbf{p}}^{(d)})\)</span></td>
-<td style="text-align: left;"><code>ShannonExtropy()</code></td>
+<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
 <td style="text-align: left;"><span class="math inline">\(\widehat{H}_{\text{ex}} &lt; c\)</span></td>
 <td style="text-align: left;">generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
@@ -416,8 +416,8 @@ window.Quarto = {
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>reps <span class="op">=</span> <span class="fl">10_000</span>                               <span class="co"># Monte Carlo replications</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>charts <span class="op">=</span> [</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"H"</span>, <span class="fu">Shannon</span>()),</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Hex"</span>, <span class="fu">ShannonExtropy</span>()),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"H"</span>, <span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>))),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Hex"</span>, <span class="fu">ShannonExtropy</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>))),</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Δ²"</span>, <span class="fu">DistanceToWhiteNoise</span>()),</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"β"</span>, <span class="fu">UpDownBalance</span>()),</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"τ"</span>, <span class="fu">Persistence</span>()),</span>
@@ -478,7 +478,7 @@ window.Quarto = {
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            hits <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Int</span>, <span class="fu">length</span>(charts) <span class="op">+</span> <span class="fl">1</span>)</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> _ <span class="kw">in</span> idx</span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                <span class="fu">sim_ar1!</span>(x, α)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                p̂ <span class="op">=</span> <span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(), m<span class="op">=</span>m, d<span class="op">=</span>d)[<span class="fl">2</span>]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                p̂ <span class="op">=</span> <span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), m<span class="op">=</span>m, d<span class="op">=</span>d)[<span class="fl">2</span>]</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> (j, (_, cc)) <span class="kw">in</span> <span class="fu">enumerate</span>(charts)</span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                    hits[j] <span class="op">+=</span> <span class="fu">rejects</span>(cc, <span class="fu">chart_stat_op</span>(p̂, cc), crits[j])</span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
@@ -493,7 +493,7 @@ window.Quarto = {
 <p>The shortcut has to give the same statistic and the same decision as <code>test_op</code> and <code>test_acf</code>, not merely a similar one:</p>
 <div id="12" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x <span class="op">=</span> <span class="fu">sim_ar1!</span>(<span class="fu">zeros</span>(<span class="fl">400</span>), α), n <span class="op">=</span> <span class="fl">400</span> <span class="op">-</span> (m <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> d</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    p̂ <span class="op">=</span> <span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(), m<span class="op">=</span>m, d<span class="op">=</span>d)[<span class="fl">2</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    p̂ <span class="op">=</span> <span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), m<span class="op">=</span>m, d<span class="op">=</span>d)[<span class="fl">2</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="fu">all</span>(</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">begin</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> <span class="fu">test_op</span>(x; chart_choice<span class="op">=</span>cc, m<span class="op">=</span>m, d<span class="op">=</span>d, alpha<span class="op">=</span>level)</span>

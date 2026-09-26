@@ -2,75 +2,75 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_changepoint.html</loc>
-    <lastmod>2025-10-19T15:08:29.000Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/installation.html</loc>
-    <lastmod>2025-10-19T13:14:02.000Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.471Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_tutorial.html</loc>
-    <lastmod>2026-09-17T17:31:04.276Z</lastmod>
+    <lastmod>2026-09-26T09:48:52.556Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_replication.html</loc>
-    <lastmod>2025-10-19T13:14:02.000Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op.html</loc>
-    <lastmod>2026-08-31T11:44:05.476Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/api_reference.html</loc>
-    <lastmod>2026-09-17T16:56:50.970Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.463Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_dependence.html</loc>
-    <lastmod>2025-10-19T15:08:29.000Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_replication_adammer_weiss_2026.html</loc>
-    <lastmod>2026-09-22T08:13:34.456Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/installation_op.html</loc>
-    <lastmod>2025-10-19T13:14:02.000Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.463Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/sop_sequential.html</loc>
-    <lastmod>2026-09-17T17:31:38.950Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.474Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/sop_tutorial.html</loc>
-    <lastmod>2026-09-17T17:31:09.781Z</lastmod>
+    <lastmod>2026-09-26T09:48:57.814Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_sop_bp_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:28.014Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.202Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/bootstrap_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.672Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.913Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/DiscreteDGPIC.html</loc>
-    <lastmod>2026-09-17T17:40:27.710Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.948Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/changepoint_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.706Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.945Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SACFBPTestResult.html</loc>
-    <lastmod>2026-09-17T17:40:27.934Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.134Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ACFTestResult.html</loc>
-    <lastmod>2026-09-17T17:40:28.016Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.205Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ZIP.html</loc>
-    <lastmod>2026-09-17T17:40:27.706Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.944Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sacf.html</loc>
@@ -78,39 +78,39 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/BinomialCvec.html</loc>
-    <lastmod>2026-09-17T17:40:28.035Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.219Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_gop_ic.html</loc>
-    <lastmod>2026-09-17T17:40:28.019Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.207Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ContinuousDGPIC.html</loc>
-    <lastmod>2026-09-17T17:40:27.684Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.925Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_sop_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.934Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.134Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sop_bp_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:28.019Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.207Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ICSTS.html</loc>
-    <lastmod>2026-09-17T17:40:27.719Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.957Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sacf_bp_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.930Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.130Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/fill_p0!.html</loc>
-    <lastmod>2026-09-17T17:40:27.931Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.131Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/compute_p_array.html</loc>
-    <lastmod>2026-09-17T17:40:27.710Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.949Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ICTS.html</loc>
@@ -118,11 +118,11 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.685Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.926Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_acf_oc.html</loc>
-    <lastmod>2026-09-17T17:40:28.034Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.218Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/sacf_11.html</loc>
@@ -130,19 +130,19 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.931Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.130Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_acf_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.686Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.927Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/WDAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.710Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.949Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_acf_oc.html</loc>
-    <lastmod>2026-09-17T17:40:28.018Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.206Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/compute_lookup_array.html</loc>
@@ -150,39 +150,39 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_op_surrogate.html</loc>
-    <lastmod>2026-09-17T17:40:27.673Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.914Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaO1.html</loc>
-    <lastmod>2026-09-17T17:40:28.020Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.208Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/BinNorm.html</loc>
-    <lastmod>2026-09-17T17:40:27.707Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.945Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_sop_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.707Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.946Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sop_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:28.013Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.202Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_sacf_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.671Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.913Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/RotationalAsymmetry.html</loc>
-    <lastmod>2026-09-17T17:40:28.015Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.203Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_sacf_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.930Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.130Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/perm_to_lehm_idx.html</loc>
-    <lastmod>2026-09-17T17:40:27.933Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.133Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sop_bp_oc.html</loc>
@@ -190,39 +190,39 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_op_oc.html</loc>
-    <lastmod>2026-09-17T17:40:28.016Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.204Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_sop.html</loc>
-    <lastmod>2026-09-17T17:40:27.646Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.881Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_gop_oc.html</loc>
-    <lastmod>2026-09-17T17:40:28.034Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.219Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/RefinedType.html</loc>
-    <lastmod>2026-09-17T17:40:27.686Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.927Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_op_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.686Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.927Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_sop_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.705Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.944Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_sacf.html</loc>
-    <lastmod>2026-09-17T17:40:27.711Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.950Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/crit_val_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.683Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.924Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/D_Chart.html</loc>
-    <lastmod>2026-09-17T17:40:27.720Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.957Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sacf.html</loc>
@@ -230,71 +230,71 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/BAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.935Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.135Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/OPTestResultSurrogate.html</loc>
-    <lastmod>2026-09-17T17:40:27.708Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.946Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/compute_lookup_array_gop.html</loc>
-    <lastmod>2026-09-17T17:40:28.014Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.203Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_kappa_oc.html</loc>
-    <lastmod>2026-09-17T17:40:27.719Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.956Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/bootstrap_op_bp.html</loc>
-    <lastmod>2026-09-17T17:40:28.033Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.218Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/TauHat.html</loc>
-    <lastmod>2026-09-17T17:40:27.933Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.133Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SINAR1.html</loc>
-    <lastmod>2026-09-17T17:40:28.032Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.217Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sop_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.678Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.920Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/find_effective_support.html</loc>
-    <lastmod>2026-09-17T17:40:27.646Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.881Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/count_mv_op.html</loc>
-    <lastmod>2026-09-17T17:40:28.020Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.208Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ACFTestResultBoot.html</loc>
-    <lastmod>2026-09-17T17:40:27.929Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.129Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/MA2.html</loc>
-    <lastmod>2026-09-17T17:40:28.014Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.202Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop_bp_oc.html</loc>
-    <lastmod>2026-09-17T17:40:27.710Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.948Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/add_noise!.html</loc>
-    <lastmod>2026-09-17T17:40:28.018Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.206Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop_bp_ic.html</loc>
-    <lastmod>2026-09-17T17:40:28.035Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.220Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_sacf.html</loc>
-    <lastmod>2026-09-17T17:40:27.684Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.925Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_acf_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:28.018Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.206Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_acf.html</loc>
@@ -302,35 +302,35 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/OrdinaryType.html</loc>
-    <lastmod>2026-09-17T17:40:27.684Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.925Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/TINAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.623Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.857Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/OPBPTestResultBoot.html</loc>
-    <lastmod>2026-09-17T17:40:28.033Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.218Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/RotationType.html</loc>
-    <lastmod>2026-09-17T17:40:27.929Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.129Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/DAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.678Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.919Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/crit_val_sop.html</loc>
-    <lastmod>2026-09-17T17:40:28.015Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.203Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/UpDownBalance.html</loc>
-    <lastmod>2026-09-17T17:40:27.683Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.924Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaN2.html</loc>
-    <lastmod>2026-09-17T17:40:28.015Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.204Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sacf_oc.html</loc>
@@ -338,95 +338,95 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/OPTestResultBoot.html</loc>
-    <lastmod>2026-09-17T17:40:28.034Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.219Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_kappa.html</loc>
-    <lastmod>2026-09-17T17:40:28.017Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.205Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/TEAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.543Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.782Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaN1.html</loc>
-    <lastmod>2026-09-17T17:40:28.016Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.205Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/crit_val_acf.html</loc>
-    <lastmod>2026-09-17T17:40:28.020Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.208Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/DiagonalType.html</loc>
-    <lastmod>2026-09-17T17:40:27.932Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.132Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_kappa_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.709Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.947Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.935Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.135Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/compute_p_array_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.705Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.943Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaO.html</loc>
-    <lastmod>2026-09-17T17:40:27.933Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.133Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/dependence_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.672Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.914Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.707Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.946Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaO2.html</loc>
-    <lastmod>2026-09-17T17:40:27.708Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.947Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/TauTilde.html</loc>
-    <lastmod>2026-09-17T17:40:27.685Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.926Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/init_mat!.html</loc>
-    <lastmod>2026-09-17T17:40:27.684Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.925Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sacf_bp_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.934Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.134Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/Persistence.html</loc>
-    <lastmod>2026-09-17T17:40:27.709Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.947Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/bootstrap_sacf_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.686Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.927Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/chart_stat_gop.html</loc>
-    <lastmod>2026-09-17T17:40:27.931Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.131Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_acf_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.685Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.926Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_sop_bp_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.708Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.946Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/sop_frequencies!.html</loc>
-    <lastmod>2026-09-17T17:40:27.705Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.944Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_op_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.707Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.945Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/index.html</loc>
@@ -438,55 +438,55 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SACFBPTestResultBoot.html</loc>
-    <lastmod>2026-09-17T17:40:28.017Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.205Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_op_bp_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.683Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.925Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_sacf_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.930Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.129Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/chart_stat_sop.html</loc>
-    <lastmod>2026-09-17T17:40:28.016Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.204Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_acf.html</loc>
-    <lastmod>2026-09-17T17:40:27.711Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.949Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_sacf_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.711Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.950Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/MA1.html</loc>
-    <lastmod>2026-09-17T17:40:27.932Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.132Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SOPClassification.html</loc>
-    <lastmod>2026-09-17T17:40:27.684Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.925Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_sop_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.682Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.924Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/INAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.718Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.956Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/monitor_op.html</loc>
-    <lastmod>2026-09-17T17:40:28.032Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.218Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_kappa.html</loc>
-    <lastmod>2026-09-17T17:40:28.020Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.208Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/BSQMA11.html</loc>
-    <lastmod>2026-09-17T17:40:27.932Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.131Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ICSP.html</loc>
@@ -494,19 +494,19 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SACFTestResultBoot.html</loc>
-    <lastmod>2026-09-17T17:40:27.929Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.129Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/fill_mat_dgp_sop!.html</loc>
-    <lastmod>2026-09-17T17:40:27.646Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.882Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/chart_stat_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.931Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.131Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_sacf_bp_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:28.034Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.219Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/compute_p_mat.html</loc>
@@ -514,71 +514,71 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/sacf.html</loc>
-    <lastmod>2026-09-17T17:40:27.711Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.949Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/BinomialC.html</loc>
-    <lastmod>2026-09-17T17:40:27.930Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.130Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sop_bp_ic.html</loc>
-    <lastmod>2026-09-17T17:40:28.017Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.205Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SAR22.html</loc>
-    <lastmod>2026-09-17T17:40:28.014Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.202Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SACFTestResult.html</loc>
-    <lastmod>2026-09-17T17:40:27.934Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.134Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/crit_val_op_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.934Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.134Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/build_sar1_matrix.html</loc>
-    <lastmod>2026-09-17T17:40:28.018Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.206Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_acf.html</loc>
-    <lastmod>2026-09-17T17:40:27.707Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.945Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/compute_lookup_array_sop.html</loc>
-    <lastmod>2026-09-17T17:40:27.932Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.132Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaHat.html</loc>
-    <lastmod>2026-09-17T17:40:27.683Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.924Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.932Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.132Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_gop_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.933Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.133Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sacf_oc.html</loc>
-    <lastmod>2026-09-17T17:40:27.931Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.131Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/bootstrap_acf.html</loc>
-    <lastmod>2026-09-17T17:40:27.678Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.920Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_gop_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.708Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.947Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sacf_ic.html</loc>
-    <lastmod>2026-09-17T17:40:28.035Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.220Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaTilde.html</loc>
-    <lastmod>2026-09-17T17:40:27.685Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.926Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sop_bp.html</loc>
@@ -586,15 +586,15 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/test_sop.html</loc>
-    <lastmod>2026-09-17T17:40:27.683Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.924Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/DistanceToWhiteNoise.html</loc>
-    <lastmod>2026-09-17T17:40:27.706Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.945Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_sop.html</loc>
-    <lastmod>2026-09-17T17:40:27.686Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.927Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop.html</loc>
@@ -602,15 +602,15 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_op_oc.html</loc>
-    <lastmod>2026-09-17T17:40:27.637Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.871Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SAR11.html</loc>
-    <lastmod>2026-09-17T17:40:27.906Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.128Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/UpDownScaling.html</loc>
-    <lastmod>2026-09-17T17:40:28.017Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.206Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_op.html</loc>
@@ -618,15 +618,15 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/ControlChartResult.html</loc>
-    <lastmod>2026-09-17T17:40:28.015Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.203Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/DirectionType.html</loc>
-    <lastmod>2026-09-17T17:40:28.016Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.204Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/bootstrap_sop.html</loc>
-    <lastmod>2026-09-17T17:40:27.687Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.927Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop_bp.html</loc>
@@ -634,39 +634,39 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_acf.html</loc>
-    <lastmod>2026-09-17T17:40:27.933Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.132Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/chart_stat_qual.html</loc>
-    <lastmod>2026-09-17T17:40:28.016Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.204Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/AR1.html</loc>
-    <lastmod>2026-09-17T17:40:28.015Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.204Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/bootstrap_sacf.html</loc>
-    <lastmod>2026-09-17T17:40:28.019Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.207Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/OPBPTestResult.html</loc>
-    <lastmod>2026-09-17T17:40:27.638Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.871Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SINAR11.html</loc>
-    <lastmod>2026-09-17T17:40:27.708Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.947Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_op_ic.html</loc>
-    <lastmod>2026-09-17T17:40:28.018Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.206Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/abort_criterium_gop.html</loc>
-    <lastmod>2026-09-17T17:40:28.019Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.207Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_sacf.html</loc>
-    <lastmod>2026-09-17T17:40:27.719Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.957Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sacf_bp.html</loc>
@@ -674,23 +674,23 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_kappa_oc.html</loc>
-    <lastmod>2026-09-17T17:40:28.015Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.203Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/competerank!.html</loc>
-    <lastmod>2026-09-17T17:40:27.709Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.947Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/create_index_sop.html</loc>
-    <lastmod>2026-09-17T17:40:27.682Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.923Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_gop.html</loc>
-    <lastmod>2026-09-17T17:40:28.018Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.207Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop_oc.html</loc>
-    <lastmod>2026-09-17T17:40:27.710Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.949Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/sop_frequencies.html</loc>
@@ -698,11 +698,11 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_gop_oc.html</loc>
-    <lastmod>2026-09-17T17:40:27.709Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.948Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/stat_op_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.933Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.133Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_acf.html</loc>
@@ -710,47 +710,47 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/perm_to_lehm_idx!.html</loc>
-    <lastmod>2026-09-17T17:40:27.706Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.944Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sacf_bp_oc.html</loc>
-    <lastmod>2026-09-17T17:40:27.685Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.926Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/AAR1.html</loc>
-    <lastmod>2026-09-17T17:40:28.012Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.201Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop_bp_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.907Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.129Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/crit_val_sacf.html</loc>
-    <lastmod>2026-09-17T17:40:28.034Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.219Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/monitor_sop.html</loc>
-    <lastmod>2026-09-17T17:40:27.935Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.135Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/crit_val_sacf_bp.html</loc>
-    <lastmod>2026-09-17T17:40:27.930Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.130Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/OPTestResult.html</loc>
-    <lastmod>2026-09-17T17:40:27.710Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.948Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SOPTestResultBoot.html</loc>
-    <lastmod>2026-09-17T17:40:28.019Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.207Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_op_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.932Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.131Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_kappa_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.935Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.135Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_sop_oc.html</loc>
@@ -758,23 +758,23 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sop_bootstrap.html</loc>
-    <lastmod>2026-09-17T17:40:27.706Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.945Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SQMA11.html</loc>
-    <lastmod>2026-09-17T17:40:27.704Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.943Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SQINMA11.html</loc>
-    <lastmod>2026-09-17T17:40:28.033Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.218Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/bootstrap_sop_bp.html</loc>
-    <lastmod>2026-09-17T17:40:28.017Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.205Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/KappaN.html</loc>
-    <lastmod>2026-09-17T17:40:27.935Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.135Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/IC.html</loc>
@@ -782,27 +782,27 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/QAR1.html</loc>
-    <lastmod>2026-09-17T17:40:27.685Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.926Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/arl_sacf_ic.html</loc>
-    <lastmod>2026-09-17T17:40:27.711Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.950Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SQMA22.html</loc>
-    <lastmod>2026-09-17T17:40:27.719Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.956Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/cl_gop.html</loc>
-    <lastmod>2026-09-17T17:40:27.709Z</lastmod>
+    <lastmod>2026-09-22T08:22:15.948Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/count_uv_op.html</loc>
-    <lastmod>2026-09-17T17:40:27.934Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.134Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SOPTestResult.html</loc>
-    <lastmod>2026-09-17T17:40:28.014Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.203Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/rl_op.html</loc>
@@ -810,54 +810,54 @@
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/PoiBin.html</loc>
-    <lastmod>2026-09-17T17:40:27.933Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.132Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference/SOPBPTestResultBoot.html</loc>
-    <lastmod>2026-09-17T17:40:28.020Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.208Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/reference.html</loc>
-    <lastmod>2026-09-17T17:40:28.186Z</lastmod>
+    <lastmod>2026-09-22T08:22:16.343Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_replication_weiss_2022.html</loc>
-    <lastmod>2026-09-01T10:19:08.757Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/plotting.html</loc>
-    <lastmod>2026-09-17T18:09:54.308Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.473Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/sop.html</loc>
-    <lastmod>2026-08-31T11:44:05.477Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.473Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/sop_replication_weiss_kim_2025.html</loc>
-    <lastmod>2026-09-01T19:40:15.900Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.474Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_sequential.html</loc>
-    <lastmod>2026-09-17T17:31:25.663Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.473Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_replication_weiss_testik_2023.html</loc>
-    <lastmod>2026-09-01T09:49:46.698Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.473Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/sop_replication_weiss_kim_2024.html</loc>
-    <lastmod>2026-09-01T19:40:02.292Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.473Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/op_breakpoint.html</loc>
-    <lastmod>2025-10-19T13:14:02.000Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/gop_tutorials.html</loc>
-    <lastmod>2026-08-31T11:44:05.478Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.463Z</lastmod>
   </url>
   <url>
     <loc>https://AdaemmerP.github.io/StatsOrdinalPatterns.jl/page_files/sop_replication.html</loc>
-    <lastmod>2025-10-19T13:14:02.000Z</lastmod>
+    <lastmod>2026-09-26T09:48:44.473Z</lastmod>
   </url>
 </urlset>

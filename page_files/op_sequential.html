@@ -408,13 +408,13 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Shannon entropy (<span class="math inline">\(\hat{H}\)</span>)</td>
-<td style="text-align: left;"><code>Shannon()</code></td>
+<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} = \log(m!)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} &lt; cl\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Shannon extropy (<span class="math inline">\(\hat{H}_\text{ex}\)</span>)</td>
-<td style="text-align: left;"><code>ShannonExtropy()</code></td>
+<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} = 5\log(6/5)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} &lt; cl\)</span></td>
 </tr>
@@ -450,7 +450,7 @@ window.Quarto = {
  STEP 1: Bracket Search
  reps = 1000 | truncation cap = 18500 | step size = 0.02
 ============================================================
-  cl = 0.2 | ARL = 83.256
+  cl = 0.2 | ARL = 83.176
   cl = 0.22 | ARL = 142.344
   cl = 0.24 | ARL = 245.676
   cl = 0.26 | ARL = 479.155
@@ -610,7 +610,7 @@ Trace:
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"UpDownBalance (β)"</span>, <span class="fu">UpDownBalance</span>(), <span class="fl">0.30</span>, <span class="fl">0.03</span>),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"RotationalAsymmetry (γ)"</span>, <span class="fu">RotationalAsymmetry</span>(), <span class="fl">0.30</span>, <span class="fl">0.03</span>),</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"DistanceToWhiteNoise (Δ)"</span>, <span class="fu">DistanceToWhiteNoise</span>(), <span class="fl">0.08</span>, <span class="fl">0.01</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Shannon entropy (H)"</span>, <span class="fu">Shannon</span>(), <span class="fl">1.40</span>, <span class="fl">0.02</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Shannon entropy (H)"</span>, <span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), <span class="fl">1.40</span>, <span class="fl">0.02</span>),</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>oc_dgp <span class="op">=</span> <span class="fu">AR1</span>(<span class="fl">0.25</span>, <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>))</span>

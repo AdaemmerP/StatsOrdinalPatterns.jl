@@ -346,7 +346,7 @@ window.Quarto = {
 <ul>
 <li>Returns <code>[test_statistic, pattern_frequencies]</code>.</li>
 <li><code>data</code>: the 2D image (<code>Matrix</code>). <code>d1</code>: row delay. <code>d2</code>: column delay.</li>
-<li><code>chart_choice</code>: one of <code>TauTilde()</code>, <code>TauHat()</code>, <code>KappaTilde()</code>, <code>KappaHat()</code>, <code>DistanceToWhiteNoise()</code>, <code>Shannon()</code>, <code>ShannonExtropy()</code>.</li>
+<li><code>chart_choice</code>: one of <code>TauTilde()</code>, <code>TauHat()</code>, <code>KappaTilde()</code>, <code>KappaHat()</code>, <code>DistanceToWhiteNoise()</code>, <code>Shannon(base=exp(1))</code>, <code>ShannonExtropy(base=exp(1))</code>.</li>
 <li><code>refinement</code>: <code>OrdinaryType()</code> for classical types, or <code>RotationType()</code>, <code>DirectionType()</code>, <code>DiagonalType()</code>.</li>
 </ul></li>
 <li><p><strong><code>test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)</code></strong></p>
@@ -427,14 +427,14 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Shannon entropy (<span class="math inline">\(\hat{H}\)</span>)</td>
-<td style="text-align: left;"><code>Shannon()</code></td>
+<td style="text-align: left;"><code>Shannon(base=exp(1))</code></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} = \log(3)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H} &gt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Shannon extropy (<span class="math inline">\(\hat{H}_\text{ex}\)</span>)</td>
-<td style="text-align: left;"><code>ShannonExtropy()</code></td>
+<td style="text-align: left;"><code>ShannonExtropy(base=exp(1))</code></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} = \cdots\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat{H}_\text{ex} &gt; c\)</span></td>
 <td style="text-align: center;">Generalized <span class="math inline">\(\chi^2\)</span></td>
@@ -446,6 +446,7 @@ window.Quarto = {
 <li>The four Tau/Kappa statistics use a <strong>two-sided</strong> test (signed deviation from zero).</li>
 <li>The three entropy statistics undergo an internal standardisation that converts them to <strong>upper-tail</strong> tests — both <code>test_sop</code> and <code>test_sop_bootstrap</code> apply this standardisation consistently, so their critical values sit on the same scale and can be compared directly.</li>
 <li>The asymptotic critical values and limiting distributions are derived in <span class="citation" data-cites="weiss2022">Weiß (<a href="#ref-weiss2022" role="doc-biblioref">2022</a>)</span>.</li>
+<li><code>Shannon</code> and <code>ShannonExtropy</code> use base 2 by default, while the papers use the natural logarithm. The rescaled statistic, the p-value and the test decision do not depend on the base. See <a href="../page_files/op_tutorial.html#sec-log-base">Logarithm base</a> for details.</li>
 </ul>
 </section>
 <section id="setup" class="level2">
@@ -544,11 +545,11 @@ window.Quarto = {
 <section id="upper-tail-shannon-entropy" class="level3">
 <h3 class="anchored" data-anchor-id="upper-tail-shannon-entropy">Upper-tail — Shannon entropy</h3>
 <div id="16" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sop</span>(data_iid, d1, d2; chart_choice<span class="op">=</span><span class="fu">Shannon</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sop</span>(data_iid, d1, d2; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
 <pre>SOPTestResult
-  Chart:            <span class="ansi-yellow-fg ansi-bold">Shannon</span><span class="ansi-yellow-fg ansi-bold">(</span>base = 2<span class="ansi-yellow-fg ansi-bold">)</span>
+  Chart:            <span class="ansi-yellow-fg ansi-bold">Shannon</span><span class="ansi-yellow-fg ansi-bold">(</span>base = 2.718281828459045<span class="ansi-yellow-fg ansi-bold">)</span>
   Statistic:        0.0058
   ─────────────────────────────
   Asymptotic test
@@ -559,11 +560,11 @@ window.Quarto = {
 </div>
 </div>
 <div id="18" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sop</span>(data_sar, d1, d2; chart_choice<span class="op">=</span><span class="fu">Shannon</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_sop</span>(data_sar, d1, d2; chart_choice<span class="op">=</span><span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
 <pre>SOPTestResult
-  Chart:            <span class="ansi-yellow-fg ansi-bold">Shannon</span><span class="ansi-yellow-fg ansi-bold">(</span>base = 2<span class="ansi-yellow-fg ansi-bold">)</span>
+  Chart:            <span class="ansi-yellow-fg ansi-bold">Shannon</span><span class="ansi-yellow-fg ansi-bold">(</span>base = 2.718281828459045<span class="ansi-yellow-fg ansi-bold">)</span>
   Statistic:        0.0171
   ─────────────────────────────
   Asymptotic test
@@ -614,8 +615,8 @@ window.Quarto = {
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"KappaTilde (κ̃)"</span>, <span class="fu">KappaTilde</span>(), <span class="st">"two-sided"</span>),</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"KappaHat (κ̂)"</span>, <span class="fu">KappaHat</span>(), <span class="st">"two-sided"</span>),</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"DistanceToWhiteNoise (Δ)"</span>, <span class="fu">DistanceToWhiteNoise</span>(), <span class="st">"upper-tail"</span>),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Shannon entropy (H)"</span>, <span class="fu">Shannon</span>(), <span class="st">"upper-tail"</span>),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Shannon extropy (Hex)"</span>, <span class="fu">ShannonExtropy</span>(), <span class="st">"upper-tail"</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Shannon entropy (H)"</span>, <span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), <span class="st">"upper-tail"</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Shannon extropy (Hex)"</span>, <span class="fu">ShannonExtropy</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>)), <span class="st">"upper-tail"</span>),</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>asymp_res <span class="op">=</span> [<span class="fu">test_sop</span>(data_sar, d1, d2; chart_choice<span class="op">=</span>c) for (_, c, _) <span class="kw">in</span> chart_list]</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>boot_res <span class="op">=</span> [<span class="fu">test_sop_bootstrap</span>(data_sar, <span class="fl">2_000</span>, d1, d2; chart_choice<span class="op">=</span>c) for (_, c, _) <span class="kw">in</span> chart_list]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
