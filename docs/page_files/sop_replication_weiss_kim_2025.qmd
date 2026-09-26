@@ -37,13 +37,13 @@ The columns within a group are its `chart_choice`:
 | Table 8 column | `chart_choice` | Rejects $H_0$ when | Label below |
 |:---------------|:---------------|:-------------------|:------------|
 | $\tilde{\tau}$ | [`TauTilde()`](../reference/TauTilde.qmd) | $\lvert\tilde{\tau}\rvert > c$ | `tau_tilde` |
-| $\widehat{H}$ | `Shannon(base=exp(1))` | rescaled $\widehat{H} > c$ | `H` |
-| $\widehat{H}_{ex}$ | `ShannonExtropy(base=exp(1))` | rescaled $\widehat{H}_{ex} > c$ | `H_ex` |
+| $\widehat{H}$ | [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) | rescaled $\widehat{H} > c$ | `H` |
+| $\widehat{H}_{ex}$ | [`ShannonExtropy(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) | rescaled $\widehat{H}_{ex} > c$ | `H_ex` |
 | $\widehat{\Delta}$ | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\widehat{\Delta} > c$ | `Delta` |
 
 $\tilde{\tau}$ appears in the ordinary group only; the refined classifications have
 asymptotic theory for the entropy type charts. The rescaling of the entropy statistics
-and the generalized $\chi^2$ critical value are what `test_sop` applies internally, and
+and the generalized $\chi^2$ critical value are what [`test_sop`](../reference/test_sop.qmd) applies internally, and
 [`crit_val_sop`](../reference/crit_val_sop.qmd) returns the critical value for a given scheme, level and field size.
 
 ## Setup
@@ -105,9 +105,9 @@ test_sop(Y, 1, 1; chart_choice=ShannonExtropy(base=exp(1)), refinement=DiagonalT
 
 ## Running the power study
 
-`crit_val_sop` returns the critical value alone, which depends on the field size, the
+[`crit_val_sop`](../reference/crit_val_sop.qmd) returns the critical value alone, which depends on the field size, the
 level and the classification scheme, not on the data, so it is computed once per row of
-the table. `test_sop` additionally computes the $p$ value, which for the entropy charts
+the table. [`test_sop`](../reference/test_sop.qmd) additionally computes the $p$ value, which for the entropy charts
 means evaluating a generalized $\chi^2$ distribution numerically and which a power study
 does not use. Each replication then costs one [`stat_sop`](../reference/stat_sop.qmd) pass per classification scheme,
 and the charts of that scheme are read off the resulting $\hat{\mathbf{p}}$ with
@@ -150,7 +150,7 @@ function power(m, n, eps, reps; level=0.05)
 end
 ```
 
-The shortcut has to give the same decision as `test_sop` in all 13 columns, not merely a
+The shortcut has to give the same decision as [`test_sop`](../reference/test_sop.qmd) in all 13 columns, not merely a
 similar one:
 
 ```{julia}

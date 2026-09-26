@@ -61,7 +61,7 @@ for t in (t_change+1):400
 end
 ```
 
-`monitor_op` applies the chart to the series and records the first alarm:
+[`monitor_op`](../reference/monitor_op.qmd) applies the chart to the series and records the first alarm:
 
 ```{julia}
 res = monitor_op(x, lam, cl; chart_choice=Persistence())
@@ -89,7 +89,7 @@ plot(monitor_op(x, lam, cl_H; chart_choice=Shannon(base=exp(1))))
 ## Monitoring an image sequence
 
 The image sequence is spatial white noise up to $t = 20$ and spatially dependent afterwards;
-`monitor_sop` works on the 3D array and the x axis counts images.
+[`monitor_sop`](../reference/monitor_sop.qmd) works on the 3D array and the x axis counts images.
 
 ```{julia}
 #| output: false
@@ -148,8 +148,8 @@ plot(test_op_bootstrap(x_ar, 2_000; chart_choice=Persistence(), block_size=20))
 
 The same plot exists for the spatial tests and for the Box-Pierce type tests. For the
 entropy charts the direction of the rejection region is read from the result, so the
-lower tail is shaded for `Shannon(base=exp(1))` on a time series and the upper tail for the rescaled
-statistic of `test_sop_bootstrap`:
+lower tail is shaded for [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) on a time series and the upper tail for the rescaled
+statistic of [`test_sop_bootstrap`](../reference/test_sop_bootstrap.qmd):
 
 ```{julia}
 Random.seed!(42)
@@ -164,7 +164,7 @@ plot(fig[1, 2], test_sop_bootstrap(img, 2_000, 1, 1; chart_choice=Shannon(base=e
 fig
 ```
 
-The surrogate test `test_op_surrogate`, available once `TimeseriesSurrogates.jl` is
+The surrogate test [`test_op_surrogate`](../reference/test_op_surrogate.qmd), available once `TimeseriesSurrogates.jl` is
 loaded, returns an [`OPTestResultSurrogate`](../reference/OPTestResultSurrogate.qmd) that is plotted in the same way.
 
 ## Customising the figures

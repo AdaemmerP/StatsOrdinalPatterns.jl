@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 test_sop_bp_bootstrap(data, n_boot, w; chart_choice, refinement, alpha, block_size)
 ```
-Compute a bootstrap Box-Pierce type hypothesis test for spatial ordinal patterns (SOPs), aggregating the squared chart statistics over all delay combinations `(d1, d2) ∈ {1,…,w}²`, and return a `SOPBPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+Compute a bootstrap Box-Pierce type hypothesis test for spatial ordinal patterns (SOPs), aggregating the squared chart statistics over all delay combinations `(d1, d2) ∈ {1,…,w}²`, and return a [`SOPBPTestResultBoot`](SOPBPTestResultBoot.qmd) with the bootstrap critical value, p-value, and reject decision.
  
 No asymptotic theory is available for the BP-SOP statistic, so — unlike the single-delay [`test_sop`](test_sop.qmd) — this bootstrap test is the only classical test provided for it.
  
@@ -19,7 +19,7 @@ No asymptotic theory is available for the BP-SOP statistic, so — unlike the si
   * `n_boot`: number of bootstrap replications.
   * `w`: window size; all `(d1, d2) ∈ {1,…,w}²` are included in the BP sum.
   * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
-  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or a `RefinedType` instance.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or a [`RefinedType`](RefinedType.qmd) instance.
   * `alpha`: significance level (default `0.05`).
   * `block_size`: set `> 1` for a 2D block bootstrap that preserves spatial dependencies.
 

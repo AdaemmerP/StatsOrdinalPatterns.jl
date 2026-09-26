@@ -17,7 +17,7 @@ Compute the critical value for the asymptotic test based on spatial ordinal patt
   * `N::Int`: number of columns of the data matrix. The SOP matrix has `n = N - d2` columns.
   * `d1::Int`: row delay.
   * `d2::Int`: column delay.
-  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`, `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`. The critical value does not depend on the logarithm base of `Shannon` and `ShannonExtropy`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`, [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), [`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd). The critical value does not depend on the logarithm base of [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy).
   * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()` (only for the entropy-type charts).
   * `alpha=0.05`: significance level.
 

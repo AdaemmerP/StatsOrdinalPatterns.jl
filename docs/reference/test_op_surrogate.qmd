@@ -11,14 +11,14 @@ engine: markdown
 ```julia
 test_op_surrogate(data, method, n_surrogates; chart_choice, m=3, d=1, alpha=0.05, rng)
 ```
-Compute a surrogate-data hypothesis test for ordinal patterns and return an `OPTestResultSurrogate` with the surrogate critical value, p-value, and reject decision.
+Compute a surrogate-data hypothesis test for ordinal patterns and return an [`OPTestResultSurrogate`](OPTestResultSurrogate.qmd) with the surrogate critical value, p-value, and reject decision.
  
-Unlike `test_op()` and `test_op_bootstrap()`, which test against an i.i.d. null, the null hypothesis here is determined by the surrogate method: e.g. `RandomFourier()` tests against a stationary linear Gaussian process, and `AAFT()`/`IAAFT()` against a monotonic static transform of one — making this a nonlinearity test rather than a generic dependence test.
+Unlike [`test_op()`](test_op.qmd) and [`test_op_bootstrap()`](test_op_bootstrap.qmd), which test against an i.i.d. null, the null hypothesis here is determined by the surrogate method: e.g. `RandomFourier()` tests against a stationary linear Gaussian process, and `AAFT()`/`IAAFT()` against a monotonic static transform of one — making this a nonlinearity test rather than a generic dependence test.
  
   * `data`: the time series.
   * `method`: a surrogate method from TimeseriesSurrogates.jl, e.g. `RandomFourier()`, `AAFT()`, `IAAFT()`, `RandomShuffle()`.
   * `n_surrogates`: number of surrogate replications.
-  * `chart_choice`: one of `Persistence()`, `UpDownBalance()`, `RotationalAsymmetry()`, `UpDownScaling()`, `DistanceToWhiteNoise()`, `Shannon()`, `ShannonExtropy()`. For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic and critical value are both in that base, so the test decision and the p-value do not depend on it.
+  * `chart_choice`: one of [`Persistence()`](Persistence.qmd), [`UpDownBalance()`](UpDownBalance.qmd), [`RotationalAsymmetry()`](RotationalAsymmetry.qmd), [`UpDownScaling()`](UpDownScaling.qmd), [`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd), [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy). For [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) for the natural logarithm used in the papers. Statistic and critical value are both in that base, so the test decision and the p-value do not depend on it.
   * `m=3`: length of the ordinal patterns.
   * `d=1`: delay between observations of a pattern.
   * `alpha`: significance level (default `0.05`).

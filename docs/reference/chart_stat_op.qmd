@@ -14,10 +14,10 @@ chart_stat_op(p_vec, chart_choice)
 Compute the (in-control) chart statistic of an ordinal-pattern distribution `p_vec` for the given chart choice.
  
   * `p_vec`: vector of (relative) ordinal-pattern frequencies of length `m!`, ordered by their Lehmer index (see [`perm_to_lehm_idx`](perm_to_lehm_idx.qmd)).
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
-Returns the value of the chart statistic. The Shannon and Shannon-extropy statistics follow Equation (3) in Weiß and Testik (2023); the β-, τ-, γ- and δ-statistics follow Equations (3)–(6) in Bandt (2019) and require `m = 3` (`UpDownBalance` also supports `m = 2`).
+  * `chart_choice`: one of [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), [`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd), [`UpDownBalance()`](UpDownBalance.qmd), [`Persistence()`](Persistence.qmd), [`RotationalAsymmetry()`](RotationalAsymmetry.qmd), [`UpDownScaling()`](UpDownScaling.qmd).
+Returns the value of the chart statistic. The Shannon and Shannon-extropy statistics follow Equation (3) in Weiß and Testik (2023); the β-, τ-, γ- and δ-statistics follow Equations (3)–(6) in Bandt (2019) and require `m = 3` ([`UpDownBalance`](UpDownBalance.qmd) also supports `m = 2`).
  
-The Shannon and Shannon-extropy statistics are computed in the logarithm base of `chart_choice`, which must be larger than 1. Note that `Shannon()` and `ShannonExtropy()` default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural logarithm used in the papers. See the section on the logarithm base in the docs.
+The Shannon and Shannon-extropy statistics are computed in the logarithm base of `chart_choice`, which must be larger than 1. Note that [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) default to base 2 in ComplexityMeasures.jl; use [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) for the natural logarithm used in the papers. See the section on the logarithm base in the docs.
  
 
 

@@ -50,7 +50,7 @@ The input parameters are:
   * `lam::Float64`: A scalar value for lambda for the EWMA chart.
   * `cl::Float64`: A scalar value for the control limit.
   * `p_mat::Array{Float64,2}`: A matrix with the relative frequencies for a particular
-delay (d₁-d₂) combination. This matrix will be used for re-sampling. The matrix has to be  computed by `compute_p_array()`.
+delay (d₁-d₂) combination. This matrix will be used for re-sampling. The matrix has to be  computed by [`compute_p_array()`](compute_p_array.qmd).
  
   * `reps::Int`: An integer value for the number of repetitions. The default value is 10,000.
 

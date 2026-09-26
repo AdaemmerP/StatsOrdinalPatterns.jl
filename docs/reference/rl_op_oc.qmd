@@ -14,7 +14,7 @@ rl_op_oc(op_dgp, lam, cl, p_reps, op_dgp_dist, chart_choice, d, m, ced, ad,
 ```
 Compute out-of-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by [`arl_op_oc`](arl_op_oc.qmd).
  
-  * `op_dgp`: out-of-control DGP (e.g. `AR1`, `MA1`, `MA2`, `TEAR1`, `QAR1`).
+  * `op_dgp`: out-of-control DGP (e.g. [`AR1`](AR1.qmd), [`MA1`](MA1.qmd), [`MA2`](MA2.qmd), [`TEAR1`](TEAR1.qmd), [`QAR1`](QAR1.qmd)).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `p_reps`: range of replication indices to process.

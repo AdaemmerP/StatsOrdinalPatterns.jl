@@ -11,9 +11,9 @@ engine: markdown
 ```julia
 test_acf_bootstrap(data, n_boot, h; alpha=0.05, block_size=1)
 ```
-Compute a bootstrap hypothesis test for the classical autocorrelation at lag `h` and return an `ACFTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+Compute a bootstrap hypothesis test for the classical autocorrelation at lag `h` and return an [`ACFTestResultBoot`](ACFTestResultBoot.qmd) with the bootstrap critical value, p-value, and reject decision.
  
-Unlike `test_acf()`, this does not rely on the asymptotic N(0, 1/n) distribution and is therefore more reliable for short time series or non-Gaussian data.
+Unlike [`test_acf()`](test_acf.qmd), this does not rely on the asymptotic N(0, 1/n) distribution and is therefore more reliable for short time series or non-Gaussian data.
  
   * `data`: the time series.
   * `n_boot`: number of bootstrap replications.

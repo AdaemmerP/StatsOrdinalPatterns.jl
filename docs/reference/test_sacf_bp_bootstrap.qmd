@@ -11,9 +11,9 @@ engine: markdown
 ```julia
 test_sacf_bp_bootstrap(data, n_boot, w; alpha, block_size)
 ```
-Compute a bootstrap hypothesis test for the BP-SACF statistic with window `w` and return a `SACFBPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+Compute a bootstrap hypothesis test for the BP-SACF statistic with window `w` and return a [`SACFBPTestResultBoot`](SACFBPTestResultBoot.qmd) with the bootstrap critical value, p-value, and reject decision.
  
-Unlike `test_sacf_bp()`, this does not rely on the asymptotic χ²(2w(w+1)) distribution and is therefore more reliable for small images or large `w`.
+Unlike [`test_sacf_bp()`](test_sacf_bp.qmd), this does not rely on the asymptotic χ²(2w(w+1)) distribution and is therefore more reliable for small images or large `w`.
  
   * `data`: the 2D image (M × N matrix).
   * `n_boot`: number of bootstrap replications.

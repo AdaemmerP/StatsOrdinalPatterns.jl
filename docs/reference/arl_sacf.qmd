@@ -42,7 +42,7 @@ The input arguments are:
   * `lam`: The smoothing parameter for the exponentially weighted moving average (EWMA) control chart.
   * `cl`: The control limit for the EWMA control chart.
   * `sp_dgp`: The spatial data generating process (DGP) to use for the SACF function.
-This can be one of the following: `SAR1`, `SAR11`, `SAR22`, `SINAR11`, `SQMA11`,  `SQINMA11`, or `BSQMA11`.
+This can be one of the following: [`SAR1`](SAR1.qmd), [`SAR11`](SAR11.qmd), [`SAR22`](SAR22.qmd), [`SINAR11`](SINAR11.qmd), [`SQMA11`](SQMA11.qmd),  [`SQINMA11`](SQINMA11.qmd), or [`BSQMA11`](BSQMA11.qmd).
  
   * `d1::Int`: The first (row) delay for the spatial process.
   * `d2::Int`: The second (column) delay for the spatial process.

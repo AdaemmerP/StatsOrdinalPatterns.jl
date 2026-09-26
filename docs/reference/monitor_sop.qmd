@@ -14,15 +14,15 @@ monitor_sop(data, lam, cl, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryT
 ```
 Monitor the image sequence `data` (a 3D array, rows × columns × time) with the EWMA control chart based on spatial ordinal patterns and return a [`ControlChartResult`](ControlChartResult.qmd) with the chart statistics, the control limit and the first alarm.
  
-The statistics are those of `stat_sop(data, lam, d1, d2; ...)`. All four monitoring statistics are two sided, so the chart signals when `abs(stat) > cl`.
+The statistics are those of [`stat_sop(data, lam, d1, d2; ...)`](stat_sop.qmd). All four monitoring statistics are two sided, so the chart signals when `abs(stat) > cl`.
  
   * `data::Array{<:Real,3}`: the image sequence.
   * `lam::Float64`: EWMA smoothing parameter.
   * `cl::Float64`: control limit, typically obtained from [`cl_sop`](cl_sop.qmd).
   * `d1::Int`, `d2::Int`: row and column delays.
   * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
-  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`. Must be the same as in the `cl_sop` call that produced `cl`.
-  * `add_noise::Bool=false`, `noise_dist`: add noise to break ties, as in `stat_sop`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`. Must be the same as in the [`cl_sop`](cl_sop.qmd) call that produced `cl`.
+  * `add_noise::Bool=false`, `noise_dist`: add noise to break ties, as in [`stat_sop`](stat_sop.qmd).
 
 ```julia
 images = randn(11, 11, 40)

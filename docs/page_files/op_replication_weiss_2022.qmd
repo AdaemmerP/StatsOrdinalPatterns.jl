@@ -29,8 +29,8 @@ statistic, the asymptotic critical value, the $p$ value and the reject decision.
 
 | Table IV column | `chart_choice` | Rejects $H_0$ when | Null distribution |
 |:----------------|:---------------|:-------------------|:------------------|
-| $H(\hat{\mathbf{p}}^{(d)})$ | `Shannon(base=exp(1))` | $\widehat{H} < c$ | generalized $\chi^2$ |
-| $H_{\text{ex}}(\hat{\mathbf{p}}^{(d)})$ | `ShannonExtropy(base=exp(1))` | $\widehat{H}_{\text{ex}} < c$ | generalized $\chi^2$ |
+| $H(\hat{\mathbf{p}}^{(d)})$ | [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) | $\widehat{H} < c$ | generalized $\chi^2$ |
+| $H_{\text{ex}}(\hat{\mathbf{p}}^{(d)})$ | [`ShannonExtropy(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) | $\widehat{H}_{\text{ex}} < c$ | generalized $\chi^2$ |
 | $\Delta^2(\hat{\mathbf{p}}^{(d)})$ | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\widehat{\Delta} > c$ | generalized $\chi^2$ |
 | $\hat{\beta}^{(d)}$ | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $\lvert\hat{\beta}\rvert > c$ | normal, $\sigma^2 = \tfrac{1}{3n}$ |
 | $\hat{\tau}^{(d)}$ | [`Persistence()`](../reference/Persistence.qmd) | $\lvert\hat{\tau}\rvert > c$ | normal, $\sigma^2 = \tfrac{8}{45n}$ |
@@ -46,7 +46,7 @@ and [`crit_val_acf(T)`](../reference/crit_val_acf.qmd). Two conventions matter f
   [`perm_to_lehm_idx`](../reference/perm_to_lehm_idx.qmd)). For $m = 3$ this is the
   lexicographic numbering $\hat p_1, \ldots, \hat p_6$ of the paper, so $\hat\beta$,
   $\hat\tau$, $\hat\gamma$ and $\hat\delta$ pick the same components.
-* `UpDownBalance()` and `UpDownScaling()` return $-\hat\beta$ and $-\hat\delta$. All four
+* [`UpDownBalance()`](../reference/UpDownBalance.qmd) and [`UpDownScaling()`](../reference/UpDownScaling.qmd) return $-\hat\beta$ and $-\hat\delta$. All four
   Bandt statistics are tested two sided, so the rejection rates are unaffected.
 
 ## Setup
@@ -98,13 +98,13 @@ test_acf(x, d; alpha=level)
 
 ## Running the power study
 
-`crit_val_op` returns the critical value alone. It depends on the chart, on $m$ and on the
+[`crit_val_op`](../reference/crit_val_op.qmd) returns the critical value alone. It depends on the chart, on $m$ and on the
 number of patterns $n$, but not on the data, so for a fixed $T$ it is the same in all
-replications. `test_op` additionally computes the $p$ value, which does depend on the data
+replications. [`test_op`](../reference/test_op.qmd) additionally computes the $p$ value, which does depend on the data
 and which for the three omnibus statistics means evaluating a generalized $\chi^2$
 distribution numerically. A power study only needs the decision, so the critical values are
 taken once per sample size and each replication then costs one pass over the series. That
-is about 300 times faster than a plain loop over `test_op`.
+is about 300 times faster than a plain loop over [`test_op`](../reference/test_op.qmd).
 
 ```{julia}
 #| output: false
@@ -137,8 +137,8 @@ function power(T, α, reps; m=3, d=1, level=0.05)
 end
 ```
 
-The shortcut has to give the same statistic and the same decision as `test_op` and
-`test_acf`, not merely a similar one:
+The shortcut has to give the same statistic and the same decision as [`test_op`](../reference/test_op.qmd) and
+[`test_acf`](../reference/test_acf.qmd), not merely a similar one:
 
 ```{julia}
 let x = sim_ar1!(zeros(400), α), n = 400 - (m - 1) * d

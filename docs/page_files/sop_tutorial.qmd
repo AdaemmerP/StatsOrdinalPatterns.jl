@@ -30,29 +30,29 @@ A spatial ordinal pattern (SOP) test asks whether the frequencies of rank permut
 
 ## Key functions
 
-- **`stat_sop(data, d1, d2; chart_choice, refinement=OrdinaryType())`**
+- **[`stat_sop(data, d1, d2; chart_choice, refinement=OrdinaryType())`](../reference/stat_sop.qmd)**
 
     - Returns `[test_statistic, pattern_frequencies]`.
     - `data`: the 2D image (`Matrix`). `d1`: row delay. `d2`: column delay.
-    - `chart_choice`: one of [`TauTilde()`](../reference/TauTilde.qmd), [`TauHat()`](../reference/TauHat.qmd), [`KappaTilde()`](../reference/KappaTilde.qmd), [`KappaHat()`](../reference/KappaHat.qmd), [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd), `Shannon(base=exp(1))`, `ShannonExtropy(base=exp(1))`.
+    - `chart_choice`: one of [`TauTilde()`](../reference/TauTilde.qmd), [`TauHat()`](../reference/TauHat.qmd), [`KappaTilde()`](../reference/KappaTilde.qmd), [`KappaHat()`](../reference/KappaHat.qmd), [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd), [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy).
     - `refinement`: [`OrdinaryType()`](../reference/OrdinaryType.qmd) for classical types, or [`RotationType()`](../reference/RotationType.qmd), [`DirectionType()`](../reference/DirectionType.qmd), [`DiagonalType()`](../reference/DiagonalType.qmd).
 
-- **`test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)`**
+- **[`test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)`](../reference/test_sop.qmd)**
 
     - Returns an [`SOPTestResult`](../reference/SOPTestResult.qmd) with the test statistic, critical value, p-value, and reject decision.
     - Critical value, p-value, and rejection direction are chosen automatically from `chart_choice`.
     - `alpha`: significance level.
 
-- **`bootstrap_sop(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), block_size=1)`**
+- **[`bootstrap_sop(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), block_size=1)`](../reference/bootstrap_sop.qmd)**
 
     - Returns a length-`n_boot` vector of resampled statistics under $H_0$.
     - `block_size > 1`: 2D block bootstrap that preserves spatial structure.
 
-- **`test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, block_size=1)`**
+- **[`test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, block_size=1)`](../reference/test_sop_bootstrap.qmd)**
 
     - Returns an [`SOPTestResultBoot`](../reference/SOPTestResultBoot.qmd) struct with the bootstrap critical value, p-value, and reject decision.
     - For Tau/Kappa charts: two-sided bootstrap using the raw statistic.
-    - For entropy charts: the bootstrap null distribution is built on the same standardised scale used internally by `test_sop`, so the bootstrap and asymptotic critical values are directly comparable.
+    - For entropy charts: the bootstrap null distribution is built on the same standardised scale used internally by [`test_sop`](../reference/test_sop.qmd), so the bootstrap and asymptotic critical values are directly comparable.
 
 ## Available chart statistics
 
@@ -62,22 +62,22 @@ Seven chart statistics are available. They differ in what they measure and the d
 
 | Statistic | Constructor | Under $H_0$ | Reject $H_0$ when | Distribution |
 |:----------|:------------|:-----------:|:-----------------:|:------------:|
-| $\hat{\tau}$ (TauTilde) | `TauTilde()` | $\hat{\tau} = 0$ | $\lvert\hat{\tau}\rvert > c$ | Normal |
-| $\hat{\tau}_1$ (TauHat) | `TauHat()` | $\hat{\tau}_1 = 0$ | $\lvert\hat{\tau}_1\rvert > c$ | Normal |
-| $\hat{\kappa}$ (KappaTilde) | `KappaTilde()` | $\hat{\kappa} = 0$ | $\lvert\hat{\kappa}\rvert > c$ | Normal |
-| $\hat{\kappa}_1$ (KappaHat) | `KappaHat()` | $\hat{\kappa}_1 = 0$ | $\lvert\hat{\kappa}_1\rvert > c$ | Normal |
-| DistanceToWhiteNoise ($\hat{\Delta}$) | `DistanceToWhiteNoise()` | $\hat{\Delta} = 0$ | $\hat{\Delta} > c$ | Generalized $\chi^2$ |
-| Shannon entropy ($\hat{H}$) | `Shannon(base=exp(1))` | $\hat{H} = \log(3)$ | $\hat{H} > c$ | Generalized $\chi^2$ |
-| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy(base=exp(1))` | $\hat{H}_\text{ex} = \cdots$ | $\hat{H}_\text{ex} > c$ | Generalized $\chi^2$ |
+| $\hat{\tau}$ (TauTilde) | [`TauTilde()`](../reference/TauTilde.qmd) | $\hat{\tau} = 0$ | $\lvert\hat{\tau}\rvert > c$ | Normal |
+| $\hat{\tau}_1$ (TauHat) | [`TauHat()`](../reference/TauHat.qmd) | $\hat{\tau}_1 = 0$ | $\lvert\hat{\tau}_1\rvert > c$ | Normal |
+| $\hat{\kappa}$ (KappaTilde) | [`KappaTilde()`](../reference/KappaTilde.qmd) | $\hat{\kappa} = 0$ | $\lvert\hat{\kappa}\rvert > c$ | Normal |
+| $\hat{\kappa}_1$ (KappaHat) | [`KappaHat()`](../reference/KappaHat.qmd) | $\hat{\kappa}_1 = 0$ | $\lvert\hat{\kappa}_1\rvert > c$ | Normal |
+| DistanceToWhiteNoise ($\hat{\Delta}$) | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\hat{\Delta} = 0$ | $\hat{\Delta} > c$ | Generalized $\chi^2$ |
+| Shannon entropy ($\hat{H}$) | [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) | $\hat{H} = \log(3)$ | $\hat{H} > c$ | Generalized $\chi^2$ |
+| Shannon extropy ($\hat{H}_\text{ex}$) | [`ShannonExtropy(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) | $\hat{H}_\text{ex} = \cdots$ | $\hat{H}_\text{ex} > c$ | Generalized $\chi^2$ |
 
 : {tbl-colwidths="[22,20,14,17,18]"}
 
 :::
 
 - The four Tau/Kappa statistics use a **two-sided** test (signed deviation from zero).
-- The three entropy statistics undergo an internal standardisation that converts them to **upper-tail** tests — both `test_sop` and `test_sop_bootstrap` apply this standardisation consistently, so their critical values sit on the same scale and can be compared directly.
+- The three entropy statistics undergo an internal standardisation that converts them to **upper-tail** tests — both [`test_sop`](../reference/test_sop.qmd) and [`test_sop_bootstrap`](../reference/test_sop_bootstrap.qmd) apply this standardisation consistently, so their critical values sit on the same scale and can be compared directly.
 - The asymptotic critical values and limiting distributions are derived in @weiss2022.
-- `Shannon` and `ShannonExtropy` use base 2 by default, while the papers use the natural logarithm. The rescaled statistic, the p-value and the test decision do not depend on the base. See [Logarithm base](op_tutorial.qmd#sec-log-base) for details.
+- [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) use base 2 by default, while the papers use the natural logarithm. The rescaled statistic, the p-value and the test decision do not depend on the base. See [Logarithm base](op_tutorial.qmd#sec-log-base) for details.
 
 ## Setup
 
@@ -137,7 +137,7 @@ The white-noise image is not rejected; the SAR image is. The critical value depe
 
 ## Bootstrap testing: `test_sop_bootstrap()`
 
-`test_sop_bootstrap()` generates the empirical null distribution via 2D resampling of the
+[`test_sop_bootstrap()`](../reference/test_sop_bootstrap.qmd) generates the empirical null distribution via 2D resampling of the
 observed image and computes the bootstrap critical value and p-value in the correct direction.
 
 ```{julia}

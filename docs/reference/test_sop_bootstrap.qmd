@@ -14,12 +14,12 @@ test_sop_bootstrap(data, n_boot, d1, d2; chart_choice=TauTilde(),
 ```
 Compute a bootstrap hypothesis test for spatial ordinal patterns and return an [`SOPTestResultBoot`](SOPTestResultBoot.qmd) with the bootstrap critical value, p-value, and reject decision.
  
-For Tau/Kappa charts the raw statistic is used. For entropy charts (`Shannon`, `ShannonExtropy`, `DistanceToWhiteNoise`) the same `rescale_sop` transformation used by `test_sop` is applied so that the bootstrap critical value is on the same scale as the asymptotic critical value and the two can be compared directly.
+For Tau/Kappa charts the raw statistic is used. For entropy charts ([`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), [`DistanceToWhiteNoise`](DistanceToWhiteNoise.qmd)) the same `rescale_sop` transformation used by [`test_sop`](test_sop.qmd) is applied so that the bootstrap critical value is on the same scale as the asymptotic critical value and the two can be compared directly.
  
   * `data`: the 2D image (M × N matrix).
   * `n_boot`: number of bootstrap replications.
   * `d1`, `d2`: row and column delays.
-  * `chart_choice=TauTilde()`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`, `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`. For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The statistic does not depend on it.
+  * `chart_choice=TauTilde()`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`, [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), [`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd). For [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), the logarithm base must be larger than 1. The statistic does not depend on it.
   * `refinement=OrdinaryType()`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
   * `alpha=0.05`: significance level.
   * `block_size=1`: set `> 1` for a 2D block bootstrap that preserves spatial dependencies.

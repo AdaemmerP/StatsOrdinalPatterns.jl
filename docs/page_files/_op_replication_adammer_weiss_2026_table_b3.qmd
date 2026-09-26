@@ -34,8 +34,8 @@ values.
 
 | Table B.3 column | `chart_choice` | Summand for delay $d$ |
 |:-----------------|:---------------|:----------------------|
-| $\widehat{H}_{\text{BL}}$ | `Shannon(base=exp(1))` | $\tfrac{2}{6}\, n_d \big(\ln 6 - \widehat{H}^{(d)}\big)$ |
-| $\widehat{H}^{\text{ex}}_{\text{BL}}$ | `ShannonExtropy(base=exp(1))` | $\tfrac{10}{6}\, n_d \big(5 \ln \tfrac{6}{5} - \widehat{H}_{\text{ex}}^{(d)}\big)$ |
+| $\widehat{H}_{\text{BL}}$ | [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) | $\tfrac{2}{6}\, n_d \big(\ln 6 - \widehat{H}^{(d)}\big)$ |
+| $\widehat{H}^{\text{ex}}_{\text{BL}}$ | [`ShannonExtropy(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) | $\tfrac{10}{6}\, n_d \big(5 \ln \tfrac{6}{5} - \widehat{H}_{\text{ex}}^{(d)}\big)$ |
 | $\widehat{\Delta}^2_{\text{BL}}$ | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $n_d\, \widehat{\Delta}^{2\,(d)}$ |
 | $\widehat{\beta}_{\text{BL}}$ | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $n_d\, \big(\hat{\beta}^{(d)}\big)^2$ |
 | $\widehat{\tau}_{\text{BL}}$ | [`Persistence()`](../reference/Persistence.qmd) | $n_d\, \big(\hat{\tau}^{(d)}\big)^2$ |
@@ -44,7 +44,7 @@ values.
 | $\widehat{\rho}_{\text{BL}}$ | [`stat_acf`](../reference/stat_acf.qmd) | $T(T+2)\, \hat{\rho}(d)^2 / (T - d)$ |
 
 The critical value of $\widehat{\beta}_{\text{BL}}$ is a scaled $\chi^2(w)$ quantile. The
-other six BL-OP statistics are correlated across delays, so `crit_val_op_bp` uses values
+other six BL-OP statistics are correlated across delays, so [`crit_val_op_bp`](../reference/crit_val_op_bp.qmd) uses values
 tabulated at $\alpha = 0.05$ for $w \le 5$. The BL-ACF statistic is compared with the
 $\chi^2(w)$ quantile.
 
@@ -137,7 +137,7 @@ function power(T, reps)
 end
 ```
 
-The shortcut has to give the same statistic as `stat_op_bp`, not merely a similar one:
+The shortcut has to give the same statistic as [`stat_op_bp`](../reference/stat_op_bp.qmd), not merely a similar one:
 
 ```{julia}
 let T = 400, x = simulate!(zeros(T))

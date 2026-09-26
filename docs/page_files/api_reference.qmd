@@ -80,7 +80,7 @@ statistics, the control limit and the first alarm.
 
 ## Plotting
 
-With Makie loaded, `plot(res)` works for a `ControlChartResult` and for every bootstrap or
+With Makie loaded, `plot(res)` works for a [`ControlChartResult`](../reference/ControlChartResult.qmd) and for every bootstrap or
 surrogate result; see the [plotting tutorial](plotting.qmd). The plotting code is a
 package extension, so Makie is not a dependency of `StatsOrdinalPatterns.jl`.
 

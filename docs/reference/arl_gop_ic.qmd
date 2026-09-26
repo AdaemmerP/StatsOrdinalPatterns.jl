@@ -14,11 +14,11 @@ arl_gop_ic(gop_dgp, lam, cl, reps; chart_choice, d=1, ced=false, ad=100,
 ```
 Compute the in-control average run length (ARL) of the EWMA chart based on generalized ordinal patterns (GOPs) via simulation. The computation is multithreaded.
  
-  * `gop_dgp`: in-control DGP (e.g. `DiscreteDGPIC`).
+  * `gop_dgp`: in-control DGP (e.g. [`DiscreteDGPIC`](DiscreteDGPIC.qmd)).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `reps::Int`: number of replications.
-  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or `Persistence()`.
+  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or [`Persistence()`](Persistence.qmd).
   * `d=1`: delay between observations of a pattern.
   * `ced::Bool=false`: use conditional expected delay initialization.
   * `ad::Int=100`: number of in-control iterations for `ced`.

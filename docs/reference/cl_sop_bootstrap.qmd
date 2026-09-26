@@ -41,7 +41,7 @@ Using a fixed `seed` ensures the ARL function behaves smoothly across evaluation
   * `bracket_step=0.001`: Step size for the bracketing search.
   * `arl_truncation_factor=50`: Individual simulation runs are capped at `arl_truncation_factor * L0` steps during bracketing.
   * `chart_choice=TauTilde()`: Control chart statistic to use.
-  * `refinement=OrdinaryType()`: SOP classification; a `RefinedType` applies a refined chart computation.
+  * `refinement=OrdinaryType()`: SOP classification; a [`RefinedType`](RefinedType.qmd) applies a refined chart computation.
   * `cl_tol=1e-4`: Absolute convergence tolerance on `cl` for the ITP phase.
   * `seed=nothing`: Random seed for reproducibility.
   * `verbose=false`: If `true`, prints progress information at each evaluation.

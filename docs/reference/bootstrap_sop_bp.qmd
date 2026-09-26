@@ -19,8 +19,8 @@ Generate a bootstrap distribution of the BP-SOP statistic for a single spatial i
   * `data`: The 2D image (M × N matrix).
   * `n_boot`: Number of bootstrap replications.
   * `w::Int`: Window size; all (d1, d2) ∈ {1,…,w}² are included in the BP sum.
-  * `chart_choice`: The chart statistic type (e.g. `TauTilde()`, `KappaTilde()`).
-  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for classical types, or a `RefinedType` instance.
+  * `chart_choice`: The chart statistic type (e.g. [`TauTilde()`](TauTilde.qmd), [`KappaTilde()`](KappaTilde.qmd)).
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for classical types, or a [`RefinedType`](RefinedType.qmd) instance.
   * `block_size`: Set > 1 to use 2D block bootstrap and preserve spatial dependencies.
 
 

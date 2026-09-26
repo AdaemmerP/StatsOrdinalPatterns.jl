@@ -65,7 +65,7 @@ control chart.
 has to be a unit range of integers to allow for parallel processing, since the    function is called by `arl_sacf()`.
  
   * `spatial_dgp::SpatialDGP`: The spatial data generating process (DGP) to use for
-the SACF function. This can be one of the following: `SAR1`, `SAR11`, `SAR22`,    `SINAR11`, `SQMA11`, `SQINMA11`, or `BSQMA11`.
+the SACF function. This can be one of the following: [`SAR1`](SAR1.qmd), [`SAR11`](SAR11.qmd), [`SAR22`](SAR22.qmd),    [`SINAR11`](SINAR11.qmd), [`SQMA11`](SQMA11.qmd), [`SQINMA11`](SQINMA11.qmd), or [`BSQMA11`](BSQMA11.qmd).
  
 
 

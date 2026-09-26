@@ -15,7 +15,7 @@ Compute the out-of-control average run length (ARL) of the EWMA lag-1 autocorrel
  
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the ACF chart.
-  * `acf_dgp`: out-of-control DGP (e.g. `AR1`, `TEAR1`).
+  * `acf_dgp`: out-of-control DGP (e.g. [`AR1`](AR1.qmd), [`TEAR1`](TEAR1.qmd)).
   * `dist_null`: in-control (null) distribution used to center and scale the statistic.
   * `reps::Int`: number of replications.
   * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](stat_acf.qmd)).

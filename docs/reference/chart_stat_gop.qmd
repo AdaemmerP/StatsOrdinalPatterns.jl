@@ -15,7 +15,7 @@ chart_stat_gop(p_p0, G1G, ::G_Chart)
 Compute the chart statistic for generalized ordinal patterns (GOPs) from the vector of deviations `p_p0 = p - p0`, where `p` holds the estimated GOP frequencies and `p0` the in-control GOP distribution (see [`fill_p0!`](fill_p0!.qmd)).
  
   * `p_p0`: vector of length 13 with the deviations of the estimated GOP frequencies from the in-control distribution.
-  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or `Persistence()`.
+  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or [`Persistence()`](Persistence.qmd).
   * `G1G`: weighting matrix `G'G` used by the G-chart method.
 Returns the value of the chart statistic.
  

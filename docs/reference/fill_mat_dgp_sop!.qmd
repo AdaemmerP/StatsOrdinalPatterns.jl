@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 fill_mat_dgp_sop!(dgp, dist_error, dist_ao, mat, mat_ao, ...)
 ```
-Fill the data matrix in-place with one realization of the spatial DGP `dgp` and return a view of the field without the margin. Methods exist for all spatial DGPs (`SAR1`, `SAR11`, `SINAR11`, `SAR22`, `SQMA11`, `SQMA22`, `SQINMA11`, `BSQMA11`, `ICSTS`, …), each with and without additive outliers.
+Fill the data matrix in-place with one realization of the spatial DGP `dgp` and return a view of the field without the margin. Methods exist for all spatial DGPs ([`SAR1`](SAR1.qmd), [`SAR11`](SAR11.qmd), [`SINAR11`](SINAR11.qmd), [`SAR22`](SAR22.qmd), [`SQMA11`](SQMA11.qmd), [`SQMA22`](SQMA22.qmd), [`SQINMA11`](SQINMA11.qmd), [`BSQMA11`](BSQMA11.qmd), [`ICSTS`](ICSTS.qmd), …), each with and without additive outliers.
  
   * `dgp`: spatial DGP struct holding the dimensions and model parameters.
   * `dist_error`: innovation (error) distribution.

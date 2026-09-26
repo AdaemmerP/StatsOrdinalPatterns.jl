@@ -34,8 +34,8 @@ selected in the package through the `chart_choice` keyword:
 
 | Paper | Statistic | `chart_choice` | Alarm rule |
 |:------|:----------|:---------------|:-----------|
-| Eq. (3) | $\widehat{H}^{(d)}$, permutation entropy | `Shannon(base=exp(1))` | $\widehat{H} < cl$ |
-| Eq. (3) | $\widehat{H}_{\text{ex}}^{(d)}$, permutation extropy | `ShannonExtropy(base=exp(1))` | $\widehat{H}_{\text{ex}} < cl$ |
+| Eq. (3) | $\widehat{H}^{(d)}$, permutation entropy | [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) | $\widehat{H} < cl$ |
+| Eq. (3) | $\widehat{H}_{\text{ex}}^{(d)}$, permutation extropy | [`ShannonExtropy(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) | $\widehat{H}_{\text{ex}} < cl$ |
 | Eq. (3) | $\widehat{\Delta}^{(d)}$, distance to white noise | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\widehat{\Delta} > cl$ |
 | Eq. (4) | $\hat{\beta}^{(d)}$, up-down balance | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $\lvert\hat{\beta}\rvert > cl$ |
 | Eq. (4) | $\hat{\tau}^{(d)}$, persistence | [`Persistence()`](../reference/Persistence.qmd) | $\lvert\hat{\tau}\rvert > cl$ |

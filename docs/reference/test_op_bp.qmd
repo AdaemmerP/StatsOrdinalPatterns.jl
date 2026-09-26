@@ -15,14 +15,14 @@ Perform the asymptotic Box-Pierce type test for serial dependence based on ordin
  
   * `data`: the time series.
   * `w::Int`: maximal delay; the individual statistics for delays `1:w` are aggregated.
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The statistic does not depend on it.
+  * `chart_choice`: one of [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), [`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd), [`UpDownBalance()`](UpDownBalance.qmd), [`Persistence()`](Persistence.qmd), [`RotationalAsymmetry()`](RotationalAsymmetry.qmd), [`UpDownScaling()`](UpDownScaling.qmd). For [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), the logarithm base must be larger than 1. The statistic does not depend on it.
   * `m::Int=3`: length of the ordinal patterns.
   * `alpha=0.05`: significance level.
   * `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights instead of the constant Box-Pierce weight. The asymptotic null distribution is unchanged.
 
 ### Availability of critical values and p-values
 
-Closed-form null distributions — and hence p-values and arbitrary `alpha` — are available for `m = 2` with `Shannon()`/`DistanceToWhiteNoise()` and for `m = 3` with `UpDownBalance()`. For the remaining `m = 3` charts the individual statistics are correlated across the delays `1:w`, so [`crit_val_op_bp`](crit_val_op_bp.qmd) uses values tabulated at `alpha = 0.05` (Weiß, 2022) for `w ∈ 1:5`; passing a different `alpha` throws an error, and `asymp_pval` is `NaN` unless `w == 1`. Use [`test_op_bp_bootstrap`](test_op_bp_bootstrap.qmd) to obtain a p-value for any chart, `w` and `alpha`.
+Closed-form null distributions — and hence p-values and arbitrary `alpha` — are available for `m = 2` with [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon)/[`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd) and for `m = 3` with [`UpDownBalance()`](UpDownBalance.qmd). For the remaining `m = 3` charts the individual statistics are correlated across the delays `1:w`, so [`crit_val_op_bp`](crit_val_op_bp.qmd) uses values tabulated at `alpha = 0.05` (Weiß, 2022) for `w ∈ 1:5`; passing a different `alpha` throws an error, and `asymp_pval` is `NaN` unless `w == 1`. Use [`test_op_bp_bootstrap`](test_op_bp_bootstrap.qmd) to obtain a p-value for any chart, `w` and `alpha`.
  
 
 

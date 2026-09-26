@@ -20,7 +20,7 @@ Compute in-control run lengths of the EWMA chart based on generalized ordinal pa
   * `p_reps`: range of replication indices to process.
   * `gop_dgp`: in-control DGP.
   * `gop_dgp_dist`: marginal distribution of `gop_dgp`.
-  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or `Persistence()`.
+  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or [`Persistence()`](Persistence.qmd).
   * `d::Int`: delay between observations of a pattern.
   * `ced::Bool`: use conditional expected delay initialization.
   * `ad::Int`: number of in-control iterations for `ced`.

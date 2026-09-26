@@ -11,9 +11,9 @@ engine: markdown
 ```julia
 init_mat!(dgp, dist_error, mat)
 ```
-Initialize the data matrix `mat` in-place for a spatial DGP by setting its first row(s) and column(s) to the marginal mean of the process. Methods exist for `SAR11`, `SINAR11` (mean rounded to an integer), and `SAR22` (first two rows/columns).
+Initialize the data matrix `mat` in-place for a spatial DGP by setting its first row(s) and column(s) to the marginal mean of the process. Methods exist for [`SAR11`](SAR11.qmd), [`SINAR11`](SINAR11.qmd) (mean rounded to an integer), and [`SAR22`](SAR22.qmd) (first two rows/columns).
  
-  * `dgp`: spatial DGP (`SAR11`, `SINAR11`, or `SAR22`).
+  * `dgp`: spatial DGP ([`SAR11`](SAR11.qmd), [`SINAR11`](SINAR11.qmd), or [`SAR22`](SAR22.qmd)).
   * `dist_error`: innovation (error) distribution of the process.
   * `mat`: data matrix to initialize.
 

@@ -20,7 +20,7 @@ of each d1-d2 (delay) combination. This matrix will be used for re-sampling.
   * `lam::Float64`: A scalar value for lambda for the EWMA chart.
   * `cl::Float64`: A scalar value for the control limit.
   * `reps_range::UnitRange{Int}`: A range of integers for the number of repetitions.
-This has to be a range to be compatible with `arl_sop_bootstrap()` which uses threading.
+This has to be a range to be compatible with [`arl_sop_bootstrap()`](arl_sop_bootstrap.qmd) which uses threading.
  
   * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
   * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.

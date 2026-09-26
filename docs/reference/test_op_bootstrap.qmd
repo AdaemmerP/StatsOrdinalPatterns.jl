@@ -11,13 +11,13 @@ engine: markdown
 ```julia
 test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)
 ```
-Compute a bootstrap hypothesis test for ordinal patterns and return an `OPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+Compute a bootstrap hypothesis test for ordinal patterns and return an [`OPTestResultBoot`](OPTestResultBoot.qmd) with the bootstrap critical value, p-value, and reject decision.
  
-Unlike `test_op()`, this function does not rely on asymptotic distributions and therefore works for any pattern length `m`, including `m > 3` where no asymptotic theory is available.
+Unlike [`test_op()`](test_op.qmd), this function does not rely on asymptotic distributions and therefore works for any pattern length `m`, including `m > 3` where no asymptotic theory is available.
  
   * `data`: the time series.
   * `n_boot`: number of bootstrap replications.
-  * `chart_choice`: one of `Persistence()`, `UpDownBalance()`, `RotationalAsymmetry()`, `UpDownScaling()`, `DistanceToWhiteNoise()`, `Shannon()`, `ShannonExtropy()`. For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic and critical value are both in that base, so the test decision and the p-value do not depend on it.
+  * `chart_choice`: one of [`Persistence()`](Persistence.qmd), [`UpDownBalance()`](UpDownBalance.qmd), [`RotationalAsymmetry()`](RotationalAsymmetry.qmd), [`UpDownScaling()`](UpDownScaling.qmd), [`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd), [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy). For [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) for the natural logarithm used in the papers. Statistic and critical value are both in that base, so the test decision and the p-value do not depend on it.
   * `alpha`: significance level (default `0.05`).
   * `block_size`: set `> 1` for a block bootstrap that preserves serial dependencies.
 

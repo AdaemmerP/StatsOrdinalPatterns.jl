@@ -13,7 +13,7 @@ arl_kappa_ic(qual_dgp, lam, cl, reps; chart_choice, rl_max=typemax(Int))
 ```
 Compute the in-control average run length (ARL) of the EWMA κ-chart for qualitative processes via simulation. The computation is multithreaded.
  
-  * `qual_dgp`: in-control DGP (e.g. `DiscreteDGPIC`).
+  * `qual_dgp`: in-control DGP (e.g. [`DiscreteDGPIC`](DiscreteDGPIC.qmd)).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `reps::Int`: number of replications.

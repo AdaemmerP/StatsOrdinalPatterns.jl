@@ -20,8 +20,8 @@ Generate a bootstrap distribution of the SOP statistic for a single spatial imag
   * `n_boot`: Number of bootstrap replications.
   * `d1::Int`: Row delay.
   * `d2::Int`: Column delay.
-  * `chart_choice`: The chart statistic type (e.g. `TauTilde()`, `KappaTilde()`).
-  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for classical types, or a `RefinedType` instance.
+  * `chart_choice`: The chart statistic type (e.g. [`TauTilde()`](TauTilde.qmd), [`KappaTilde()`](KappaTilde.qmd)).
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for classical types, or a [`RefinedType`](RefinedType.qmd) instance.
   * `block_size`: Set > 1 to use 2D block bootstrap and preserve spatial dependencies.
 
 

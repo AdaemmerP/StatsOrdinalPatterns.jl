@@ -80,7 +80,7 @@ the chart signals when $\lvert\text{stat}\rvert > cl$.
 
 Setting `refinement` to [`RotationType()`](../reference/RotationType.qmd), [`DirectionType()`](../reference/DirectionType.qmd), or [`DiagonalType()`](../reference/DiagonalType.qmd) replaces
 the three classical SOP types by the corresponding six refined types. The `refinement`
-argument must be identical in `cl_sop`, `arl_sop_ic`, and `arl_sop_oc` — otherwise the
+argument must be identical in [`cl_sop`](../reference/cl_sop.qmd), [`arl_sop_ic`](../reference/arl_sop_ic.qmd), and [`arl_sop_oc`](../reference/arl_sop_oc.qmd) — otherwise the
 critical limit does not belong to the monitored statistic.
 
 ## Setup
@@ -155,8 +155,8 @@ contributes $(M - d_1)(N - d_2) = 100$ patterns.
 
 ## Monitoring an observed image sequence
 
-`monitor_sop` applied to a 3D array computes the EWMA chart statistics of an observed
-image sequence (the same ones `stat_sop` returns), applies the two sided alarm rule and
+[`monitor_sop`](../reference/monitor_sop.qmd) applied to a 3D array computes the EWMA chart statistics of an observed
+image sequence (the same ones [`stat_sop`](../reference/stat_sop.qmd) returns), applies the two sided alarm rule and
 records the first signal. The sequence below is spatial white noise up to $t = 20$ and
 spatially dependent afterwards.
 

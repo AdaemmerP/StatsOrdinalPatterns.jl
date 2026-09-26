@@ -13,7 +13,7 @@ arl_sacf_bp_oc(sp_dgp, lam, cl, w, reps=10_000; rl_max=typemax(Int))
 ```
 Compute the out-of-control average run length (ARL) of the EWMA chart based on the Box-Pierce type SACF statistic [`stat_sacf_bp`](stat_sacf_bp.qmd) via simulation. The computation is multithreaded.
  
-  * `sp_dgp::SpatialDGP`: out-of-control spatial data generating process, one of `SAR1`, `SAR11`, `SAR22`, `SINAR11`, `SQMA11`, `SQINMA11` or `BSQMA11`.
+  * `sp_dgp::SpatialDGP`: out-of-control spatial data generating process, one of [`SAR1`](SAR1.qmd), [`SAR11`](SAR11.qmd), [`SAR22`](SAR22.qmd), [`SINAR11`](SINAR11.qmd), [`SQMA11`](SQMA11.qmd), [`SQINMA11`](SQINMA11.qmd) or [`BSQMA11`](BSQMA11.qmd).
   * `lam`: smoothing parameter of the EWMA statistic.
   * `cl`: control limit of the chart, typically obtained from [`cl_sacf_bp`](cl_sacf_bp.qmd).
   * `w::Int`: maximal lag of the BP statistic (see [`stat_sacf_bp`](stat_sacf_bp.qmd)).

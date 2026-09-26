@@ -29,11 +29,11 @@ benchmark column is [`test_sacf`](../reference/test_sacf.qmd).
 
 | Table B.8 column | Package call | Rejects $H_0$ when | Label below |
 |:-----------------|:-------------|:-------------------|:------------|
-| $\hat{\tau}$ | `test_sop(data, 1, 1; chart_choice=TauHat())` | $\lvert\hat{\tau}\rvert > c$ | `tau_hat` |
-| $\hat{\kappa}$ | `test_sop(data, 1, 1; chart_choice=KappaHat())` | $\lvert\hat{\kappa}\rvert > c$ | `kappa_hat` |
-| $\tilde{\tau}$ | `test_sop(data, 1, 1; chart_choice=TauTilde())` | $\lvert\tilde{\tau}\rvert > c$ | `tau_tilde` |
-| $\tilde{\kappa}$ | `test_sop(data, 1, 1; chart_choice=KappaTilde())` | $\lvert\tilde{\kappa}\rvert > c$ | `kappa_tilde` |
-| $\hat{\rho}(\mathbf{1})$ | `test_sacf(data, 1, 1)` | $\lvert\hat{\rho}\rvert > c$ | `rho_1` |
+| $\hat{\tau}$ | [`test_sop(data, 1, 1; chart_choice=TauHat())`](../reference/test_sop.qmd) | $\lvert\hat{\tau}\rvert > c$ | `tau_hat` |
+| $\hat{\kappa}$ | [`test_sop(data, 1, 1; chart_choice=KappaHat())`](../reference/test_sop.qmd) | $\lvert\hat{\kappa}\rvert > c$ | `kappa_hat` |
+| $\tilde{\tau}$ | [`test_sop(data, 1, 1; chart_choice=TauTilde())`](../reference/test_sop.qmd) | $\lvert\tilde{\tau}\rvert > c$ | `tau_tilde` |
+| $\tilde{\kappa}$ | [`test_sop(data, 1, 1; chart_choice=KappaTilde())`](../reference/test_sop.qmd) | $\lvert\tilde{\kappa}\rvert > c$ | `kappa_tilde` |
+| $\hat{\rho}(\mathbf{1})$ | [`test_sacf(data, 1, 1)`](../reference/test_sacf.qmd) | $\lvert\hat{\rho}\rvert > c$ | `rho_1` |
 
 All four SOP statistics are linear in the same vector of type frequencies
 $\hat{\mathbf{p}} = (\hat p_1, \hat p_2, \hat p_3)$ of the classical SOP classification,
@@ -108,10 +108,10 @@ test_sacf(Y, 1, 1; alpha=level)
 
 ## Running the power study
 
-`crit_val_sop` and [`crit_val_sacf`](../reference/crit_val_sacf.qmd) return the critical values alone. They depend on the
+[`crit_val_sop`](../reference/crit_val_sop.qmd) and [`crit_val_sacf`](../reference/crit_val_sacf.qmd) return the critical values alone. They depend on the
 field size and the level, not on the data, so they are computed once per row of the table.
-`test_sop` additionally computes the $p$ value, which a power study does not use. Each
-replication then costs one pass over the field: `stat_sop` counts the SOP frequencies
+[`test_sop`](../reference/test_sop.qmd) additionally computes the $p$ value, which a power study does not use. Each
+replication then costs one pass over the field: [`stat_sop`](../reference/stat_sop.qmd) counts the SOP frequencies
 once, and the four statistics are read off the resulting $\hat{\mathbf{p}}$ with
 [`chart_stat_sop`](../reference/chart_stat_sop.qmd).
 
@@ -144,8 +144,8 @@ function power(m, n, eps, reps; level=0.05)
 end
 ```
 
-The shortcut has to give the same statistic and the same decision as `test_sop` and
-`test_sacf`, not merely a similar one:
+The shortcut has to give the same statistic and the same decision as [`test_sop`](../reference/test_sop.qmd) and
+[`test_sacf`](../reference/test_sacf.qmd), not merely a similar one:
 
 ```{julia}
 #| code-fold: true

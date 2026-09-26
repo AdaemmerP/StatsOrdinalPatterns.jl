@@ -16,7 +16,7 @@ Compute the in-control average run length (ARL) of the EWMA lag-1 autocorrelatio
  
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the ACF chart.
-  * `acf_dgp`: in-control DGP (e.g. `ContinuousDGPIC`).
+  * `acf_dgp`: in-control DGP (e.g. [`ContinuousDGPIC`](ContinuousDGPIC.qmd)).
   * `reps::Int`: number of replications.
   * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](stat_acf.qmd)); the method without this argument uses version 1.
   * `ced::Bool=false`: use conditional expected delay initialization.

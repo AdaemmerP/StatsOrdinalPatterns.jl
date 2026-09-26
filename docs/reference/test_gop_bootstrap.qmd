@@ -22,7 +22,7 @@ Generate a bootstrap distribution of the GOP statistic. Each resampled series is
   * `n_boot`: Number of bootstrap replications.
   * `null_dist`: The null (in-control) discrete distribution.
   * `lam`: EWMA smoothing parameter.
-  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or `Persistence()`.
+  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or [`Persistence()`](Persistence.qmd).
   * `m::Int=3`: length of the ordinal patterns.
   * `d::Int=1`: delay between observations of a pattern.
   * `block_size`: Set > 1 to use block bootstrap and preserve time-series dependencies.

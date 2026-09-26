@@ -11,9 +11,9 @@ engine: markdown
 ```julia
 test_sacf_bootstrap(data, n_boot, d1, d2; alpha, block_size)
 ```
-Compute a bootstrap hypothesis test for the SACF at lag (d1, d2) and return a `SACFTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+Compute a bootstrap hypothesis test for the SACF at lag (d1, d2) and return a [`SACFTestResultBoot`](SACFTestResultBoot.qmd) with the bootstrap critical value, p-value, and reject decision.
  
-Unlike `test_sacf()`, this does not rely on the asymptotic N(0, 1/MN) distribution and is therefore more reliable for small images.
+Unlike [`test_sacf()`](test_sacf.qmd), this does not rely on the asymptotic N(0, 1/MN) distribution and is therefore more reliable for small images.
  
   * `data`: the 2D image (M × N matrix).
   * `n_boot`: number of bootstrap replications.

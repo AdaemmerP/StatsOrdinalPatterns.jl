@@ -74,14 +74,14 @@ the direction of the statistic.
 | RotationalAsymmetry ($\hat{\gamma}$) | [`RotationalAsymmetry()`](../reference/RotationalAsymmetry.qmd) | $\hat{\gamma} = 0$ | $\lvert\hat{\gamma}\rvert > cl$ |
 | UpDownScaling ($\hat{\delta}$) | [`UpDownScaling()`](../reference/UpDownScaling.qmd) | $\hat{\delta} = 0$ | $\lvert\hat{\delta}\rvert > cl$ |
 | DistanceToWhiteNoise ($\hat{\Delta}$) | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\hat{\Delta} = 0$ | $\hat{\Delta} > cl$ |
-| Shannon entropy ($\hat{H}$) | `Shannon(base=exp(1))` | $\hat{H} = \log(m!)$ | $\hat{H} < cl$ |
-| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy(base=exp(1))` | $\hat{H}_\text{ex} = 5\log(6/5)$ | $\hat{H}_\text{ex} < cl$ |
+| Shannon entropy ($\hat{H}$) | [`Shannon(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) | $\hat{H} = \log(m!)$ | $\hat{H} < cl$ |
+| Shannon extropy ($\hat{H}_\text{ex}$) | [`ShannonExtropy(base=exp(1))`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) | $\hat{H}_\text{ex} = 5\log(6/5)$ | $\hat{H}_\text{ex} < cl$ |
 
 : {tbl-colwidths="[30,26,22,22]"}
 
 :::
 
-`cl_op` handles the direction internally: for the two entropy charts the ARL *decreases*
+[`cl_op`](../reference/cl_op.qmd) handles the direction internally: for the two entropy charts the ARL *decreases*
 in `cl`, for all others it increases.
 
 ## Setup
@@ -152,7 +152,7 @@ DataFrame(
 )
 ```
 
-The count process `INAR1(α, dist, add_noise)` uses `add_noise=true`, which breaks ties by
+The count process [`INAR1(α, dist, add_noise)`](../reference/INAR1.qmd) uses `add_noise=true`, which breaks ties by
 adding uniform noise — otherwise equal values would make the ordinal pattern ambiguous.
 
 ## Comparing charts
@@ -203,8 +203,8 @@ process does not induce, so its chart stays at roughly the in-control level.
 
 ## Monitoring an observed series
 
-`monitor_op(data, lam, cl; ...)` computes the EWMA chart statistics of an observed series
-(the same ones `stat_op(data, lam; ...)` returns), applies the alarm rule of the chosen
+[`monitor_op(data, lam, cl; ...)`](../reference/monitor_op.qmd) computes the EWMA chart statistics of an observed series
+(the same ones [`stat_op(data, lam; ...)`](../reference/stat_op.qmd) returns), applies the alarm rule of the chosen
 chart and records the first signal. Here the series switches from i.i.d. to AR(1) at
 $t = 150$.
 

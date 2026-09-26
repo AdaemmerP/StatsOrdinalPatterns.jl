@@ -12,14 +12,14 @@ engine: markdown
 test_op_bp_bootstrap(data, n_boot, w; chart_choice, m=3, alpha=0.05,
   ljung_box=false, block_size=1)
 ```
-Compute a bootstrap Box-Pierce type hypothesis test for ordinal patterns and return an `OPBPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+Compute a bootstrap Box-Pierce type hypothesis test for ordinal patterns and return an [`OPBPTestResultBoot`](OPBPTestResultBoot.qmd) with the bootstrap critical value, p-value, and reject decision.
  
 Unlike [`test_op_bp`](test_op_bp.qmd), this does not rely on tabulated critical values and therefore works for any chart, any pattern length `m`, any maximal delay `w` and any significance level `alpha`.
  
   * `data`: the time series.
   * `n_boot`: number of bootstrap replications.
   * `w`: maximal delay; the individual statistics for delays `1:w` are aggregated.
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The statistic does not depend on it.
+  * `chart_choice`: one of [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon), [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), [`DistanceToWhiteNoise()`](DistanceToWhiteNoise.qmd), [`UpDownBalance()`](UpDownBalance.qmd), [`Persistence()`](Persistence.qmd), [`RotationalAsymmetry()`](RotationalAsymmetry.qmd), [`UpDownScaling()`](UpDownScaling.qmd). For [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), the logarithm base must be larger than 1. The statistic does not depend on it.
   * `m::Int=3`: length of the ordinal patterns.
   * `alpha`: significance level (default `0.05`).
   * `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights.
