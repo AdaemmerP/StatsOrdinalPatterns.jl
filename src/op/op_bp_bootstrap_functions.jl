@@ -14,6 +14,8 @@ the time series `data` and return a vector of `n_boot` bootstrap statistics.
 - `w::Int`: maximal delay; the individual statistics for delays `1:w` are aggregated.
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The
+  statistic does not depend on it.
 - `m::Int=3`: length of the ordinal patterns.
 - `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights instead of the constant
   Box-Pierce weight.
@@ -128,6 +130,8 @@ significance level `alpha`.
 - `w`: maximal delay; the individual statistics for delays `1:w` are aggregated.
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The
+  statistic does not depend on it.
 - `m::Int=3`: length of the ordinal patterns.
 - `alpha`: significance level (default `0.05`).
 - `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights.

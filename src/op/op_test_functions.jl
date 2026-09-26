@@ -36,6 +36,11 @@ that means a numerical evaluation of a generalized chi-squared distribution per 
 
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic
+  and critical value are both in that base, so the test decision and the p-value do
+  not depend on it.
 - `m::Int`: length of the ordinal patterns. Asymptotic theory is available for `m = 3`
   (and `m = 2` for `Shannon()`, `DistanceToWhiteNoise()` and `UpDownBalance()`).
 - `n_patterns::Int`: number of ordinal patterns, `length(ts) - (m - 1) * d`.
@@ -52,28 +57,30 @@ crit = crit_val_op(Persistence(), 3, n)
 abs(chart_stat_op(stat_op(x; chart_choice=Persistence())[2], Persistence())) > crit
 ```
 """
-function crit_val_op(::Shannon, m, n_patterns; alpha=0.05)
+function crit_val_op(chart_choice::Shannon, m, n_patterns; alpha=0.05)
+  # The critical values of the entropy charts are derived for the natural logarithm and
+  # divided by `log_base` so that they are on the same scale as the statistic.
   if m == 2
     # H-chart (m=2)
     @assert m in (2, 3) "Wrong m value for Shannon chart."
     qup2 = quantile(Chisq(1), 1 - alpha) / 6
-    return log(2) - qup2 / n_patterns
+    return (log(2) - qup2 / n_patterns) / log_base(chart_choice)
   elseif m == 3
     # H-chart (m=3)
     qup3 = qup3_op_value(alpha)
-    return log(6) - 3 * qup3 / n_patterns
+    return (log(6) - 3 * qup3 / n_patterns) / log_base(chart_choice)
   else
     throw(ArgumentError("Unsupported m value for Shannon chart: $m. Use 2 or 3."))
   end
 end
 
-# 2.) Method for ShannonExtropy 
-function crit_val_op(::ShannonExtropy, m, n_patterns; alpha=0.05)
+# 2.) Method for ShannonExtropy
+function crit_val_op(chart_choice::ShannonExtropy, m, n_patterns; alpha=0.05)
   @assert m == 3 "ShannonExtropy test only supports m = 3."
 
   # Hex-chart (m=3)
   qup3 = qup3_op_value(alpha)
-  return 5 * log(6 / 5) - 3 * qup3 / 5 / n_patterns
+  return (5 * log(6 / 5) - 3 * qup3 / 5 / n_patterns) / log_base(chart_choice)
 end
 
 # 3.) Method for DistanceToWhiteNoise 
@@ -204,10 +211,13 @@ function _asymp_pval(chart, stat::Float64, n_pat::Int, m::Int)::Float64
     T = m == 2 ? 6 * n_pat * stat : n_pat * stat
     return m == 2 ? 1.0 - cdf(Chisq(1), T) : 1.0 - cdf(_gc_op, T)
   elseif chart isa Shannon
-    T = m == 2 ? 6 * n_pat * (log(2) - stat) : n_pat * (log(6) - stat) / 3
+    # the null distribution is derived for the natural logarithm
+    stat_ln = stat * log_base(chart)
+    T = m == 2 ? 6 * n_pat * (log(2) - stat_ln) : n_pat * (log(6) - stat_ln) / 3
     return m == 2 ? 1.0 - cdf(Chisq(1), T) : 1.0 - cdf(_gc_op, T)
   else  # ShannonExtropy (m=3 only)
-    return 1.0 - cdf(_gc_op, 5 * n_pat * (5 * log(6 / 5) - stat) / 3)
+    stat_ln = stat * log_base(chart)
+    return 1.0 - cdf(_gc_op, 5 * n_pat * (5 * log(6 / 5) - stat_ln) / 3)
   end
 end
 
@@ -230,6 +240,11 @@ critical value, the p-value, and the reject decision.
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
   Asymptotic theory is available for `m = 3` (and `m = 2` for `Shannon()`,
   `DistanceToWhiteNoise()`, and `UpDownBalance()`).
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic
+  and critical value are both in that base, so the test decision and the p-value do
+  not depend on it.
 - `m::Int=3`: length of the ordinal patterns.
 - `d::Int=1`: delay between observations of a pattern.
 - `alpha=0.05`: significance level.

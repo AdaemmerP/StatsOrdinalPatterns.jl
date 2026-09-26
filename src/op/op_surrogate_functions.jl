@@ -58,6 +58,11 @@ transform of one — making this a nonlinearity test rather than a generic depen
 - `n_surrogates`: number of surrogate replications.
 - `chart_choice`: one of `Persistence()`, `UpDownBalance()`, `RotationalAsymmetry()`,
   `UpDownScaling()`, `DistanceToWhiteNoise()`, `Shannon()`, `ShannonExtropy()`.
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic
+  and critical value are both in that base, so the test decision and the p-value do
+  not depend on it.
 - `m=3`: length of the ordinal patterns.
 - `d=1`: delay between observations of a pattern.
 - `alpha`: significance level (default `0.05`).

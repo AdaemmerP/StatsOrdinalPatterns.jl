@@ -74,8 +74,8 @@ the direction of the statistic.
 | RotationalAsymmetry ($\hat{\gamma}$) | `RotationalAsymmetry()` | $\hat{\gamma} = 0$ | $\lvert\hat{\gamma}\rvert > cl$ |
 | UpDownScaling ($\hat{\delta}$) | `UpDownScaling()` | $\hat{\delta} = 0$ | $\lvert\hat{\delta}\rvert > cl$ |
 | DistanceToWhiteNoise ($\hat{\Delta}$) | `DistanceToWhiteNoise()` | $\hat{\Delta} = 0$ | $\hat{\Delta} > cl$ |
-| Shannon entropy ($\hat{H}$) | `Shannon()` | $\hat{H} = \log(m!)$ | $\hat{H} < cl$ |
-| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy()` | $\hat{H}_\text{ex} = 5\log(6/5)$ | $\hat{H}_\text{ex} < cl$ |
+| Shannon entropy ($\hat{H}$) | `Shannon(base=exp(1))` | $\hat{H} = \log(m!)$ | $\hat{H} < cl$ |
+| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy(base=exp(1))` | $\hat{H}_\text{ex} = 5\log(6/5)$ | $\hat{H}_\text{ex} < cl$ |
 
 : {tbl-colwidths="[30,26,22,22]"}
 
@@ -168,7 +168,7 @@ chart_list = [
     ("UpDownBalance (β)", UpDownBalance(), 0.30, 0.03),
     ("RotationalAsymmetry (γ)", RotationalAsymmetry(), 0.30, 0.03),
     ("DistanceToWhiteNoise (Δ)", DistanceToWhiteNoise(), 0.08, 0.01),
-    ("Shannon entropy (H)", Shannon(), 1.40, 0.02),
+    ("Shannon entropy (H)", Shannon(base=exp(1)), 1.40, 0.02),
 ]
 
 oc_dgp = AR1(0.25, Normal(0, 1))

@@ -94,6 +94,8 @@ p-value, and the reject decision. The test is upper-tailed for every chart.
 - `w::Int`: maximal delay; the individual statistics for delays `1:w` are aggregated.
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The
+  statistic does not depend on it.
 - `m::Int=3`: length of the ordinal patterns.
 - `alpha=0.05`: significance level.
 - `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights instead of the constant

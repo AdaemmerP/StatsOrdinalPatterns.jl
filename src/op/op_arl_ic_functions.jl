@@ -14,6 +14,10 @@ multithreaded.
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`
   (see [`chart_stat_op`](@ref)).
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers. The control
+  limit `cl` must be given in the same base.
 - `d::Int=1`: delay between observations of a pattern.
 - `m::Int=3`: length of the ordinal patterns.
 - `ced::Bool=false`: use conditional expected delay initialization.

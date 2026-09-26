@@ -50,7 +50,7 @@ being computed and have no meaningful default:
 In particular, `alpha` is *always* a keyword and never positional:
 
 ```julia
-test_op(ts; chart_choice = Shannon(), alpha = 0.01)
+test_op(ts; chart_choice = Shannon(base=exp(1)), alpha = 0.01)
 test_sop(img, 1, 1; chart_choice = TauTilde(), alpha = 0.01)
 test_acf(ts, 1; alpha = 0.01)
 crit_val_sacf(60, 60; alpha = 0.01)
@@ -62,7 +62,7 @@ Every `test_` function returns a struct rather than a bare number, so the compon
 test can be accessed by name and are shown in a readable form at the REPL:
 
 ```julia
-res = test_op(ts; chart_choice = Shannon())
+res = test_op(ts; chart_choice = Shannon(base=exp(1)))
 res.stat          # test statistic
 res.asymp_crit    # critical value
 res.asymp_pval    # p-value

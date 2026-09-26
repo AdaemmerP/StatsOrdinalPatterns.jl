@@ -59,23 +59,50 @@ Returns the value of the chart statistic. The Shannon and Shannon-extropy statis
 follow Equation (3) in Weiß and Testik (2023); the β-, τ-, γ- and δ-statistics follow
 Equations (3)–(6) in Bandt (2019) and require `m = 3` (`UpDownBalance` also supports
 `m = 2`).
+
+The Shannon and Shannon-extropy statistics are computed in the logarithm base of
+`chart_choice`, which must be larger than 1. Note that `Shannon()` and `ShannonExtropy()`
+default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural
+logarithm used in the papers. See the section on the logarithm base in the docs.
 """
-function chart_stat_op(p_vec, ::Shannon) # H-chart: Equation (3), page 342, Weiss and Testik (2023)
+function chart_stat_op(p_vec, chart_choice::Shannon) # H-chart: Equation (3), page 342, Weiss and Testik (2023)
   value = 0.0
   for i in axes(p_vec, 1)
     p_vec[i] > 0 && (value -= p_vec[i] * log(p_vec[i])) # to avoid log(0)
   end
-  return value
+  return value / log_base(chart_choice)
 end
 
 # Hex-chart: Equation (3), page 342, Weiss and Testik (2023), Equation (15), page 6 in the paper
-function chart_stat_op(p_vec, ::ShannonExtropy)
+function chart_stat_op(p_vec, chart_choice::ShannonExtropy)
   value = 0.0
   for i in axes(p_vec, 1)
     p_vec[i] < 1 && (value -= (1 - p_vec[i]) * log(1 - p_vec[i])) # to avoid log of negative value
   end
-  return value
+  return value / log_base(chart_choice)
 end
+
+# Natural logarithm of the logarithm base of an entropy chart.
+#
+# The asymptotic theory of all tests is derived for the natural logarithm. An entropy in
+# base b equals the entropy under the natural logarithm divided by log(b), so the
+# statistics are computed with the natural logarithm and divided by `log_base` at the end,
+# and theoretical quantities are converted the same way. Every Shannon or ShannonExtropy
+# computation passes through this function, which makes it the single place where the
+# base is validated. Bases in (0, 1) are rejected because log(b) < 0 flips the sign of the
+# entropy and thereby the direction of every lower sided test, without raising an error.
+function log_base(chart_choice::Union{Shannon,ShannonExtropy})
+  base = chart_choice.base
+  base > 1 || throw(ArgumentError(
+    "the logarithm base of $(chart_choice) must be larger than 1, got base = $base. " *
+    "Use for example $(nameof(typeof(chart_choice)))(base=exp(1)) for the natural " *
+    "logarithm."
+  ))
+  return log(base)
+end
+
+# All other charts carry no logarithm base.
+log_base(_) = 1.0
 
 # Δ-chart: Equation (3), page 342, Weiss and Testik (2023)
 function chart_stat_op(p_vec, ::DistanceToWhiteNoise)

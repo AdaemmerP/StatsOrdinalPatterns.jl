@@ -80,10 +80,10 @@ point. For the entropy charts the rejection region lies below the limit, and for
 ```{julia}
 cl_H = cl_op(
     ic, lam, L0, 1.40;
-    chart_choice=Shannon(),
+    chart_choice=Shannon(base=exp(1)),
     reps_bracket=1_000, reps_final=2_000, bracket_step=0.02, seed=42
 )
-plot(monitor_op(x, lam, cl_H; chart_choice=Shannon()))
+plot(monitor_op(x, lam, cl_H; chart_choice=Shannon(base=exp(1))))
 ```
 
 ## Monitoring an image sequence
@@ -148,7 +148,7 @@ plot(test_op_bootstrap(x_ar, 2_000; chart_choice=Persistence(), block_size=20))
 
 The same plot exists for the spatial tests and for the Box-Pierce type tests. For the
 entropy charts the direction of the rejection region is read from the result, so the
-lower tail is shaded for `Shannon()` on a time series and the upper tail for the rescaled
+lower tail is shaded for `Shannon(base=exp(1))` on a time series and the upper tail for the rescaled
 statistic of `test_sop_bootstrap`:
 
 ```{julia}
@@ -159,8 +159,8 @@ for i in 2:20, j in 2:20
 end
 
 fig = Figure(size=(1100, 380))
-plot(fig[1, 1], test_op_bootstrap(x_ar, 2_000; chart_choice=Shannon()))
-plot(fig[1, 2], test_sop_bootstrap(img, 2_000, 1, 1; chart_choice=Shannon()))
+plot(fig[1, 1], test_op_bootstrap(x_ar, 2_000; chart_choice=Shannon(base=exp(1))))
+plot(fig[1, 2], test_sop_bootstrap(img, 2_000, 1, 1; chart_choice=Shannon(base=exp(1))))
 fig
 ```
 

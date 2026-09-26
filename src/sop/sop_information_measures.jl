@@ -97,6 +97,9 @@ the given chart choice.
 - `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`,
   [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`, `Shannon()`, `ShannonExtropy()`,
   `DistanceToWhiteNoise()`.
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers.
 
 Returns the value of the chart statistic.
 """
@@ -130,12 +133,14 @@ function chart_stat_sop(p_vec, chart_type::DistanceToWhiteNoise)
 end
 
 # Rescaling (Theorem 2.1 / Corollaries 2.2, 3.1.1, 3.2.1, 3.3.1, Weiß and Kim 2025)
-function rescale_sop(val, q, ::Shannon{T}) where {T}
-  return (-2 / q) * (val - log(q))
+# `val` is in the logarithm base of the chart and is converted back to the natural
+# logarithm first, so the rescaled statistic does not depend on the base (see `log_base`).
+function rescale_sop(val, q, chart_choice::Shannon{T}) where {T}
+  return (-2 / q) * (val * log_base(chart_choice) - log(q))
 end
 
-function rescale_sop(val, q, ::ShannonExtropy{T}) where {T}
-  return (-2) * (1 - 1 / q) * (val - (q - 1) * log(q / (q - 1)))
+function rescale_sop(val, q, chart_choice::ShannonExtropy{T}) where {T}
+  return (-2) * (1 - 1 / q) * (val * log_base(chart_choice) - (q - 1) * log(q / (q - 1)))
 end
 
 function rescale_sop(val, q, ::DistanceToWhiteNoise)

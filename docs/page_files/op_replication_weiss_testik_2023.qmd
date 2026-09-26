@@ -34,8 +34,8 @@ selected in the package through the `chart_choice` keyword:
 
 | Paper | Statistic | `chart_choice` | Alarm rule |
 |:------|:----------|:---------------|:-----------|
-| Eq. (3) | $\widehat{H}^{(d)}$, permutation entropy | `Shannon()` | $\widehat{H} < cl$ |
-| Eq. (3) | $\widehat{H}_{\text{ex}}^{(d)}$, permutation extropy | `ShannonExtropy()` | $\widehat{H}_{\text{ex}} < cl$ |
+| Eq. (3) | $\widehat{H}^{(d)}$, permutation entropy | `Shannon(base=exp(1))` | $\widehat{H} < cl$ |
+| Eq. (3) | $\widehat{H}_{\text{ex}}^{(d)}$, permutation extropy | `ShannonExtropy(base=exp(1))` | $\widehat{H}_{\text{ex}} < cl$ |
 | Eq. (3) | $\widehat{\Delta}^{(d)}$, distance to white noise | `DistanceToWhiteNoise()` | $\widehat{\Delta} > cl$ |
 | Eq. (4) | $\hat{\beta}^{(d)}$, up-down balance | `UpDownBalance()` | $\lvert\hat{\beta}\rvert > cl$ |
 | Eq. (4) | $\hat{\tau}^{(d)}$, persistence | `Persistence()` | $\lvert\hat{\tau}\rvert > cl$ |
@@ -57,8 +57,8 @@ lams = (0.25, 0.10, 0.05)              # smoothing parameters of Table 1
 reps = 10_000                          # replications per ARL estimate
 
 charts = [
-    ("H", Shannon()),
-    ("Hex", ShannonExtropy()),
+    ("H", Shannon(base=exp(1))),
+    ("Hex", ShannonExtropy(base=exp(1))),
     ("Δ", DistanceToWhiteNoise()),
     ("β", UpDownBalance()),
     ("τ", Persistence()),
@@ -180,7 +180,7 @@ the critical limits.
 
 ```{julia}
 #| output: false
-charts2 = [("H", Shannon()), ("Hex", ShannonExtropy()),
+charts2 = [("H", Shannon(base=exp(1))), ("Hex", ShannonExtropy(base=exp(1))),
     ("Δ", DistanceToWhiteNoise()), ("τ", Persistence())]
 alphas = (0.2, 0.4, 0.6, 0.8, -0.2, -0.4, -0.6, -0.8)
 

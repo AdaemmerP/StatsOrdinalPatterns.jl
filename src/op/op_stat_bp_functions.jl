@@ -13,6 +13,8 @@ the chart statistics over the delays `d = 1, …, w`.
 - `w::Int`: maximal delay; the individual statistics for delays `1:w` are aggregated.
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The
+  statistic does not depend on it.
 - `m::Int=3`: length of the ordinal patterns.
 - `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights
   (delay-specific numbers of patterns) instead of the constant Box-Pierce weight.
@@ -54,9 +56,11 @@ function stat_op_bp(data, w::Int; chart_choice, m::Int=3, ljung_box::Bool=false)
 
         end # end of range loop
 
-        # Compute relative frequency of types
+        # Compute relative frequency of types. Entropies are converted back to the
+        # natural logarithm, the scale of the constants below, so the BP statistic does
+        # not depend on the logarithm base (see `log_base`).
         p_rel .= bin ./ sum(bin)
-        bp_stats_all[i] = chart_stat_op(p_rel, chart_choice)
+        bp_stats_all[i] = chart_stat_op(p_rel, chart_choice) * log_base(chart_choice)
 
         # reset bin for next iteration
         fill!(bin, 0)
@@ -125,6 +129,8 @@ by [`stat_op_bp`](@ref).
   chart).
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  The critical value does not depend on the logarithm base of `Shannon` and
+  `ShannonExtropy`.
 - `m::Int=3`: length of the ordinal patterns (`2` or `3`, depending on the chart).
 - `alpha=0.05`: significance level. For the Shannon-, extropy- and Δ-charts with `m = 3`,
   tabulated values for `alpha = 0.05` are used.

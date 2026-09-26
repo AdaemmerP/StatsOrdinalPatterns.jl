@@ -34,7 +34,7 @@ A spatial ordinal pattern (SOP) test asks whether the frequencies of rank permut
 
     - Returns `[test_statistic, pattern_frequencies]`.
     - `data`: the 2D image (`Matrix`). `d1`: row delay. `d2`: column delay.
-    - `chart_choice`: one of `TauTilde()`, `TauHat()`, `KappaTilde()`, `KappaHat()`, `DistanceToWhiteNoise()`, `Shannon()`, `ShannonExtropy()`.
+    - `chart_choice`: one of `TauTilde()`, `TauHat()`, `KappaTilde()`, `KappaHat()`, `DistanceToWhiteNoise()`, `Shannon(base=exp(1))`, `ShannonExtropy(base=exp(1))`.
     - `refinement`: `OrdinaryType()` for classical types, or `RotationType()`, `DirectionType()`, `DiagonalType()`.
 
 - **`test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)`**
@@ -67,8 +67,8 @@ Seven chart statistics are available. They differ in what they measure and the d
 | $\hat{\kappa}$ (KappaTilde) | `KappaTilde()` | $\hat{\kappa} = 0$ | $\lvert\hat{\kappa}\rvert > c$ | Normal |
 | $\hat{\kappa}_1$ (KappaHat) | `KappaHat()` | $\hat{\kappa}_1 = 0$ | $\lvert\hat{\kappa}_1\rvert > c$ | Normal |
 | DistanceToWhiteNoise ($\hat{\Delta}$) | `DistanceToWhiteNoise()` | $\hat{\Delta} = 0$ | $\hat{\Delta} > c$ | Generalized $\chi^2$ |
-| Shannon entropy ($\hat{H}$) | `Shannon()` | $\hat{H} = \log(3)$ | $\hat{H} > c$ | Generalized $\chi^2$ |
-| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy()` | $\hat{H}_\text{ex} = \cdots$ | $\hat{H}_\text{ex} > c$ | Generalized $\chi^2$ |
+| Shannon entropy ($\hat{H}$) | `Shannon(base=exp(1))` | $\hat{H} = \log(3)$ | $\hat{H} > c$ | Generalized $\chi^2$ |
+| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy(base=exp(1))` | $\hat{H}_\text{ex} = \cdots$ | $\hat{H}_\text{ex} > c$ | Generalized $\chi^2$ |
 
 : {tbl-colwidths="[22,20,14,17,18]"}
 
@@ -77,6 +77,7 @@ Seven chart statistics are available. They differ in what they measure and the d
 - The four Tau/Kappa statistics use a **two-sided** test (signed deviation from zero).
 - The three entropy statistics undergo an internal standardisation that converts them to **upper-tail** tests — both `test_sop` and `test_sop_bootstrap` apply this standardisation consistently, so their critical values sit on the same scale and can be compared directly.
 - The asymptotic critical values and limiting distributions are derived in @weiss2022.
+- `Shannon` and `ShannonExtropy` use base 2 by default, while the papers use the natural logarithm. The rescaled statistic, the p-value and the test decision do not depend on the base. See [Logarithm base](op_tutorial.qmd#sec-log-base) for details.
 
 ## Setup
 
@@ -125,11 +126,11 @@ test_sop(data_sar, d1, d2; chart_choice=DistanceToWhiteNoise())
 ### Upper-tail — Shannon entropy
 
 ```{julia}
-test_sop(data_iid, d1, d2; chart_choice=Shannon())
+test_sop(data_iid, d1, d2; chart_choice=Shannon(base=exp(1)))
 ```
 
 ```{julia}
-test_sop(data_sar, d1, d2; chart_choice=Shannon())
+test_sop(data_sar, d1, d2; chart_choice=Shannon(base=exp(1)))
 ```
 
 The white-noise image is not rejected; the SAR image is. The critical value depends on the image dimensions `M`, `N`, the delays `d1`, `d2`, and `alpha` — not on the data.
@@ -167,8 +168,8 @@ chart_list = [
     ("KappaTilde (κ̃)", KappaTilde(), "two-sided"),
     ("KappaHat (κ̂)", KappaHat(), "two-sided"),
     ("DistanceToWhiteNoise (Δ)", DistanceToWhiteNoise(), "upper-tail"),
-    ("Shannon entropy (H)", Shannon(), "upper-tail"),
-    ("Shannon extropy (Hex)", ShannonExtropy(), "upper-tail"),
+    ("Shannon entropy (H)", Shannon(base=exp(1)), "upper-tail"),
+    ("Shannon extropy (Hex)", ShannonExtropy(base=exp(1)), "upper-tail"),
 ]
 asymp_res = [test_sop(data_sar, d1, d2; chart_choice=c) for (_, c, _) in chart_list]
 boot_res = [test_sop_bootstrap(data_sar, 2_000, d1, d2; chart_choice=c) for (_, c, _) in chart_list]

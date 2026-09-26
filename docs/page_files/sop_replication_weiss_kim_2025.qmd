@@ -37,8 +37,8 @@ The columns within a group are its `chart_choice`:
 | Table 8 column | `chart_choice` | Rejects $H_0$ when | Label below |
 |:---------------|:---------------|:-------------------|:------------|
 | $\tilde{\tau}$ | `TauTilde()` | $\lvert\tilde{\tau}\rvert > c$ | `tau_tilde` |
-| $\widehat{H}$ | `Shannon()` | rescaled $\widehat{H} > c$ | `H` |
-| $\widehat{H}_{ex}$ | `ShannonExtropy()` | rescaled $\widehat{H}_{ex} > c$ | `H_ex` |
+| $\widehat{H}$ | `Shannon(base=exp(1))` | rescaled $\widehat{H} > c$ | `H` |
+| $\widehat{H}_{ex}$ | `ShannonExtropy(base=exp(1))` | rescaled $\widehat{H}_{ex} > c$ | `H_ex` |
 | $\widehat{\Delta}$ | `DistanceToWhiteNoise()` | $\widehat{\Delta} > c$ | `Delta` |
 
 $\tilde{\tau}$ appears in the ordinary group only; the refined classifications have
@@ -69,7 +69,7 @@ models = [
     ("DGP4-4", "1² 2¹ 3¹", (2, 1, 1)),
 ]
 
-entropies = [("H", Shannon()), ("H_ex", ShannonExtropy()), ("Delta", DistanceToWhiteNoise())]
+entropies = [("H", Shannon(base=exp(1))), ("H_ex", ShannonExtropy(base=exp(1))), ("Delta", DistanceToWhiteNoise())]
 
 schemes = [
     ("ord", OrdinaryType(), vcat([("tau_tilde", TauTilde())], entropies)),
@@ -100,7 +100,7 @@ draw_field!(dgp, mat, mat_ao, mat_ma) =
 Random.seed!(1)
 dgp = sqma11((2, 2, 2), 10, 10)
 Y = collect(draw_field!(dgp, buffers(dgp)...))   # copy out of the buffer
-test_sop(Y, 1, 1; chart_choice=ShannonExtropy(), refinement=DiagonalType(), alpha=level)
+test_sop(Y, 1, 1; chart_choice=ShannonExtropy(base=exp(1)), refinement=DiagonalType(), alpha=level)
 ```
 
 ## Running the power study
@@ -136,7 +136,7 @@ function power(m, n, eps, reps; level=0.05)
                 Y = draw_field!(dgp, bufs...)
                 k = 0
                 for (_, ref, cs) in schemes
-                    p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon(), refinement=ref)[2]
+                    p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon(base=exp(1)), refinement=ref)[2]
                     for (_, cc) in cs
                         k += 1
                         hits[k] += rejects(cc, p̂, crits[k])
@@ -160,7 +160,7 @@ let dgp = sqma11((1, 1, 2), 20, 20), M = 21, N = 21
     Y = collect(draw_field!(dgp, buffers(dgp)...))
     ok = true
     for (_, ref, cs) in schemes
-        p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon(), refinement=ref)[2]
+        p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon(base=exp(1)), refinement=ref)[2]
         for (_, cc) in cs
             r = test_sop(Y, 1, 1; chart_choice=cc, refinement=ref, alpha=level)
             c = crit_val_sop(M, N, 1, 1; chart_choice=cc, refinement=ref, alpha=level)

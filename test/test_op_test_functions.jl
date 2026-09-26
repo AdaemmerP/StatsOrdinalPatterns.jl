@@ -23,7 +23,7 @@ end
   # Deterministic cross-check tying the two m = 2 charts together: a Taylor expansion
   # gives log(2) − H ≈ Δ for m = 2, so the Shannon chart's distance from its maximum must
   # equal the Δ-chart's critical value. This only holds when both carry the factor 6.
-  @test log(2) - StatsOrdinalPatterns.crit_val_op(Shannon(), 2, n; alpha=0.05) ≈
+  @test log(2) - StatsOrdinalPatterns.crit_val_op(Shannon(base=exp(1)), 2, n; alpha=0.05) ≈
         StatsOrdinalPatterns.crit_val_op(DistanceToWhiteNoise(), 2, n; alpha=0.05)
 
   # The m = 3 case is unaffected by the fix.

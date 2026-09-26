@@ -61,6 +61,8 @@ Compute the critical value for the asymptotic test based on spatial ordinal patt
 - `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`,
   [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`, `Shannon()`, `ShannonExtropy()`,
   `DistanceToWhiteNoise()`.
+  The critical value does not depend on the logarithm base of `Shannon` and
+  `ShannonExtropy`.
 - `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of
   [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`
   (only for the entropy-type charts).
@@ -188,6 +190,8 @@ asymptotic critical value, the p-value, and the reject decision.
   [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()` (two-sided test), or `Shannon()`,
   `ShannonExtropy()`, `DistanceToWhiteNoise()` (one-sided, upper-tail test with
   rescaled statistic).
+  For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The
+  statistic does not depend on it.
 - `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of
   [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`
   (only for the entropy-type charts).

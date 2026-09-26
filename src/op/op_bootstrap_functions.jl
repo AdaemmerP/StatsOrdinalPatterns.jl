@@ -59,6 +59,9 @@ series `data` and return a vector of `n_boot` bootstrap statistics.
 - `n_boot::Int`: number of bootstrap replications.
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers.
 - `m=3`: length of the ordinal patterns.
 - `d=1`: delay between observations of a pattern.
 - `block_size::Int=1`: block length for the resampling. `1` corresponds to an i.i.d.
@@ -181,6 +184,11 @@ works for any pattern length `m`, including `m > 3` where no asymptotic theory i
 - `n_boot`: number of bootstrap replications.
 - `chart_choice`: one of `Persistence()`, `UpDownBalance()`, `RotationalAsymmetry()`,
   `UpDownScaling()`, `DistanceToWhiteNoise()`, `Shannon()`, `ShannonExtropy()`.
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic
+  and critical value are both in that base, so the test decision and the p-value do
+  not depend on it.
 - `alpha`: significance level (default `0.05`).
 - `block_size`: set `> 1` for a block bootstrap that preserves serial dependencies.
 """

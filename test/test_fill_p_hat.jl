@@ -31,7 +31,7 @@ end
 
 @testset "fill_p_hat! dispatch — Shannon" begin
 
-    stat, p_hat = stat_sop(_DATA, 1, 1; chart_choice=Shannon())
+    stat, p_hat = stat_sop(_DATA, 1, 1; chart_choice=Shannon(base=exp(1)))
 
     # Shannon fills all three groups
     @test p_hat[1] ≈ 0.0

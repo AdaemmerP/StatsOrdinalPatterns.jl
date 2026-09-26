@@ -131,7 +131,7 @@ function power(m, n, eps, reps; level=0.05)
             hits = zeros(Int, length(charts) + 1)
             for _ in idx
                 Y = draw_field!(dgp, bufs...)
-                p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon())[2]
+                p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon(base=exp(1)))[2]
                 for (j, (_, cc)) in enumerate(charts)
                     hits[j] += abs(chart_stat_sop(p̂, cc)) > crits[j]
                 end
@@ -152,7 +152,7 @@ The shortcut has to give the same statistic and the same decision as `test_sop` 
 #| code-summary: "Check against test_sop and test_sacf"
 let dgp = sqma11((1, 1, 2), 20, 20), M = 21, N = 21
     Y = collect(draw_field!(dgp, buffers(dgp)...))   # copy out of the buffer
-    p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon())[2]
+    p̂ = stat_sop(Y, 1, 1; chart_choice=Shannon(base=exp(1)))[2]
     ok = all(
         begin
             r = test_sop(Y, 1, 1; chart_choice=cc, alpha=level)

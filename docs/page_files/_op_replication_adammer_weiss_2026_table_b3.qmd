@@ -34,8 +34,8 @@ values.
 
 | Table B.3 column | `chart_choice` | Summand for delay $d$ |
 |:-----------------|:---------------|:----------------------|
-| $\widehat{H}_{\text{BL}}$ | `Shannon()` | $\tfrac{2}{6}\, n_d \big(\ln 6 - \widehat{H}^{(d)}\big)$ |
-| $\widehat{H}^{\text{ex}}_{\text{BL}}$ | `ShannonExtropy()` | $\tfrac{10}{6}\, n_d \big(5 \ln \tfrac{6}{5} - \widehat{H}_{\text{ex}}^{(d)}\big)$ |
+| $\widehat{H}_{\text{BL}}$ | `Shannon(base=exp(1))` | $\tfrac{2}{6}\, n_d \big(\ln 6 - \widehat{H}^{(d)}\big)$ |
+| $\widehat{H}^{\text{ex}}_{\text{BL}}$ | `ShannonExtropy(base=exp(1))` | $\tfrac{10}{6}\, n_d \big(5 \ln \tfrac{6}{5} - \widehat{H}_{\text{ex}}^{(d)}\big)$ |
 | $\widehat{\Delta}^2_{\text{BL}}$ | `DistanceToWhiteNoise()` | $n_d\, \widehat{\Delta}^{2\,(d)}$ |
 | $\widehat{\beta}_{\text{BL}}$ | `UpDownBalance()` | $n_d\, \big(\hat{\beta}^{(d)}\big)^2$ |
 | $\widehat{\tau}_{\text{BL}}$ | `Persistence()` | $n_d\, \big(\hat{\tau}^{(d)}\big)^2$ |
@@ -66,8 +66,8 @@ reps = 10_000                               # Monte Carlo replications
 simulate!(x) = init_dgp_op!(dgp, x, dgp.dist, 1)
 
 charts = [
-    ("H", Shannon()),
-    ("Hex", ShannonExtropy()),
+    ("H", Shannon(base=exp(1))),
+    ("Hex", ShannonExtropy(base=exp(1))),
     ("Δ²", DistanceToWhiteNoise()),
     ("β", UpDownBalance()),
     ("τ", Persistence()),
@@ -121,7 +121,7 @@ function power(T, reps)
                 q = 0.0
                 for d in ws
                     n = T - (m - 1) * d
-                    p̂ = stat_op(x; chart_choice=Shannon(), m=m, d=d)[2]
+                    p̂ = stat_op(x; chart_choice=Shannon(base=exp(1)), m=m, d=d)[2]
                     for (j, (_, cc)) in enumerate(charts)
                         bl[j] += n * bl_term(cc, chart_stat_op(p̂, cc))
                         hits[j, d] += bl[j] > crits[j, d]

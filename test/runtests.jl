@@ -7,6 +7,7 @@ using Random
 include("test_helpers.jl")
 
 my_tests = ["test_frequencies.jl",
+  "test_log_base.jl",
   "test_op_test_functions.jl",
   "test_op_surrogate.jl",
   "test_cl_functions.jl",

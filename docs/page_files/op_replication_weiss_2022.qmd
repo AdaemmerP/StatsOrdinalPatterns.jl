@@ -29,8 +29,8 @@ statistic, the asymptotic critical value, the $p$ value and the reject decision.
 
 | Table IV column | `chart_choice` | Rejects $H_0$ when | Null distribution |
 |:----------------|:---------------|:-------------------|:------------------|
-| $H(\hat{\mathbf{p}}^{(d)})$ | `Shannon()` | $\widehat{H} < c$ | generalized $\chi^2$ |
-| $H_{\text{ex}}(\hat{\mathbf{p}}^{(d)})$ | `ShannonExtropy()` | $\widehat{H}_{\text{ex}} < c$ | generalized $\chi^2$ |
+| $H(\hat{\mathbf{p}}^{(d)})$ | `Shannon(base=exp(1))` | $\widehat{H} < c$ | generalized $\chi^2$ |
+| $H_{\text{ex}}(\hat{\mathbf{p}}^{(d)})$ | `ShannonExtropy(base=exp(1))` | $\widehat{H}_{\text{ex}} < c$ | generalized $\chi^2$ |
 | $\Delta^2(\hat{\mathbf{p}}^{(d)})$ | `DistanceToWhiteNoise()` | $\widehat{\Delta} > c$ | generalized $\chi^2$ |
 | $\hat{\beta}^{(d)}$ | `UpDownBalance()` | $\lvert\hat{\beta}\rvert > c$ | normal, $\sigma^2 = \tfrac{1}{3n}$ |
 | $\hat{\tau}^{(d)}$ | `Persistence()` | $\lvert\hat{\tau}\rvert > c$ | normal, $\sigma^2 = \tfrac{8}{45n}$ |
@@ -74,8 +74,8 @@ Ts = (100, 250, 500, 1000, 1500, 2500)      # sample sizes of Table IV
 reps = 10_000                               # Monte Carlo replications
 
 charts = [
-    ("H", Shannon()),
-    ("Hex", ShannonExtropy()),
+    ("H", Shannon(base=exp(1))),
+    ("Hex", ShannonExtropy(base=exp(1))),
     ("Δ²", DistanceToWhiteNoise()),
     ("β", UpDownBalance()),
     ("τ", Persistence()),
@@ -124,7 +124,7 @@ function power(T, α, reps; m=3, d=1, level=0.05)
             hits = zeros(Int, length(charts) + 1)
             for _ in idx
                 sim_ar1!(x, α)
-                p̂ = stat_op(x; chart_choice=Shannon(), m=m, d=d)[2]
+                p̂ = stat_op(x; chart_choice=Shannon(base=exp(1)), m=m, d=d)[2]
                 for (j, (_, cc)) in enumerate(charts)
                     hits[j] += rejects(cc, chart_stat_op(p̂, cc), crits[j])
                 end
@@ -142,7 +142,7 @@ The shortcut has to give the same statistic and the same decision as `test_op` a
 
 ```{julia}
 let x = sim_ar1!(zeros(400), α), n = 400 - (m - 1) * d
-    p̂ = stat_op(x; chart_choice=Shannon(), m=m, d=d)[2]
+    p̂ = stat_op(x; chart_choice=Shannon(base=exp(1)), m=m, d=d)[2]
     ok = all(
         begin
             r = test_op(x; chart_choice=cc, m=m, d=d, alpha=level)

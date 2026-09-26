@@ -17,6 +17,9 @@ contains the sequentially computed EWMA chart statistics.
 - `lam::Float64`: smoothing parameter of the EWMA statistic.
 - `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`,
   `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
+  chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
+  use `Shannon(base=exp(1))` for the natural logarithm used in the papers.
 - `m::Int=3`: length of the ordinal patterns.
 - `d::Int=1`: delay between observations of a pattern.
 - `add_noise::Bool=false`: add uniform noise to `data` to break ties (recommended for

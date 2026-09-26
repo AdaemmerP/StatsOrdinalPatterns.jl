@@ -33,8 +33,8 @@ The key functions in  `StatsOrdinalPatterns.jl` for testing time series regardin
             - `RotationalAsymmetry()`
             - `UpDownScaling()`
             -  `DistanceToWhiteNoise()`
-            - `Shannon()`
-            -  `ShannonExtropy()`.
+            - `Shannon(base=exp(1))`
+            -  `ShannonExtropy(base=exp(1))`.
         - `m`: pattern length (window size) 
         - `d`: delay between observations within a window.
 
@@ -72,8 +72,8 @@ Seven chart statistics are available. They differ in what they measure, the dire
 | RotationalAsymmetry ($\hat{\gamma}$) | `RotationalAsymmetry()` | $\hat{\gamma} = 0$ | $\lvert\hat{\gamma}\rvert > c$ | Normal |
 | UpDownScaling ($\hat{\delta}$) | `UpDownScaling()` | $\hat{\delta} = 0$ | $\lvert\hat{\delta}\rvert > c$ | Normal |
 | DistanceToWhiteNoise ($\hat{\Delta}$) | `DistanceToWhiteNoise()` | $\hat{\Delta} = 0$ | $\hat{\Delta} > c$ | Generalized $\chi^2$ |
-| Shannon entropy ($\hat{H}$) | `Shannon()` | $\hat{H} = \log(m!)$ | $\hat{H} < c$ | Generalized $\chi^2$ |
-| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy()` | $\hat{H}_\text{ex} = 5\log(6/5)$ | $\hat{H}_\text{ex} < c$ | Generalized $\chi^2$ |
+| Shannon entropy ($\hat{H}$) | `Shannon(base=exp(1))` | $\hat{H} = \log(m!)$ | $\hat{H} < c$ | Generalized $\chi^2$ |
+| Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy(base=exp(1))` | $\hat{H}_\text{ex} = 5\log(6/5)$ | $\hat{H}_\text{ex} < c$ | Generalized $\chi^2$ |
 
 : {tbl-colwidths="[22,20,14,17,18]"}
 
@@ -84,6 +84,29 @@ non-negative — **upper-tail**.
 - The entropy statistics decrease under non-uniformity — **lower-tail**.
 - The test direction determines how bootstrap p-values are computed (see below).
 - The asymptotic critical values and their limiting distributions are derived in @weiss2022.
+
+## Logarithm base {#sec-log-base}
+
+`Shannon` and `ShannonExtropy` come from [ComplexityMeasures.jl](https://github.com/JuliaDynamics/ComplexityMeasures.jl), where both use base 2 by default. The papers behind this package use the natural logarithm, and all asymptotic results are derived for it. Write `Shannon(base=exp(1))` to obtain the values reported in the papers. The Unicode form `Shannon(base=ℯ)`, typed as `\euler` followed by Tab, is equivalent.
+
+Any base larger than 1 is allowed. An entropy in base $b$ equals the entropy under the natural logarithm divided by $\ln b$. The package applies this conversion as follows.
+
+| Quantity | With base $b$ |
+|:---------|:--------------|
+| Statistic of `stat_op`, `stat_sop` and `test_op` | divided by $\ln b$ |
+| Critical value of `test_op` and `crit_val_op` | divided by $\ln b$ |
+| Control limit `cl` of the EWMA charts | must be given in base $b$ |
+| Box-Pierce statistic and rescaled SOP statistic | unchanged |
+| p-value and test decision | unchanged |
+
+For example, the pattern frequencies $\hat{p} = (0.30, 0.20, 0.15, 0.15, 0.10, 0.10)$ give a Shannon entropy of 1.7127 under the natural logarithm, $1.7127 / \ln 2 = 2.4710$ in base 2, and $1.7127 / \ln 10 = 0.7438$ in base 10.
+
+```{julia}
+p = [0.30, 0.20, 0.15, 0.15, 0.10, 0.10]
+[chart_stat_op(p, Shannon(base=b)) for b in (exp(1), 2, 10)]
+```
+
+A base of 1 or smaller raises an error. Base 1 would divide by zero, and a base between 0 and 1 would make the entropy negative and reverse the direction of the tests.
 
 ## Setup
 
@@ -132,11 +155,11 @@ test_op(data_ar1; chart_choice=DistanceToWhiteNoise(), m=m, d=d)
 ### Lower-tail — Shannon entropy
 
 ```{julia}
-test_op(data_iid; chart_choice=Shannon(), m=m, d=d)
+test_op(data_iid; chart_choice=Shannon(base=exp(1)), m=m, d=d)
 ```
 
 ```{julia}
-test_op(data_ar1; chart_choice=Shannon(), m=m, d=d)
+test_op(data_ar1; chart_choice=Shannon(base=exp(1)), m=m, d=d)
 ```
 
 The i.i.d. series is not rejected; the AR(1) series is. The critical value is the same for both
@@ -177,8 +200,8 @@ chart_list = [
     ("RotationalAsymmetry (γ)", RotationalAsymmetry(), "two-sided"),
     ("UpDownScaling (δ)", UpDownScaling(), "two-sided"),
     ("DistanceToWhiteNoise (Δ)", DistanceToWhiteNoise(), "upper-tail"),
-    ("Shannon entropy (H)", Shannon(), "lower-tail"),
-    ("Shannon extropy (Hex)", ShannonExtropy(), "lower-tail"),
+    ("Shannon entropy (H)", Shannon(base=exp(1)), "lower-tail"),
+    ("Shannon extropy (Hex)", ShannonExtropy(base=exp(1)), "lower-tail"),
 ]
 asymp_res = [test_op(data_ar1; chart_choice=c, m=m, d=d) for (_, c, _) in chart_list]
 boot_res = [test_op_bootstrap(data_ar1, 2_000; chart_choice=c, m=m, d=d) for (_, c, _) in chart_list]
