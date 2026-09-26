@@ -2,7 +2,7 @@ module StatsOrdinalPatterns
 
 # Packages to use
 using Combinatorics
-using ComplexityMeasures: InformationMeasure, ComplexityEstimator, Entropy, Shannon, ShannonExtropy
+using ComplexityMeasures: ComplexityEstimator, Shannon, ShannonExtropy
 using Distributions
 using LinearAlgebra
 using Random
@@ -413,6 +413,14 @@ include("kappa_procs/kappa_stat_functions.jl")
 # methods to `Makie.plot` and `Makie.plot!` and is loaded automatically with Makie.
 include("other/control_chart.jl")
 include("other/plot_support.jl")
+
+# ---------------------------------------------#
+# ComplexityMeasures.jl API                    #
+# ---------------------------------------------#
+# Methods of `ComplexityMeasures.complexity` and `ComplexityMeasures.information` for
+# the chart types of this package. They only add methods; `stat_op` and `stat_sop`
+# remain the interface of the package.
+include("other/complexitymeasures_api.jl")
 
 # Precompile
 include("other/precompile.jl")

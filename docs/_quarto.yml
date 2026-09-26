@@ -38,6 +38,8 @@ website:
         href: page_files/gop_tutorials.qmd
       - text: "API"
         href: page_files/api_reference.qmd
+      - text: "ComplexityMeasures.jl API"
+        href: page_files/complexitymeasures_api.qmd
 
     tools:
     - icon: github
@@ -51,6 +53,7 @@ website:
       collapse-level: 1
       contents:
         - page_files/api_reference.qmd
+        - page_files/complexitymeasures_api.qmd
         - section: "Types for ordinal patterns"
           contents:
             - reference/AAR1.qmd

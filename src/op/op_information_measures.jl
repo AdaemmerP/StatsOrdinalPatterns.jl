@@ -6,7 +6,7 @@ Chart choice for the Δ-chart. The statistic measures the squared Euclidean dist
 ordinal-pattern distribution to the uniform distribution obtained under white noise. See
 Equation (3) in Weiß and Testik (2023).
 """
-struct DistanceToWhiteNoise <: InformationMeasure end
+struct DistanceToWhiteNoise <: ComplexityEstimator end
 
 """
     UpDownBalance()

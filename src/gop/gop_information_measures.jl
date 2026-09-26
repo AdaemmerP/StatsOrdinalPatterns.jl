@@ -6,7 +6,7 @@ Chart choice for the D-chart based on generalized ordinal patterns (GOPs). The s
 is the squared Euclidean distance between the estimated GOP distribution and the
 in-control GOP distribution; see Weiß and Schnurr (2024).
 """
-struct D_Chart <: InformationMeasure end
+struct D_Chart <: ComplexityEstimator end
 struct G_Chart <: ComplexityEstimator end
 
 

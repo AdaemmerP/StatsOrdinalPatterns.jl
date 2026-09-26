@@ -323,7 +323,7 @@ function fill_p_hat!(p_hat, ::KappaTilde, ::OrdinaryType, sop_freq, m, n, s_all)
   p_hat ./= m * n
 end
 
-# Covers Shannon, ShannonExtropy, DistanceToWhiteNoise (all <: InformationMeasure)
+# Covers Shannon, ShannonExtropy and DistanceToWhiteNoise, the entropy type charts
 function fill_p_hat!(p_hat, ::Union{Shannon,ShannonExtropy,DistanceToWhiteNoise}, ::OrdinaryType, sop_freq, m, n, s_all)
   for (i, j, k) in zip(s_all[1], s_all[2], s_all[3])
     p_hat[1] += sop_freq[i]

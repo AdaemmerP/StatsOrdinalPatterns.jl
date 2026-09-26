@@ -5,7 +5,7 @@
 Chart choice for the κ-chart based on Cohen's kappa for serial dependence in qualitative
 (nominal) processes.
 """
-struct KappaN <: InformationMeasure end
+struct KappaN <: ComplexityEstimator end
 
 """
     KappaO()
@@ -13,7 +13,7 @@ struct KappaN <: InformationMeasure end
 Chart choice for the κ-chart based on Cohen's kappa for serial dependence in qualitative
 (ordinal) processes.
 """
-struct KappaO <: InformationMeasure end
+struct KappaO <: ComplexityEstimator end
 
 """
     KappaN1()
@@ -21,7 +21,7 @@ struct KappaO <: InformationMeasure end
 Variant 1 of the nominal κ-chart ([`KappaN`](@ref)); the EWMA recursion smooths both the
 marginal probabilities and the agreement statistic.
 """
-struct KappaN1 <: InformationMeasure end
+struct KappaN1 <: ComplexityEstimator end
 
 """
     KappaN2()
@@ -29,7 +29,7 @@ struct KappaN1 <: InformationMeasure end
 Variant 2 of the nominal κ-chart ([`KappaN`](@ref)); the marginal probabilities are kept
 fixed at their in-control values and only the agreement statistic is smoothed.
 """
-struct KappaN2 <: InformationMeasure end
+struct KappaN2 <: ComplexityEstimator end
 
 """
     KappaO1()
@@ -37,7 +37,7 @@ struct KappaN2 <: InformationMeasure end
 Variant 1 of the ordinal κ-chart ([`KappaO`](@ref)); the EWMA recursion smooths both the
 marginal probabilities and the agreement statistic.
 """
-struct KappaO1 <: InformationMeasure end
+struct KappaO1 <: ComplexityEstimator end
 
 """
     KappaO2()
@@ -45,7 +45,7 @@ struct KappaO1 <: InformationMeasure end
 Variant 2 of the ordinal κ-chart ([`KappaO`](@ref)); the marginal probabilities are kept
 fixed at their in-control values and only the agreement statistic is smoothed.
 """
-struct KappaO2 <: InformationMeasure end
+struct KappaO2 <: ComplexityEstimator end
 
 """
     chart_stat_qual(q, Q, chart_choice)

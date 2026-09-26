@@ -1,0 +1,138 @@
+---
+engine: julia
+julia:
+  exeflags: ["--project=../."]
+---
+
+# ComplexityMeasures.jl API
+
+`StatsOrdinalPatterns.jl` builds on
+[ComplexityMeasures.jl](https://github.com/JuliaDynamics/ComplexityMeasures.jl). The
+entropy statistics are the types [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) of ComplexityMeasures.jl,
+and the ordinal pattern probabilities of both packages coincide: both number the $m!$
+patterns in the same lexicographic order. ComplexityMeasures.jl estimates probabilities
+and complexity measures. This package adds the statistical inference on top of them:
+asymptotic and bootstrap tests, critical values, control charts and their run lengths.
+
+The statistics of this package can therefore also be computed through the functions
+`complexity` and `information` of ComplexityMeasures.jl. These methods are an
+additional interface. [`stat_op`](../reference/stat_op.qmd) and [`stat_sop`](../reference/stat_sop.qmd) remain the main interface of the
+package, since they also return the pattern probabilities and the EWMA statistics
+that the tests and control charts need.
+
+```{julia}
+#| output: false
+using StatsOrdinalPatterns, ComplexityMeasures, Random
+Random.seed!(1)
+x = randn(500)
+```
+
+## Information measures and complexity measures
+
+ComplexityMeasures.jl distinguishes two kinds of measures. An information measure is a
+functional of a probability mass function: it must be computable from any probability
+vector, by `information(measure, probabilities)`. Entropies and extropies such as
+[`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) are of this kind. Everything else is a complexity measure,
+a subtype of `ComplexityEstimator`, computed by `complexity(measure, data)`.
+
+All chart types of this package are complexity measures. The statistics of @bandt2019
+and the SOP statistics need the probabilities of particular patterns, and the distance
+to white noise $\widehat{\Delta} = \sum_i (\hat p_i - 1/m!)^2$ needs the total number
+$m!$ of patterns, including those that do not occur. $\widehat{\Delta}$ is a
+disequilibrium in the sense of `StatisticalComplexity` of ComplexityMeasures.jl, which
+is a complexity measure for the same reason. The entropy statistics of this package
+use the information measures [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) of ComplexityMeasures.jl.
+
+## Correspondence of the calls
+
+| Statistic | This package | ComplexityMeasures.jl |
+|:----------|:-------------|:----------------------|
+| $\hat{\beta}$, $\hat{\tau}$, $\hat{\gamma}$, $\hat{\delta}$ | `stat_op(x; chart_choice=Persistence(), d=d)[1]` | `complexity(Persistence(), probabilities(OrdinalPatterns{3}(d), x))` |
+| same, delay 1 | `stat_op(x; chart_choice=Persistence())[1]` | `complexity(Persistence(), x)` |
+| $\widehat{H}$ | `stat_op(x; chart_choice=Shannon(base=exp(1)), m=m, d=d)[1]` | `information(Shannon(base=exp(1)), OrdinalPatterns{m}(d), x)` |
+| $\widehat{H}_{\text{ex}}$ | `stat_op(x; chart_choice=ShannonExtropy(base=exp(1)), m=m, d=d)[1]` | `information(ShannonExtropy(base=exp(1)), OrdinalPatterns{m}(d), x)` |
+| $\widehat{\Delta}$ | `stat_op(x; chart_choice=DistanceToWhiteNoise(), m=m, d=d)[1]` | `complexity(DistanceToWhiteNoise(), probabilities(OrdinalPatterns{m}(d), x))` |
+| $\hat{\tau}$, $\hat{\kappa}$, $\tilde{\tau}$, $\tilde{\kappa}$ (SOP) | `stat_sop(X, 1, 1; chart_choice=TauTilde())[1]` | `complexity(TauTilde(), X)` |
+
+[`Persistence()`](../reference/Persistence.qmd) in the first two rows stands for any of the four statistics of @bandt2019:
+[`UpDownBalance`](../reference/UpDownBalance.qmd), [`Persistence`](../reference/Persistence.qmd), [`RotationalAsymmetry`](../reference/RotationalAsymmetry.qmd) and [`UpDownScaling`](../reference/UpDownScaling.qmd). They require
+patterns of length 3, and [`UpDownBalance`](../reference/UpDownBalance.qmd) also accepts length 2. [`TauTilde()`](../reference/TauTilde.qmd) stands
+for any of the SOP statistics [`TauHat`](../reference/TauHat.qmd), [`KappaHat`](../reference/KappaHat.qmd), [`TauTilde`](../reference/TauTilde.qmd) and [`KappaTilde`](../reference/KappaTilde.qmd).
+
+## The statistics of Bandt (2019)
+
+`complexity` with a time series uses patterns of length 3 and delay 1. Other delays go
+through the ordinal pattern probabilities of ComplexityMeasures.jl:
+
+```{julia}
+p = probabilities(OrdinalPatterns{3}(2), x)   # patterns of length 3, delay 2
+(complexity_route=complexity(Persistence(), p),
+ stat_op_route=stat_op(x; chart_choice=Persistence(), m=3, d=2)[1])
+```
+
+## Entropy statistics
+
+[`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) are information measures of ComplexityMeasures.jl, so
+`information` computes them directly:
+
+```{julia}
+o = OrdinalPatterns{3}(1)
+[(statistic=name,
+  information_route=information(e, o, x),
+  stat_op_route=stat_op(x; chart_choice=e, m=3, d=1)[1])
+ for (name, e) in (("H", Shannon(base=exp(1))), ("H_ex", ShannonExtropy(base=exp(1))))]
+```
+
+Note that [`Shannon()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy()`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy) use base 2 by default. The papers and the
+asymptotic tests use the natural logarithm; see
+[Logarithm base](op_tutorial.qmd#sec-log-base).
+
+## The distance to white noise
+
+[`DistanceToWhiteNoise`](../reference/DistanceToWhiteNoise.qmd) is a complexity measure and accepts any pattern length:
+
+```{julia}
+p = probabilities(OrdinalPatterns{4}(1), x)   # patterns of length 4, delay 1
+(complexity_route=complexity(DistanceToWhiteNoise(), p),
+ stat_op_route=stat_op(x; chart_choice=DistanceToWhiteNoise(), m=4, d=1)[1])
+```
+
+## Spatial ordinal patterns
+
+For a matrix, `complexity` computes the SOP statistics of @weiss2024b with the classical
+SOP classification at delays $(1, 1)$:
+
+```{julia}
+X = rand(20, 20)
+(complexity_route=complexity(TauTilde(), X),
+ stat_sop_route=stat_sop(X, 1, 1; chart_choice=TauTilde())[1])
+```
+
+Other delays, the refined classifications and the entropy statistics of spatial ordinal
+patterns are available through [`stat_sop`](../reference/stat_sop.qmd). The spatial outcome space
+`SpatialOrdinalPatterns` of ComplexityMeasures.jl classifies patterns differently, so
+its probabilities cannot be used for the SOP statistics.
+
+## Agreement of the two packages
+
+Both routes compute the same numbers, not merely similar ones. The test suite of the
+package checks this in `test/test_complexitymeasures_api.jl`: for time series with
+different dependence structures, pattern lengths 2 to 4 and delays 1 to 4, it compares
+
+* the ordinal pattern probabilities of both packages,
+* `complexity` with [`stat_op`](../reference/stat_op.qmd) for the four statistics of Bandt (2019) and for
+  [`DistanceToWhiteNoise`](../reference/DistanceToWhiteNoise.qmd),
+* `information` with [`stat_op`](../reference/stat_op.qmd) for [`Shannon`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon) and [`ShannonExtropy`](https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy), in several
+  logarithm bases,
+* that every chart type of the package is a complexity measure and none an
+  information measure,
+* `complexity` with [`stat_sop`](../reference/stat_sop.qmd) for the four SOP statistics.
+
+The probabilities agree for data without ties. When values are tied, ComplexityMeasures.jl
+orders them at random, while [`stat_op`](../reference/stat_op.qmd) orders them by position. For discrete data,
+[`stat_op`](../reference/stat_op.qmd) offers `add_noise=true` to break ties.
+
+## References
+
+::: {#refs}
+:::
