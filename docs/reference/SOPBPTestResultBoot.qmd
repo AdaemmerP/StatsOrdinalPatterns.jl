@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 SOPBPTestResultBoot
 ```
-Result of the bootstrap Box-Pierce type test based on spatial ordinal patterns [`test_sop_bp_bootstrap`](@ref).
+Result of the bootstrap Box-Pierce type test based on spatial ordinal patterns [`test_sop_bp_bootstrap`](test_sop_bp_bootstrap.qmd).
  
 Fields:
  

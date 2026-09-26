@@ -11,11 +11,11 @@ engine: markdown
 ```julia
 crit_val_op(chart_choice, m, n_patterns; alpha=0.05)
 ```
-Compute the asymptotic critical value of the ordinal-pattern test [`test_op`](@ref).
+Compute the asymptotic critical value of the ordinal-pattern test [`test_op`](test_op.qmd).
  
-The critical value depends only on the chart, on the pattern length `m`, on the number of patterns `n_patterns` and on the level `alpha`, but not on the data. In a Monte Carlo study it can therefore be computed once per sample size and reused in every replication, which is much faster than calling [`test_op`](@ref) in the loop: `test_op` additionally evaluates the p-value, and for `Shannon()`, `ShannonExtropy()` and `DistanceToWhiteNoise()` that means a numerical evaluation of a generalized chi-squared distribution per call.
+The critical value depends only on the chart, on the pattern length `m`, on the number of patterns `n_patterns` and on the level `alpha`, but not on the data. In a Monte Carlo study it can therefore be computed once per sample size and reused in every replication, which is much faster than calling [`test_op`](test_op.qmd) in the loop: `test_op` additionally evaluates the p-value, and for `Shannon()`, `ShannonExtropy()` and `DistanceToWhiteNoise()` that means a numerical evaluation of a generalized chi-squared distribution per call.
  
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic and critical value are both in that base, so the test decision and the p-value do not depend on it.
   * `m::Int`: length of the ordinal patterns. Asymptotic theory is available for `m = 3` (and `m = 2` for `Shannon()`, `DistanceToWhiteNoise()` and `UpDownBalance()`).
   * `n_patterns::Int`: number of ordinal patterns, `length(ts) - (m - 1) * d`.
   * `alpha=0.05`: significance level.

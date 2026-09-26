@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 SOPTestResult
 ```
-Result of the asymptotic test based on spatial ordinal patterns [`test_sop`](@ref).
+Result of the asymptotic test based on spatial ordinal patterns [`test_sop`](test_sop.qmd).
  
 Fields:
  

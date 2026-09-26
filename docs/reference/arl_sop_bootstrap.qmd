@@ -18,8 +18,8 @@ Compute the average run length (ARL) using a bootstrap approach for a particular
   * `lam::Float64`: A scalar value for lambda for the EWMA chart.
   * `cl::Float64`: A scalar value for the control limit.
   * `reps::Int`: An integer value for the number of repetitions. The default value is 10,000.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns the tuple `(ARL, standard error)`.
  

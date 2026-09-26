@@ -1,7 +1,7 @@
 """
     cl_sop_bootstrap(data::Array{T,3}, lam, L0, cl_init, d1, d2;
                      reps_final, reps_bracket, bracket_step,
-                     arl_truncation_factor, chart_choice,
+                     arl_truncation_factor, chart_choice, refinement,
                      verbose, cl_tol, seed) where {T<:Real}
 
 Compute the critical limit `cl` for an EWMA-SOP control chart using a

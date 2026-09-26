@@ -13,6 +13,8 @@ count_mv_op(tsx, tsy; m::Int=3, d=1)
 ```
 Count the number of ordinal patterns in bins for two time series `tsx` and `tsy`. The output will be used to compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
  
+Returns the tuple `(count_x, count_y, count_yrev, count_eq, count_neq, pattern_seq_tsx, pattern_seq_tsy)`: the pattern counts of `tsx`, of `tsy` and of the reversed patterns of `tsy`, the counts of time points at which both series show the same pattern (`count_eq`) and the reversed pattern (`count_neq`), and the sequences of pattern indices of both series.
+ 
   * `tsx`: First time series for which the ordinal patterns are counted.
   * `tsy`: Second time series for which the ordinal patterns are counted.
   * `m::Int=3`: Length of the ordinal patterns. Default is 3. Minimum is 2, maximum is 4.

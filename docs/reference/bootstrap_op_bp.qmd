@@ -16,7 +16,7 @@ Compute the bootstrap distribution of the Box-Pierce type ordinal-pattern statis
   * `data::Vector{Float64}`: the time series.
   * `n_boot::Int`: number of bootstrap replications.
   * `w::Int`: maximal delay; the individual statistics for delays `1:w` are aggregated.
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The statistic does not depend on it.
   * `m::Int=3`: length of the ordinal patterns.
   * `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights instead of the constant Box-Pierce weight.
   * `block_size::Int=1`: block length for the resampling. `1` corresponds to an i.i.d. bootstrap; values `> 1` yield a moving-block bootstrap that preserves serial dependence.

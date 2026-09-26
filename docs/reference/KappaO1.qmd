@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 KappaO1()
 ```
-Variant 1 of the ordinal κ-chart ([`KappaO`](@ref)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
+Variant 1 of the ordinal κ-chart ([`KappaO`](KappaO.qmd)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
  
 
 

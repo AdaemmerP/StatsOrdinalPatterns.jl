@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 build_sar1_matrix(dgp::SAR1)
 ```
-Build the inverse system matrix $(B - I)^{-1}$ of the (margin-extended) SAR(1) process `dgp`, where `B` contains the four neighbor coefficients of the process. The matrix is computed once and then reused when simulating the SAR(1) field via [`fill_mat_dgp_sop!`](@ref).
+Build the inverse system matrix $(B - I)^{-1}$ of the (margin-extended) SAR(1) process `dgp`, where `B` contains the four neighbor coefficients of the process. The matrix is computed once and then reused when simulating the SAR(1) field via [`fill_mat_dgp_sop!`](fill_mat_dgp_sop!.qmd).
  
 
 

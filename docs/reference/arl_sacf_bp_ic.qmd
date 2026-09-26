@@ -9,20 +9,18 @@ engine: markdown
 
 
 ```julia
-arl_sacf_bp_ic(lam, cl, sp_dgp::ICSP, d1_vec::Vector{Int}, d2_vec::Vector{Int}, reps=10_000)
+arl_sacf_bp_ic(sp_dgp, lam, cl, w, reps=10_000; rl_max=typemax(Int))
 ```
-Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The input arguments are:  
+Compute the in-control average run length (ARL) of the EWMA chart based on the Box-Pierce type SACF statistic [`stat_sacf_bp`](stat_sacf_bp.qmd) via simulation. The computation is multithreaded.
  
-  * `lam`: The smoothing parameter for the exponentially weighted moving average
-(EWMA) control chart.
+  * `sp_dgp::ICSTS`: in-control spatial data generating process.
+  * `lam`: smoothing parameter of the EWMA statistic.
+  * `cl`: control limit of the chart, typically obtained from [`cl_sacf_bp`](cl_sacf_bp.qmd).
+  * `w::Int`: maximal lag of the BP statistic (see [`stat_sacf_bp`](stat_sacf_bp.qmd)).
+  * `reps=10_000`: number of replications.
+  * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
+Returns the tuple `(ARL, standard error)`.
  
-  * `cl`: The control limit for the EWMA control chart.
-  * `sp_dgp`: The in-control spatial data generating process (DGP) to use for the
-SACF function.
- 
-  * `d1_vec::Vector{Int}`: The first (row) delays for the spatial process.
-  * `d2_vec::Vector{Int}`: The second (column) delays for the spatial process.
-  * `reps`: The number of repetitions to compute the ARL.
 
 
 :::

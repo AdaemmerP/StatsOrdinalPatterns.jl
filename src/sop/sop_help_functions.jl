@@ -87,9 +87,24 @@ function create_index_sop(::DiagonalType)
 end
 
 """
-    compute_p_array(data::Array{T,3})
+    compute_p_array(data, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
+      add_noise=false)
 
-Compute the matrix of p-hat values for a given 3D array of data when the delays are integers. These values are used for bootstrapping. 
+Compute the relative SOP type frequencies of every image in an image sequence at lag
+`(d1, d2)`. These frequencies are the input of the bootstrap functions
+[`arl_sop_bootstrap`](@ref) and [`cl_sop_bootstrap`](@ref).
+
+Returns a matrix with one row per image and one column per SOP type (3 for
+[`OrdinaryType`](@ref), 6 for a refined classification).
+
+- `data::Array{T,3}`: image sequence (third dimension = time).
+- `d1::Int`: row delay.
+- `d2::Int`: column delay.
+- `chart_choice=TauTilde()`: chart the frequencies are computed for. It determines how
+  the SOP types are grouped; see [`stat_sop`](@ref) for the available charts.
+- `refinement=OrdinaryType()`: [`OrdinaryType`](@ref)`()` or one of
+  [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+- `add_noise=false`: add uniform noise to the data to break ties.
 """
 function compute_p_array(data::Array{T,3}, d1::Int, d2::Int; chart_choice=TauTilde(), refinement::SOPClassification=OrdinaryType(), add_noise=false) where {T<:Real}
 
@@ -153,9 +168,19 @@ end
 """
     compute_p_array_bp(data, w; chart_choice, refinement, add_noise=false)
 
-Compute the array of p-hat values for a given 3D array of data for all delay
-combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These values are used for bootstrapping to
-compute critical limits for the BP-statistics (see [`arl_sop_bp_bootstrap`](@ref)).
+Compute the relative SOP type frequencies of every image in an image sequence for all
+delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These frequencies are the input of
+the bootstrap functions for the BP statistics, [`arl_sop_bp_bootstrap`](@ref) and
+[`cl_sop_bp_bootstrap`](@ref).
+
+Returns a 3-dimensional array of size `(number of images, number of SOP types, w²)`.
+
+- `data::Array{T,3}`: image sequence (third dimension = time).
+- `w::Int`: maximal delay in both directions.
+- `chart_choice`: chart the frequencies are computed for; see [`stat_sop_bp`](@ref).
+- `refinement`: [`OrdinaryType`](@ref)`()` or one of [`RotationType`](@ref)`()`,
+  [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+- `add_noise=false`: add uniform noise to the data to break ties.
 """
 function compute_p_array_bp(data::Array{T,3}, w::Int; chart_choice, refinement::SOPClassification, add_noise=false) where {T<:Real}
 

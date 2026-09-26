@@ -18,7 +18,7 @@ Compute the out-of-control average run length (ARL) of the EWMA lag-1 autocorrel
   * `acf_dgp`: out-of-control DGP (e.g. `AR1`, `TEAR1`).
   * `dist_null`: in-control (null) distribution used to center and scale the statistic.
   * `reps::Int`: number of replications.
-  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](@ref)).
+  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](stat_acf.qmd)).
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns the tuple `(ARL, standard error)`.
  

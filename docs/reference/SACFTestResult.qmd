@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 SACFTestResult
 ```
-Result of the asymptotic test based on the spatial autocorrelation function [`test_sacf`](@ref).
+Result of the asymptotic test based on the spatial autocorrelation function [`test_sacf`](test_sacf.qmd).
  
 Fields:
  

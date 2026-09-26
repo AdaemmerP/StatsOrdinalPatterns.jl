@@ -24,23 +24,23 @@ using StatsOrdinalPatterns, Random, Statistics, Printf, DataFrames
 
 ## Statistics of the paper and their types in the package
 
-Each column of Table IV corresponds to one `chart_choice` of `test_op`, which returns the
+Each column of Table IV corresponds to one `chart_choice` of [`test_op`](../reference/test_op.qmd), which returns the
 statistic, the asymptotic critical value, the $p$ value and the reject decision.
 
 | Table IV column | `chart_choice` | Rejects $H_0$ when | Null distribution |
 |:----------------|:---------------|:-------------------|:------------------|
 | $H(\hat{\mathbf{p}}^{(d)})$ | `Shannon(base=exp(1))` | $\widehat{H} < c$ | generalized $\chi^2$ |
 | $H_{\text{ex}}(\hat{\mathbf{p}}^{(d)})$ | `ShannonExtropy(base=exp(1))` | $\widehat{H}_{\text{ex}} < c$ | generalized $\chi^2$ |
-| $\Delta^2(\hat{\mathbf{p}}^{(d)})$ | `DistanceToWhiteNoise()` | $\widehat{\Delta} > c$ | generalized $\chi^2$ |
-| $\hat{\beta}^{(d)}$ | `UpDownBalance()` | $\lvert\hat{\beta}\rvert > c$ | normal, $\sigma^2 = \tfrac{1}{3n}$ |
-| $\hat{\tau}^{(d)}$ | `Persistence()` | $\lvert\hat{\tau}\rvert > c$ | normal, $\sigma^2 = \tfrac{8}{45n}$ |
-| $\hat{\gamma}^{(d)}$ | `RotationalAsymmetry()` | $\lvert\hat{\gamma}\rvert > c$ | normal, $\sigma^2 = \tfrac{2}{5n}$ |
-| $\hat{\delta}^{(d)}$ | `UpDownScaling()` | $\lvert\hat{\delta}\rvert > c$ | normal, $\sigma^2 = \tfrac{2}{3n}$ |
-| ACF at lag $d$ | `test_acf` | $\lvert\hat{\rho}(d)\rvert > c$ | normal, $\sigma^2 = \tfrac{1}{T}$ |
+| $\Delta^2(\hat{\mathbf{p}}^{(d)})$ | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\widehat{\Delta} > c$ | generalized $\chi^2$ |
+| $\hat{\beta}^{(d)}$ | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $\lvert\hat{\beta}\rvert > c$ | normal, $\sigma^2 = \tfrac{1}{3n}$ |
+| $\hat{\tau}^{(d)}$ | [`Persistence()`](../reference/Persistence.qmd) | $\lvert\hat{\tau}\rvert > c$ | normal, $\sigma^2 = \tfrac{8}{45n}$ |
+| $\hat{\gamma}^{(d)}$ | [`RotationalAsymmetry()`](../reference/RotationalAsymmetry.qmd) | $\lvert\hat{\gamma}\rvert > c$ | normal, $\sigma^2 = \tfrac{2}{5n}$ |
+| $\hat{\delta}^{(d)}$ | [`UpDownScaling()`](../reference/UpDownScaling.qmd) | $\lvert\hat{\delta}\rvert > c$ | normal, $\sigma^2 = \tfrac{2}{3n}$ |
+| ACF at lag $d$ | [`test_acf`](../reference/test_acf.qmd) | $\lvert\hat{\rho}(d)\rvert > c$ | normal, $\sigma^2 = \tfrac{1}{T}$ |
 
 Here $n = T - (m-1)d$ is the number of patterns in a series of length $T$. The critical
-value $c$ of each row is available on its own through `crit_val_op(chart_choice, m, n)`
-and `crit_val_acf(T)`. Two conventions matter for the match:
+value $c$ of each row is available on its own through [`crit_val_op(chart_choice, m, n)`](../reference/crit_val_op.qmd)
+and [`crit_val_acf(T)`](../reference/crit_val_acf.qmd). Two conventions matter for the match:
 
 * The package indexes patterns by their Lehmer code (see
   [`perm_to_lehm_idx`](../reference/perm_to_lehm_idx.qmd)). For $m = 3$ this is the

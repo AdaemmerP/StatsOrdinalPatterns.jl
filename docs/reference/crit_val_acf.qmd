@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 crit_val_acf(n; alpha=0.05)
 ```
-Compute the critical value of the asymptotic test based on the classical autocorrelation function (ACF); see [`test_acf`](@ref). Under the null hypothesis (white noise), `sqrt(n) * ρ̂ₕ` is asymptotically standard normal for any fixed lag `h` (Bartlett's formula), so the critical value does not depend on `h`.
+Compute the critical value of the asymptotic test based on the classical autocorrelation function (ACF); see [`test_acf`](test_acf.qmd). Under the null hypothesis (white noise), `sqrt(n) * ρ̂ₕ` is asymptotically standard normal for any fixed lag `h` (Bartlett's formula), so the critical value does not depend on `h`.
  
   * `n::Int`: length of the time series.
   * `alpha=0.05`: significance level.

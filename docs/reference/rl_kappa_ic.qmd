@@ -12,7 +12,7 @@ engine: markdown
 rl_kappa_ic(lam, cl, p_reps, qual_dgp, qual_dgp_dist, chart_choice,
   rl_max=typemax(Int))
 ```
-Compute in-control run lengths of the EWMA κ-chart for a chunk of replications. This is the single-threaded worker used by [`arl_kappa_ic`](@ref). Methods exist for the chart choices [`KappaN1`](@ref)`()`, [`KappaN2`](@ref)`()`, [`KappaO1`](@ref)`()`, and [`KappaO2`](@ref)`()`.
+Compute in-control run lengths of the EWMA κ-chart for a chunk of replications. This is the single-threaded worker used by [`arl_kappa_ic`](arl_kappa_ic.qmd). Methods exist for the chart choices [`KappaN1`](KappaN1.qmd)`()`, [`KappaN2`](KappaN2.qmd)`()`, [`KappaO1`](KappaO1.qmd)`()`, and [`KappaO2`](KappaO2.qmd)`()`.
  
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.

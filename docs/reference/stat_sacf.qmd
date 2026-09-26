@@ -9,31 +9,21 @@ engine: markdown
 
 
 ```julia
-stat_sacf(data::Union{SubArray,Matrix{<:Real}}, d1::Int, d2::Int)
+stat_sacf(data, d1, d2)
+stat_sacf(data, lam, d1, d2)
 ```
-Compute the spatial autocorrelation for a delay combination (d1, d2) for a single picture.
+Compute the spatial autocorrelation function (SACF) statistic at lag `(d1, d2)`.
  
-  * `data`: The data matrix.
-  * `d1::Int`: The first (row) delay for the spatial process.
-  * `d2::Int`: The second (column) delay for the spatial process.
-
-
-:::
-
-
- --- 
+The first method takes a single image (matrix), centers it and returns the spatial autocorrelation as a `Float64`.
  
-::: {.callout-note appearance="simple" title="docblock" collapse=false}
-
-
-```julia
-stat_sacf(lam, data::Array{T,3}, d1::Int, d2::Int) where {T<:Real}
-```
-Compute the spatial autocorrelation function (SACF) for a delay combination (d1, d2) for multiple images.
+The second method takes a sequence of images (3-dimensional array, third dimension = time), applies EWMA smoothing with parameter `lam` and returns the vector of sequentially computed EWMA statistics, one per image.
  
-  * `lam`: The smoothing parameter for the SACF.
-  * `data`: The data matrix.
-  * `d1::Int`: The first (row) delay for the spatial process.
+  * `data`: data matrix (single image) or 3-dimensional array (image sequence).
+  * `lam`: smoothing parameter of the EWMA statistic (second method only).
+  * `d1::Int`: row delay.
+  * `d2::Int`: column delay.
+The asymptotic critical value is provided by [`crit_val_sacf`](crit_val_sacf.qmd).
+ 
 
 
 :::

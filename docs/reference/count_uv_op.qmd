@@ -11,7 +11,9 @@ engine: markdown
 ```julia
 count_uv_op(ts; m::Int=3, d=1)
 ```
-Count the number of ordinal patterns in bins for a single time series `ts`. 
+Count the ordinal patterns of a single time series `ts`, indexed by their Lehmer code.
+ 
+Returns the tuple `([p_rel], p_count)`, where `p_count` is the vector of the `m!` pattern counts and `p_rel = p_count / n_patterns` the vector of relative frequencies, wrapped in a one element vector.
  
   * `ts::Vector{Float64}`: Time series for which the ordinal patterns are counted.
   * `m::Int=3`: Length of the ordinal patterns. Default is 3. Minimum is 2, maximum is 4.

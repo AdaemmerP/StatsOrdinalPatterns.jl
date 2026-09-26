@@ -15,7 +15,7 @@ Count the absolute frequencies of the spatial ordinal patterns (SOPs) of the dat
  
   * `m`, `n`: number of SOP rows (`m = M - d1`) and columns (`n = N - d2`).
   * `d1`, `d2`: row and column delays.
-  * `lookup_array_sop`: lookup array from [`compute_lookup_array_sop`](@ref).
+  * `lookup_array_sop`: lookup array from [`compute_lookup_array_sop`](compute_lookup_array_sop.qmd).
   * `data`: data matrix.
   * `sop`: work vector of length 4 holding the current 2×2 window values.
   * `win`: work vector of length 4 for `sortperm!`.

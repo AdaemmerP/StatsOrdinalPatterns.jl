@@ -11,13 +11,13 @@ engine: markdown
 ```julia
 test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, add_noise=false)
 ```
-Perform the asymptotic hypothesis test for spatial dependence based on spatial ordinal patterns (SOPs) and return a [`SOPTestResult`](@ref) with the test statistic, the asymptotic critical value, the p-value, and the reject decision.
+Perform the asymptotic hypothesis test for spatial dependence based on spatial ordinal patterns (SOPs) and return a [`SOPTestResult`](SOPTestResult.qmd) with the test statistic, the asymptotic critical value, the p-value, and the reject decision.
  
   * `data`: data matrix (spatial field).
   * `d1::Int`: row delay.
   * `d2::Int`: column delay.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()` (two-sided test), or `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()` (one-sided, upper-tail test with rescaled statistic).
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()` (only for the entropy-type charts).
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()` (two-sided test), or `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()` (one-sided, upper-tail test with rescaled statistic). For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The statistic does not depend on it.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()` (only for the entropy-type charts).
   * `alpha=0.05`: significance level.
   * `add_noise::Bool=false`: add uniform noise to the data to break ties (recommended for discrete-valued data).
 

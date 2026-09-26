@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 compute_lookup_array_gop()
 ```
-Compute the `3×3×3` lookup array that maps a competition-ranking vector (see [`competerank!`](@ref)) of length 3 to the index (1–13) of the corresponding generalized ordinal pattern (GOP); see Equations (2) and (4) in Weiß and Schnurr (2024).
+Compute the `3×3×3` lookup array that maps a competition-ranking vector (see [`competerank!`](competerank!.qmd)) of length 3 to the index (1–13) of the corresponding generalized ordinal pattern (GOP); see Equations (2) and (4) in Weiß and Schnurr (2024).
  
 
 

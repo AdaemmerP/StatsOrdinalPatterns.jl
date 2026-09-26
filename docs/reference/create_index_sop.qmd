@@ -13,7 +13,7 @@ create_index_sop(refinement)
 ```
 Create and return the index of the sops for sortperm values. The type frequencies are based on the ranks of the sops, but we use sortperm to compute the order of the elements in the vector.
  
-`refinement` is a [`SOPClassification`](@ref): [`OrdinaryType`](@ref)`()` for the classical classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+`refinement` is a [`SOPClassification`](SOPClassification.qmd): [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
  
 
 

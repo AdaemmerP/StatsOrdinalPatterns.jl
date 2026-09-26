@@ -13,6 +13,12 @@ dependence_op(tsx, tsy; m::Int=3, d=1)
 ```
 Compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
  
+Returns the tuple `(dependence, pattern_seq_tsx, pattern_seq_tsy)`, where `dependence` is the standardized ordinal pattern dependence in `[-1, 1]` and the other two entries are the sequences of pattern indices of both series.
+ 
+  * `tsx`: first time series.
+  * `tsy`: second time series, of the same length as `tsx`.
+  * `m::Int=3`: length of the ordinal patterns (2, 3 or 4).
+  * `d::Int=1`: time delay.
 
 
 :::

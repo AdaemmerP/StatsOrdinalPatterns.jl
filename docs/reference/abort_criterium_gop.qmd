@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 abort_criterium_gop(stat, cl, chart_choice)
 ```
-Return `true` if the GOP chart statistic `stat` violates the control limit `cl` (i.e. the chart signals an alarm) for the given chart choice ([`D_Chart`](@ref)`()`, `G_Chart()`, or `Persistence()`). See Equations (18) and (20) in Weiß and Schnurr (2024).
+Return `true` if the GOP chart statistic `stat` violates the control limit `cl` (i.e. the chart signals an alarm) for the given chart choice ([`D_Chart`](D_Chart.qmd)`()`, `G_Chart()`, or `Persistence()`). See Equations (18) and (20) in Weiß and Schnurr (2024).
  
 
 

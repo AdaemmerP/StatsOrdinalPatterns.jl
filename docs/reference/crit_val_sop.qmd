@@ -11,14 +11,14 @@ engine: markdown
 ```julia
 crit_val_sop(M, N, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)
 ```
-Compute the critical value for the asymptotic test based on spatial ordinal patterns (SOPs); see [`test_sop`](@ref).
+Compute the critical value for the asymptotic test based on spatial ordinal patterns (SOPs); see [`test_sop`](test_sop.qmd).
  
   * `M::Int`: number of rows of the data matrix. The SOP matrix has `m = M - d1` rows.
   * `N::Int`: number of columns of the data matrix. The SOP matrix has `n = N - d2` columns.
   * `d1::Int`: row delay.
   * `d2::Int`: column delay.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`, `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`.
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()` (only for the entropy-type charts).
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`, `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`. The critical value does not depend on the logarithm base of `Shannon` and `ShannonExtropy`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()` (only for the entropy-type charts).
   * `alpha=0.05`: significance level.
 
 ### Examples

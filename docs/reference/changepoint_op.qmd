@@ -13,6 +13,8 @@ changepoint_op(tsx, tsy; conf_level=0.95, weight=true, bn=log(length(tsx)), m::I
 ```
 Compute the changepoint in dependence between two time series based on Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
  
+Returns the tuple `(Tn_max, changepoint, p_value, conf_iv)`: the maximum of the CUSUM statistic, the time index at which it is attained (the estimated changepoint), the asymptotic p-value based on the Kolmogorov distribution, and the interval `(-q, q)` with `q` the `conf_level` quantile of that distribution.
+ 
   * `tsx`: First time series for which the ordinal patterns are counted.
   * `tsy`: Second time series for which the ordinal patterns are counted.
   * `conf_level::Float64=0.95`: Confidence level for the changepoint detection. Default is 0.95.

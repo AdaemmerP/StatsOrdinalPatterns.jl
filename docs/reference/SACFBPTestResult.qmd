@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 SACFBPTestResult
 ```
-Result of the asymptotic Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp`](@ref).
+Result of the asymptotic Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp`](test_sacf_bp.qmd).
  
 Fields:
  

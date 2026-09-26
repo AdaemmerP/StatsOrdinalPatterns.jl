@@ -1,25 +1,25 @@
-""" 
-
-    arl_sacf_bp_oc(spatial_dgp::SpatialDGP, lam, cl, w::Int, reps=10_000)
-
-Compute the out-of-control average run length (ARL) using the spatial autocorrelation 
-function (SACF) for the BP-statistic. The function returns the ARL for a given control limit `cl` and a given number of repetitions `reps`. The input arguments are:
-
-- `spatial_dgp::SpatialDGP`: The spatial data generating process (DGP) to use for 
-the SACF function. This can be one of the following: `SAR1`, `SAR11`, `SAR22`, 
-  `SINAR11`, `SQMA11`, `SQINMA11`, or `BSQMA11`.    
-- `lam`: The smoothing parameter for the exponentially weighted moving average (EWMA) 
-control chart.
-- `cl`: The control limit for the EWMA control chart.
-- `d1_vec::Vector{Int}`: The first (row) delays for the spatial process.
-- `d2_vec::Vector{Int}`: The second (column) delays for the spatial process.
-- `reps`: The number of repetitions to compute the ARL.
 """
-function arl_sacf_bp_oc(spatial_dgp::SpatialDGP, lam, cl, w::Int, reps = 10_000; rl_max::Int=typemax(Int))
+    arl_sacf_bp_oc(sp_dgp, lam, cl, w, reps=10_000; rl_max=typemax(Int))
+
+Compute the out-of-control average run length (ARL) of the EWMA chart based on the
+Box-Pierce type SACF statistic [`stat_sacf_bp`](@ref) via simulation. The computation is
+multithreaded.
+
+- `sp_dgp::SpatialDGP`: out-of-control spatial data generating process, one of `SAR1`,
+  `SAR11`, `SAR22`, `SINAR11`, `SQMA11`, `SQINMA11` or `BSQMA11`.
+- `lam`: smoothing parameter of the EWMA statistic.
+- `cl`: control limit of the chart, typically obtained from [`cl_sacf_bp`](@ref).
+- `w::Int`: maximal lag of the BP statistic (see [`stat_sacf_bp`](@ref)).
+- `reps=10_000`: number of replications.
+- `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
+
+Returns the tuple `(ARL, standard error)`.
+"""
+function arl_sacf_bp_oc(sp_dgp::SpatialDGP, lam, cl, w::Int, reps = 10_000; rl_max::Int=typemax(Int))
 
     # Extract distribution          
-    dist_error = spatial_dgp.dist
-    dist_ao = spatial_dgp.dist_ao
+    dist_error = sp_dgp.dist
+    dist_ao = sp_dgp.dist_ao
 
     # Number of chunks for load balancing
     n_chunks = Threads.nthreads() * 4
@@ -28,7 +28,7 @@ function arl_sacf_bp_oc(spatial_dgp::SpatialDGP, lam, cl, w::Int, reps = 10_000;
     chunks = Iterators.partition(1:reps, div(reps, n_chunks))
 
     par_results = map(chunks) do i
-        Threads.@spawn rl_sacf_bp(spatial_dgp, lam, cl, w, i, dist_error, dist_ao, rl_max)
+        Threads.@spawn rl_sacf_bp(sp_dgp, lam, cl, w, i, dist_error, dist_ao, rl_max)
     end
 
     # Collect results from tasks

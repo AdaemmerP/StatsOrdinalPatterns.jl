@@ -25,36 +25,36 @@ An ordinal pattern test asks whether the frequencies of rank permutations in a t
 The key functions in  `StatsOrdinalPatterns.jl` for testing time series regarding dependence using ordinal patterns are:
 
 - **Computing the statistic**
-    - `stat_op(data; chart_choice, m=3, d=1)` — computes the chosen test statistic from the observed pattern frequencies.
+    - [`stat_op(data; chart_choice, m=3, d=1)`](../reference/stat_op.qmd) — computes the chosen test statistic from the observed pattern frequencies.
         - Returns `[test_statistic, pattern_frequencies]`.
         - `chart_choice`: one of 
-            - `Persistence()`
-            - `UpDownBalance()`
-            - `RotationalAsymmetry()`
-            - `UpDownScaling()`
-            -  `DistanceToWhiteNoise()`
+            - [`Persistence()`](../reference/Persistence.qmd)
+            - [`UpDownBalance()`](../reference/UpDownBalance.qmd)
+            - [`RotationalAsymmetry()`](../reference/RotationalAsymmetry.qmd)
+            - [`UpDownScaling()`](../reference/UpDownScaling.qmd)
+            -  [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd)
             - `Shannon(base=exp(1))`
             -  `ShannonExtropy(base=exp(1))`.
         - `m`: pattern length (window size) 
         - `d`: delay between observations within a window.
 
 - **Asymptotic inference**
-    - `test_op(data; chart_choice, m=3, d=1, alpha=0.05)`
-        - Returns an `OPTestResult` with the test statistic, critical value, p-value, and reject decision.
+    - [`test_op(data; chart_choice, m=3, d=1, alpha=0.05)`](../reference/test_op.qmd)
+        - Returns an [`OPTestResult`](../reference/OPTestResult.qmd) with the test statistic, critical value, p-value, and reject decision.
         - Critical value, p-value, and rejection direction are chosen automatically from `chart_choice`.
         - `alpha`: significance level.
         - Relies on asymptotic limiting distributions; currently supports `m = 2` and `m = 3` only.
 
 
 - **Bootstrap inference**
-    - `bootstrap_op(data, n_boot; chart_choice, m=3, d=1, block_size=1)`
+    - [`bootstrap_op(data, n_boot; chart_choice, m=3, d=1, block_size=1)`](../reference/bootstrap_op.qmd)
         - Returns a length-`n_boot` vector of resampled statistics under $H_0$.
         - `n_boot`: number of bootstrap replications.
         - `block_size = 1`: standard i.i.d. bootstrap. `block_size > 1`: block bootstrap that preserves local serial structure.
         - Works for any `m`.
 
-    - `test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)`
-        - Returns an `OPTestResultBoot` struct with the observed statistic, bootstrap critical value, bootstrap p-value, and reject decision.
+    - [`test_op_bootstrap(data, n_boot; chart_choice, m=3, d=1, alpha=0.05, block_size=1)`](../reference/test_op_bootstrap.qmd)
+        - Returns an [`OPTestResultBoot`](../reference/OPTestResultBoot.qmd) struct with the observed statistic, bootstrap critical value, bootstrap p-value, and reject decision.
         - Handles the correct bootstrap direction (two-sided, upper-tail, lower-tail) automatically.
         - `alpha`: significance level. `block_size`: as in `bootstrap_op()`.
         - Works for any `m` — the only inference option when `m > 3`.
@@ -93,8 +93,8 @@ Any base larger than 1 is allowed. An entropy in base $b$ equals the entropy und
 
 | Quantity | With base $b$ |
 |:---------|:--------------|
-| Statistic of `stat_op`, `stat_sop` and `test_op` | divided by $\ln b$ |
-| Critical value of `test_op` and `crit_val_op` | divided by $\ln b$ |
+| Statistic of `stat_op`, [`stat_sop`](../reference/stat_sop.qmd) and `test_op` | divided by $\ln b$ |
+| Critical value of `test_op` and [`crit_val_op`](../reference/crit_val_op.qmd) | divided by $\ln b$ |
 | Control limit `cl` of the EWMA charts | must be given in base $b$ |
 | Box-Pierce statistic and rescaled SOP statistic | unchanged |
 | p-value and test decision | unchanged |

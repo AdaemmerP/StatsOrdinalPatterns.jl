@@ -15,7 +15,7 @@ Compute the κ (Cohen's kappa type) chart statistic for qualitative processes, $
  
   * `q`: vector of (smoothed) category probabilities.
   * `Q`: (smoothed) probability of agreement between consecutive observations.
-  * `chart_choice`: one of [`KappaN`](@ref)`()`, [`KappaO`](@ref)`()`, [`KappaN1`](@ref)`()`, [`KappaN2`](@ref)`()`, [`KappaO1`](@ref)`()`, [`KappaO2`](@ref)`()`.
+  * `chart_choice`: one of [`KappaN`](KappaN.qmd)`()`, [`KappaO`](KappaO.qmd)`()`, [`KappaN1`](KappaN1.qmd)`()`, [`KappaN2`](KappaN2.qmd)`()`, [`KappaO1`](KappaO1.qmd)`()`, [`KappaO2`](KappaO2.qmd)`()`.
 
 
 :::

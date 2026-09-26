@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 OPBPTestResultBoot
 ```
-Result of the bootstrap Box-Pierce type ordinal-pattern test [`test_op_bp_bootstrap`](@ref).
+Result of the bootstrap Box-Pierce type ordinal-pattern test [`test_op_bp_bootstrap`](test_op_bp_bootstrap.qmd).
  
 Fields:
  

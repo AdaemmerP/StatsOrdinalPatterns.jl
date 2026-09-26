@@ -17,9 +17,9 @@ Compute the chart statistic based on generalized ordinal patterns (GOPs) for the
 The first method computes the statistic once for the whole series and returns a scalar. The second method additionally applies EWMA smoothing with parameter `lam` and returns the vector of sequentially computed chart statistics.
  
   * `data`: discrete-valued time series.
-  * `null_dist::DiscreteUnivariateDistribution`: in-control (null) distribution, used to compute the in-control GOP distribution via [`fill_p0!`](@ref).
+  * `null_dist::DiscreteUnivariateDistribution`: in-control (null) distribution, used to compute the in-control GOP distribution via [`fill_p0!`](fill_p0!.qmd).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
-  * `chart_choice`: [`D_Chart`](@ref)`()` or `Persistence()`.
+  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or `Persistence()`.
   * `m::Int=3`: length of the ordinal patterns (currently only `3` is supported).
   * `d=1`: delay between observations of a pattern.
 

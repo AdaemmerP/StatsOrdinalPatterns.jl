@@ -36,10 +36,10 @@ selected in the package through the `chart_choice` keyword:
 |:------|:----------|:---------------|:-----------|
 | Eq. (3) | $\widehat{H}^{(d)}$, permutation entropy | `Shannon(base=exp(1))` | $\widehat{H} < cl$ |
 | Eq. (3) | $\widehat{H}_{\text{ex}}^{(d)}$, permutation extropy | `ShannonExtropy(base=exp(1))` | $\widehat{H}_{\text{ex}} < cl$ |
-| Eq. (3) | $\widehat{\Delta}^{(d)}$, distance to white noise | `DistanceToWhiteNoise()` | $\widehat{\Delta} > cl$ |
-| Eq. (4) | $\hat{\beta}^{(d)}$, up-down balance | `UpDownBalance()` | $\lvert\hat{\beta}\rvert > cl$ |
-| Eq. (4) | $\hat{\tau}^{(d)}$, persistence | `Persistence()` | $\lvert\hat{\tau}\rvert > cl$ |
-| Eq. (4) | $\hat{\delta}^{(d)}$, up-down scaling | `UpDownScaling()` | $\lvert\hat{\delta}\rvert > cl$ |
+| Eq. (3) | $\widehat{\Delta}^{(d)}$, distance to white noise | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\widehat{\Delta} > cl$ |
+| Eq. (4) | $\hat{\beta}^{(d)}$, up-down balance | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $\lvert\hat{\beta}\rvert > cl$ |
+| Eq. (4) | $\hat{\tau}^{(d)}$, persistence | [`Persistence()`](../reference/Persistence.qmd) | $\lvert\hat{\tau}\rvert > cl$ |
+| Eq. (4) | $\hat{\delta}^{(d)}$, up-down scaling | [`UpDownScaling()`](../reference/UpDownScaling.qmd) | $\lvert\hat{\delta}\rvert > cl$ |
 
 
 ## Setup
@@ -75,7 +75,7 @@ Raise `reps` for tighter agreement.
 
 ## Table 1: in-control designs
 
-`cl_op` searches for the critical limit at which the in-control ARL equals `L0`: it first
+[`cl_op`](../reference/cl_op.qmd) searches for the critical limit at which the in-control ARL equals `L0`: it first
 brackets the root with a coarse Monte Carlo estimate and then refines the bracket with the
 ITP algorithm. Only a rough starting value is needed — the ones below are deliberately
 round numbers that differ from the published limits.
@@ -103,7 +103,7 @@ cls = Dict(
 )
 ```
 
-The limits are then verified by an independent run of `arl_op_ic`.
+The limits are then verified by an independent run of [`arl_op_ic`](../reference/arl_op_ic.qmd).
 
 ```{julia}
 #| output: false
@@ -169,7 +169,7 @@ every chart holds the target ARL of 370 within Monte Carlo error.
 DGP 1 of the paper is the Gaussian AR(1) process
 $X_t = \alpha X_{t-1} + \epsilon_t$ with $\epsilon_t \sim \text{i.i.d. } N(0,1)$ and
 $\alpha \in \{\pm 0.2, \pm 0.4, \pm 0.6, \pm 0.8\}$. It is constructed by
-`AR1(α, Normal(0, 1))` and started from its stationary distribution.
+[`AR1(α, Normal(0, 1))`](../reference/AR1.qmd) and started from its stationary distribution.
 
 Table 2 reports the four charts that react to this alternative — $H$, $H_{\text{ex}}$,
 $\Delta$ and $\tau$. The paper omits the $\beta$- and $\delta$-charts here because both

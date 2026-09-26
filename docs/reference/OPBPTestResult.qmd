@@ -11,14 +11,14 @@ engine: markdown
 ```julia
 OPBPTestResult
 ```
-Result of the asymptotic Box-Pierce type ordinal-pattern test [`test_op_bp`](@ref).
+Result of the asymptotic Box-Pierce type ordinal-pattern test [`test_op_bp`](test_op_bp.qmd).
  
 Fields:
  
   * `chart`: the chart choice the test was computed for.
   * `stat::Float64`: value of the test statistic.
   * `asymp_crit::Float64`: asymptotic critical value.
-  * `asymp_pval::Float64`: asymptotic p-value, or `NaN` when the null distribution is not available in closed form (see [`test_op_bp`](@ref)).
+  * `asymp_pval::Float64`: asymptotic p-value, or `NaN` when the null distribution is not available in closed form (see [`test_op_bp`](test_op_bp.qmd)).
   * `asymp_reject::Bool`: whether the null hypothesis is rejected at the chosen level.
 
 

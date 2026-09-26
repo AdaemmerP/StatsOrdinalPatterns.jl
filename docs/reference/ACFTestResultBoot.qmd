@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 ACFTestResultBoot
 ```
-Result of the bootstrap test based on the classical autocorrelation function [`test_acf_bootstrap`](@ref).
+Result of the bootstrap test based on the classical autocorrelation function [`test_acf_bootstrap`](test_acf_bootstrap.qmd).
  
 Fields:
  

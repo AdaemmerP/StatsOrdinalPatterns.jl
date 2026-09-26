@@ -12,7 +12,7 @@ engine: markdown
 rl_acf_oc(lam, cl, p_reps, acf_dgp, acf_dgp_dist, dist_null, acf_version,
   rl_max=typemax(Int))
 ```
-Compute out-of-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by [`arl_acf_oc`](@ref).
+Compute out-of-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by [`arl_acf_oc`](arl_acf_oc.qmd).
  
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the ACF chart.
@@ -20,7 +20,7 @@ Compute out-of-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart
   * `acf_dgp`: out-of-control DGP (e.g. `AR1`, `TEAR1`).
   * `acf_dgp_dist`: innovation distribution of `acf_dgp`.
   * `dist_null`: in-control (null) distribution used to center and scale the statistic.
-  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](@ref)).
+  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](stat_acf.qmd)).
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns a vector of run lengths.
  

@@ -1,26 +1,27 @@
 
 """
-    arl_sacf_ic(lam, cl, spatial_dgp::ICSTS, d1::Int, d2::Int, reps=10_000)
+    arl_sacf_ic(sp_dgp, lam, cl, d1, d2, reps=10_000; rl_max=typemax(Int))
 
-Compute the in-control average run length (ARL), using the spatial autocorrelation 
-function (SACF) for a delay (d1, d2) combination. The function returns the ARL 
-for a given control limit `cl` and a given number of repetitions `reps`. 
-    
-The input arguments are:
+Compute the in-control average run length (ARL) of the EWMA chart based on the spatial
+autocorrelation function (SACF) at lag `(d1, d2)` via simulation. The computation is
+multithreaded.
 
-- `spatial_dgp`: The in-control spatial data generating process (DGP) to use for the SACF function.
-- `lam`: The smoothing parameter for the exponentially weighted moving average (EWMA) control chart.
-- `cl`: The control limit for the EWMA control chart.
-- `d1::Int`: The first (row) delay for the spatial process.
-- `d2::Int`: The second (column) delay for the spatial process.
-- `reps`: The number of repetitions to compute the ARL.
+- `sp_dgp::ICSTS`: in-control spatial data generating process.
+- `lam`: smoothing parameter of the EWMA statistic.
+- `cl`: control limit of the chart, typically obtained from [`cl_sacf`](@ref).
+- `d1::Int`: row delay.
+- `d2::Int`: column delay.
+- `reps=10_000`: number of replications.
+- `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
+
+Returns the tuple `(ARL, standard error)`.
 """
 function arl_sacf_ic(
-    spatial_dgp::ICSTS, lam, cl, d1::Int, d2::Int, reps=10_000; rl_max::Int=typemax(Int)
+    sp_dgp::ICSTS, lam, cl, d1::Int, d2::Int, reps=10_000; rl_max::Int=typemax(Int)
 )
 
     # Extract        
-    dist_error = spatial_dgp.dist
+    dist_error = sp_dgp.dist
 
     # Number of chunks for load balancing
     n_chunks = Threads.nthreads() * 4
@@ -29,7 +30,7 @@ function arl_sacf_ic(
     chunks = Iterators.partition(1:reps, div(reps, n_chunks))
 
     par_results = map(chunks) do i
-        Threads.@spawn rl_sacf_ic(spatial_dgp, lam, cl, d1, d2, i, dist_error, rl_max)
+        Threads.@spawn rl_sacf_ic(sp_dgp, lam, cl, d1, d2, i, dist_error, rl_max)
     end
 
     # Collect results from tasks

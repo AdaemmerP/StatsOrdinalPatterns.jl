@@ -1,15 +1,25 @@
 # SACF-BP-statistic for one images
 """
-    stat_sacf_bp(
-  data::Union{SubArray,Matrix{<:Real}}, d1_vec::Vector{Int}, d2_vec::Vector{Int}
-)
+    stat_sacf_bp(data, w)
+    stat_sacf_bp(data, lam, w)
 
+Compute the Box-Pierce (BP) type statistic of the spatial autocorrelation function
+(SACF), which aggregates the squared autocorrelations over all lags up to `w`.
 
-Compute the BP-spatial autocorrelation function (BP-SACF) for multiple delay combinations (d1, d2) for a single picture.
+The statistic is 2 times the sum of the squared spatial autocorrelations over the
+`2w(w + 1)` lag pairs `(h1, h2)` with `max(|h1|, |h2|) ≤ w` in one half plane, namely
+`1 ≤ h1 ≤ w, 0 ≤ h2 ≤ w` and `-w ≤ h1 ≤ 0, 1 ≤ h2 ≤ w`.
 
-- `data`: The data matrix.
-- `d1_vec::Vector{Int}`: The vector of first (row) delays for the spatial process.
-- `d2_vec::Vector{Int}`: The vector of second (column) delays for the spatial process.
+The first method takes a single image (matrix) and returns the statistic as a
+`Float64`. The second method takes a sequence of images (3-dimensional array, third
+dimension = time), smooths every autocorrelation with an EWMA with parameter `lam` and
+returns the vector of sequentially computed BP statistics, one per image.
+
+- `data`: data matrix (single image) or 3-dimensional array (image sequence).
+- `lam`: smoothing parameter of the EWMA statistic (second method only).
+- `w::Int`: maximal lag.
+
+The critical value is provided by [`crit_val_sacf_bp`](@ref).
 """
 function stat_sacf_bp(data::Union{SubArray,Matrix{<:Real}}, w::Int)
 
@@ -30,17 +40,7 @@ function stat_sacf_bp(data::Union{SubArray,Matrix{<:Real}}, w::Int)
 
 end
 
-# EWMA SACF-BP-statistic for multiple images
-"""
-    stat_sacf_bp(lam, data::Array{T,3}, d1_vec::Vector{Int}, d2_vec::Vector{Int}) where {T<:Real}
-
-Compute the EWMA-BP-spatial autocorrelation function (EWMA-BP-SACF) for multiple images.
-
-- `lam`: The smoothing parameter for the SACF.
-- `data`: The data matrix.
-- `d1_vec::Vector{Int}`: The vector of first (row) delays for the spatial process.
-- `d2_vec::Vector{Int}`: The vector of second (column) delays for the spatial process.
-"""
+# EWMA SACF-BP-statistic for multiple images (documented together with the method above)
 function stat_sacf_bp(data::Array{T,3}, lam, w::Int) where {T<:Real}
 
   # Compute all relevant h1-h2 combinations

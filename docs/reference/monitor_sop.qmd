@@ -12,16 +12,16 @@ engine: markdown
 monitor_sop(data, lam, cl, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
   add_noise=false, noise_dist=Uniform(0, 1))
 ```
-Monitor the image sequence `data` (a 3D array, rows × columns × time) with the EWMA control chart based on spatial ordinal patterns and return a [`ControlChartResult`](@ref) with the chart statistics, the control limit and the first alarm.
+Monitor the image sequence `data` (a 3D array, rows × columns × time) with the EWMA control chart based on spatial ordinal patterns and return a [`ControlChartResult`](ControlChartResult.qmd) with the chart statistics, the control limit and the first alarm.
  
 The statistics are those of `stat_sop(data, lam, d1, d2; ...)`. All four monitoring statistics are two sided, so the chart signals when `abs(stat) > cl`.
  
   * `data::Array{<:Real,3}`: the image sequence.
   * `lam::Float64`: EWMA smoothing parameter.
-  * `cl::Float64`: control limit, typically obtained from [`cl_sop`](@ref).
+  * `cl::Float64`: control limit, typically obtained from [`cl_sop`](cl_sop.qmd).
   * `d1::Int`, `d2::Int`: row and column delays.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`. Must be the same as in the `cl_sop` call that produced `cl`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`. Must be the same as in the `cl_sop` call that produced `cl`.
   * `add_noise::Bool=false`, `noise_dist`: add noise to break ties, as in `stat_sop`.
 
 ```julia

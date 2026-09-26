@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 ControlChartResult
 ```
-Result of monitoring an observed series or image sequence with an EWMA control chart; returned by [`monitor_op`](@ref) and [`monitor_sop`](@ref).
+Result of monitoring an observed series or image sequence with an EWMA control chart; returned by [`monitor_op`](monitor_op.qmd) and [`monitor_sop`](monitor_sop.qmd).
  
 Fields:
  

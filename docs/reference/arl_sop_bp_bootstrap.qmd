@@ -14,12 +14,12 @@ arl_sop_bp_bootstrap(p_array, lam, cl, w, reps; chart_choice=TauTilde(),
 ```
 Compute the average run length (ARL) of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping from pre-computed SOP type frequencies. The computation is multithreaded.
  
-  * `p_array::Array{Float64, 3}`: 3-dimensional array with the relative SOP type frequencies for each delay combination. The first dimension is the picture, the second the pattern group (s₁, s₂, s₃), and the third the d₁-d₂ combination. This array is used for resampling; it can be computed with [`compute_p_array_bp`](@ref).
+  * `p_array::Array{Float64, 3}`: 3-dimensional array with the relative SOP type frequencies for each delay combination. The first dimension is the picture, the second the pattern group (s₁, s₂, s₃), and the third the d₁-d₂ combination. This array is used for resampling; it can be computed with [`compute_p_array_bp`](compute_p_array_bp.qmd).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `w::Int`: window size of the BP statistic.
   * `reps::Int`: number of replications.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns the tuple `(ARL, standard error)`.
  

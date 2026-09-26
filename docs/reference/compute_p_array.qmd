@@ -9,10 +9,19 @@ engine: markdown
 
 
 ```julia
-compute_p_array(data::Array{T,3})
+compute_p_array(data, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
+  add_noise=false)
 ```
-Compute the matrix of p-hat values for a given 3D array of data when the delays are integers. These values are used for bootstrapping. 
+Compute the relative SOP type frequencies of every image in an image sequence at lag `(d1, d2)`. These frequencies are the input of the bootstrap functions [`arl_sop_bootstrap`](arl_sop_bootstrap.qmd) and [`cl_sop_bootstrap`](cl_sop_bootstrap.qmd).
  
+Returns a matrix with one row per image and one column per SOP type (3 for [`OrdinaryType`](OrdinaryType.qmd), 6 for a refined classification).
+ 
+  * `data::Array{T,3}`: image sequence (third dimension = time).
+  * `d1::Int`: row delay.
+  * `d2::Int`: column delay.
+  * `chart_choice=TauTilde()`: chart the frequencies are computed for. It determines how the SOP types are grouped; see [`stat_sop`](stat_sop.qmd) for the available charts.
+  * `refinement=OrdinaryType()`: [`OrdinaryType`](OrdinaryType.qmd)`()` or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
+  * `add_noise=false`: add uniform noise to the data to break ties.
 
 
 :::

@@ -18,7 +18,7 @@ Compute the in-control average run length (ARL) of the EWMA lag-1 autocorrelatio
   * `cl::Float64`: control limit of the ACF chart.
   * `acf_dgp`: in-control DGP (e.g. `ContinuousDGPIC`).
   * `reps::Int`: number of replications.
-  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](@ref)); the method without this argument uses version 1.
+  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](stat_acf.qmd)); the method without this argument uses version 1.
   * `ced::Bool=false`: use conditional expected delay initialization.
   * `ad::Int=100`: number of in-control iterations for `ced`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.

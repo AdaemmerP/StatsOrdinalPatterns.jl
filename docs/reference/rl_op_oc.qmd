@@ -12,14 +12,14 @@ engine: markdown
 rl_op_oc(op_dgp, lam, cl, p_reps, op_dgp_dist, chart_choice, d, m, ced, ad,
   rl_max=typemax(Int))
 ```
-Compute out-of-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by [`arl_op_oc`](@ref).
+Compute out-of-control run lengths of the EWMA chart based on ordinal patterns for a chunk of replications. This is the single-threaded worker used by [`arl_op_oc`](arl_op_oc.qmd).
  
   * `op_dgp`: out-of-control DGP (e.g. `AR1`, `MA1`, `MA2`, `TEAR1`, `QAR1`).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `p_reps`: range of replication indices to process.
   * `op_dgp_dist::UnivariateDistribution`: distribution of the DGP.
-  * `chart_choice`: chart choice (see [`chart_stat_op`](@ref)).
+  * `chart_choice`: chart choice (see [`chart_stat_op`](chart_stat_op.qmd)).
   * `d::Int`: delay between observations of a pattern.
   * `m::Int`: length of the ordinal patterns.
   * `ced::Bool`: use conditional expected delay initialization.

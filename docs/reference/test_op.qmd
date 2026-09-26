@@ -11,14 +11,14 @@ engine: markdown
 ```julia
 test_op(ts; chart_choice, m=3, d=1, alpha=0.05)
 ```
-Perform the asymptotic hypothesis test for serial dependence based on ordinal patterns and return an [`OPTestResult`](@ref) containing the test statistic, the asymptotic critical value, the p-value, and the reject decision.
+Perform the asymptotic hypothesis test for serial dependence based on ordinal patterns and return an [`OPTestResult`](OPTestResult.qmd) containing the test statistic, the asymptotic critical value, the p-value, and the reject decision.
  
   * `ts`: the time series.
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. Asymptotic theory is available for `m = 3` (and `m = 2` for `Shannon()`, `DistanceToWhiteNoise()`, and `UpDownBalance()`).
+  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. Asymptotic theory is available for `m = 3` (and `m = 2` for `Shannon()`, `DistanceToWhiteNoise()`, and `UpDownBalance()`). For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural logarithm used in the papers. Statistic and critical value are both in that base, so the test decision and the p-value do not depend on it.
   * `m::Int=3`: length of the ordinal patterns.
   * `d::Int=1`: delay between observations of a pattern.
   * `alpha=0.05`: significance level.
-For pattern lengths without asymptotic theory, use [`test_op_bootstrap`](@ref).
+For pattern lengths without asymptotic theory, use [`test_op_bootstrap`](test_op_bootstrap.qmd).
  
 
 

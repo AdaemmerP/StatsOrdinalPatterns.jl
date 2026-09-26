@@ -11,8 +11,15 @@ engine: markdown
 ```julia
 compute_p_array_bp(data, w; chart_choice, refinement, add_noise=false)
 ```
-Compute the array of p-hat values for a given 3D array of data for all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These values are used for bootstrapping to compute critical limits for the BP-statistics (see [`arl_sop_bp_bootstrap`](@ref)).
+Compute the relative SOP type frequencies of every image in an image sequence for all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These frequencies are the input of the bootstrap functions for the BP statistics, [`arl_sop_bp_bootstrap`](arl_sop_bp_bootstrap.qmd) and [`cl_sop_bp_bootstrap`](cl_sop_bp_bootstrap.qmd).
  
+Returns a 3-dimensional array of size `(number of images, number of SOP types, w²)`.
+ 
+  * `data::Array{T,3}`: image sequence (third dimension = time).
+  * `w::Int`: maximal delay in both directions.
+  * `chart_choice`: chart the frequencies are computed for; see [`stat_sop_bp`](stat_sop_bp.qmd).
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
+  * `add_noise=false`: add uniform noise to the data to break ties.
 
 
 :::

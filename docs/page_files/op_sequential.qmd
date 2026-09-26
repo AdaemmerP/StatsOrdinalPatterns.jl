@@ -38,26 +38,26 @@ dependence is detected. See @weiss2023.
 ## Key functions
 
 - **Critical limit**
-    - `cl_op(op_dgp, lam, L0, cl_init; chart_choice, m=3, d=1, reps_bracket, reps_final, bracket_step, seed)`
+    - [`cl_op(op_dgp, lam, L0, cl_init; chart_choice, m=3, d=1, reps_bracket, reps_final, bracket_step, seed)`](../reference/cl_op.qmd)
         - Returns the `cl` for which the in-control ARL equals `L0`.
-        - `op_dgp`: in-control process, `ContinuousDGPIC(dist)` or `DiscreteDGPIC(dist, add_noise)`.
+        - `op_dgp`: in-control process, [`ContinuousDGPIC(dist)`](../reference/ContinuousDGPIC.qmd) or [`DiscreteDGPIC(dist, add_noise)`](../reference/DiscreteDGPIC.qmd).
         - `cl_init`: rough starting value; the search first brackets the root with
           `reps_bracket` replications in steps of `bracket_step`, then refines it with
           `reps_final` replications.
         - `seed`: fix an integer for reproducible results.
 
 - **Chart performance**
-    - `arl_op_ic(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)` — in-control ARL,
+    - [`arl_op_ic(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)`](../reference/arl_op_ic.qmd) — in-control ARL,
       returns `(ARL, standard error)`.
-    - `arl_op_oc(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)` — out-of-control ARL for a
-      dependent process: `AR1`, `MA1`, `MA2`, `TEAR1`, `AAR1`, `QAR1` for continuous data,
-      `INAR1`, `DAR1`, `BAR1`, … for counts.
+    - [`arl_op_oc(op_dgp, lam, cl, reps; chart_choice, m=3, d=1)`](../reference/arl_op_oc.qmd) — out-of-control ARL for a
+      dependent process: [`AR1`](../reference/AR1.qmd), [`MA1`](../reference/MA1.qmd), [`MA2`](../reference/MA2.qmd), [`TEAR1`](../reference/TEAR1.qmd), [`AAR1`](../reference/AAR1.qmd), [`QAR1`](../reference/QAR1.qmd) for continuous data,
+      [`INAR1`](../reference/INAR1.qmd), [`DAR1`](../reference/DAR1.qmd), [`BAR1`](../reference/BAR1.qmd), … for counts.
 
 - **Monitoring observed data**
-    - `stat_op(data, lam; chart_choice, m=3, d=1)` — returns `(stats, p_rel)`, where
+    - [`stat_op(data, lam; chart_choice, m=3, d=1)`](../reference/stat_op.qmd) — returns `(stats, p_rel)`, where
       `stats` holds the sequentially computed EWMA chart statistics of the series.
-    - `monitor_op(data, lam, cl; chart_choice, m=3, d=1)` — applies the alarm rule of the
-      chart to these statistics and returns a `ControlChartResult` with the statistics,
+    - [`monitor_op(data, lam, cl; chart_choice, m=3, d=1)`](../reference/monitor_op.qmd) — applies the alarm rule of the
+      chart to these statistics and returns a [`ControlChartResult`](../reference/ControlChartResult.qmd) with the statistics,
       the limit and the first alarm. With Makie loaded, `plot` draws it.
 
 ## Alarm rules
@@ -69,11 +69,11 @@ the direction of the statistic.
 
 | Statistic | Constructor | Under $H_0$ | Signal when |
 |:----------|:------------|:-----------:|:-----------:|
-| Persistence ($\hat{\tau}$) | `Persistence()` | $\hat{\tau} = 0$ | $\lvert\hat{\tau}\rvert > cl$ |
-| UpDownBalance ($\hat{\beta}$) | `UpDownBalance()` | $\hat{\beta} = 0$ | $\lvert\hat{\beta}\rvert > cl$ |
-| RotationalAsymmetry ($\hat{\gamma}$) | `RotationalAsymmetry()` | $\hat{\gamma} = 0$ | $\lvert\hat{\gamma}\rvert > cl$ |
-| UpDownScaling ($\hat{\delta}$) | `UpDownScaling()` | $\hat{\delta} = 0$ | $\lvert\hat{\delta}\rvert > cl$ |
-| DistanceToWhiteNoise ($\hat{\Delta}$) | `DistanceToWhiteNoise()` | $\hat{\Delta} = 0$ | $\hat{\Delta} > cl$ |
+| Persistence ($\hat{\tau}$) | [`Persistence()`](../reference/Persistence.qmd) | $\hat{\tau} = 0$ | $\lvert\hat{\tau}\rvert > cl$ |
+| UpDownBalance ($\hat{\beta}$) | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $\hat{\beta} = 0$ | $\lvert\hat{\beta}\rvert > cl$ |
+| RotationalAsymmetry ($\hat{\gamma}$) | [`RotationalAsymmetry()`](../reference/RotationalAsymmetry.qmd) | $\hat{\gamma} = 0$ | $\lvert\hat{\gamma}\rvert > cl$ |
+| UpDownScaling ($\hat{\delta}$) | [`UpDownScaling()`](../reference/UpDownScaling.qmd) | $\hat{\delta} = 0$ | $\lvert\hat{\delta}\rvert > cl$ |
+| DistanceToWhiteNoise ($\hat{\Delta}$) | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\hat{\Delta} = 0$ | $\hat{\Delta} > cl$ |
 | Shannon entropy ($\hat{H}$) | `Shannon(base=exp(1))` | $\hat{H} = \log(m!)$ | $\hat{H} < cl$ |
 | Shannon extropy ($\hat{H}_\text{ex}$) | `ShannonExtropy(base=exp(1))` | $\hat{H}_\text{ex} = 5\log(6/5)$ | $\hat{H}_\text{ex} < cl$ |
 

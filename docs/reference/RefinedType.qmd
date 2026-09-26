@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 RefinedType
 ```
-Abstract supertype for the refined classification schemes of spatial ordinal patterns (SOPs); see Weiß and Kim (2025). Concrete subtypes are [`RotationType`](@ref), [`DirectionType`](@ref), and [`DiagonalType`](@ref).
+Abstract supertype for the refined classification schemes of spatial ordinal patterns (SOPs); see Weiß and Kim (2025). Concrete subtypes are [`RotationType`](RotationType.qmd), [`DirectionType`](DirectionType.qmd), and [`DiagonalType`](DiagonalType.qmd).
  
 
 

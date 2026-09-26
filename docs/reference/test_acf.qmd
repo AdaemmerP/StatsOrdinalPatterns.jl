@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 test_acf(data, h; alpha=0.05)
 ```
-Perform the asymptotic two-sided test for serial dependence at lag `h` based on the classical autocorrelation function (ACF) and return an [`ACFTestResult`](@ref) with the test statistic, the asymptotic critical value, the p-value, and the reject decision.
+Perform the asymptotic two-sided test for serial dependence at lag `h` based on the classical autocorrelation function (ACF) and return an [`ACFTestResult`](ACFTestResult.qmd) with the test statistic, the asymptotic critical value, the p-value, and the reject decision.
  
   * `data`: the time series.
   * `h::Int`: lag.

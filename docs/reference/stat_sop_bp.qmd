@@ -21,8 +21,8 @@ The first method computes the statistic for a single image (matrix) and returns 
   * `data`: data matrix (single image) or 3-dimensional array (image sequence).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `w::Int`: window size; delays `1:w` in both directions are used.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
   * `add_noise::Bool=false`: add noise from `noise_dist` to the data to break ties.
   * `noise_dist::UnivariateDistribution=Uniform(0, 1)`: noise distribution.
   * `stat_ic`, `type_freq_init`: initial values of the EWMA statistic and the type frequencies (second method only).

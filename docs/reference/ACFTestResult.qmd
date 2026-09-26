@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 ACFTestResult
 ```
-Result of the asymptotic test based on the classical autocorrelation function [`test_acf`](@ref).
+Result of the asymptotic test based on the classical autocorrelation function [`test_acf`](test_acf.qmd).
  
 Fields:
  

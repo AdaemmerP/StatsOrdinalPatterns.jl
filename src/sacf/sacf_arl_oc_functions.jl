@@ -1,20 +1,21 @@
 
 """
-    arl_sacf_oc(sp_dgp::SpatialDGP, lam, cl, d1::Int, d2::Int, reps=10_000)
+    arl_sacf_oc(sp_dgp, lam, cl, d1, d2, reps=10_000; rl_max=typemax(Int))
 
-Compute the in-control average run length (ARL) using the spatial autocorrelation 
-function (SACF) for a delay (d1, d2) combination and an out-of-control process. 
-  
-The input arguments are: 
+Compute the out-of-control average run length (ARL) of the EWMA chart based on the
+spatial autocorrelation function (SACF) at lag `(d1, d2)` via simulation. The
+computation is multithreaded.
 
-- `lam`: The smoothing parameter for the exponentially weighted moving average (EWMA) control chart.
-- `cl`: The control limit for the EWMA control chart.
-- `sp_dgp`: The spatial data generating process (DGP) to use for the SACF function. 
-This can be one of the following: `SAR1`, `SAR11`, `SAR22`, `SINAR11`, `SQMA11`, 
-`SQINMA11`, or `BSQMA11`.
-- `d1::Int`: The first (row) delay for the spatial process.
-- `d2::Int`: The second (column) delay for the spatial process.
-- `reps`: The number of repetitions to compute the ARL.
+- `sp_dgp::SpatialDGP`: out-of-control spatial data generating process, one of `SAR1`,
+  `SAR11`, `SAR22`, `SINAR11`, `SQMA11`, `SQINMA11` or `BSQMA11`.
+- `lam`: smoothing parameter of the EWMA statistic.
+- `cl`: control limit of the chart, typically obtained from [`cl_sacf`](@ref).
+- `d1::Int`: row delay.
+- `d2::Int`: column delay.
+- `reps=10_000`: number of replications.
+- `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
+
+Returns the tuple `(ARL, standard error)`.
 """
 function arl_sacf_oc(sp_dgp::SpatialDGP, lam, cl, d1::Int, d2::Int, reps = 10_000; rl_max::Int=typemax(Int))
 

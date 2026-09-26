@@ -11,11 +11,11 @@ engine: markdown
 ```julia
 crit_val_sacf(M, N; alpha=0.05)
 ```
-Computes the critical value for the SACF of lag 1. The input parameters are:
+Return the asymptotic two sided critical value of the SACF statistic [`stat_sacf`](stat_sacf.qmd) for an `M × N` image. The null hypothesis of no spatial dependence is rejected when the absolute value of the statistic exceeds it.
  
-  * `M::Int64`: The number of rows in the data matrix.
-  * `N::Int64`: The number of columns in the data matrix.
-  * `alpha=0.05`: The significance level.
+  * `M::Int`: number of rows of the data matrix.
+  * `N::Int`: number of columns of the data matrix.
+  * `alpha=0.05`: significance level.
 
 ### Examples
 

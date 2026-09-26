@@ -18,7 +18,7 @@ Compute the in-control average run length (ARL) of the EWMA chart based on gener
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `reps::Int`: number of replications.
-  * `chart_choice`: [`D_Chart`](@ref)`()` or `Persistence()`.
+  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or `Persistence()`.
   * `d=1`: delay between observations of a pattern.
   * `ced::Bool=false`: use conditional expected delay initialization.
   * `ad::Int=100`: number of in-control iterations for `ced`.

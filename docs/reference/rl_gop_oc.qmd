@@ -12,16 +12,16 @@ engine: markdown
 rl_gop_oc(lam, cl, lookup_array_gop, p_reps, gop_dgp, gop_dgp_dist, null_dist,
   chart_choice, d, ced, ad, rl_max=typemax(Int))
 ```
-Compute out-of-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_gop_oc`](@ref).
+Compute out-of-control run lengths of the EWMA chart based on generalized ordinal patterns (GOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_gop_oc`](arl_gop_oc.qmd).
  
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
-  * `lookup_array_gop`: lookup array from [`compute_lookup_array_gop`](@ref).
+  * `lookup_array_gop`: lookup array from [`compute_lookup_array_gop`](compute_lookup_array_gop.qmd).
   * `p_reps`: range of replication indices to process.
   * `gop_dgp`: out-of-control DGP.
   * `gop_dgp_dist`: marginal distribution of `gop_dgp`.
   * `null_dist`: in-control (null) distribution used to compute the in-control GOP distribution.
-  * `chart_choice`: [`D_Chart`](@ref)`()` or `Persistence()`.
+  * `chart_choice`: [`D_Chart`](D_Chart.qmd)`()` or `Persistence()`.
   * `d::Int`: delay between observations of a pattern.
   * `ced::Bool`: use conditional expected delay initialization.
   * `ad::Int`: number of in-control iterations for `ced`.

@@ -11,10 +11,10 @@ engine: markdown
 ```julia
 crit_val_op_bp(w; chart_choice, m=3, alpha=0.05)
 ```
-Return the critical value for the Box-Pierce type ordinal-pattern test statistic computed by [`stat_op_bp`](@ref).
+Return the critical value for the Box-Pierce type ordinal-pattern test statistic computed by [`stat_op_bp`](stat_op_bp.qmd).
  
   * `w::Int`: maximal delay used in the test statistic (supported values depend on the chart).
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. The critical value does not depend on the logarithm base of `Shannon` and `ShannonExtropy`.
   * `m::Int=3`: length of the ordinal patterns (`2` or `3`, depending on the chart).
   * `alpha=0.05`: significance level. For the Shannon-, extropy- and Δ-charts with `m = 3`, tabulated values for `alpha = 0.05` are used.
 

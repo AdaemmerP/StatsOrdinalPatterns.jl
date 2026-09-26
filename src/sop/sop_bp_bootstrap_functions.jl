@@ -37,6 +37,7 @@ end
     )
 
 Generate a bootstrap distribution of the BP-SOP statistic for a single spatial image.
+Returns the vector of the `n_boot` resampled statistics.
 
 - `data`: The 2D image (M × N matrix).
 - `n_boot`: Number of bootstrap replications.

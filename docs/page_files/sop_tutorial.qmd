@@ -21,12 +21,12 @@ A spatial ordinal pattern (SOP) test asks whether the frequencies of rank permut
 `StatsOrdinalPatterns.jl` provides:
 
 - **Computing the statistic**
-    - `stat_sop()` — computes the chosen test statistic from the observed pattern frequencies.
+    - [`stat_sop()`](../reference/stat_sop.qmd) — computes the chosen test statistic from the observed pattern frequencies.
 - **Asymptotic inference**
-    - `test_sop()` — compares the statistic to an analytical critical value. Supports all image sizes.
+    - [`test_sop()`](../reference/test_sop.qmd) — compares the statistic to an analytical critical value. Supports all image sizes.
 - **Bootstrap inference**
-    - `bootstrap_sop()` — generates the empirical null distribution by 2D resampling.
-    - `test_sop_bootstrap()` — combines statistic computation and bootstrap inference in one call.
+    - [`bootstrap_sop()`](../reference/bootstrap_sop.qmd) — generates the empirical null distribution by 2D resampling.
+    - [`test_sop_bootstrap()`](../reference/test_sop_bootstrap.qmd) — combines statistic computation and bootstrap inference in one call.
 
 ## Key functions
 
@@ -34,12 +34,12 @@ A spatial ordinal pattern (SOP) test asks whether the frequencies of rank permut
 
     - Returns `[test_statistic, pattern_frequencies]`.
     - `data`: the 2D image (`Matrix`). `d1`: row delay. `d2`: column delay.
-    - `chart_choice`: one of `TauTilde()`, `TauHat()`, `KappaTilde()`, `KappaHat()`, `DistanceToWhiteNoise()`, `Shannon(base=exp(1))`, `ShannonExtropy(base=exp(1))`.
-    - `refinement`: `OrdinaryType()` for classical types, or `RotationType()`, `DirectionType()`, `DiagonalType()`.
+    - `chart_choice`: one of [`TauTilde()`](../reference/TauTilde.qmd), [`TauHat()`](../reference/TauHat.qmd), [`KappaTilde()`](../reference/KappaTilde.qmd), [`KappaHat()`](../reference/KappaHat.qmd), [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd), `Shannon(base=exp(1))`, `ShannonExtropy(base=exp(1))`.
+    - `refinement`: [`OrdinaryType()`](../reference/OrdinaryType.qmd) for classical types, or [`RotationType()`](../reference/RotationType.qmd), [`DirectionType()`](../reference/DirectionType.qmd), [`DiagonalType()`](../reference/DiagonalType.qmd).
 
 - **`test_sop(data, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05)`**
 
-    - Returns an `SOPTestResult` with the test statistic, critical value, p-value, and reject decision.
+    - Returns an [`SOPTestResult`](../reference/SOPTestResult.qmd) with the test statistic, critical value, p-value, and reject decision.
     - Critical value, p-value, and rejection direction are chosen automatically from `chart_choice`.
     - `alpha`: significance level.
 
@@ -50,7 +50,7 @@ A spatial ordinal pattern (SOP) test asks whether the frequencies of rank permut
 
 - **`test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement=OrdinaryType(), alpha=0.05, block_size=1)`**
 
-    - Returns an `SOPTestResultBoot` struct with the bootstrap critical value, p-value, and reject decision.
+    - Returns an [`SOPTestResultBoot`](../reference/SOPTestResultBoot.qmd) struct with the bootstrap critical value, p-value, and reject decision.
     - For Tau/Kappa charts: two-sided bootstrap using the raw statistic.
     - For entropy charts: the bootstrap null distribution is built on the same standardised scale used internally by `test_sop`, so the bootstrap and asymptotic critical values are directly comparable.
 

@@ -14,7 +14,7 @@ chart_stat_sop(p_vec, chart_choice)
 Compute the chart statistic of a spatial ordinal pattern (SOP) distribution `p_vec` for the given chart choice.
  
   * `p_vec`: vector of (relative) SOP type frequencies.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`, `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`, `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`. For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural logarithm used in the papers.
 Returns the value of the chart statistic.
  
 

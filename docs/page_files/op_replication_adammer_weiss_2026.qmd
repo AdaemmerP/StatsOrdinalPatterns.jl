@@ -29,15 +29,15 @@ import StatsOrdinalPatterns: init_dgp_op!
 |:-----------------|:---------------|:----------------------|
 | $\widehat{H}_{\text{BL}}$ | `Shannon(base=exp(1))` | $\tfrac{2}{6}\, n_d \big(\ln 6 - \widehat{H}^{(d)}\big)$ |
 | $\widehat{H}^{\text{ex}}_{\text{BL}}$ | `ShannonExtropy(base=exp(1))` | $\tfrac{10}{6}\, n_d \big(5 \ln \tfrac{6}{5} - \widehat{H}_{\text{ex}}^{(d)}\big)$ |
-| $\widehat{\Delta}^2_{\text{BL}}$ | `DistanceToWhiteNoise()` | $n_d\, \widehat{\Delta}^{2\,(d)}$ |
-| $\widehat{\beta}_{\text{BL}}$ | `UpDownBalance()` | $n_d\, \big(\hat{\beta}^{(d)}\big)^2$ |
-| $\widehat{\tau}_{\text{BL}}$ | `Persistence()` | $n_d\, \big(\hat{\tau}^{(d)}\big)^2$ |
-| $\widehat{\gamma}_{\text{BL}}$ | `RotationalAsymmetry()` | $n_d\, \big(\hat{\gamma}^{(d)}\big)^2$ |
-| $\widehat{\delta}_{\text{BL}}$ | `UpDownScaling()` | $n_d\, \big(\hat{\delta}^{(d)}\big)^2$ |
-| $\widehat{\rho}_{\text{BL}}$ | `stat_acf` | $T(T+2)\, \hat{\rho}(d)^2 / (T - d)$ |
+| $\widehat{\Delta}^2_{\text{BL}}$ | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $n_d\, \widehat{\Delta}^{2\,(d)}$ |
+| $\widehat{\beta}_{\text{BL}}$ | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $n_d\, \big(\hat{\beta}^{(d)}\big)^2$ |
+| $\widehat{\tau}_{\text{BL}}$ | [`Persistence()`](../reference/Persistence.qmd) | $n_d\, \big(\hat{\tau}^{(d)}\big)^2$ |
+| $\widehat{\gamma}_{\text{BL}}$ | [`RotationalAsymmetry()`](../reference/RotationalAsymmetry.qmd) | $n_d\, \big(\hat{\gamma}^{(d)}\big)^2$ |
+| $\widehat{\delta}_{\text{BL}}$ | [`UpDownScaling()`](../reference/UpDownScaling.qmd) | $n_d\, \big(\hat{\delta}^{(d)}\big)^2$ |
+| $\widehat{\rho}_{\text{BL}}$ | [`stat_acf`](../reference/stat_acf.qmd) | $T(T+2)\, \hat{\rho}(d)^2 / (T - d)$ |
 
-Here $n_d = T - (m-1)d$. `stat_op_bp(data, w; chart_choice, m, ljung_box=true)` sums the
-summands over $d = 1, \ldots, w$, and `crit_val_op_bp(w; chart_choice, m)` returns the
+Here $n_d = T - (m-1)d$. [`stat_op_bp(data, w; chart_choice, m, ljung_box=true)`](../reference/stat_op_bp.qmd) sums the
+summands over $d = 1, \ldots, w$, and [`crit_val_op_bp(w; chart_choice, m)`](../reference/crit_val_op_bp.qmd) returns the
 critical value. The BL-ACF statistic is compared with the $\chi^2(w)$ quantile.
 
 ## Setup
@@ -45,7 +45,7 @@ critical value. The BL-ACF statistic is compared with the $\chi^2(w)$ quantile.
 The DGP is $Y_t = X_t + O_t$ with $X_t = 0.5\, X_{t-2} + \epsilon_t$,
 $\epsilon_t \sim \text{i.i.d. } N(0,1)$, and additive outliers
 $O_t \sim \text{i.i.d. } 10 \cdot \text{Bernoulli}(0.1)$. As $\alpha_1 = 0$, the values at
-odd and at even times are two independent `AR1(0.5, Normal(0, 1))` processes, which
+odd and at even times are two independent [`AR1(0.5, Normal(0, 1))`](../reference/AR1.qmd) processes, which
 `init_dgp_op!` fills in place.
 
 ```{julia}
@@ -89,7 +89,7 @@ test_op_bp(x, 3; chart_choice=Persistence(), m=m, ljung_box=true)
 ## Running the power study
 
 The BL-OP statistic for $w$ is the one for $w - 1$ plus the summand of delay $w$, and all
-summands of delay $d$ are functions of the pattern frequencies returned by `stat_op`. One
+summands of delay $d$ are functions of the pattern frequencies returned by [`stat_op`](../reference/stat_op.qmd). One
 pass over $d = 1, \ldots, 5$ therefore yields all charts and all $w$.
 
 ```{julia}

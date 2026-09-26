@@ -23,32 +23,32 @@ using StatsOrdinalPatterns, Random, Statistics, Printf, DataFrames, Distribution
 
 ## Statistics of the paper and their types in the package
 
-The four column groups of Table 8 are the `refinement` argument of `test_sop`:
+The four column groups of Table 8 are the `refinement` argument of [`test_sop`](../reference/test_sop.qmd):
 
 | Table 8 group | `refinement` |
 |:--------------|:-------------|
-| Ordinary types | `OrdinaryType()` |
-| Rotation types | `RotationType()` |
-| Direction types | `DirectionType()` |
-| Diagonal types | `DiagonalType()` |
+| Ordinary types | [`OrdinaryType()`](../reference/OrdinaryType.qmd) |
+| Rotation types | [`RotationType()`](../reference/RotationType.qmd) |
+| Direction types | [`DirectionType()`](../reference/DirectionType.qmd) |
+| Diagonal types | [`DiagonalType()`](../reference/DiagonalType.qmd) |
 
 The columns within a group are its `chart_choice`:
 
 | Table 8 column | `chart_choice` | Rejects $H_0$ when | Label below |
 |:---------------|:---------------|:-------------------|:------------|
-| $\tilde{\tau}$ | `TauTilde()` | $\lvert\tilde{\tau}\rvert > c$ | `tau_tilde` |
+| $\tilde{\tau}$ | [`TauTilde()`](../reference/TauTilde.qmd) | $\lvert\tilde{\tau}\rvert > c$ | `tau_tilde` |
 | $\widehat{H}$ | `Shannon(base=exp(1))` | rescaled $\widehat{H} > c$ | `H` |
 | $\widehat{H}_{ex}$ | `ShannonExtropy(base=exp(1))` | rescaled $\widehat{H}_{ex} > c$ | `H_ex` |
-| $\widehat{\Delta}$ | `DistanceToWhiteNoise()` | $\widehat{\Delta} > c$ | `Delta` |
+| $\widehat{\Delta}$ | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $\widehat{\Delta} > c$ | `Delta` |
 
 $\tilde{\tau}$ appears in the ordinary group only; the refined classifications have
 asymptotic theory for the entropy type charts. The rescaling of the entropy statistics
 and the generalized $\chi^2$ critical value are what `test_sop` applies internally, and
-`crit_val_sop` returns the critical value for a given scheme, level and field size.
+[`crit_val_sop`](../reference/crit_val_sop.qmd) returns the critical value for a given scheme, level and field size.
 
 ## Setup
 
-DGP 4 is the `SQMA11` type of the package: `dgp_params` are the $\beta_j$, `eps_params`
+DGP 4 is the [`SQMA11`](../reference/SQMA11.qmd) type of the package: `dgp_params` are the $\beta_j$, `eps_params`
 are the exponents $(a, b, c)$ of the three error terms, written "$1^a\,2^b\,3^c$" in the
 paper, and `M_rows`, `N_cols` are the dimensions of the field. `m` and `n` in the table
 are the dimensions of the SOP matrix, so the field is $(m+1) \times (n+1)$.
@@ -109,9 +109,9 @@ test_sop(Y, 1, 1; chart_choice=ShannonExtropy(base=exp(1)), refinement=DiagonalT
 level and the classification scheme, not on the data, so it is computed once per row of
 the table. `test_sop` additionally computes the $p$ value, which for the entropy charts
 means evaluating a generalized $\chi^2$ distribution numerically and which a power study
-does not use. Each replication then costs one `stat_sop` pass per classification scheme,
+does not use. Each replication then costs one [`stat_sop`](../reference/stat_sop.qmd) pass per classification scheme,
 and the charts of that scheme are read off the resulting $\hat{\mathbf{p}}$ with
-`chart_stat_sop`.
+[`chart_stat_sop`](../reference/chart_stat_sop.qmd).
 
 ```{julia}
 #| output: false

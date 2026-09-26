@@ -91,6 +91,7 @@ end
     )
 
 Generate a bootstrap distribution of the SOP statistic for a single spatial image.
+Returns the vector of the `n_boot` resampled statistics.
 
 - `data`: The 2D image (M × N matrix).
 - `n_boot`: Number of bootstrap replications.
@@ -201,10 +202,12 @@ function _sop_boot_pval(chart, stat::Float64, boot::Vector{Float64})::Float64
 end
 
 """
-    test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement, alpha, block_size)
+    test_sop_bootstrap(data, n_boot, d1, d2; chart_choice=TauTilde(),
+      refinement=OrdinaryType(), alpha=0.05, block_size=1)
 
 Compute a bootstrap hypothesis test for spatial ordinal patterns and return an
-`SOPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+[`SOPTestResultBoot`](@ref) with the bootstrap critical value, p-value, and reject
+decision.
 
 For Tau/Kappa charts the raw statistic is used. For entropy charts (`Shannon`,
 `ShannonExtropy`, `DistanceToWhiteNoise`) the same `rescale_sop` transformation used
@@ -214,7 +217,15 @@ the asymptotic critical value and the two can be compared directly.
 - `data`: the 2D image (M × N matrix).
 - `n_boot`: number of bootstrap replications.
 - `d1`, `d2`: row and column delays.
-- `block_size`: set `> 1` for a 2D block bootstrap that preserves spatial dependencies.
+- `chart_choice=TauTilde()`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`,
+  [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`, `Shannon()`, `ShannonExtropy()`,
+  `DistanceToWhiteNoise()`. For `Shannon` and `ShannonExtropy`, the logarithm base
+  must be larger than 1. The statistic does not depend on it.
+- `refinement=OrdinaryType()`: [`OrdinaryType`](@ref)`()` for the classical SOP
+  classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`,
+  [`DiagonalType`](@ref)`()`.
+- `alpha=0.05`: significance level.
+- `block_size=1`: set `> 1` for a 2D block bootstrap that preserves spatial dependencies.
 """
 function test_sop_bootstrap(
   data::Matrix{<:Real},

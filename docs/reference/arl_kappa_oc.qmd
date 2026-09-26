@@ -19,7 +19,7 @@ Compute the out-of-control average run length (ARL) of the EWMA κ-chart for qua
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `reps::Int`: number of replications.
-  * `chart_choice`: one of [`KappaN1`](@ref)`()`, [`KappaN2`](@ref)`()`, [`KappaO1`](@ref)`()`, [`KappaO2`](@ref)`()`.
+  * `chart_choice`: one of [`KappaN1`](KappaN1.qmd)`()`, [`KappaN2`](KappaN2.qmd)`()`, [`KappaO1`](KappaO1.qmd)`()`, [`KappaO2`](KappaO2.qmd)`()`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns the tuple `(ARL, standard error)`.
  

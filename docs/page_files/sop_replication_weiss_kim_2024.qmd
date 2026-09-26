@@ -23,9 +23,9 @@ using StatsOrdinalPatterns, Random, Statistics, Printf, DataFrames, Distribution
 
 ## Statistics of the paper and their types in the package
 
-Each column of Table B.8 corresponds to one `chart_choice` of `test_sop`, which returns
+Each column of Table B.8 corresponds to one `chart_choice` of [`test_sop`](../reference/test_sop.qmd), which returns
 the statistic, the asymptotic critical value, the $p$ value and the reject decision. The
-benchmark column is `test_sacf`.
+benchmark column is [`test_sacf`](../reference/test_sacf.qmd).
 
 | Table B.8 column | Package call | Rejects $H_0$ when | Label below |
 |:-----------------|:-------------|:-------------------|:------------|
@@ -37,17 +37,17 @@ benchmark column is `test_sacf`.
 
 All four SOP statistics are linear in the same vector of type frequencies
 $\hat{\mathbf{p}} = (\hat p_1, \hat p_2, \hat p_3)$ of the classical SOP classification,
-which `stat_sop` returns as its second output.
+which [`stat_sop`](../reference/stat_sop.qmd) returns as its second output.
 
 The header of the table asks for critical values computed with the exact variance.
-`crit_val_sop` uses exactly that: its variances carry the finite sample factor
+[`crit_val_sop`](../reference/crit_val_sop.qmd) uses exactly that: its variances carry the finite sample factor
 $1 - 1/(2m) - 1/(2n)$, so no asymptotic simplification enters the critical values below.
 
 ## Setup
 
 DGP 8 is the spatial quadratic moving average process SQMA(1,1) with
 $(\beta_1, \beta_2, \beta_3) = (0.8, 0.8, 0.8)$ and i.i.d. standard normal errors. The
-`SQMA11` type of the package holds it: `dgp_params` are the $\beta_j$, `eps_params` are
+[`SQMA11`](../reference/SQMA11.qmd) type of the package holds it: `dgp_params` are the $\beta_j$, `eps_params` are
 the exponents $(a, b, c)$ of the three error terms, written "$1^a\,2^b\,3^c$" in the
 paper, and `M_rows`, `N_cols` are the dimensions of the simulated field.
 
@@ -108,12 +108,12 @@ test_sacf(Y, 1, 1; alpha=level)
 
 ## Running the power study
 
-`crit_val_sop` and `crit_val_sacf` return the critical values alone. They depend on the
+`crit_val_sop` and [`crit_val_sacf`](../reference/crit_val_sacf.qmd) return the critical values alone. They depend on the
 field size and the level, not on the data, so they are computed once per row of the table.
 `test_sop` additionally computes the $p$ value, which a power study does not use. Each
 replication then costs one pass over the field: `stat_sop` counts the SOP frequencies
 once, and the four statistics are read off the resulting $\hat{\mathbf{p}}$ with
-`chart_stat_sop`.
+[`chart_stat_sop`](../reference/chart_stat_sop.qmd).
 
 ```{julia}
 #| output: false

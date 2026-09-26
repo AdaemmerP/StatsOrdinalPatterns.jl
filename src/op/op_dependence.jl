@@ -2,8 +2,12 @@
 """
     count_uv_op(ts; m::Int=3, d=1)
 
-Count the number of ordinal patterns in bins for a single time series `ts`. 
-  
+Count the ordinal patterns of a single time series `ts`, indexed by their Lehmer code.
+
+Returns the tuple `([p_rel], p_count)`, where `p_count` is the vector of the `m!`
+pattern counts and `p_rel = p_count / n_patterns` the vector of relative frequencies,
+wrapped in a one element vector.
+
 - `ts::Vector{Float64}`: Time series for which the ordinal patterns are counted.
 - `m::Int=3`: Length of the ordinal patterns. Default is 3. Minimum is 2, maximum is 4.
 - `d::Int=1`: Time delay. Default is 1.
@@ -47,6 +51,12 @@ end
 
 Count the number of ordinal patterns in bins for two time series `tsx` and `tsy`. The output will be used
 to compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
+
+Returns the tuple `(count_x, count_y, count_yrev, count_eq, count_neq, pattern_seq_tsx,
+pattern_seq_tsy)`: the pattern counts of `tsx`, of `tsy` and of the reversed patterns of
+`tsy`, the counts of time points at which both series show the same pattern
+(`count_eq`) and the reversed pattern (`count_neq`), and the sequences of pattern
+indices of both series.
 
 - `tsx`: First time series for which the ordinal patterns are counted.
 - `tsy`: Second time series for which the ordinal patterns are counted.
@@ -142,6 +152,14 @@ end
 
 Compute the ordinal pattern dependence coefficient by Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
 
+Returns the tuple `(dependence, pattern_seq_tsx, pattern_seq_tsy)`, where `dependence`
+is the standardized ordinal pattern dependence in `[-1, 1]` and the other two entries
+are the sequences of pattern indices of both series.
+
+- `tsx`: first time series.
+- `tsy`: second time series, of the same length as `tsx`.
+- `m::Int=3`: length of the ordinal patterns (2, 3 or 4).
+- `d::Int=1`: time delay.
 """
 function dependence_op(tsx, tsy; m::Int=3, d=1)
 
@@ -198,6 +216,11 @@ end
     changepoint_op(tsx, tsy; conf_level=0.95, weight=true, bn=log(length(tsx)), m::Int=3, d=1)
 
 Compute the changepoint in dependence between two time series based on Schnurr and Dehling (2017) <doi:10.1080/01621459.2016.1164706>.
+
+Returns the tuple `(Tn_max, changepoint, p_value, conf_iv)`: the maximum of the CUSUM
+statistic, the time index at which it is attained (the estimated changepoint), the
+asymptotic p-value based on the Kolmogorov distribution, and the interval
+`(-q, q)` with `q` the `conf_level` quantile of that distribution.
 
 - `tsx`: First time series for which the ordinal patterns are counted.
 - `tsy`: Second time series for which the ordinal patterns are counted.

@@ -15,10 +15,10 @@ Compute the Box-Pierce (BP) type test statistic for ordinal patterns, which aggr
  
   * `data`: the time series.
   * `w::Int`: maximal delay; the individual statistics for delays `1:w` are aggregated.
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The statistic does not depend on it.
   * `m::Int=3`: length of the ordinal patterns.
   * `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights (delay-specific numbers of patterns) instead of the constant Box-Pierce weight.
-Returns the aggregated test statistic. Critical values are provided by [`crit_val_op_bp`](@ref).
+Returns the aggregated test statistic. Critical values are provided by [`crit_val_op_bp`](crit_val_op_bp.qmd).
  
 
 

@@ -11,18 +11,18 @@ engine: markdown
 ```julia
 test_op_bp(data, w; chart_choice, m=3, alpha=0.05, ljung_box=false)
 ```
-Perform the asymptotic Box-Pierce type test for serial dependence based on ordinal patterns, aggregating the chart statistics over the delays `d = 1, …, w`, and return an [`OPBPTestResult`](@ref) with the test statistic, the asymptotic critical value, the p-value, and the reject decision. The test is upper-tailed for every chart.
+Perform the asymptotic Box-Pierce type test for serial dependence based on ordinal patterns, aggregating the chart statistics over the delays `d = 1, …, w`, and return an [`OPBPTestResult`](OPBPTestResult.qmd) with the test statistic, the asymptotic critical value, the p-value, and the reject decision. The test is upper-tailed for every chart.
  
   * `data`: the time series.
   * `w::Int`: maximal delay; the individual statistics for delays `1:w` are aggregated.
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. For `Shannon` and `ShannonExtropy`, the logarithm base must be larger than 1. The statistic does not depend on it.
   * `m::Int=3`: length of the ordinal patterns.
   * `alpha=0.05`: significance level.
   * `ljung_box::Bool=false`: if `true`, use Ljung-Box (BL) weights instead of the constant Box-Pierce weight. The asymptotic null distribution is unchanged.
 
 ### Availability of critical values and p-values
 
-Closed-form null distributions — and hence p-values and arbitrary `alpha` — are available for `m = 2` with `Shannon()`/`DistanceToWhiteNoise()` and for `m = 3` with `UpDownBalance()`. For the remaining `m = 3` charts the individual statistics are correlated across the delays `1:w`, so [`crit_val_op_bp`](@ref) uses values tabulated at `alpha = 0.05` (Weiß, 2022) for `w ∈ 1:5`; passing a different `alpha` throws an error, and `asymp_pval` is `NaN` unless `w == 1`. Use [`test_op_bp_bootstrap`](@ref) to obtain a p-value for any chart, `w` and `alpha`.
+Closed-form null distributions — and hence p-values and arbitrary `alpha` — are available for `m = 2` with `Shannon()`/`DistanceToWhiteNoise()` and for `m = 3` with `UpDownBalance()`. For the remaining `m = 3` charts the individual statistics are correlated across the delays `1:w`, so [`crit_val_op_bp`](crit_val_op_bp.qmd) uses values tabulated at `alpha = 0.05` (Weiß, 2022) for `w ∈ 1:5`; passing a different `alpha` throws an error, and `asymp_pval` is `NaN` unless `w == 1`. Use [`test_op_bp_bootstrap`](test_op_bp_bootstrap.qmd) to obtain a p-value for any chart, `w` and `alpha`.
  
 
 

@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 OPTestResultSurrogate
 ```
-Result of the surrogate-data ordinal-pattern test [`test_op_surrogate`](@ref).
+Result of the surrogate-data ordinal-pattern test [`test_op_surrogate`](test_op_surrogate.qmd).
  
 Fields:
  

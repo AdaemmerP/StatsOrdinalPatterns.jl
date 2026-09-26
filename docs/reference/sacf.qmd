@@ -11,9 +11,13 @@ engine: markdown
 ```julia
 sacf(X_centered, d1::Int, d2::Int)
 ```
-  * `X_centered`: The centered (de-meaned) data matrix.
-  * `d1::Int`: The first (row) delay for the spatial process.
-  * `d2::Int`: The second (column) delay for the spatial process.
+Compute the spatial autocorrelation of a centered data matrix at lag `(d1, d2)`. Negative lags are allowed. Returns the autocorrelation as a `Float64`, or `1.0` if all entries of `X_centered` are equal.
+ 
+  * `X_centered`: the centered (de-meaned) data matrix.
+  * `d1::Int`: row lag.
+  * `d2::Int`: column lag.
+Use [`stat_sacf`](stat_sacf.qmd) to compute the statistic directly from uncentered data.
+ 
 
 
 :::

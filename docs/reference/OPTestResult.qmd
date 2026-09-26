@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 OPTestResult
 ```
-Result of the asymptotic ordinal-pattern test [`test_op`](@ref).
+Result of the asymptotic ordinal-pattern test [`test_op`](test_op.qmd).
  
 Fields:
  

@@ -28,20 +28,20 @@ import StatsOrdinalPatterns: init_dgp_op!
 
 A BL-OP statistic aggregates one ordinal pattern statistic over the delays
 $d = 1, \ldots, w$, weighting delay $d$ by its number of patterns $n_d = T - (m-1)d$.
-`stat_op_bp(data, w; chart_choice, m, ljung_box=true)` computes it, and
-`crit_val_op_bp(w; chart_choice, m)` returns the critical value. All tests reject for large
+[`stat_op_bp(data, w; chart_choice, m, ljung_box=true)`](../reference/stat_op_bp.qmd) computes it, and
+[`crit_val_op_bp(w; chart_choice, m)`](../reference/crit_val_op_bp.qmd) returns the critical value. All tests reject for large
 values.
 
 | Table B.3 column | `chart_choice` | Summand for delay $d$ |
 |:-----------------|:---------------|:----------------------|
 | $\widehat{H}_{\text{BL}}$ | `Shannon(base=exp(1))` | $\tfrac{2}{6}\, n_d \big(\ln 6 - \widehat{H}^{(d)}\big)$ |
 | $\widehat{H}^{\text{ex}}_{\text{BL}}$ | `ShannonExtropy(base=exp(1))` | $\tfrac{10}{6}\, n_d \big(5 \ln \tfrac{6}{5} - \widehat{H}_{\text{ex}}^{(d)}\big)$ |
-| $\widehat{\Delta}^2_{\text{BL}}$ | `DistanceToWhiteNoise()` | $n_d\, \widehat{\Delta}^{2\,(d)}$ |
-| $\widehat{\beta}_{\text{BL}}$ | `UpDownBalance()` | $n_d\, \big(\hat{\beta}^{(d)}\big)^2$ |
-| $\widehat{\tau}_{\text{BL}}$ | `Persistence()` | $n_d\, \big(\hat{\tau}^{(d)}\big)^2$ |
-| $\widehat{\gamma}_{\text{BL}}$ | `RotationalAsymmetry()` | $n_d\, \big(\hat{\gamma}^{(d)}\big)^2$ |
-| $\widehat{\delta}_{\text{BL}}$ | `UpDownScaling()` | $n_d\, \big(\hat{\delta}^{(d)}\big)^2$ |
-| $\widehat{\rho}_{\text{BL}}$ | `stat_acf` | $T(T+2)\, \hat{\rho}(d)^2 / (T - d)$ |
+| $\widehat{\Delta}^2_{\text{BL}}$ | [`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) | $n_d\, \widehat{\Delta}^{2\,(d)}$ |
+| $\widehat{\beta}_{\text{BL}}$ | [`UpDownBalance()`](../reference/UpDownBalance.qmd) | $n_d\, \big(\hat{\beta}^{(d)}\big)^2$ |
+| $\widehat{\tau}_{\text{BL}}$ | [`Persistence()`](../reference/Persistence.qmd) | $n_d\, \big(\hat{\tau}^{(d)}\big)^2$ |
+| $\widehat{\gamma}_{\text{BL}}$ | [`RotationalAsymmetry()`](../reference/RotationalAsymmetry.qmd) | $n_d\, \big(\hat{\gamma}^{(d)}\big)^2$ |
+| $\widehat{\delta}_{\text{BL}}$ | [`UpDownScaling()`](../reference/UpDownScaling.qmd) | $n_d\, \big(\hat{\delta}^{(d)}\big)^2$ |
+| $\widehat{\rho}_{\text{BL}}$ | [`stat_acf`](../reference/stat_acf.qmd) | $T(T+2)\, \hat{\rho}(d)^2 / (T - d)$ |
 
 The critical value of $\widehat{\beta}_{\text{BL}}$ is a scaled $\chi^2(w)$ quantile. The
 other six BL-OP statistics are correlated across delays, so `crit_val_op_bp` uses values
@@ -51,7 +51,7 @@ $\chi^2(w)$ quantile.
 ## Setup
 
 The DGP is the Gaussian AR(1) process $X_t = 0.5\, X_{t-1} + \epsilon_t$ with
-$\epsilon_t \sim \text{i.i.d. } N(0,1)$. The package type `AR1` describes it, and
+$\epsilon_t \sim \text{i.i.d. } N(0,1)$. The package type [`AR1`](../reference/AR1.qmd) describes it, and
 `init_dgp_op!` fills a vector with a series started from the stationary distribution.
 
 ```{julia}
@@ -86,13 +86,13 @@ test_op_bp(x, 3; chart_choice=Persistence(), m=m, ljung_box=true)
 
 ## Running the power study
 
-A loop over `test_op_bp` would count the patterns of every delay again for each chart and
+A loop over [`test_op_bp`](../reference/test_op_bp.qmd) would count the patterns of every delay again for each chart and
 each $w$. Two observations avoid this:
 
 * The BL-OP statistic for $w$ is the one for $w - 1$ plus the summand of delay $w$. One
   pass over $d = 1, \ldots, 5$ therefore yields the statistics for all five values of $w$.
 * All seven summands of delay $d$ are functions of the same pattern frequencies
-  $\hat{\mathbf{p}}^{(d)}$. `stat_op` returns them, and `chart_stat_op` maps them to each
+  $\hat{\mathbf{p}}^{(d)}$. [`stat_op`](../reference/stat_op.qmd) returns them, and [`chart_stat_op`](../reference/chart_stat_op.qmd) maps them to each
   statistic.
 
 The critical values do not depend on the data, so they are taken once per $T$. Every

@@ -72,13 +72,20 @@ end
       block_size::Int=1, reduce=maximum
     )
 
-Generate a bootstrap distribution of the GOP statistic.
+Generate a bootstrap distribution of the GOP statistic. Each resampled series is
+monitored with the EWMA chart, and its sequence of chart statistics is summarized by
+`reduce`. Returns the vector of the `n_boot` resampled summaries.
 
 - `data`: The in-control time series.
 - `n_boot`: Number of bootstrap replications.
 - `null_dist`: The null (in-control) discrete distribution.
 - `lam`: EWMA smoothing parameter.
+- `chart_choice`: [`D_Chart`](@ref)`()` or `Persistence()`.
+- `m::Int=3`: length of the ordinal patterns.
+- `d::Int=1`: delay between observations of a pattern.
 - `block_size`: Set > 1 to use block bootstrap and preserve time-series dependencies.
+- `reduce=maximum`: function that maps the vector of EWMA chart statistics of one
+  resampled series to a single number.
 """
 function test_gop_bootstrap(
   data::Vector{Float64},

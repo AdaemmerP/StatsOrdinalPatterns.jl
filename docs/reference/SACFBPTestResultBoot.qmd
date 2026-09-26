@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 SACFBPTestResultBoot
 ```
-Result of the bootstrap Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp_bootstrap`](@ref).
+Result of the bootstrap Box-Pierce type test based on the spatial autocorrelation function [`test_sacf_bp_bootstrap`](test_sacf_bp_bootstrap.qmd).
  
 Fields:
  

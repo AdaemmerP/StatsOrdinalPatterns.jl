@@ -12,14 +12,14 @@ engine: markdown
 rl_acf_ic(lam, cl, p_reps, acf_dgp, acf_dgp_dist, acf_version; ced=false, ad=100,
   rl_max=typemax(Int))
 ```
-Compute in-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by [`arl_acf_ic`](@ref).
+Compute in-control run lengths of the EWMA lag-1 autocorrelation (ACF) chart for a chunk of replications. This is the single-threaded worker used by [`arl_acf_ic`](arl_acf_ic.qmd).
  
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the ACF chart.
   * `p_reps`: range of replication indices to process.
   * `acf_dgp`: in-control DGP.
   * `acf_dgp_dist`: innovation distribution of `acf_dgp`.
-  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](@ref)).
+  * `acf_version::Int`: version of the ACF statistic (see [`stat_acf`](stat_acf.qmd)).
   * `ced::Bool=false`: use conditional expected delay initialization.
   * `ad::Int=100`: number of in-control iterations for `ced`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.

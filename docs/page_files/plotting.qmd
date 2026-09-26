@@ -21,14 +21,14 @@ a package extension that is loaded automatically as soon as Makie, or one of its
 such as `CairoMakie` or `GLMakie`, is loaded next to the package. The extension adds
 methods to `plot` for two kinds of result objects:
 
-- **Control charts.** `monitor_op` and `monitor_sop` run the EWMA chart over an observed
-  series or image sequence and return a `ControlChartResult`. Its plot shows the chart
+- **Control charts.** [`monitor_op`](../reference/monitor_op.qmd) and [`monitor_sop`](../reference/monitor_sop.qmd) run the EWMA chart over an observed
+  series or image sequence and return a [`ControlChartResult`](../reference/ControlChartResult.qmd). Its plot shows the chart
   statistics against the control limit, shades the rejection region and marks the first
   alarm.
 - **Resampled null distributions.** The results of the bootstrap tests
-  (`test_op_bootstrap`, `test_op_bp_bootstrap`, `test_sop_bootstrap`,
-  `test_sop_bp_bootstrap`, `test_acf_bootstrap`, `test_sacf_bootstrap`,
-  `test_sacf_bp_bootstrap`) and of the surrogate test `test_op_surrogate` store the
+  ([`test_op_bootstrap`](../reference/test_op_bootstrap.qmd), [`test_op_bp_bootstrap`](../reference/test_op_bp_bootstrap.qmd), [`test_sop_bootstrap`](../reference/test_sop_bootstrap.qmd),
+  [`test_sop_bp_bootstrap`](../reference/test_sop_bp_bootstrap.qmd), [`test_acf_bootstrap`](../reference/test_acf_bootstrap.qmd), [`test_sacf_bootstrap`](../reference/test_sacf_bootstrap.qmd),
+  [`test_sacf_bp_bootstrap`](../reference/test_sacf_bp_bootstrap.qmd)) and of the surrogate test [`test_op_surrogate`](../reference/test_op_surrogate.qmd) store the
   resampled statistics in their `boot_dist` or `surr_dist` field. Their plot is a
   histogram of that null distribution with the rejection region, the critical value and
   the observed statistic.
@@ -75,7 +75,7 @@ The dashed lines are the control limits, the shaded band is the rejection region
 cross marks the first statistic outside the limits. The x axis is the observation index at
 which each statistic becomes available, so the alarm can be read off directly as a time
 point. For the entropy charts the rejection region lies below the limit, and for
-`DistanceToWhiteNoise()` above it. The plot picks up the direction from the result:
+[`DistanceToWhiteNoise()`](../reference/DistanceToWhiteNoise.qmd) above it. The plot picks up the direction from the result:
 
 ```{julia}
 cl_H = cl_op(
@@ -165,7 +165,7 @@ fig
 ```
 
 The surrogate test `test_op_surrogate`, available once `TimeseriesSurrogates.jl` is
-loaded, returns an `OPTestResultSurrogate` that is plotted in the same way.
+loaded, returns an [`OPTestResultSurrogate`](../reference/OPTestResultSurrogate.qmd) that is plotted in the same way.
 
 ## Customising the figures
 

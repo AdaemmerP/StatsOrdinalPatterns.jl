@@ -12,13 +12,13 @@ engine: markdown
 rl_sop_bp_bootstrap(p_array, lam, cl, reps_range, chart_choice,
   rl_max=typemax(Int))
 ```
-Compute run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping, for a chunk of replications. This is the single-threaded worker used by [`arl_sop_bp_bootstrap`](@ref).
+Compute run lengths of the EWMA chart based on the Box-Pierce type statistic for spatial ordinal patterns (SOPs) by bootstrapping, for a chunk of replications. This is the single-threaded worker used by [`arl_sop_bp_bootstrap`](arl_sop_bp_bootstrap.qmd).
  
-  * `p_array::Array{Float64,3}`: 3-dimensional array with the relative SOP type frequencies for each delay combination (see [`arl_sop_bp_bootstrap`](@ref)).
+  * `p_array::Array{Float64,3}`: 3-dimensional array with the relative SOP type frequencies for each delay combination (see [`arl_sop_bp_bootstrap`](arl_sop_bp_bootstrap.qmd)).
   * `lam::Float64`: smoothing parameter of the EWMA statistic.
   * `cl::Float64`: control limit of the chart.
   * `reps_range::UnitRange{Int}`: range of replication indices to process.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns a vector of run lengths.
  

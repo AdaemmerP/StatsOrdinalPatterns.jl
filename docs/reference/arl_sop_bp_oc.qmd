@@ -19,8 +19,8 @@ Compute the out-of-control average run length (ARL) of the EWMA chart based on t
   * `cl::Float64`: control limit of the chart.
   * `w::Int`: window size of the BP statistic; delays `1:w` in both directions are used.
   * `reps::Int=1_000`: number of replications.
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns the tuple `(ARL, standard error)`.
  

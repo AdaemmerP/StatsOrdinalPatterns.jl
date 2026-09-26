@@ -27,6 +27,7 @@ end
     ) where {T<:Real}
 
 Generate a bootstrap distribution of the SACF statistic for a single spatial image.
+Returns the vector of the `n_boot` resampled statistics.
 
 - `data`: The 2D image (M × N matrix).
 - `n_boot`: Number of bootstrap replications.
@@ -63,6 +64,7 @@ end
     ) where {T<:Real}
 
 Generate a bootstrap distribution of the BP-SACF statistic for a single spatial image.
+Returns the vector of the `n_boot` resampled statistics.
 
 - `data`: The 2D image (M × N matrix).
 - `n_boot`: Number of bootstrap replications.

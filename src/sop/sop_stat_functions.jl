@@ -93,7 +93,8 @@ Compute the sequence of EWMA-smoothed test statistics based on spatial ordinal p
 - `d1::Int`: The delay value for the rows.
 - `d2::Int`: The delay value for the columns.
 - `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`,
-  [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
+  [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`, `Shannon()`, `ShannonExtropy()`,
+  `DistanceToWhiteNoise()`.
   For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the
   chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl;
   use `Shannon(base=exp(1))` for the natural logarithm used in the papers.

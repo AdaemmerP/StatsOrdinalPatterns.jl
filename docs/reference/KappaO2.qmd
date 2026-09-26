@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 KappaO2()
 ```
-Variant 2 of the ordinal κ-chart ([`KappaO`](@ref)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
+Variant 2 of the ordinal κ-chart ([`KappaO`](KappaO.qmd)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
  
 
 

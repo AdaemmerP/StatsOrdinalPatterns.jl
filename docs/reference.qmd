@@ -58,16 +58,10 @@ engine: julia
 ---
 
 
-[stat_sacf_bp(](reference/stat_sacf_bp.qmd)
+[stat_sacf_bp(data, w)
+stat_sacf_bp(data, lam, w)](reference/stat_sacf_bp.qmd)
 
-> data::Union{SubArray,Matrix{<:Real}}, d1*vec::Vector{Int}, d2*vec::Vector{Int} )
-
----
-
-
-[stat_sacf_bp(lam, data::Array{T,3}, d1_vec::Vector{Int}, d2_vec::Vector{Int}) where {T<:Real}](reference/stat_sacf_bp.qmd)
-
-> Compute the EWMA-BP-spatial autocorrelation function (EWMA-BP-SACF) for multiple images.
+> Compute the Box-Pierce (BP) type statistic of the spatial autocorrelation function (SACF), which aggregates the squared autocorrelations over all lags up to `w`.
 
 ---
 
@@ -220,9 +214,9 @@ stat_sop_bp(data, lam, w; chart_choice=TauTilde(), refinement=OrdinaryType(), ad
 ---
 
 
-[arl_sacf_bp_oc(spatial_dgp::SpatialDGP, lam, cl, w::Int, reps=10_000)](reference/arl_sacf_bp_oc.qmd)
+[arl_sacf_bp_oc(sp_dgp, lam, cl, w, reps=10_000; rl_max=typemax(Int))](reference/arl_sacf_bp_oc.qmd)
 
-> Compute the out-of-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The function returns the ARL for a given control limit `cl` and a given numb...
+> Compute the out-of-control average run length (ARL) of the EWMA chart based on the Box-Pierce type SACF statistic [`stat_sacf_bp`](@ref) via simulation. The computation is multithreaded.
 
 ---
 
@@ -285,7 +279,7 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
   block_size::Int=1
 ) where {T<:Real}](reference/bootstrap_sacf_bp.qmd)
 
-> Generate a bootstrap distribution of the BP-SACF statistic for a single spatial image.
+> Generate a bootstrap distribution of the BP-SACF statistic for a single spatial image. Returns the vector of the `n_boot` resampled statistics.
 
 ---
 
@@ -302,7 +296,7 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
   chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1
 )](reference/bootstrap_sop.qmd)
 
-> Generate a bootstrap distribution of the SOP statistic for a single spatial image.
+> Generate a bootstrap distribution of the SOP statistic for a single spatial image. Returns the vector of the `n_boot` resampled statistics.
 
 ---
 
@@ -316,7 +310,7 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
 
 [compute_p_array_bp(data, w; chart_choice, refinement, add_noise=false)](reference/compute_p_array_bp.qmd)
 
-> Compute the array of p-hat values for a given 3D array of data for all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These values are used for bootstrapping to compute critical limits for the BP-...
+> Compute the relative SOP type frequencies of every image in an image sequence for all delay combinations `(d1, d2) ∈ {1,…,w} × {1,…,w}`. These frequencies are the input of the bootstrap functions for ...
 
 ---
 
@@ -405,7 +399,7 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
 
 [cl_sop_bootstrap(data::Array{T,3}, lam, L0, cl_init, d1, d2;
                  reps_final, reps_bracket, bracket_step,
-                 arl_truncation_factor, chart_choice,
+                 arl_truncation_factor, chart_choice, refinement,
                  verbose, cl_tol, seed) where {T<:Real}](reference/cl_sop_bootstrap.qmd)
 
 > Compute the critical limit `cl` for an EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals `L0`.
@@ -510,9 +504,10 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
 ---
 
 
-[compute_p_array(data::Array{T,3})](reference/compute_p_array.qmd)
+[compute_p_array(data, d1, d2; chart_choice=TauTilde(), refinement=OrdinaryType(),
+  add_noise=false)](reference/compute_p_array.qmd)
 
-> Compute the matrix of p-hat values for a given 3D array of data when the delays are integers. These values are used for bootstrapping.
+> Compute the relative SOP type frequencies of every image in an image sequence at lag `(d1, d2)`. These frequencies are the input of the bootstrap functions [`arl_sop_bootstrap`](@ref) and [`cl_sop_boo...
 
 ---
 
@@ -544,21 +539,15 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
 
 [sacf(X_centered, d1::Int, d2::Int)](reference/sacf.qmd)
 
-> 
+> Compute the spatial autocorrelation of a centered data matrix at lag `(d1, d2)`. Negative lags are allowed. Returns the autocorrelation as a `Float64`, or `1.0` if all entries of `X_centered` are equa...
 
 ---
 
 
-[stat_sacf(data::Union{SubArray,Matrix{<:Real}}, d1::Int, d2::Int)](reference/stat_sacf.qmd)
+[stat_sacf(data, d1, d2)
+stat_sacf(data, lam, d1, d2)](reference/stat_sacf.qmd)
 
-> Compute the spatial autocorrelation for a delay combination (d1, d2) for a single picture.
-
----
-
-
-[stat_sacf(lam, data::Array{T,3}, d1::Int, d2::Int) where {T<:Real}](reference/stat_sacf.qmd)
-
-> Compute the spatial autocorrelation function (SACF) for a delay combination (d1, d2) for multiple images.
+> Compute the spatial autocorrelation function (SACF) statistic at lag `(d1, d2)`.
 
 ---
 
@@ -570,9 +559,9 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
 ---
 
 
-[arl_sacf_ic(lam, cl, spatial_dgp::ICSTS, d1::Int, d2::Int, reps=10_000)](reference/arl_sacf_ic.qmd)
+[arl_sacf_ic(sp_dgp, lam, cl, d1, d2, reps=10_000; rl_max=typemax(Int))](reference/arl_sacf_ic.qmd)
 
-> Compute the in-control average run length (ARL), using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination. The function returns the ARL for a given control limit `cl` and a g...
+> Compute the in-control average run length (ARL) of the EWMA chart based on the spatial autocorrelation function (SACF) at lag `(d1, d2)` via simulation. The computation is multithreaded.
 
 ---
 
@@ -709,9 +698,9 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
 ---
 
 
-[arl_sacf_oc(sp_dgp::SpatialDGP, lam, cl, d1::Int, d2::Int, reps=10_000)](reference/arl_sacf_oc.qmd)
+[arl_sacf_oc(sp_dgp, lam, cl, d1, d2, reps=10_000; rl_max=typemax(Int))](reference/arl_sacf_oc.qmd)
 
-> Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for a delay (d1, d2) combination and an out-of-control process.
+> Compute the out-of-control average run length (ARL) of the EWMA chart based on the spatial autocorrelation function (SACF) at lag `(d1, d2)` via simulation. The computation is multithreaded.
 
 ---
 
@@ -802,7 +791,7 @@ chart_stat_gop(p_p0, G1G, ::G_Chart)](reference/chart_stat_gop.qmd)
   block_size::Int=1, reduce=maximum
 )](reference/test_gop_bootstrap.qmd)
 
-> Generate a bootstrap distribution of the GOP statistic.
+> Generate a bootstrap distribution of the GOP statistic. Each resampled series is monitored with the EWMA chart, and its sequence of chart statistics is summarized by `reduce`. Returns the vector of th...
 
 ---
 
@@ -835,9 +824,10 @@ chart_stat_gop(p_p0, G1G, ::G_Chart)](reference/chart_stat_gop.qmd)
 ---
 
 
-[test_sop_bootstrap(data, n_boot, d1, d2; chart_choice, refinement, alpha, block_size)](reference/test_sop_bootstrap.qmd)
+[test_sop_bootstrap(data, n_boot, d1, d2; chart_choice=TauTilde(),
+  refinement=OrdinaryType(), alpha=0.05, block_size=1)](reference/test_sop_bootstrap.qmd)
 
-> Compute a bootstrap hypothesis test for spatial ordinal patterns and return an `SOPTestResultBoot` with the bootstrap critical value, p-value, and reject decision.
+> Compute a bootstrap hypothesis test for spatial ordinal patterns and return an [`SOPTestResultBoot`](@ref) with the bootstrap critical value, p-value, and reject decision.
 
 ---
 
@@ -858,7 +848,7 @@ chart_stat_gop(p_p0, G1G, ::G_Chart)](reference/chart_stat_gop.qmd)
 
 [count_uv_op(ts; m::Int=3, d=1)](reference/count_uv_op.qmd)
 
-> Count the number of ordinal patterns in bins for a single time series `ts`.
+> Count the ordinal patterns of a single time series `ts`, indexed by their Lehmer code.
 
 ---
 
@@ -870,9 +860,9 @@ chart_stat_gop(p_p0, G1G, ::G_Chart)](reference/chart_stat_gop.qmd)
 ---
 
 
-[arl_sacf_bp_ic(lam, cl, sp_dgp::ICSP, d1_vec::Vector{Int}, d2_vec::Vector{Int}, reps=10_000)](reference/arl_sacf_bp_ic.qmd)
+[arl_sacf_bp_ic(sp_dgp, lam, cl, w, reps=10_000; rl_max=typemax(Int))](reference/arl_sacf_bp_ic.qmd)
 
-> Compute the in-control average run length (ARL) using the spatial autocorrelation function (SACF) for the BP-statistic. The input arguments are:
+> Compute the in-control average run length (ARL) of the EWMA chart based on the Box-Pierce type SACF statistic [`stat_sacf_bp`](@ref) via simulation. The computation is multithreaded.
 
 ---
 
@@ -939,7 +929,7 @@ stat_op(data, lam; chart_choice, m=3, d=1, add_noise=false)](reference/stat_op.q
 
 [cl_sop_bp_bootstrap(data::Array{T,3}, lam, L0, cl_init, w, reps;
                     reps_final, reps_bracket, bracket_step,
-                    arl_truncation_factor, chart_choice,
+                    arl_truncation_factor, chart_choice, refinement,
                     verbose, cl_tol, seed) where {T<:Real}](reference/cl_sop_bp_bootstrap.qmd)
 
 > Compute the critical limit `cl` for a BP-EWMA-SOP control chart using a bootstrap approach, such that the in-control ARL equals `L0`.
@@ -1073,7 +1063,7 @@ stat_op(data, lam; chart_choice, m=3, d=1, add_noise=false)](reference/stat_op.q
   chart_choice=TauTilde(), refinement=OrdinaryType(), block_size::Int=1
 )](reference/bootstrap_sop_bp.qmd)
 
-> Generate a bootstrap distribution of the BP-SOP statistic for a single spatial image.
+> Generate a bootstrap distribution of the BP-SOP statistic for a single spatial image. Returns the vector of the `n_boot` resampled statistics.
 
 ---
 
@@ -1182,7 +1172,7 @@ stat_gop(data, null_dist, lam, chart_choice, m=3, d=1)](reference/stat_gop.qmd)
   block_size::Int=1
 ) where {T<:Real}](reference/bootstrap_sacf.qmd)
 
-> Generate a bootstrap distribution of the SACF statistic for a single spatial image.
+> Generate a bootstrap distribution of the SACF statistic for a single spatial image. Returns the vector of the `n_boot` resampled statistics.
 
 ---
 
@@ -1275,7 +1265,7 @@ stat_gop(data, null_dist, lam, chart_choice, m=3, d=1)](reference/stat_gop.qmd)
 
 [crit_val_sacf(M, N; alpha=0.05)](reference/crit_val_sacf.qmd)
 
-> Computes the critical value for the SACF of lag 1. The input parameters are:
+> Return the asymptotic two sided critical value of the SACF statistic [`stat_sacf`](@ref) for an `M × N` image. The null hypothesis of no spatial dependence is rejected when the absolute value of the s...
 
 ---
 

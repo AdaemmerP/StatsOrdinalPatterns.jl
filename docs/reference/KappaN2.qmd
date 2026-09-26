@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 KappaN2()
 ```
-Variant 2 of the nominal κ-chart ([`KappaN`](@ref)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
+Variant 2 of the nominal κ-chart ([`KappaN`](KappaN.qmd)); the marginal probabilities are kept fixed at their in-control values and only the agreement statistic is smoothed.
  
 
 

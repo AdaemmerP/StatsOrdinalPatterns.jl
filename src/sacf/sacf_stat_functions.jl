@@ -1,9 +1,15 @@
 """
     sacf(X_centered, d1::Int, d2::Int)
 
-- `X_centered`: The centered (de-meaned) data matrix.  
-- `d1::Int`: The first (row) delay for the spatial process.
-- `d2::Int`: The second (column) delay for the spatial process.
+Compute the spatial autocorrelation of a centered data matrix at lag `(d1, d2)`.
+Negative lags are allowed. Returns the autocorrelation as a `Float64`, or `1.0` if all
+entries of `X_centered` are equal.
+
+- `X_centered`: the centered (de-meaned) data matrix.
+- `d1::Int`: row lag.
+- `d2::Int`: column lag.
+
+Use [`stat_sacf`](@ref) to compute the statistic directly from uncentered data.
 """
 function sacf(X_centered, d1::Int, d2::Int)
 
@@ -38,13 +44,24 @@ end
 
 # Compute SACF for one picture
 """
-    stat_sacf(data::Union{SubArray,Matrix{<:Real}}, d1::Int, d2::Int)
+    stat_sacf(data, d1, d2)
+    stat_sacf(data, lam, d1, d2)
 
-Compute the spatial autocorrelation for a delay combination (d1, d2) for a single picture.
-  
-- `data`: The data matrix.
-- `d1::Int`: The first (row) delay for the spatial process.
-- `d2::Int`: The second (column) delay for the spatial process.
+Compute the spatial autocorrelation function (SACF) statistic at lag `(d1, d2)`.
+
+The first method takes a single image (matrix), centers it and returns the spatial
+autocorrelation as a `Float64`.
+
+The second method takes a sequence of images (3-dimensional array, third dimension =
+time), applies EWMA smoothing with parameter `lam` and returns the vector of
+sequentially computed EWMA statistics, one per image.
+
+- `data`: data matrix (single image) or 3-dimensional array (image sequence).
+- `lam`: smoothing parameter of the EWMA statistic (second method only).
+- `d1::Int`: row delay.
+- `d2::Int`: column delay.
+
+The asymptotic critical value is provided by [`crit_val_sacf`](@ref).
 """
 function stat_sacf(data::Union{SubArray,Matrix{<:Real}}, d1::Int, d2::Int)
 
@@ -55,16 +72,7 @@ function stat_sacf(data::Union{SubArray,Matrix{<:Real}}, d1::Int, d2::Int)
 
 end
 
-# Compute SACF for multiple images
-"""
-    stat_sacf(lam, data::Array{T,3}, d1::Int, d2::Int) where {T<:Real}
-
-Compute the spatial autocorrelation function (SACF) for a delay combination (d1, d2) for multiple images.
-
-- `lam`: The smoothing parameter for the SACF.
-- `data`: The data matrix.
-- `d1::Int`: The first (row) delay for the spatial process.  
-"""
+# Compute SACF for multiple images (documented together with the method above)
 function stat_sacf(data::Array{T,3}, lam, d1::Int, d2::Int) where {T<:Real}
 
   # pre-allocate
@@ -89,11 +97,13 @@ end
 """
     crit_val_sacf(M, N; alpha=0.05)
 
-Computes the critical value for the SACF of lag 1. The input parameters are:
+Return the asymptotic two sided critical value of the SACF statistic
+[`stat_sacf`](@ref) for an `M × N` image. The null hypothesis of no spatial dependence
+is rejected when the absolute value of the statistic exceeds it.
 
-- `M::Int64`: The number of rows in the data matrix.
-- `N::Int64`: The number of columns in the data matrix.
-- `alpha=0.05`: The significance level.
+- `M::Int`: number of rows of the data matrix.
+- `N::Int`: number of columns of the data matrix.
+- `alpha=0.05`: significance level.
 
 # Examples
 ```julia-repl

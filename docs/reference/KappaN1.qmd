@@ -11,7 +11,7 @@ engine: markdown
 ```julia
 KappaN1()
 ```
-Variant 1 of the nominal κ-chart ([`KappaN`](@ref)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
+Variant 1 of the nominal κ-chart ([`KappaN`](KappaN.qmd)); the EWMA recursion smooths both the marginal probabilities and the agreement statistic.
  
 
 

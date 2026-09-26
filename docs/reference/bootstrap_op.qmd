@@ -15,7 +15,7 @@ Compute the bootstrap distribution of the ordinal-pattern chart statistic for th
  
   * `data::Vector{Float64}`: the time series.
   * `n_boot::Int`: number of bootstrap replications.
-  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`.
+  * `chart_choice`: one of `Shannon()`, `ShannonExtropy()`, `DistanceToWhiteNoise()`, `UpDownBalance()`, `Persistence()`, `RotationalAsymmetry()`, `UpDownScaling()`. For `Shannon` and `ShannonExtropy`, the statistic is in the logarithm base of the chart, which must be larger than 1. Both default to base 2 in ComplexityMeasures.jl; use `Shannon(base=exp(1))` for the natural logarithm used in the papers.
   * `m=3`: length of the ordinal patterns.
   * `d=1`: delay between observations of a pattern.
   * `block_size::Int=1`: block length for the resampling. `1` corresponds to an i.i.d. bootstrap; values `> 1` yield a moving-block bootstrap that preserves serial dependence.

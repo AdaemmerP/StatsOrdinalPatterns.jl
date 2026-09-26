@@ -12,7 +12,7 @@ engine: markdown
 rl_sop_ic(lam, cl, lookup_array_sop, reps_range, dist, chart_choice, refinement,
   m, n, d1, d2, rl_max=typemax(Int))
 ```
-Compute in-control run lengths of the EWMA chart based on spatial ordinal patterns (SOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_sop_ic`](@ref).
+Compute in-control run lengths of the EWMA chart based on spatial ordinal patterns (SOPs) for a chunk of replications. This is the single-threaded worker used by [`arl_sop_ic`](arl_sop_ic.qmd).
  
   * `lam::Float64`: A scalar value for lambda for the EWMA chart.
   * `cl::Float64`: A scalar value for the control limit.
@@ -23,8 +23,8 @@ which will be computed using `lookup_array_sop = StatsOrdinalPatterns.compute_lo
   * `dist::Distribution`: A distribution for the error term. Here you can use any
 univariate distribution from the `Distributions.jl` package.
  
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
   * `m::Int`: An integer value for the number of rows for the final "SOP" matrix.
   * `n::Int`: An integer value for the number of columns for the final "SOP" matrix.
   * `d1::Int`: An integer value for the first delay (d₁).

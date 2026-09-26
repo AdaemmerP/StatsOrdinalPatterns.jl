@@ -37,7 +37,7 @@ matches a target `L0`. See @adammer2026.
 ## Key functions
 
 - **Critical limit**
-    - `cl_sop(sop_dgp, lam, L0, cl_init, d1, d2; chart_choice, refinement=OrdinaryType(), reps_bracket, reps_final, bracket_step, seed)`
+    - [`cl_sop(sop_dgp, lam, L0, cl_init, d1, d2; chart_choice, refinement=OrdinaryType(), reps_bracket, reps_final, bracket_step, seed)`](../reference/cl_sop.qmd)
         - Returns the `cl` for which the in-control ARL equals `L0`.
         - `sop_dgp::ICSTS(M_rows, N_cols, dist)`: in-control spatial process (spatial white
           noise of the given image size).
@@ -47,17 +47,17 @@ matches a target `L0`. See @adammer2026.
         - `d1`, `d2`: row and column delays — note they are **positional** arguments here.
 
 - **Chart performance**
-    - `arl_sop_ic(sop_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())` —
+    - [`arl_sop_ic(sop_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())`](../reference/arl_sop_ic.qmd) —
       in-control ARL, returns `(ARL, standard error)`.
-    - `arl_sop_oc(spatial_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())` —
-      out-of-control ARL for a spatially dependent process (`SAR11`, `SAR1`, `SQMA11`,
-      `SINAR11`, `SQINMA11`, `BSQMA11`).
+    - [`arl_sop_oc(spatial_dgp, lam, cl, d1, d2, reps; chart_choice, refinement=OrdinaryType())`](../reference/arl_sop_oc.qmd) —
+      out-of-control ARL for a spatially dependent process ([`SAR11`](../reference/SAR11.qmd), [`SAR1`](../reference/SAR1.qmd), [`SQMA11`](../reference/SQMA11.qmd),
+      [`SINAR11`](../reference/SINAR11.qmd), [`SQINMA11`](../reference/SQINMA11.qmd), [`BSQMA11`](../reference/BSQMA11.qmd)).
 
 - **Monitoring observed data**
-    - `stat_sop(data, lam, d1, d2; chart_choice, refinement=OrdinaryType())` — for a 3D array
+    - [`stat_sop(data, lam, d1, d2; chart_choice, refinement=OrdinaryType())`](../reference/stat_sop.qmd) — for a 3D array
       (rows × columns × time), returns the sequentially computed EWMA chart statistics.
-    - `monitor_sop(data, lam, cl, d1, d2; chart_choice, refinement=OrdinaryType())` —
-      applies the alarm rule to these statistics and returns a `ControlChartResult` with
+    - [`monitor_sop(data, lam, cl, d1, d2; chart_choice, refinement=OrdinaryType())`](../reference/monitor_sop.qmd) —
+      applies the alarm rule to these statistics and returns a [`ControlChartResult`](../reference/ControlChartResult.qmd) with
       the statistics, the limit and the first alarm. With Makie loaded, `plot` draws it.
 
 ## Alarm rules
@@ -69,16 +69,16 @@ the chart signals when $\lvert\text{stat}\rvert > cl$.
 
 | Statistic | Constructor | Definition | Under $H_0$ |
 |:----------|:------------|:----------:|:-----------:|
-| $\hat{\tau}$ | `TauHat()` | $\hat{p}_1 - 1/3$ | $0$ |
-| $\hat{\kappa}$ | `KappaHat()` | $\hat{p}_2 - \hat{p}_3$ | $0$ |
-| $\tilde{\tau}$ | `TauTilde()` | $\tilde{p}_3 - 1/3$ | $0$ |
-| $\tilde{\kappa}$ | `KappaTilde()` | $\tilde{p}_1 - \tilde{p}_2$ | $0$ |
+| $\hat{\tau}$ | [`TauHat()`](../reference/TauHat.qmd) | $\hat{p}_1 - 1/3$ | $0$ |
+| $\hat{\kappa}$ | [`KappaHat()`](../reference/KappaHat.qmd) | $\hat{p}_2 - \hat{p}_3$ | $0$ |
+| $\tilde{\tau}$ | [`TauTilde()`](../reference/TauTilde.qmd) | $\tilde{p}_3 - 1/3$ | $0$ |
+| $\tilde{\kappa}$ | [`KappaTilde()`](../reference/KappaTilde.qmd) | $\tilde{p}_1 - \tilde{p}_2$ | $0$ |
 
 : {tbl-colwidths="[20,25,30,25]"}
 
 :::
 
-Setting `refinement` to `RotationType()`, `DirectionType()`, or `DiagonalType()` replaces
+Setting `refinement` to [`RotationType()`](../reference/RotationType.qmd), [`DirectionType()`](../reference/DirectionType.qmd), or [`DiagonalType()`](../reference/DiagonalType.qmd) replaces
 the three classical SOP types by the corresponding six refined types. The `refinement`
 argument must be identical in `cl_sop`, `arl_sop_ic`, and `arl_sop_oc` — otherwise the
 critical limit does not belong to the monitored statistic.

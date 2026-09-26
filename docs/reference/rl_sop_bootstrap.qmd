@@ -12,7 +12,7 @@ engine: markdown
 rl_sop_bootstrap(p_mat, lam, cl, reps_range, chart_choice, refinement=OrdinaryType(),
   rl_max=typemax(Int))
 ```
-Compute run lengths for a given control limit using bootstrapping instead of a theoretical in-control distribution, for a chunk of replications. This is the single-threaded worker used by [`arl_sop_bootstrap`](@ref).
+Compute run lengths for a given control limit using bootstrapping instead of a theoretical in-control distribution, for a chunk of replications. This is the single-threaded worker used by [`arl_sop_bootstrap`](arl_sop_bootstrap.qmd).
  
   * `p_mat::Array{Float64,2}`: A matrix with the values of the relative frequencies
 of each d1-d2 (delay) combination. This matrix will be used for re-sampling.
@@ -22,8 +22,8 @@ of each d1-d2 (delay) combination. This matrix will be used for re-sampling.
   * `reps_range::UnitRange{Int}`: A range of integers for the number of repetitions.
 This has to be a range to be compatible with `arl_sop_bootstrap()` which uses threading.
  
-  * `chart_choice`: one of [`TauHat`](@ref)`()`, [`KappaHat`](@ref)`()`, [`TauTilde`](@ref)`()`, [`KappaTilde`](@ref)`()`.
-  * `refinement`: [`OrdinaryType`](@ref)`()` for the classical SOP classification, or one of [`RotationType`](@ref)`()`, [`DirectionType`](@ref)`()`, [`DiagonalType`](@ref)`()`.
+  * `chart_choice`: one of [`TauHat`](TauHat.qmd)`()`, [`KappaHat`](KappaHat.qmd)`()`, [`TauTilde`](TauTilde.qmd)`()`, [`KappaTilde`](KappaTilde.qmd)`()`.
+  * `refinement`: [`OrdinaryType`](OrdinaryType.qmd)`()` for the classical SOP classification, or one of [`RotationType`](RotationType.qmd)`()`, [`DirectionType`](DirectionType.qmd)`()`, [`DiagonalType`](DiagonalType.qmd)`()`.
   * `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
 Returns a vector of run lengths.
  
