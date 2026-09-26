@@ -339,9 +339,9 @@ arl_acf_ic(lam, cl, acf_dgp, reps, acf_version; ced=false, ad=100, rl_max=typema
 ---
 
 
-[perm_to_lehm_idx!(P::Vector{<:Integer}) -> Int](reference/perm_to_lehm_idx!.qmd)
+[perm_to_lehm_idx!(P::Vector{<:Integer}, used::Vector{<:Integer}) -> Int](reference/perm_to_lehm_idx!.qmd)
 
-> Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version.
+> Version of [`perm_to_lehm_idx`](@ref) without allocations: convert a permutation `P` of `1:n` into its 1-based lexicographic index, using the preallocated work vector `used`.
 
 ---
 
@@ -677,9 +677,9 @@ stat_sacf(data, lam, d1, d2)](reference/stat_sacf.qmd)
 ---
 
 
-[rl_sacf_bp_ic(](reference/rl_sacf_bp_ic.qmd)
+[rl_sacf_bp_ic(sp_dgp, lam, cl, w, p_reps, dist_error, rl_max=typemax(Int))](reference/rl_sacf_bp_ic.qmd)
 
-> lam, cl, sp*dgp::ICSP, d1*vec::Vector{Int}, d2*vec::Vector{Int}, p*reps::UnitRange, dist_error::UnivariateDistribution )
+> Simulate in-control run lengths of the EWMA chart based on the Box-Pierce type SACF statistic [`stat_sacf_bp`](@ref). Internal helper of [`arl_sacf_bp_ic`](@ref).
 
 ---
 
@@ -812,7 +812,7 @@ chart_stat_gop(p_p0, G1G, ::G_Chart)](reference/chart_stat_gop.qmd)
 
 [perm_to_lehm_idx(P::Vector{<:Integer}) -> Int](reference/perm_to_lehm_idx.qmd)
 
-> Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version.
+> Convert a permutation `P` of `1:n` into its 1-based lexicographic index, computed with the Lehmer code. The `n!` permutations are numbered `1, …, n!` in lexicographic order. The ordinal patterns in th...
 
 ---
 
@@ -1299,10 +1299,9 @@ stat_gop(data, null_dist, lam, chart_choice, m=3, d=1)](reference/stat_gop.qmd)
 ---
 
 
-[rl_sacf_ic(
-spatial_dgp::ICSP, lam, cl, d1::Int, d2::Int, p_reps::UnitRange, dist_error::UnivariateDistribution](reference/rl_sacf_ic.qmd)
+[rl_sacf_ic(sp_dgp, lam, cl, d1, d2, p_reps, dist_error, rl_max=typemax(Int))](reference/rl_sacf_ic.qmd)
 
-> )
+> Simulate in-control run lengths of the EWMA chart based on the spatial autocorrelation function (SACF) at lag `(d1, d2)`. Internal helper of [`arl_sacf_ic`](@ref).
 
 ---
 

@@ -11,17 +11,27 @@ engine: markdown
 ```julia
 perm_to_lehm_idx(P::Vector{<:Integer}) -> Int
 ```
-Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version. 
+Convert a permutation `P` of `1:n` into its 1-based lexicographic index, computed with the Lehmer code. The `n!` permutations are numbered `1, …, n!` in lexicographic order. The ordinal patterns in this package are indexed this way.
+ 
+This version allocates a work vector on every call. Inside loops, use [`perm_to_lehm_idx!`](perm_to_lehm_idx!.qmd), which reuses a preallocated one.
  
 
 ### Arguments
 
-  * `P`: A permutation vector (e.g., [3, 1, 2]).
-  * `used`: A vector to track used elements (should be initialized to zeros of length equal to the maximum element in `P`).
+  * `P`: a permutation of `1:n`, for example the result of `sortperm`.
 
 ### Returns
 
-  * The 0-based index of the permutation.
+  * The index of `P`, an integer in `1:factorial(n)`.
+
+### Examples
+
+
+```julia
+StatsOrdinalPatterns.perm_to_lehm_idx([1, 2, 3])  # 1
+StatsOrdinalPatterns.perm_to_lehm_idx([1, 3, 2])  # 2
+StatsOrdinalPatterns.perm_to_lehm_idx([3, 2, 1])  # 6
+```
 
 
 :::

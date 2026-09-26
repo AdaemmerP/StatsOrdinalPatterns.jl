@@ -36,26 +36,21 @@ function arl_sacf_bp_ic(sp_dgp::ICSTS, lam, cl, w::Int, reps=10_000; rl_max::Int
 end
 
 """
-    rl_sacf_bp_ic(
-  lam, cl, sp_dgp::ICSP, d1_vec::Vector{Int}, d2_vec::Vector{Int}, p_reps::UnitRange, dist_error::UnivariateDistribution
-)
+    rl_sacf_bp_ic(sp_dgp, lam, cl, w, p_reps, dist_error, rl_max=typemax(Int))
 
-Compute the out-of-control run length using the spatial autocorrelation function 
-(SACF) for the BP-statistic. The function returns the run length for a given control 
-  limit `cl` and a given number of repetitions `reps`. The input arguments are:
+Simulate in-control run lengths of the EWMA chart based on the Box-Pierce type SACF
+statistic [`stat_sacf_bp`](@ref). Internal helper of [`arl_sacf_bp_ic`](@ref).
 
- - `sp_dgp::ICSP`: The in-control spatial data generating process (DGP) to use for 
-the SACF function. 
-- `lam`: The smoothing parameter for the exponentially weighted moving average 
-(EWMA) control chart.
-- `cl`: The control limit for the EWMA control chart.
-- `d1_vec::Vector{Int}`: The first (row) delays for the spatial process.
-- `d2_vec::Vector{Int}`: The second (column) delays for the spatial process.
-- `p_reps::UnitRange`: The number of repetitions to compute the run length. This 
-has to be a unit range of integers to allow for parallel processing, since the 
-  function is called by `arl_sacf()`.
-- `dist_error::UnivariateDistribution`: The distribution to use for the error term 
-in the spatial process. This can be any univariate distribution from the `Distributions.jl` package.
+- `sp_dgp::ICSTS`: in-control spatial data generating process.
+- `lam`: smoothing parameter of the EWMA statistic.
+- `cl`: control limit of the chart.
+- `w::Int`: maximal lag of the BP statistic.
+- `p_reps::UnitRange`: replications handled by this call. [`arl_sacf_bp_ic`](@ref) splits
+  its replications into ranges like this and processes them in parallel.
+- `dist_error::UnivariateDistribution`: distribution of the error term of the process.
+- `rl_max::Int=typemax(Int)`: maximal run length after which a replication is stopped.
+
+Returns the vector of run lengths, one per replication in `p_reps`.
 """
 function rl_sacf_bp_ic(
     sp_dgp::ICSTS, lam, cl, w::Int, p_reps::UnitRange, dist_error::UnivariateDistribution, rl_max::Int=typemax(Int)

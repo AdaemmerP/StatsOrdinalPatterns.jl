@@ -9,19 +9,30 @@ engine: markdown
 
 
 ```julia
-perm_to_lehm_idx!(P::Vector{<:Integer}) -> Int
+perm_to_lehm_idx!(P::Vector{<:Integer}, used::Vector{<:Integer}) -> Int
 ```
-Converts a permutation vector `P` into its 0-based lexicographical index. This is the in-place version.
+Version of [`perm_to_lehm_idx`](perm_to_lehm_idx.qmd) without allocations: convert a permutation `P` of `1:n` into its 1-based lexicographic index, using the preallocated work vector `used`.
+ 
+`used` is modified: on return, every entry is `1`. Reset it with `fill!(used, 0)` before the next call. `P` is not modified.
  
 
 ### Arguments
 
-  * `P`: A permutation vector (e.g., [3, 1, 2]).
-  * `used`: A vector to track used elements (should be initialized to zeros of length equal to the maximum element in `P`).
+  * `P`: a permutation of `1:n`, for example the result of `sortperm`.
+  * `used`: work vector of length `n` whose entries are all zero on input.
 
 ### Returns
 
-  * The 0-based index of the permutation.
+  * The index of `P`, an integer in `1:factorial(n)`.
+
+### Examples
+
+
+```julia
+used = zeros(Int, 3)
+StatsOrdinalPatterns.perm_to_lehm_idx!([3, 1, 2], used)  # 5
+fill!(used, 0)  # required before the next call
+```
 
 
 :::
