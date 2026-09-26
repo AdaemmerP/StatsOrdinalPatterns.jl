@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>diagonaltype</title>
+<title>complexitymeasures_api</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -71,8 +90,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../reference/SAR11.html" rel="next">
-<link href="../reference/DirectionType.html" rel="prev">
+<link href="../reference/AAR1.html" rel="next">
+<link href="../page_files/api_reference.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -111,6 +130,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -168,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/SOPClassification.html">SOP classifications</a></li><li class="breadcrumb-item"><a href="../reference/DiagonalType.html">DiagonalType</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../page_files/complexitymeasures_api.html">ComplexityMeasures.jl API</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -188,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../page_files/complexitymeasures_api.html" class="sidebar-item-text sidebar-link">
+  <a href="../page_files/complexitymeasures_api.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ComplexityMeasures.jl API</span></a>
   </div>
 </li>
@@ -258,13 +306,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">SOP classifications</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/SOPClassification.html" class="sidebar-item-text sidebar-link">
@@ -297,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/DiagonalType.html" class="sidebar-item-text sidebar-link active">
+  <a href="../reference/DiagonalType.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DiagonalType</span></a>
   </div>
 </li>
@@ -506,37 +554,169 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-doc" id="toc-sec-doc" class="nav-link active" data-scroll-target="#sec-doc">DiagonalType</a></li>
+  <li><a href="#complexitymeasures.jl-api" id="toc-complexitymeasures.jl-api" class="nav-link active" data-scroll-target="#complexitymeasures.jl-api">ComplexityMeasures.jl API</a>
+  <ul class="collapse">
+  <li><a href="#information-measures-and-complexity-measures" id="toc-information-measures-and-complexity-measures" class="nav-link" data-scroll-target="#information-measures-and-complexity-measures">Information measures and complexity measures</a></li>
+  <li><a href="#correspondence-of-the-calls" id="toc-correspondence-of-the-calls" class="nav-link" data-scroll-target="#correspondence-of-the-calls">Correspondence of the calls</a></li>
+  <li><a href="#the-statistics-of-bandt-2019" id="toc-the-statistics-of-bandt-2019" class="nav-link" data-scroll-target="#the-statistics-of-bandt-2019">The statistics of Bandt (2019)</a></li>
+  <li><a href="#entropy-statistics" id="toc-entropy-statistics" class="nav-link" data-scroll-target="#entropy-statistics">Entropy statistics</a></li>
+  <li><a href="#the-distance-to-white-noise" id="toc-the-distance-to-white-noise" class="nav-link" data-scroll-target="#the-distance-to-white-noise">The distance to white noise</a></li>
+  <li><a href="#spatial-ordinal-patterns" id="toc-spatial-ordinal-patterns" class="nav-link" data-scroll-target="#spatial-ordinal-patterns">Spatial ordinal patterns</a></li>
+  <li><a href="#agreement-of-the-two-packages" id="toc-agreement-of-the-two-packages" class="nav-link" data-scroll-target="#agreement-of-the-two-packages">Agreement of the two packages</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/SOPClassification.html">SOP classifications</a></li><li class="breadcrumb-item"><a href="../reference/DiagonalType.html">DiagonalType</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-<section id="sec-doc" class="level1">
-<h1>DiagonalType</h1>
-<div class="callout callout-style-simple callout-note callout-titled" title="docblock">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="complexitymeasures.jl-api" class="level1">
+<h1>ComplexityMeasures.jl API</h1>
+<p><code>StatsOrdinalPatterns.jl</code> builds on <a href="https://github.com/JuliaDynamics/ComplexityMeasures.jl">ComplexityMeasures.jl</a>. The entropy statistics are the types <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy</code></a> of ComplexityMeasures.jl, and the ordinal pattern probabilities of both packages coincide: both number the <span class="math inline">\(m!\)</span> patterns in the same lexicographic order. ComplexityMeasures.jl estimates probabilities and complexity measures. This package adds the statistical inference on top of them: asymptotic and bootstrap tests, critical values, control charts and their run lengths.</p>
+<p>The statistics of this package can therefore also be computed through the functions <code>complexity</code> and <code>information</code> of ComplexityMeasures.jl. These methods are an additional interface. <a href="../reference/stat_op.html"><code>stat_op</code></a> and <a href="../reference/stat_sop.html"><code>stat_sop</code></a> remain the main interface of the package, since they also return the pattern probabilities and the EWMA statistics that the tests and control charts need.</p>
+<div id="2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsOrdinalPatterns</span>, <span class="bu">ComplexityMeasures</span>, <span class="bu">Random</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">randn</span>(<span class="fl">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>docblock
+<section id="information-measures-and-complexity-measures" class="level2">
+<h2 class="anchored" data-anchor-id="information-measures-and-complexity-measures">Information measures and complexity measures</h2>
+<p>ComplexityMeasures.jl distinguishes two kinds of measures. An information measure is a functional of a probability mass function: it must be computable from any probability vector, by <code>information(measure, probabilities)</code>. Entropies and extropies such as <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy</code></a> are of this kind. Everything else is a complexity measure, a subtype of <code>ComplexityEstimator</code>, computed by <code>complexity(measure, data)</code>.</p>
+<p>All chart types of this package are complexity measures. The statistics of <span class="citation" data-cites="bandt2019">Bandt (<a href="#ref-bandt2019" role="doc-biblioref">2019</a>)</span> and the SOP statistics need the probabilities of particular patterns, and the distance to white noise <span class="math inline">\(\widehat{\Delta} = \sum_i (\hat p_i - 1/m!)^2\)</span> needs the total number <span class="math inline">\(m!\)</span> of patterns, including those that do not occur. <span class="math inline">\(\widehat{\Delta}\)</span> is a disequilibrium in the sense of <code>StatisticalComplexity</code> of ComplexityMeasures.jl, which is a complexity measure for the same reason. The entropy statistics of this package use the information measures <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy</code></a> of ComplexityMeasures.jl.</p>
+</section>
+<section id="correspondence-of-the-calls" class="level2">
+<h2 class="anchored" data-anchor-id="correspondence-of-the-calls">Correspondence of the calls</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 29%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Statistic</th>
+<th style="text-align: left;">This package</th>
+<th style="text-align: left;">ComplexityMeasures.jl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\hat{\beta}\)</span>, <span class="math inline">\(\hat{\tau}\)</span>, <span class="math inline">\(\hat{\gamma}\)</span>, <span class="math inline">\(\hat{\delta}\)</span></td>
+<td style="text-align: left;"><code>stat_op(x; chart_choice=Persistence(), d=d)[1]</code></td>
+<td style="text-align: left;"><code>complexity(Persistence(), probabilities(OrdinalPatterns{3}(d), x))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">same, delay 1</td>
+<td style="text-align: left;"><code>stat_op(x; chart_choice=Persistence())[1]</code></td>
+<td style="text-align: left;"><code>complexity(Persistence(), x)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\widehat{H}\)</span></td>
+<td style="text-align: left;"><code>stat_op(x; chart_choice=Shannon(base=exp(1)), m=m, d=d)[1]</code></td>
+<td style="text-align: left;"><code>information(Shannon(base=exp(1)), OrdinalPatterns{m}(d), x)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\widehat{H}_{\text{ex}}\)</span></td>
+<td style="text-align: left;"><code>stat_op(x; chart_choice=ShannonExtropy(base=exp(1)), m=m, d=d)[1]</code></td>
+<td style="text-align: left;"><code>information(ShannonExtropy(base=exp(1)), OrdinalPatterns{m}(d), x)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\widehat{\Delta}\)</span></td>
+<td style="text-align: left;"><code>stat_op(x; chart_choice=DistanceToWhiteNoise(), m=m, d=d)[1]</code></td>
+<td style="text-align: left;"><code>complexity(DistanceToWhiteNoise(), probabilities(OrdinalPatterns{m}(d), x))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\hat{\tau}\)</span>, <span class="math inline">\(\hat{\kappa}\)</span>, <span class="math inline">\(\tilde{\tau}\)</span>, <span class="math inline">\(\tilde{\kappa}\)</span> (SOP)</td>
+<td style="text-align: left;"><code>stat_sop(X, 1, 1; chart_choice=TauTilde())[1]</code></td>
+<td style="text-align: left;"><code>complexity(TauTilde(), X)</code></td>
+</tr>
+</tbody>
+</table>
+<p><a href="../reference/Persistence.html"><code>Persistence()</code></a> in the first two rows stands for any of the four statistics of <span class="citation" data-cites="bandt2019">Bandt (<a href="#ref-bandt2019" role="doc-biblioref">2019</a>)</span>: <a href="../reference/UpDownBalance.html"><code>UpDownBalance</code></a>, <a href="../reference/Persistence.html"><code>Persistence</code></a>, <a href="../reference/RotationalAsymmetry.html"><code>RotationalAsymmetry</code></a> and <a href="../reference/UpDownScaling.html"><code>UpDownScaling</code></a>. They require patterns of length 3, and <a href="../reference/UpDownBalance.html"><code>UpDownBalance</code></a> also accepts length 2. <a href="../reference/TauTilde.html"><code>TauTilde()</code></a> stands for any of the SOP statistics <a href="../reference/TauHat.html"><code>TauHat</code></a>, <a href="../reference/KappaHat.html"><code>KappaHat</code></a>, <a href="../reference/TauTilde.html"><code>TauTilde</code></a> and <a href="../reference/KappaTilde.html"><code>KappaTilde</code></a>.</p>
+</section>
+<section id="the-statistics-of-bandt-2019" class="level2">
+<h2 class="anchored" data-anchor-id="the-statistics-of-bandt-2019">The statistics of Bandt (2019)</h2>
+<p><code>complexity</code> with a time series uses patterns of length 3 and delay 1. Other delays go through the ordinal pattern probabilities of ComplexityMeasures.jl:</p>
+<div id="4" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">probabilities</span>(<span class="fu">OrdinalPatterns</span><span class="dt">{3}</span>(<span class="fl">2</span>), x)   <span class="co"># patterns of length 3, delay 2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(complexity_route<span class="op">=</span><span class="fu">complexity</span>(<span class="fu">Persistence</span>(), p),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> stat_op_route<span class="op">=</span><span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="fu">Persistence</span>(), m<span class="op">=</span><span class="fl">3</span>, d<span class="op">=</span><span class="fl">2</span>)[<span class="fl">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(complexity_route = -0.018817204301075252, stat_op_route = -0.018817204301075252)</code></pre>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DiagonalType</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Refined SOP classification that groups spatial ordinal patterns by their diagonal behavior; see Weiß and Kim (2025).</p>
+</section>
+<section id="entropy-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="entropy-statistics">Entropy statistics</h2>
+<p><a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy</code></a> are information measures of ComplexityMeasures.jl, so <code>information</code> computes them directly:</p>
+<div id="6" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> <span class="fu">OrdinalPatterns</span><span class="dt">{3}</span>(<span class="fl">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[(statistic<span class="op">=</span>name,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  information_route<span class="op">=</span><span class="fu">information</span>(<span class="cn">e</span>, o, x),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  stat_op_route<span class="op">=</span><span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="cn">e</span>, m<span class="op">=</span><span class="fl">3</span>, d<span class="op">=</span><span class="fl">1</span>)[<span class="fl">1</span>])</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> for (name, <span class="cn">e</span>) <span class="kw">in</span> ((<span class="st">"H"</span>, <span class="fu">Shannon</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>))), (<span class="st">"H_ex"</span>, <span class="fu">ShannonExtropy</span>(base<span class="op">=</span><span class="fu">exp</span>(<span class="fl">1</span>))))]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>2-element Vector{@NamedTuple{statistic::String, information_route::Float64, stat_op_route::Float64}}:
+ (statistic = "H", information_route = 1.785891169486249, stat_op_route = 1.785891169486249)
+ (statistic = "H_ex", information_route = 0.9104014512723928, stat_op_route = 0.9104014512723928)</code></pre>
 </div>
+</div>
+<p>Note that <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon()</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy()</code></a> use base 2 by default. The papers and the asymptotic tests use the natural logarithm; see <a href="../page_files/op_tutorial.html#sec-log-base">Logarithm base</a>.</p>
+</section>
+<section id="the-distance-to-white-noise" class="level2">
+<h2 class="anchored" data-anchor-id="the-distance-to-white-noise">The distance to white noise</h2>
+<p><a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise</code></a> is a complexity measure and accepts any pattern length:</p>
+<div id="8" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">probabilities</span>(<span class="fu">OrdinalPatterns</span><span class="dt">{4}</span>(<span class="fl">1</span>), x)   <span class="co"># patterns of length 4, delay 1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(complexity_route<span class="op">=</span><span class="fu">complexity</span>(<span class="fu">DistanceToWhiteNoise</span>(), p),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> stat_op_route<span class="op">=</span><span class="fu">stat_op</span>(x; chart_choice<span class="op">=</span><span class="fu">DistanceToWhiteNoise</span>(), m<span class="op">=</span><span class="fl">4</span>, d<span class="op">=</span><span class="fl">1</span>)[<span class="fl">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(complexity_route = 0.001833772588583142, stat_op_route = 0.001833772588583142)</code></pre>
+</div>
+</div>
+</section>
+<section id="spatial-ordinal-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-ordinal-patterns">Spatial ordinal patterns</h2>
+<p>For a matrix, <code>complexity</code> computes the SOP statistics of <span class="citation" data-cites="weiss2024b">Weiß and Kim (<a href="#ref-weiss2024b" role="doc-biblioref">2024</a>)</span> with the classical SOP classification at delays <span class="math inline">\((1, 1)\)</span>:</p>
+<div id="10" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">20</span>, <span class="fl">20</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(complexity_route<span class="op">=</span><span class="fu">complexity</span>(<span class="fu">TauTilde</span>(), X),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> stat_sop_route<span class="op">=</span><span class="fu">stat_sop</span>(X, <span class="fl">1</span>, <span class="fl">1</span>; chart_choice<span class="op">=</span><span class="fu">TauTilde</span>())[<span class="fl">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(complexity_route = 0.0018467220683287544, stat_sop_route = 0.0018467220683287544)</code></pre>
+</div>
+</div>
+<p>Other delays, the refined classifications and the entropy statistics of spatial ordinal patterns are available through <a href="../reference/stat_sop.html"><code>stat_sop</code></a>. The spatial outcome space <code>SpatialOrdinalPatterns</code> of ComplexityMeasures.jl classifies patterns differently, so its probabilities cannot be used for the SOP statistics.</p>
+</section>
+<section id="agreement-of-the-two-packages" class="level2">
+<h2 class="anchored" data-anchor-id="agreement-of-the-two-packages">Agreement of the two packages</h2>
+<p>Both routes compute the same numbers, not merely similar ones. The test suite of the package checks this in <code>test/test_complexitymeasures_api.jl</code>: for time series with different dependence structures, pattern lengths 2 to 4 and delays 1 to 4, it compares</p>
+<ul>
+<li>the ordinal pattern probabilities of both packages,</li>
+<li><code>complexity</code> with <a href="../reference/stat_op.html"><code>stat_op</code></a> for the four statistics of Bandt (2019) and for <a href="../reference/DistanceToWhiteNoise.html"><code>DistanceToWhiteNoise</code></a>,</li>
+<li><code>information</code> with <a href="../reference/stat_op.html"><code>stat_op</code></a> for <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.Shannon"><code>Shannon</code></a> and <a href="https://juliadynamics.github.io/ComplexityMeasures.jl/stable/information_measures/#ComplexityMeasures.ShannonExtropy"><code>ShannonExtropy</code></a>, in several logarithm bases,</li>
+<li>that every chart type of the package is a complexity measure and none an information measure,</li>
+<li><code>complexity</code> with <a href="../reference/stat_sop.html"><code>stat_sop</code></a> for the four SOP statistics.</li>
+</ul>
+<p>The probabilities agree for data without ties. When values are tied, ComplexityMeasures.jl orders them at random, while <a href="../reference/stat_op.html"><code>stat_op</code></a> orders them by position. For discrete data, <a href="../reference/stat_op.html"><code>stat_op</code></a> offers <code>add_noise=true</code> to break ties.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bandt2019" class="csl-entry" role="listitem">
+Bandt, Christoph. 2019. <span>“Small Order Patterns in Big Time Series: A Practical Guide.”</span> <em>Entropy</em> 21 (6): 613. <a href="https://doi.org/10.3390/e21060613">https://doi.org/10.3390/e21060613</a>.
+</div>
+<div id="ref-weiss2024b" class="csl-entry" role="listitem">
+Weiß, Christian H, and Hee-Young Kim. 2024. <span>“Using Spatial Ordinal Patterns for Non-Parametric Testing of Spatial Dependence.”</span> <em>Spatial Statistics</em> 59: 100800.
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -942,13 +1122,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../reference/DirectionType.html" class="pagination-link" aria-label="DirectionType">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">DirectionType</span>
+      <a href="../page_files/api_reference.html" class="pagination-link" aria-label="API">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">API</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../reference/SAR11.html" class="pagination-link" aria-label="SAR11">
-        <span class="nav-page-text">SAR11</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../reference/AAR1.html" class="pagination-link" aria-label="AAR1">
+        <span class="nav-page-text">AAR1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
