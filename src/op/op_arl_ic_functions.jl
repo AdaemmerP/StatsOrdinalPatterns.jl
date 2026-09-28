@@ -87,7 +87,7 @@ function rl_op_ic(
   p = zeros(Float64, m_fact)
   bin = zeros(Int, m_fact)
   win = zeros(Int, m)
-  idx_used = similar(win)
+  idx_used = zeros(Int, m)
 
   # Compute vector length based on delay d
   if d isa Int && d == 1

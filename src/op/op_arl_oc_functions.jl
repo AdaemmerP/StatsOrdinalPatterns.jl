@@ -80,7 +80,7 @@ function rl_op_oc(
   p = zeros(Float64, m_fact)
   bin = zeros(Int, m_fact)
   win = zeros(Int, m)
-  idx_used = similar(win)
+  idx_used = zeros(Int, m)
 
   if ced
     pool_vector = Vector{Float64}(undef, 10_000)
@@ -162,7 +162,7 @@ function rl_op_oc(
   p = zeros(Float64, m_fact)
   bin = zeros(Int, m_fact)
   win = zeros(Int, m)
-  idx_used = similar(win)
+  idx_used = zeros(Int, m)
 
   # Determine sequence lengths: the MA states start at index 2 (MA1) resp. 3 (MA2),
   # the autoregressive-type states at index 1.
